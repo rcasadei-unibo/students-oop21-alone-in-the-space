@@ -1,7 +1,7 @@
 package aits.model;
 
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.bullet.Bullet;
+//import com.badlogic.gdx.physics.bullet.Bullet;
 import java.util.Optional;
 
 public class BasicShip implements Ship {
@@ -38,7 +38,7 @@ public class BasicShip implements Ship {
 	public Optional<Bullet> shot() {
 		float cosAlfa = calculateDir();
 		if (Math.acos(cosAlfa) < this.gun.getDegRange()) {
-			return Optional.of(new Bullet());
+			return Optional.of(BulletFactory.BasicBullet(position));
 		}
 		return Optional.empty();
 	}
