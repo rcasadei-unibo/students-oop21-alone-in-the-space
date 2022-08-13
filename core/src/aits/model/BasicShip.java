@@ -31,7 +31,10 @@ public class BasicShip implements Ship {
 			this.direction = this.direction
 					.rotateDeg(rotationSpeed * deltaTime*(a>180?1:-1));
 		}
-		this.speed = this.speed.mulAdd(direction.cpy(), deltaTime);
+		this.speed = this.speed.mulAdd(direction.cpy(), deltaTime*acceleration);
+		if(this.speed.len2()>maxSpeed) {
+			this.speed.cpy().scl(this.maxSpeed/this.speed.len());
+		}
 		this.position = this.position.add(this.speed);
 	}
 
