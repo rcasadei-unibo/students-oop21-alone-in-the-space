@@ -1,5 +1,6 @@
 package aits.model;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 //import com.badlogic.gdx.physics.bullet.Bullet;
 import java.util.Optional;
@@ -13,7 +14,7 @@ public class BasicShip implements Ship {
 	private Vector2 direction;
 	private Vector2 position;
 	private Ship target;
-	// private sprite image;
+	private Texture texture;
 	private gun gun;
 
 	public BasicShip(float health, float maxSpeed, float acceleration, float rotationSpeed) {
@@ -67,5 +68,11 @@ public class BasicShip implements Ship {
 	private float calculateDir() {
 		Vector2 target = this.target.getPosition().cpy().sub(this.position).nor();
 		return this.direction.cpy().nor().dot(target);
+	}
+
+	@Override
+	public Texture getTexture() {
+		// TODO Auto-generated method stub
+		return this.texture;
 	}
 }
