@@ -1,4 +1,4 @@
-package aits.controller;
+package controller;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.graphics.Texture;
