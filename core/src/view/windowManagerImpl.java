@@ -4,7 +4,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class scewindowManagerImpl implements windowManager{
+public class windowManagerImpl implements windowManager{
 
     private Stage mainStage;
 
