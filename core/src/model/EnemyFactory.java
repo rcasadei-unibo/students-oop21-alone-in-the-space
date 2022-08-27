@@ -1,4 +1,4 @@
-package aits.model;
+package model;
 
 
 public class EnemyFactory {

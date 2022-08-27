@@ -3,13 +3,14 @@ package view;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import model.GameEngine;
 
 public class windowManagerImpl implements windowManager{
 
     private Stage mainStage;
 
-    public WindowManagerImpl(final gameLoop) {
-        this.mainStage = gameLoop.getStage();
+    public WindowManagerImpl(final GameEngine gameEngine) {
+        this.mainStage = gameEngine.getStage();
         this.mainStage.setResizable(false);
     }
 

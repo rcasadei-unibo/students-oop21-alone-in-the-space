@@ -1,4 +1,4 @@
-package aits.model;
+package model;
 
 import com.badlogic.gdx.graphics.Texture;
 

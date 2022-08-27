@@ -1,10 +1,13 @@
 package view;
 
-import java.util.Set;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import model.Bullet;
+import model.GameEngine;
+import model.Ship;
 
+import java.util.Set;
 public class GameMapImpl implements GameMap{
 
     @Override
@@ -36,7 +39,7 @@ public class GameMapImpl implements GameMap{
     }
 
     @Override
-    public Set<BasicShip> getActiveEnemyShips() {
+    public Set<Ship> getActiveEnemyShips() {
 
         return null;
     }
@@ -86,17 +89,17 @@ public class GameMapImpl implements GameMap{
     }
 
     @Override
-    public void addEnemyShip(BasicShip enemy) {
+    public void addEnemyShip(Ship enemy) {
 
     }
 
     @Override
-    public void setGameLoop(GameLoop gameLoop) {
+    public void setGameEngine(GameEngine gameEngine) {
 
     }
 
     @Override
-    public GameLooop getGameLoop() {
+    public GameEngine getGameEngine() {
         return null;
     }
 }

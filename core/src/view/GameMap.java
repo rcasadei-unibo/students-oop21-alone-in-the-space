@@ -1,10 +1,13 @@
 package view;
 
-import java.util.Set;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import model.Bullet;
+import model.GameEngine;
+import model.Ship;
+
+import java.util.Set;
 
 public interface GameMap {
 
@@ -36,7 +39,7 @@ public interface GameMap {
     /**
      * @return a set with all the current enemy ships on the map.
      */
-    Set<BasicShip> getActiveEnemyShips();
+    Set<Ship> getActiveEnemyShips();
 
     /**
      * @return all active bullets shot by the player.
@@ -46,7 +49,7 @@ public interface GameMap {
     /**
      * Add player bullet.
      *
-     * @param bullet.
+     * @param bullet
      */
     void addPlayerBullet(Bullet bullet);
 
@@ -58,7 +61,7 @@ public interface GameMap {
     /**
      * Adds enemy bullets.
      *
-     * @param bullet.
+     * @param bullet
      */
     void addEnemyBullet(Bullet bullet);
 
@@ -91,21 +94,21 @@ public interface GameMap {
     /**
      * Add an enemy ship to the game.
      *
-     * @param enemy.
+     * @param enemy
      */
-    void addEnemyShip(BasicShip enemy);
+    void addEnemyShip(Ship enemy);
 
     /**
      * Set a GameLoop reference
      *
-     * @param gameLoop
+     * @param gameEngine
      */
-    void setGameLoop(GameLoop gameLoop);
+    void setGameEngine(GameEngine gameEngine);
 
     /**
      * @return GameLoop reference.
      */
-    GameLooop getGameLoop();
+    GameEngine getGameEngine();
 
 
 }
