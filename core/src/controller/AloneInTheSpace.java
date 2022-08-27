@@ -28,4 +28,5 @@ public class AloneInTheSpace extends ApplicationAdapter {
 		batch.dispose();
 		img.dispose();
 	}
+
 }
