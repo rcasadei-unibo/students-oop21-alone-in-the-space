@@ -16,6 +16,12 @@ buildscript {
 
 allprojects {
     apply plugin: "eclipse"
+    apply plugin: 'org.openjfx.javafxplugin'
+
+    javafx {
+        version = '13'
+        modules = ['javafx.base', 'javafx.controls', 'javafx.fxml', 'javafx.graphics', 'javafx.media', 'javafx.swing', 'javafx.web']
+    }
 
     version = '1.0'
     ext {
@@ -41,19 +47,20 @@ allprojects {
 
 project(":desktop") {
     apply plugin: "java-library"
-
+    apply plugin: 'org.openjfx.javafxplugin'
 
     dependencies {
         implementation project(":core")
         api "com.badlogicgames.gdx:gdx-backend-lwjgl3:$gdxVersion"
         api "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
         api "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-desktop"
-        
+        api "org.openjfx:javafx-plugin:0.0.13"
     }
 }
 
 project(":core") {
     apply plugin: "java-library"
+    apply plugin: 'org.openjfx.javafxplugin'
 
 
     dependencies {
@@ -63,6 +70,7 @@ project(":core") {
         api "com.badlogicgames.ashley:ashley:$ashleyVersion"
         api "com.github.tommyettinger:jbump:1.0.1"
         api "com.kotcrab.vis:vis-ui:1.4.11"
+        api "org.openjfx:javafx-plugin:0.0.13"
         
     }
 }

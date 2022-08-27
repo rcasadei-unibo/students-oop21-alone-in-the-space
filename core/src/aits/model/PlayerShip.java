@@ -2,24 +2,25 @@ package aits.model;
 
 import java.util.Optional;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.bullet.Bullet;
 
 public class PlayerShip implements Ship {
 	
 	private Vector2 position;
-	private final double maxSpeed = 0; //in both directions, for now
+	private double maxSpeed = 0; //in both directions, for now
 	private double speed = 0;
 	private double acceleration = 0;
-	private final double maxAcceleration = 0;
+	private double maxAcceleration = 0;
+	private Texture shipTexture;
 	
-	@Override
+
 	public Optional<Bullet> shot() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+
 	public void move(float deltaTime) {
 		// TODO Auto-generated method stub
 		double newSpeed = speed + acceleration*deltaTime;
@@ -61,19 +62,19 @@ public class PlayerShip implements Ship {
 		this.getPosition().setAngleDeg(newDegrees);
 	}
 
-	@Override
+
 	public void destroy() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+
 	public void setTarget(Ship target) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+
 	public Vector2 getPosition() {
 		// TODO Auto-generated method stub
 		return position;
@@ -82,5 +83,13 @@ public class PlayerShip implements Ship {
 	public void setPosition(Vector2 newPosition) {
 		this.position.set(newPosition);
 	}
+
+
+	public Texture getTexture() {
+		// TODO Auto-generated method stub
+		return shipTexture;
+	}
+	
+	
 
 }
