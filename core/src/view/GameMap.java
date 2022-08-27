@@ -4,10 +4,11 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.Bullet;
-import model.GameEngine;
 import model.Ship;
 
 import java.util.Set;
+
+import controller.GameEngine;
 
 public interface GameMap {
 

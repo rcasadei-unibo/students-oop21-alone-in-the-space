@@ -1,9 +1,9 @@
 package view;
 
+import controller.GameEngine;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import model.GameEngine;
 
 public class windowManagerImpl implements windowManager{
 
