@@ -1,11 +1,33 @@
 package model;
 
 public class GameEngineImpl implements GameEngine {
-
+	
+	private static final long PERIOD = 100L;
+	
+	public GameEngineImpl() {
+		
+	}
+	
 	@Override
 	public void mainLoop() {
-		// TODO Auto-generated method stub
+		long lastTime = System.currentTimeMillis();
+		
+		while(true) {
+			long current = System.currentTimeMillis();
+			int elapsed = (int) (current - lastTime);
+			
+			processInput();
+			update(elapsed);
+			render();
+			
+			try {
+                waitForNextFrame(current);
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+            }
 
+            lastTime = current;
+		}
 	}
 
 	@Override
@@ -31,5 +53,17 @@ public class GameEngineImpl implements GameEngine {
 		// TODO Auto-generated method stub
 
 	}
+	
+	protected void waitForNextFrame(final long current) {
+        long dt = System.currentTimeMillis() - current;
+
+        if (dt < PERIOD) {
+            try {
+                Thread.sleep(PERIOD - dt);
+            } catch (IllegalArgumentException | InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
 }
