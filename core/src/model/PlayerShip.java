@@ -6,24 +6,29 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 
 public class PlayerShip implements Ship {
-	
+
+	// TODO Check movement and re-do it properly if it's baaaaad, maybe limited range shots so they don't keep going
+
 	private Vector2 position;
-	private double maxSpeed = 0; //in both directions, for now
-	private double speed = 0;
-	private double acceleration = 0;
-	private double maxAcceleration = 0;
+	private float maxSpeed = 35; //in both directions, for now
+	private float speed = 0; //watch out for thread competition
+	private float acceleration = 1; //static acceleration, not final
 	private Texture shipTexture;
-	
+
+
 
 	public Optional<Bullet> shot() {
-		// TODO Auto-generated method stub
-		return null;
+		// TODO Wrapper over AbstractPlayerGun, controller announces event
+		Vector2 bulletFiringPosition = new Vector2(position);
+		bulletFiringPosition.x += 1 * Math.cos(bulletFiringPosition.angleRad());
+		bulletFiringPosition.y += 1 * Math.sin(bulletFiringPosition.angleRad());
+		return Optional.of(BulletFactory.PlayerBasicBullet(bulletFiringPosition));
 	}
 
 
 	public void move(float deltaTime) {
-		// TODO Auto-generated method stub
-		double newSpeed = speed + acceleration*deltaTime;
+		// TODO Check
+		float newSpeed = speed + acceleration*deltaTime;
 		this.setSpeed(newSpeed);
 		try {
 			//this.setPosition(new Vector2((float) (position.x + speed * Math.cos(position.angleRad() * deltaTime)), (float) (position.y + speed * Math.sin(position.angleRad() * deltaTime))));
@@ -34,29 +39,31 @@ public class PlayerShip implements Ship {
 		}
 	}
 	
-	private void setSpeed(double speed) {
-		// TODO
+	private void setSpeed(float speed) {
+		// TODO maybe redundant
 		if(speed < maxSpeed || speed > -(maxSpeed))
 			this.speed = speed;
 	}
 	
 	public void thrustForwards() {
-		// TODO controller checks for if UP pressed; in here acceleration keeps increasing the longer you press
-		if (this.acceleration < maxAcceleration) acceleration += 0.01;
+		// TODO controller checks for if UP pressed
+		if (acceleration >= 0) acceleration = acceleration; else acceleration = -acceleration;
 	}
 	
 	public void thrustBackwards() {
-		// TODO controller checks for if DOWN pressed; in here acceleration keeps decreasing the longer you press
-		if (this.acceleration < maxAcceleration) acceleration -= 0.01;
+		// TODO controller checks for if DOWN pressed
+		if (acceleration <= 0) acceleration = acceleration; else acceleration = -acceleration;
 	}
 	
 	public void rotateRight(float degrees) {
+		//TODO redo? i kinda don't like
 		float newDegrees = this.getPosition().angleDeg() + degrees;
 		if (newDegrees >= 360) newDegrees -= 360 ;
 		this.getPosition().setAngleDeg(newDegrees);
 	}
 	
 	public void rotateLeft(float degrees) {
+		//TODO ditto
 		float newDegrees = this.getPosition().angleDeg() - degrees;
 		if (newDegrees < 0 ) newDegrees += 360 ;
 		this.getPosition().setAngleDeg(newDegrees);
@@ -70,7 +77,7 @@ public class PlayerShip implements Ship {
 
 
 	public void setTarget(Ship target) {
-		// TODO Auto-generated method stub
+		// TODO might be redundant because player controlled aim, targeting seems not fun
 		
 	}
 
@@ -86,7 +93,6 @@ public class PlayerShip implements Ship {
 
 
 	public Texture getTexture() {
-		// TODO Auto-generated method stub
 		return shipTexture;
 	}
 	
