@@ -1,5 +1,6 @@
 package view;
 
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -15,6 +16,11 @@ public interface GameMap {
      * @return the panel where the content is drawn.
      */
     AnchorPane getGameContainer();
+
+    /**
+     * @return the active entities on the GameMap.
+     */
+    Set<Entity> getActiveEntities();
 
     /**
      * @return Width.
@@ -66,6 +72,13 @@ public interface GameMap {
     void addEnemyBullet(Bullet bullet);
 
     /**
+     * Remove entities from the game.
+     *
+     * @param entity to be removed.
+     */
+    void removeEntity(Entity entity);
+
+    /**
      * @return the scene.
      */
     Scene getScene();
@@ -83,6 +96,19 @@ public interface GameMap {
      * @param stage
      */
     void setStageReference(Stage stage);
+
+    /**
+     * Set the background image.
+     *
+     * @param the path of the file.
+     */
+    void setBackgroundImage(String path);
+
+    /**
+     *
+     * @return the background.
+     */
+    Node[] getBackground();
 
     /**
      * @return Stage reference.
