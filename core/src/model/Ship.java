@@ -1,13 +1,15 @@
 package model;
-import java.util.Optional;
 
-import com.badlogic.gdx.graphics.Texture;
+import java.util.List;
+
 import com.badlogic.gdx.math.Vector2;
-public interface Ship {
-	Optional<Bullet> shot();
-	void move(float deltaTime);
+
+public interface Ship extends Entity{
+	Bullet shot();
 	void destroy();
 	void setTarget(Ship target);
-	Vector2 getPosition();
-	Texture getTexture();
+	void setGun(Gun gun);
+	void hit(float damage);
+	String drop();
+	Boolean isInRangeOfAttack(List<Vector2> enemy);
 }

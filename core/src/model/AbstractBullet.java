@@ -3,14 +3,15 @@ package model;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 
-public class AbstractBullet implements Bullet {
-	private float maxSpeed;
-	private float acceleration;
-	private float rotationSpeed;
+public abstract class AbstractBullet implements Bullet {
+	private boolean alive;
+	protected float maxSpeed;
+	protected float acceleration;
+	protected float rotationSpeed;
 	private float damage;
-	private Vector2 speed;
-	private Vector2 direction;
-	private Vector2 position;
+	protected Vector2 speed;
+	protected Vector2 direction;
+	protected Vector2 position;
 	private Texture texture;
 	
 	public AbstractBullet(float maxSpeed, float acceleration, float rotationSpeed, float damage, Vector2 position,
@@ -22,31 +23,44 @@ public class AbstractBullet implements Bullet {
 		this.damage = damage;
 		this.position = position;
 		this.texture = texture;
+		this.alive= true;
 	}
 
-	public void move(float deltaTime) {
-		this.speed = this.speed.mulAdd(direction.cpy(), deltaTime);
-		if(this.speed.len2()>maxSpeed) {
-			this.speed.cpy().scl(this.maxSpeed/this.speed.len());
-		}
-		this.position = this.position.add(this.speed);
-	};
+	
 
 	public Boolean isCollided() {
-		return null;
+		return !this.alive;
 		
 	};
 
 	public void destroy() {
-
+		this.alive=false;
 	};
 
 	public float getDamage() {
-		return this.getDamage();
+		return this.damage;
 	};
 	
 	public Texture getTexture() {
 		// TODO Auto-generated method stub
 		return this.texture;
+	}
+
+	@Override
+	public Vector2 getPosition() {
+		// TODO Auto-generated method stub
+		return this.position;
+	}
+
+	@Override
+	public Boolean isAlive() {
+		// TODO Auto-generated method stub
+		return this.alive;
+	}
+
+	@Override
+	public Vector2 getDirection() {
+		// TODO Auto-generated method stub
+		return this.direction.cpy();
 	}
 }
