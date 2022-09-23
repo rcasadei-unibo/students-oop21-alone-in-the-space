@@ -6,12 +6,14 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 public class Testing extends Application {
 
 	private final Rectangle rectangle = new Rectangle();
+	private final Rectangle ret = new Rectangle();
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -20,13 +22,20 @@ public class Testing extends Application {
 		rectangle.setY(100); 
 	    rectangle.setWidth(100.0f); 
 	    rectangle.setHeight(50.0f); 
+	    
+	    ret.setX(400); 
+		ret.setY(200); 
+	    ret.setWidth(100.0f); 
+	    ret.setHeight(50.0f);
+	    ret.setFill(Color.RED);
 	   
+	    
+	    
 	    EventHandler<KeyEvent> movement = new EventHandler<KeyEvent>() {
-
+	    	
 			@Override
 			public void handle(KeyEvent event) {
 				if(event.getCode().equals(KeyCode.UP)) {
-					System.out.println("prova");
 					rectangle.setY(rectangle.getY() - 5);
 					if(rectangle.getY() <= 0 - rectangle.getHeight()) {
 						rectangle.setY(300);
@@ -50,6 +59,9 @@ public class Testing extends Application {
 						rectangle.setX(0 - rectangle.getWidth());
 					}
 				}
+				if(rectangle.getBoundsInParent().intersects(ret.getBoundsInParent())) {
+					System.out.println("Collision");
+				}
 			}
 	    	
 	    };
@@ -59,6 +71,7 @@ public class Testing extends Application {
 	    
 		Group root = new Group();
 		root.getChildren().add(rectangle);
+		root.getChildren().add(ret);
 		Scene scene = new Scene(root, 600, 300);
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("JavaFX application");
