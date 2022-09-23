@@ -1,4 +1,4 @@
-package model;
+package controller;
 
 public interface GameEngine {
 	
@@ -23,4 +23,5 @@ public interface GameEngine {
      * Initialize the launch of game.
      */
 	void initGame();
+	
 }
