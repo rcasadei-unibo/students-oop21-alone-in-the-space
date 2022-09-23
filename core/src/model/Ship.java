@@ -12,4 +12,5 @@ public interface Ship extends Entity{
 	void hit(float damage);
 	String drop();
 	Boolean isInRangeOfAttack(List<Vector2> enemy);
+	
 }

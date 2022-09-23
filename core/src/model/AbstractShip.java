@@ -1,10 +1,14 @@
 package model;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
+
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class AbstractShip implements Ship {
 	private float health;
@@ -16,6 +20,7 @@ public class AbstractShip implements Ship {
 	private Vector2 position;
 	private Ship target;
 	private Texture texture;
+	private ImageView sprite;
 	private Gun gun;
 	private List<Bullet> projectile = new ArrayList<>();
 
@@ -84,6 +89,20 @@ public class AbstractShip implements Ship {
 	public void setGun(Gun gun) {
 		// TODO Auto-generated method stub
 		this.gun = gun;
+	}
+
+	public void setSprite(String img) throws IllegalArgumentException, NullPointerException {
+		// TODO Auto-generated method stub
+		Image sprite;
+		try {
+			sprite = new Image("" + File.pathSeparator + "assets" + File.pathSeparator + img);
+			this.sprite.setImage(sprite);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw e;
+		}
+
 	}
 
 	@Override
