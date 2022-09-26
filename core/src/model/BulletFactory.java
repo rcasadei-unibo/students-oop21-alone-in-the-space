@@ -2,6 +2,8 @@ package model;
 
 import com.badlogic.gdx.math.Vector2;
 
+import javafx.scene.Node;
+
 public class BulletFactory {
 	public static Bullet BasicBullet(Vector2 position) {
 
@@ -14,6 +16,18 @@ public class BulletFactory {
 					super.speed.cpy().scl(super.maxSpeed / super.speed.len());
 				}
 				super.position = super.position.add(super.speed);
+			}
+
+			@Override
+			public Node getNode() {
+				// TODO Auto-generated method stub
+				return null;
+			}
+
+			@Override
+			public void setSprite(Image img) throws IllegalArgumentException, NullPointerException {
+				// TODO Auto-generated method stub
+				
 			};
 		};
 

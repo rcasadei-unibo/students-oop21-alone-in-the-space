@@ -7,10 +7,11 @@ import java.util.List;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class AbstractShip implements Ship {
+public class AbstractShip implements Enemy {
 	private float health;
 	private float maxSpeed;
 	private float acceleration;
@@ -20,7 +21,7 @@ public class AbstractShip implements Ship {
 	private Vector2 position;
 	private Ship target;
 	private Texture texture;
-	private ImageView sprite;
+	private Image sprite;
 	private Gun gun;
 	private List<Bullet> projectile = new ArrayList<>();
 
@@ -91,17 +92,9 @@ public class AbstractShip implements Ship {
 		this.gun = gun;
 	}
 
-	public void setSprite(String img) throws IllegalArgumentException, NullPointerException {
+	public void setSprite(Image img) throws IllegalArgumentException, NullPointerException {
 		// TODO Auto-generated method stub
-		Image sprite;
-		try {
-			sprite = new Image("" + File.pathSeparator + "assets" + File.pathSeparator + img);
-			this.sprite.setImage(sprite);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			throw e;
-		}
+		this.sprite=img;
 
 	}
 
@@ -125,5 +118,11 @@ public class AbstractShip implements Ship {
 		}
 		this.destroy();
 		return false;
+	}
+
+	@Override
+	public Node getNode() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
