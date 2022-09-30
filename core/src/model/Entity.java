@@ -1,10 +1,15 @@
 package model;
 
 import javafx.scene.Node;
+import javafx.scene.image.Image;
+
+import java.io.File;
+
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 
 public interface Entity {
+
 	Vector2 getPosition();
 
 	Texture getTexture();
@@ -17,5 +22,5 @@ public interface Entity {
 
 	Node getNode();
 
-	void setSprite(String img) throws IllegalArgumentException, NullPointerException;
+	void setSprite(Image img) throws IllegalArgumentException, NullPointerException ;
 }

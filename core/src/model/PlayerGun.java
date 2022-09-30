@@ -2,7 +2,7 @@ package model;
 
 import com.badlogic.gdx.math.Vector2;
 
-public class PlayerGun implements gun {
+public class PlayerGun implements Gun {
 	
 	
 

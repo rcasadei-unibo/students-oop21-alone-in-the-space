@@ -10,7 +10,8 @@ public interface Ship extends Entity{
 	
 	void setGun(Gun gun);
 	void hit(float damage);
-	
+	void setTarget(Ship target);
+	String drop();
 	Boolean isInRangeOfAttack(List<Vector2> enemy);
 	
 }

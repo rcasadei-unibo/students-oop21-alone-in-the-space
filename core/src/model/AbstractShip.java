@@ -11,7 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class AbstractShip implements Enemy {
+public abstract class AbstractShip implements Ship {
 	private float health;
 	private float maxSpeed;
 	private float acceleration;
@@ -21,7 +21,7 @@ public class AbstractShip implements Enemy {
 	private Vector2 position;
 	private Ship target;
 	private Texture texture;
-	private Image sprite;
+	private ImageView sprite;
 	private Gun gun;
 	private List<Bullet> projectile = new ArrayList<>();
 
@@ -44,6 +44,8 @@ public class AbstractShip implements Enemy {
 			this.speed.cpy().scl(this.maxSpeed / this.speed.len());
 		}
 		this.position = this.position.add(this.speed);
+		this.sprite.setX(this.position.x);
+		this.sprite.setY(this.position.y);
 	}
 
 	public Bullet shot() {
@@ -92,12 +94,17 @@ public class AbstractShip implements Enemy {
 		this.gun = gun;
 	}
 
-	public void setSprite(Image img) throws IllegalArgumentException, NullPointerException {
-		// TODO Auto-generated method stub
-		this.sprite=img;
+	// TODO Auto-generated method stub
+	public void setSprite(Image img) {
+		this.sprite=new ImageView();
+		this.sprite.setImage(img);
 
 	}
-
+	@Override
+	public Node getNode() {
+		// TODO Auto-generated method stub
+		return this.sprite;
+	}
 	@Override
 	public String drop() {
 		// TODO Auto-generated method stub
@@ -120,9 +127,5 @@ public class AbstractShip implements Enemy {
 		return false;
 	}
 
-	@Override
-	public Node getNode() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 }
