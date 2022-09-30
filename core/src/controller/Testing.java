@@ -1,5 +1,9 @@
 package controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -13,7 +17,8 @@ import javafx.stage.Stage;
 public class Testing extends Application {
 
 	private final Rectangle rectangle = new Rectangle();
-	private final Rectangle ret = new Rectangle();
+	private final List<Rectangle> ret = new ArrayList<>();
+	private final Random rnd = new Random();
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -23,12 +28,21 @@ public class Testing extends Application {
 	    rectangle.setWidth(100.0f); 
 	    rectangle.setHeight(50.0f); 
 	    
-	    ret.setX(400); 
-		ret.setY(200); 
-	    ret.setWidth(100.0f); 
-	    ret.setHeight(50.0f);
-	    ret.setFill(Color.RED);
-	   
+	    
+	    for(int i = 0; i < 5; i++) {
+	    	ret.add(new Rectangle());
+	    }
+	    
+	    for(Rectangle r : ret) {
+	    	r.setX(rnd.nextInt(600)); 
+			r.setY(rnd.nextInt(300)); 
+		    r.setWidth(100.0f); 
+		    r.setHeight(50.0f);
+		    r.setFill(Color.RED);
+		   
+	    }
+	    
+	    
 	    
 	    
 	    EventHandler<KeyEvent> movement = new EventHandler<KeyEvent>() {
@@ -59,8 +73,10 @@ public class Testing extends Application {
 						rectangle.setX(0 - rectangle.getWidth());
 					}
 				}
-				if(rectangle.getBoundsInParent().intersects(ret.getBoundsInParent())) {
-					System.out.println("Collision");
+				for(Rectangle r : ret) {
+					if(rectangle.getBoundsInParent().intersects(r.getBoundsInParent())) {
+						System.out.println("Collision");
+					}
 				}
 			}
 	    	
@@ -71,7 +87,7 @@ public class Testing extends Application {
 	    
 		Group root = new Group();
 		root.getChildren().add(rectangle);
-		root.getChildren().add(ret);
+		root.getChildren().addAll(ret);
 		Scene scene = new Scene(root, 600, 300);
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("JavaFX application");
