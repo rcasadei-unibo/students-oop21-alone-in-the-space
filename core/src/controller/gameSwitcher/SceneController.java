@@ -9,7 +9,7 @@ public interface SceneController {
      *
      * @throws IOException
      */
-    void switchToStartMenu() throws IOException;
+    void switchToMainMenu() throws IOException;
 
     /**
      * Switch to Game.

@@ -24,7 +24,7 @@ public class SceneControllerImpl implements SceneController{
     }
 
     @Override
-    public void switchToStartMenu() throws IOException {
+    public void switchToMainMenu() throws IOException {
 
     }
 
@@ -56,6 +56,11 @@ public class SceneControllerImpl implements SceneController{
     @Override
     public void quit() {
 
+    }
+
+    @Override
+    public Stage getStage() {
+        return this.windowManager;
     }
 
     @Override
