@@ -4,10 +4,11 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.Bullet;
-import model.GameEngine;
 import model.Ship;
 
 import java.util.Set;
+
+import controller.GameEngine;
 
 public interface GameMap {
 
@@ -27,7 +28,7 @@ public interface GameMap {
     Number getHeight();
 
     /**
-     * @param add the player Entity to the game.
+     * @param player add the player Entity to the game.
      */
     void setPlayer(Ship player);
 
