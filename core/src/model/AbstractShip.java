@@ -1,10 +1,15 @@
 package model;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
+
+import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public abstract class AbstractShip implements Ship {
 	private float health;
@@ -16,6 +21,7 @@ public abstract class AbstractShip implements Ship {
 	private Vector2 position;
 	private Ship target;
 	private Texture texture;
+	private ImageView sprite;
 	private Gun gun;
 	private List<Bullet> projectile = new ArrayList<>();
 
@@ -38,6 +44,8 @@ public abstract class AbstractShip implements Ship {
 			this.speed.cpy().scl(this.maxSpeed / this.speed.len());
 		}
 		this.position = this.position.add(this.speed);
+		this.sprite.setX(this.position.x);
+		this.sprite.setY(this.position.y);
 	}
 
 	public Bullet shot() {
@@ -86,6 +94,17 @@ public abstract class AbstractShip implements Ship {
 		this.gun = gun;
 	}
 
+	// TODO Auto-generated method stub
+	public void setSprite(Image img) {
+		this.sprite=new ImageView();
+		this.sprite.setImage(img);
+
+	}
+	@Override
+	public Node getNode() {
+		// TODO Auto-generated method stub
+		return this.sprite;
+	}
 	@Override
 	public String drop() {
 		// TODO Auto-generated method stub
@@ -107,4 +126,6 @@ public abstract class AbstractShip implements Ship {
 		this.destroy();
 		return false;
 	}
+
+	
 }

@@ -2,13 +2,13 @@ package model;
 
 import com.badlogic.gdx.math.Vector2;
 
-public class PlayerBasicGun extends AbstractPlayerGun implements Gun {
+public class PlayerGun implements Gun {
 	
 	
 
 	public Bullet shot() {
 		// TODO Auto-generated method stub
-		return null;
+		return BulletFactory.BasicBullet(null);
 	}
 
 
