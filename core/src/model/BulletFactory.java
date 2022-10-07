@@ -3,6 +3,7 @@ package model;
 import com.badlogic.gdx.math.Vector2;
 
 import javafx.scene.Node;
+import javafx.scene.image.Image;
 
 public class BulletFactory {
 	public static Bullet BasicBullet(Vector2 position) {
@@ -28,7 +29,7 @@ public class BulletFactory {
 			public void setSprite(Image img) throws IllegalArgumentException, NullPointerException {
 				// TODO Auto-generated method stub
 				
-			};
+			}
 		};
 
 	}

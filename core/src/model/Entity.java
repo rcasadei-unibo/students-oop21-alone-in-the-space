@@ -22,5 +22,5 @@ public interface Entity {
 
 	Node getNode();
 
-	void setSprite(Image img) throws IllegalArgumentException, NullPointerException ;
+	void setSprite(Image img) ;
 }
