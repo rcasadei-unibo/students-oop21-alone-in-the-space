@@ -13,21 +13,28 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import model.Entity;
 
 public class Testing extends Application {
 
 	private final Rectangle rectangle = new Rectangle();
 	private final List<Rectangle> ret = new ArrayList<>();
 	private final Random rnd = new Random();
+	private final String s = System.getProperty("file.separator");
+	private final String path = "/controller/pix.jpg";
+	private final Entity entity = new Entity(path);
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
+		System.out.println(path);
 		rectangle.setX(50); 
 		rectangle.setY(100); 
 	    rectangle.setWidth(100.0f); 
 	    rectangle.setHeight(50.0f); 
 	    
+	    entity.getImg().setX(330);
+	    entity.getImg().setY(300);
 	    
 	    for(int i = 0; i < 5; i++) {
 	    	ret.add(new Rectangle());
@@ -50,10 +57,13 @@ public class Testing extends Application {
 			@Override
 			public void handle(KeyEvent event) {
 				if(event.getCode().equals(KeyCode.UP)) {
-					rectangle.setY(rectangle.getY() - 5);
+					/*rectangle.setY(rectangle.getY() - 5);
 					if(rectangle.getY() <= 0 - rectangle.getHeight()) {
 						rectangle.setY(300);
-					}
+					}*/
+					System.out.println("up");
+					entity.moveUp();
+					System.out.println(entity.getImg().getY());
 				}
 				if(event.getCode().equals(KeyCode.DOWN)) {
 					rectangle.setY(rectangle.getY() + 5);
@@ -82,13 +92,17 @@ public class Testing extends Application {
 	    	
 	    };
 
+	    entity.getImg().setFocusTraversable(true);
+	    entity.getImg().setOnKeyPressed(movement);
+	    
 	    rectangle.setFocusTraversable(true);
 	    rectangle.setOnKeyPressed(movement);
 	    
 		Group root = new Group();
-		root.getChildren().add(rectangle);
+		//root.getChildren().add(rectangle);
 		root.getChildren().addAll(ret);
-		Scene scene = new Scene(root, 600, 300);
+		root.getChildren().add(entity.getImg());
+		Scene scene = new Scene(root, 1200, 600);
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("JavaFX application");
 		primaryStage.show();
