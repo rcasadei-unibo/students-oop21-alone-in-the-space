@@ -15,8 +15,29 @@ public class Entity {
 	
 	public void moveUp() {
 		img.setY(img.getY() - 5);
-		if(img.getY() <= 0 - img.getFitHeight()) {
-			img.setY(300);
+		if(img.getY() <= 0 - img.getImage().getHeight()) {
+			img.setY(600);
+		}
+	}
+	
+	public void moveDown() {
+		img.setY(img.getY() + 5);
+		if(img.getY() >= 600) {
+			img.setY(0 - img.getImage().getHeight());
+		}
+	}
+	
+	public void moveLeft() {
+		img.setX(img.getX() - 5);
+		if(img.getX() <= 0 - img.getImage().getWidth()) {
+			img.setX(1200);
+		}
+	}
+	
+	public void moveRight() {
+		img.setX(img.getX() + 5);
+		if(img.getX() >= 1200) {
+			img.setX(0 - img.getImage().getWidth());
 		}
 	}
 	
