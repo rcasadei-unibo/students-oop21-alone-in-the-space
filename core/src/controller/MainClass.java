@@ -1,6 +1,7 @@
 package controller;
 
 import javafx.application.Application;
+import view.Testing;
 
 public class MainClass {
 
