@@ -20,7 +20,6 @@ public abstract class AbstractShip implements Ship {
 	private Vector2 direction;
 	private Vector2 position;
 	private Ship target;
-	private Texture texture;
 	private ImageView sprite;
 	private Gun gun;
 	private List<Bullet> projectile = new ArrayList<>();
@@ -77,11 +76,7 @@ public abstract class AbstractShip implements Ship {
 		return this.direction.cpy().nor().dot(target);
 	}
 
-	public Texture getTexture() {
-		// TODO Auto-generated method stub
-		return this.texture;
-	}
-
+	
 	@Override
 	public Boolean isInRangeOfAttack(List<Vector2> enemy) throws NullPointerException {
 		// TODO Auto-generated method stub

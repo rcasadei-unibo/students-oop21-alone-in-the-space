@@ -12,8 +12,6 @@ public interface Entity {
 
 	Vector2 getPosition();
 
-	Texture getTexture();
-
 	Boolean isAlive();
 
 	void destroy();
