@@ -1,4 +1,4 @@
-package controller;
+package controller.collisionDetection;
 
 import javafx.scene.shape.Rectangle;
 import model.Entity;

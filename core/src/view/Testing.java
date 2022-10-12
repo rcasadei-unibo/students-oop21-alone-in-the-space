@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import controller.Collision;
-import controller.CollisionImpl;
+import controller.collisionDetection.Collision;
+import controller.collisionDetection.CollisionImpl;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
