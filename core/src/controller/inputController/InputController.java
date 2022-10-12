@@ -37,7 +37,7 @@ public interface InputController {
      * @param key
      * @return status of the key.
      */
-    void isKeyPressed(KeyCode key);
+    boolean isKeyPressed(KeyCode key);
 
     /**
      * Check if player's task is active.

@@ -1,6 +1,9 @@
 package controller.gameSwitcher;
 
 import java.io.IOException;
+
+import controller.inputController.InputController;
+import controller.ranking.Ranking;
 import javafx.stage.Stage;
 public interface SceneController {
 
@@ -58,13 +61,11 @@ public interface SceneController {
     Stage getStage();
 
     /**
-     *
      * @return Ranking reference.
      */
     Ranking getRanking();
 
     /**
-     *
      * @return input controller reference.
      */
     InputController getInputController();

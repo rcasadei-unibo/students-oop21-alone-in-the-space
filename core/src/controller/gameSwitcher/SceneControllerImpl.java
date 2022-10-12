@@ -1,11 +1,14 @@
 package controller.gameSwitcher;
 
-import model.GameEngine;
-import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
+import controller.inputController.InputController;
+import controller.inputController.InputControllerImpl;
+import controller.ranking.Ranking;
+import controller.ranking.RankingImpl;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.GameEngine;
+
 import java.io.IOException;
 
 public class SceneControllerImpl implements SceneController{
@@ -65,11 +68,11 @@ public class SceneControllerImpl implements SceneController{
 
     @Override
     public Ranking getRanking() {
-        return null;
+        return this.ranking;
     }
 
     @Override
     public InputController getInputController() {
-        return null;
+        return this.inputController;
     }
 }
