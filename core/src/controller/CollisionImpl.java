@@ -7,7 +7,7 @@ public class CollisionImpl implements Collision {
 
 	@Override
 	public boolean checkEnemiesCollision(Entity e, Rectangle r) {
-		if(e.getImg().getBoundsInParent().intersects(r.getBoundsInParent())) {
+		if(e.getNode().getBoundsInParent().intersects(r.getBoundsInParent())) {
 			System.out.println("Collision");
 			return true;
 		}
@@ -16,7 +16,7 @@ public class CollisionImpl implements Collision {
 
 	@Override
 	public boolean checkBulletsCollision(Entity ship, Entity bullet) {
-		if(ship.getImg().getBoundsInParent().intersects(bullet.getImg().getBoundsInParent())) {
+		if(ship.getNode().getBoundsInParent().intersects(bullet.getNode().getBoundsInParent())) {
 			System.out.println("Collision");
 			return true;
 		}
