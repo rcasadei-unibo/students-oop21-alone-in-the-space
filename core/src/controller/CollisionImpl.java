@@ -6,8 +6,8 @@ import model.Entity;
 public class CollisionImpl implements Collision {
 
 	@Override
-	public boolean checkEnemiesCollision(Entity e, Rectangle r) {
-		if(e.getNode().getBoundsInParent().intersects(r.getBoundsInParent())) {
+	public boolean checkEnemiesCollision(Entity ship, Entity enemy) {
+		if(ship.getNode().getBoundsInParent().intersects(enemy.getNode().getBoundsInParent())) {
 			System.out.println("Collision");
 			return true;
 		}
