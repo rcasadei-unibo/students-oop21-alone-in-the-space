@@ -15,13 +15,16 @@ public class CollisionImpl implements Collision {
 	}
 
 	@Override
-	public boolean checkBulletsCollision() {
-		// TODO Auto-generated method stub
+	public boolean checkBulletsCollision(Entity ship, Entity bullet) {
+		if(ship.getImg().getBoundsInParent().intersects(bullet.getImg().getBoundsInParent())) {
+			System.out.println("Collision");
+			return true;
+		}
 		return false;
 	}
 
 	@Override
-	public void checkBorderCollision() {
+	public void checkBorderCollision(Entity ship) {
 		// TODO Auto-generated method stub
 
 	}

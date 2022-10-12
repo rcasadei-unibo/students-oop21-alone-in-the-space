@@ -16,10 +16,10 @@ public interface Collision {
 	 * 
 	 * @return True if a collision occurred
 	 */
-	boolean checkBulletsCollision();
+	boolean checkBulletsCollision(Entity ship, Entity bullet);
 	/**
 	 * Check if there is a collision with borders
 	 */
-	void checkBorderCollision();
+	void checkBorderCollision(Entity ship);
 	
 }
