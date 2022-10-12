@@ -5,6 +5,10 @@ import java.util.Optional;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
+import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import utilities.InputCommands;
 
 public class PlayerShip implements Ship {
 
@@ -17,6 +21,8 @@ public class PlayerShip implements Ship {
 	private Texture shipTexture;
 	private float rotationSpeed = 1;
 
+	private ImageView sprite;
+
 	private Gun playerGun;
 
 
@@ -25,12 +31,11 @@ public class PlayerShip implements Ship {
 		return playerGun.shot();
 	}
 
-	public PlayerShip (Vector2 position, float maxSpeed, float acceleration, float rotationSpeed, Texture shipTexture) {
+	public PlayerShip (Vector2 position, float maxSpeed, float acceleration, float rotationSpeed) {
 		this.position = new Vector2(position);
 		this.maxSpeed = maxSpeed;
 		this.acceleration = acceleration;
 		this.rotationSpeed = rotationSpeed;
-		this.shipTexture = shipTexture;
 	}
 
 
@@ -46,6 +51,17 @@ public class PlayerShip implements Ship {
 		}
 	}
 
+	@Override
+	public Node getNode() {
+		return null;
+	}
+
+	@Override
+	public void setSprite(Image img) {
+		this.sprite = new ImageView();
+		this.sprite.setImage(img);
+	}
+
 
 	private void setSpeed(float speed) {
 		// TODO maybe redundant
@@ -57,13 +73,13 @@ public class PlayerShip implements Ship {
 		this.setSpeed(speed*0.99f);
 	}
 	
-	public void thrust(String direction) {
+	public void thrust(InputCommands input) {
 		// TODO controller checks for if UP or DOWN are pressed
-		switch(direction){
-			case "forwards":
+		switch(input){
+			case UP:
 				acceleration = Math.abs(acceleration);
 				break;
-			case "backwards":
+			case DOWN:
 				acceleration = -Math.abs(acceleration);
 				break;
 		}
@@ -74,13 +90,13 @@ public class PlayerShip implements Ship {
 		if (acceleration <= 0) acceleration = acceleration; else acceleration = -acceleration;
 	}*/
 	
-	public void rotate(String direction) {
+	public void rotate(InputCommands input) {
 		//Assuming degrees go back to 0 after 360
-		switch(direction) {
-			case "left":
+		switch(input) {
+			case LEFT:
 				this.getPosition().setAngleDeg(this.getPosition().angleDeg() - rotationSpeed);
 				break;
-			case "right":
+			case RIGHT:
 				this.getPosition().setAngleDeg(this.getPosition().angleDeg() + rotationSpeed);
 				break;
 		}
@@ -140,6 +156,10 @@ public class PlayerShip implements Ship {
 	@Override
 	public Boolean isAlive() {
 		return null;
+	}
+
+	public ImageView getSprite() {
+		return this.sprite;
 	}
 
 
