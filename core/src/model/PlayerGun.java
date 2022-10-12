@@ -2,6 +2,8 @@ package model;
 
 import com.badlogic.gdx.math.Vector2;
 
+import java.util.List;
+
 public class PlayerGun implements Gun {
 	
 	
@@ -9,6 +11,11 @@ public class PlayerGun implements Gun {
 	public Bullet shot() {
 		// TODO Auto-generated method stub
 		return BulletFactory.BasicBullet(null);
+	}
+
+	@Override
+	public Boolean refreshRange(Vector2 shipPos, Vector2 direction, List<Vector2> enemyPos) {
+		return null;
 	}
 
 
