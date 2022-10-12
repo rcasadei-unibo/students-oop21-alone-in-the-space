@@ -22,19 +22,7 @@ public class BulletFactory {
 				super.position = super.position.add(super.speed);
 			}
 
-			@Override
-			public Node getNode() {
-				// TODO Auto-generated method stub
-				return null;
-			}
-
-			@Override
-			public void setSprite(Image img) throws IllegalArgumentException, NullPointerException {
-				// TODO Auto-generated method stub
-				
-			}
 		};
-
 	}
 
 	public static Bullet RifleBullet(Vector2 position, Vector2 direction) {
@@ -50,17 +38,6 @@ public class BulletFactory {
 				super.position = super.position.add(super.speed);
 			}
 
-			@Override
-			public Node getNode() {
-				// TODO Auto-generated method stub
-				return null;
-			}
-
-			@Override
-			public void setSprite(Image img) {
-				// TODO Auto-generated method stub
-				
-			};
 		};
 
 	}
