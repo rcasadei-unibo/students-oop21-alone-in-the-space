@@ -1,4 +1,4 @@
-package controller;
+package controller.collisionDetection;
 
 import javafx.scene.shape.Rectangle;
 import model.Entity;
@@ -10,7 +10,7 @@ public interface Collision {
 	 * 
 	 * @return True if a collision occurred
 	 */
-	boolean checkEnemiesCollision(Entity e, Rectangle r);
+	boolean checkEnemiesCollision(Entity ship, Entity enemy);
 	/**
 	 * Check if there is a collision with bullets
 	 * 
