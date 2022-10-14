@@ -24,7 +24,7 @@ public class SceneManager {
     /**
      * Game update.
      */
-    public void update() {
+    public void update(float deltaTime) {
         this.updateBackground();
         //soundmanager
         this.entities.forEach(entity -> updateEntityPosition(entity,deltaTime));
