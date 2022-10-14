@@ -1,9 +1,7 @@
 package model;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 
-import javafx.scene.Node;
 import javafx.scene.image.Image;
 
 public class BulletFactory {
@@ -11,8 +9,14 @@ public class BulletFactory {
 	private static final String assetFolder="";
 	public static Bullet BasicBullet(Vector2 position) {
 
-		return new AbstractBullet(100, 30, 0, 10, position) {
+		class BasicBullet extends AbstractBullet {
 			
+			public BasicBullet(float maxSpeed, float acceleration, float rotationSpeed, float damage,
+					Vector2 position) {
+				super(maxSpeed, acceleration, rotationSpeed, damage, position);
+				// TODO Auto-generated constructor stub
+			}
+
 			@Override
 			public void move(float deltaTime) {
 				super.speed = super.speed.mulAdd(direction.cpy(), deltaTime);
@@ -23,12 +27,21 @@ public class BulletFactory {
 			}
 
 		};
+		Bullet var = new BasicBullet(100, 30, 0, 10, position);
+		var.setSprite(loadImage("bullet_01.png"));
+		return var;
 	}
 
 	public static Bullet RifleBullet(Vector2 position, Vector2 direction) {
 
-		return new AbstractBullet(0, 0, 0, 0, direction) {
+		class RifleBullet extends AbstractBullet {
 			
+			public RifleBullet(float maxSpeed, float acceleration, float rotationSpeed, float damage,
+					Vector2 position) {
+				super(maxSpeed, acceleration, rotationSpeed, damage, position);
+				// TODO Auto-generated constructor stub
+			}
+
 			@Override
 			public void move(float deltaTime) {
 				super.speed = super.speed.mulAdd(direction.cpy(), deltaTime);
@@ -39,12 +52,20 @@ public class BulletFactory {
 			}
 
 		};
+		Bullet var = new RifleBullet(0, 0, 0, 0, direction);
+		var.setSprite(loadImage("bullet_02.png"));
+		return var;
 
 	}
 
 	public static Bullet missile(Vector2 position, final Ship enemy) {
 
-		return new AbstractBullet(0, 0, 0, 0, null) {
+		class missile extends AbstractBullet {
+			public missile(float maxSpeed, float acceleration, float rotationSpeed, float damage, Vector2 position) {
+				super(maxSpeed, acceleration, rotationSpeed, damage, position);
+				// TODO Auto-generated constructor stub
+			}
+
 			private final Ship target = enemy;
 
 			@Override
@@ -59,6 +80,9 @@ public class BulletFactory {
 				}
 			}
 		};
+		Bullet var = new missile(0, 0, 0, 0, null);
+		var.setSprite(loadImage("missile_01.png"));
+		return var;
 
 	}
 	private static Image loadImage(String pathName) throws IllegalArgumentException{
