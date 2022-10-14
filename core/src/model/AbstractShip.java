@@ -70,6 +70,17 @@ public abstract class AbstractShip implements Ship {
 		// TODO Auto-generated method stub
 		return position;
 	}
+	@Override
+	public Vector2 getDirection() {
+		// TODO Auto-generated method stub
+		return this.direction;
+	}
+	@Override
+	public void setPosition(Vector2 newpos) {
+		// TODO Auto-generated method stub
+		 this.position=newpos;
+		 return ;
+	}
 
 	private float calculateDir() {
 		Vector2 target = this.target.getPosition().cpy().sub(this.position).nor();
