@@ -1,17 +1,17 @@
 package view;
 
+import controller.GameEngine;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.Bullet;
+import model.Entity;
 import model.Ship;
 
 import javax.swing.text.html.ImageView;
 import java.util.HashSet;
 import java.util.Set;
-
-import controller.GameEngine;
 public class GameMapImpl implements GameMap{
 
     private Set<Entity> entities;

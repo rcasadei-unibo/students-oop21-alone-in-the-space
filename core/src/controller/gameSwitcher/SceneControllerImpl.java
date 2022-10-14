@@ -3,7 +3,6 @@ package controller.gameSwitcher;
 import controller.inputController.InputController;
 import controller.inputController.InputControllerImpl;
 import controller.ranking.Ranking;
-import controller.ranking.RankingImpl;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
