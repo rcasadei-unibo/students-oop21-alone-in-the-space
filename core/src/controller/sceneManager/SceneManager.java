@@ -26,7 +26,7 @@ public class SceneManager {
      */
     public void update(float deltaTime) {
         this.updateBackground();
-        //soundmanager
+        //TODO soundmanager
         this.entities.forEach(entity -> updateEntityPosition(entity,deltaTime));
     }
 
@@ -44,7 +44,7 @@ public class SceneManager {
      */
     private void updateBackground() {
         for (Node image : this.gameMap.getBackground()) {
-           // image.setLayoutY(image.getLayoutY() + );
+           //TODO image.setLayoutY(image.getLayoutY() + );
             if (image.getLayoutY() >= this.gameMap.getHeight().intValue()) {
                 image.setLayoutY(-this.gameMap.getHeight().intValue());
             }
