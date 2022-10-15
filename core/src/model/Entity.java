@@ -12,7 +12,9 @@ import com.badlogic.gdx.math.Vector2;
 public interface Entity {
 
 	Vector2 getPosition();
-
+	Vector2 getDirection();
+	
+	
 	Boolean isAlive();
 
 	void destroy();
@@ -22,4 +24,5 @@ public interface Entity {
 	Node getNode();
 
 	void setSprite(Image img) ;
+	void setPosition(Vector2 newpos);
 }
