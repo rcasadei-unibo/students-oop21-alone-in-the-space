@@ -22,7 +22,6 @@ public abstract class AbstractShip implements Ship {
 	private Ship target;
 	private ImageView sprite;
 	private Gun gun;
-	private List<Bullet> projectile = new ArrayList<>();
 
 	public AbstractShip(float health, float maxSpeed, float acceleration, float rotationSpeed) {
 		super();
@@ -57,8 +56,7 @@ public abstract class AbstractShip implements Ship {
 	public void destroy() {
 		// TODO Auto-generated method stub
 		this.health = 0;
-		this.projectile.forEach(e -> e.destroy());
-		this.projectile.clear();
+		this.target=null;
 	}
 
 	@Override

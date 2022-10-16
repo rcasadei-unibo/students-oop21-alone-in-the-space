@@ -13,50 +13,49 @@ import com.badlogic.gdx.math.Vector2;
 public interface Entity {
 	
 	 /**
-     * Get the position of the entity
-     *
-     */
+	  * Get the position of the entity
+	  * @return
+	  */
 	Vector2 getPosition();
 	
 	 /**
-     * Get the direction of the entity
-     *
-     */
+	  * Get the direction of the entity
+	  * @return
+	  */
 	Vector2 getDirection();
 	
 	 /**
-     * boolean statement if the entity is still alive
-     *
-     */
+	  * boolean statement if the entity is still alive
+	  * @return
+	  */
 	Boolean isAlive();
 	
 	 /**
-     * destroy all item attached to the object
-     *
-     */
+	  * destroy all item attached to the object
+	  */
 	void destroy();
 
 	 /**
-     * move the entity for the interval specified
-     *
-     */
+	  * move the entity for the interval specified
+	  * @param deltaTime
+	  */
 	void move(float deltaTime);
 
 	 /**
-     * return the node (of javaFX) associate at the object
-     *
-     */
+	  * return the node (of javaFX) associate at the object
+	  * @return
+	  */
 	Node getNode();
 
 	 /**
-     *	Set the sprite of the entity
-     *
-     */
+	  * Set the sprite of the entity
+	  * @param img
+	  */
 	void setSprite(Image img);
 	
 	 /**
-     * Set the position.
-     *
-     */
+	  * Set the position.
+	  * @param newpos
+	  */
 	void setPosition(Vector2 newpos);
 }
