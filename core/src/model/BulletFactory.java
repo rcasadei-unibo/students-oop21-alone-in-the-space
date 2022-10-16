@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
 public class BulletFactory {
 
 	private static final String assetFolder="";
-	public static Bullet BasicBullet(Vector2 position) {
+	public static Bullet BasicBullet(Vector2 position,Vector2 direction) {
 
 		class BasicBullet extends AbstractBullet {
 			
@@ -58,7 +58,7 @@ public class BulletFactory {
 
 	}
 
-	public static Bullet missile(Vector2 position, final Ship enemy) {
+	public static Bullet missile(Vector2 position,Vector2 direction, final Ship enemy) {
 
 		class missile extends AbstractBullet {
 			public missile(float maxSpeed, float acceleration, float rotationSpeed, float damage, Vector2 position) {
