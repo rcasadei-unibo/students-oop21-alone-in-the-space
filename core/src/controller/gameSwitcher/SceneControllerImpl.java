@@ -1,16 +1,15 @@
 package controller.gameSwitcher;
 
 import controller.GameEngine;
-import controller.GameEngineImpl;
 import controller.inputController.InputController;
 import controller.inputController.InputControllerImpl;
 import controller.ranking.Ranking;
+import controller.ranking.RankingImpl;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.GameEngine;
 
 import java.io.IOException;
 
