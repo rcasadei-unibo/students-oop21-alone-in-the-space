@@ -48,7 +48,9 @@ public abstract class AbstractShip implements Ship {
 	}
 
 	public Bullet shot() {
-		return gun.shot();
+		Bullet bullet =  gun.shot(this.direction);
+		bullet.setPosition(this.position);
+		return bullet;
 	}
 
 	@Override
@@ -91,7 +93,7 @@ public abstract class AbstractShip implements Ship {
 	@Override
 	public Boolean isInRangeOfAttack(List<Vector2> enemy) throws NullPointerException {
 		// TODO Auto-generated method stub
-		return gun.refreshRange(this.position.cpy(), this.direction.cpy(), enemy);
+		return gun.isInRange(this.position.cpy(), this.direction.cpy(), enemy);
 	}
 
 	@Override

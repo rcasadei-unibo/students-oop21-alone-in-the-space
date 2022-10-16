@@ -14,7 +14,7 @@ public class EnemyFactory {
 			
 		};
 		Ship en = new BasicEnemy(0, 0, 0, 0);
-		en.setGun(GunFactory.missile());
+		en.setGun(GunFactory.missile(en));
 		en.setSprite(loadImage("ship_0.png"));
 		return en;	
 	}
@@ -28,7 +28,7 @@ public class EnemyFactory {
 			
 		};
 		Ship en = new MissileEnemy(0, 0, 0, 0);
-		en.setGun(GunFactory.missile());
+		en.setGun(GunFactory.missile(en));
 		en.setSprite(loadImage("ship_30.png"));
 		return en;	
 	}
@@ -42,7 +42,7 @@ public class EnemyFactory {
 			
 		};
 		Ship en = new RifleEnemy(0, 0, 0, 0);
-		en.setGun(GunFactory.rifle());
+		en.setGun(GunFactory.rifle(en));
 		en.setSprite(loadImage("ship_22.png"));
 		return en;	
 	}
