@@ -1,6 +1,5 @@
 package view;
 
-import controller.GameEngine;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -10,6 +9,9 @@ import model.Entity;
 import model.Ship;
 
 import javax.swing.text.html.ImageView;
+
+import controller.gameEngine.GameEngine;
+
 import java.util.HashSet;
 import java.util.Set;
 public class GameMapImpl implements GameMap{

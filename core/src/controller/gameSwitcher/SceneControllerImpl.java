@@ -1,6 +1,6 @@
 package controller.gameSwitcher;
 
-import controller.GameEngine;
+import controller.gameEngine.GameEngine;
 import controller.inputController.InputController;
 import controller.inputController.InputControllerImpl;
 import controller.ranking.Ranking;

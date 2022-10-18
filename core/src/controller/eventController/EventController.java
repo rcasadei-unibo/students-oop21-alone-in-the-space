@@ -1,8 +1,8 @@
 package controller.eventController;
 
-import controller.GameEngine;
-
 import java.io.IOException;
+
+import controller.gameEngine.GameEngine;
 
 public interface EventController {
 

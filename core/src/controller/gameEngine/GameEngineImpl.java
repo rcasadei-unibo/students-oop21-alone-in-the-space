@@ -1,8 +1,19 @@
-package controller;
+package controller.gameEngine;
+
+import controller.eventController.EventController;
+import controller.eventController.EventControllerImpl;
+import controller.gameController.GameController;
+import controller.gameController.GameControllerImpl;
+import view.GameMap;
+import view.GameMapImpl;
 
 public class GameEngineImpl implements GameEngine {
 	
 	private static final long PERIOD = 100L;
+	
+	private GameController game;
+	private GameMap map;
+	private EventController event;
 	
 	public GameEngineImpl() {
 		
@@ -12,7 +23,7 @@ public class GameEngineImpl implements GameEngine {
 	public void mainLoop() {
 		long lastTime = System.currentTimeMillis();
 		
-		while(true) {
+		while(event.checkGameStatus()) {
 			long current = System.currentTimeMillis();
 			int elapsed = (int) (current - lastTime);
 			
@@ -50,8 +61,9 @@ public class GameEngineImpl implements GameEngine {
 
 	@Override
 	public void initGame() {
-		// TODO Auto-generated method stub
-
+		this.map = new GameMapImpl(800, 600, this); // define constant for gameContainer
+		this.game = new GameControllerImpl(this.map);
+		this.event = new EventControllerImpl();
 	}
 	
 	protected void waitForNextFrame(final long current) {
