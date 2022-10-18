@@ -1,6 +1,6 @@
 package view;
 
-import controller.GameEngine;
+import controller.gameEngine.GameEngine;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
