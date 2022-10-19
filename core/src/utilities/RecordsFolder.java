@@ -13,7 +13,7 @@ public class RecordsFolder {
 	public enum RankingsPath {
 		
 		/**
-		 * Path to records directory.
+		 * Path to rankings directory.
 		 */
 		RANKING_DIR_PATH(USER_HOME_DIR + SEPARATOR + RANKING_FOLDER_NAME),
 		

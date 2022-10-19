@@ -2,7 +2,9 @@ package controller.collisionDetection;
 
 import java.util.Collection;
 
+import model.Bullet;
 import model.Entity;
+import utilities.EnumInt;
 
 public class CollisionImpl implements Collision {
 
@@ -12,7 +14,7 @@ public class CollisionImpl implements Collision {
 	}
 
 	@Override
-	public boolean checkBulletCollision(Entity ship, Entity bullet) {
+	public boolean checkBulletCollision(Entity ship, Bullet bullet) {
 		return ship.getNode().getBoundsInParent().intersects(bullet.getNode().getBoundsInParent());
 	}
 
@@ -23,16 +25,16 @@ public class CollisionImpl implements Collision {
 	}
 
 	@Override
-	public void checkAllCollision(Entity ship, Collection<Entity> enemies, Collection<Entity> bullets) {
+	public void checkAllCollision(Entity ship, Collection<Entity> enemies, Collection<Bullet> bullets) {
 		enemies.forEach((Entity enemy) -> {
 			if(checkEnemyCollision(ship, enemy)) {
-				//TO DEVELOP
+				ship.decreaseLife(EnumInt.DAMAGE_COLLISION.getValue());
 			}
 		});
 		
-		bullets.forEach((Entity bullet) -> {
+		bullets.forEach((Bullet bullet) -> {
 			if(checkBulletCollision(ship, bullet)) {
-				//TO DEVELOP
+				ship.decreaseLife(bullet.getDamage());
 			}
 		});
 

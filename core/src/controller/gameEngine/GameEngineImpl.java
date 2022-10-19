@@ -4,6 +4,7 @@ import controller.eventController.EventController;
 import controller.eventController.EventControllerImpl;
 import controller.gameController.GameController;
 import controller.gameController.GameControllerImpl;
+import utilities.EnumInt;
 import view.GameMap;
 import view.GameMapImpl;
 
@@ -61,7 +62,7 @@ public class GameEngineImpl implements GameEngine {
 
 	@Override
 	public void initGame() {
-		this.map = new GameMapImpl(800, 600, this); // define constant for gameContainer
+		this.map = new GameMapImpl(EnumInt.HEIGHT.getValue(), EnumInt.WIDTH.getValue(), this); 
 		this.game = new GameControllerImpl(this.map);
 		this.event = new EventControllerImpl();
 	}

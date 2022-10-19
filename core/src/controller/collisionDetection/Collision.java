@@ -2,6 +2,7 @@ package controller.collisionDetection;
 
 import java.util.Collection;
 
+import model.Bullet;
 import model.Entity;
 
 public interface Collision {
@@ -17,14 +18,14 @@ public interface Collision {
 	 * 
 	 * @return True if a collision occurred
 	 */
-	boolean checkBulletCollision(Entity ship, Entity bullet);
+	boolean checkBulletCollision(Entity ship, Bullet bullet);
 	/**
 	 * Check collision with enemies and bullets
 	 * @param ship
 	 * @param enemies
 	 * @param bullets
 	 */
-	void checkAllCollision(Entity ship, Collection<Entity> enemies, Collection<Entity> bullets);
+	void checkAllCollision(Entity ship, Collection<Entity> enemies, Collection<Bullet> bullets);
 	
 	/**
 	 * Check if there is a collision with borders
