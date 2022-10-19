@@ -18,14 +18,7 @@ public class BulletFactory {
 				// TODO Auto-generated constructor stub
 			}
 
-			@Override
-			public void move(float deltaTime) {
-				super.speed = super.speed.mulAdd(direction.cpy(), deltaTime);
-				if (super.speed.len2() > maxSpeed) {
-					super.speed.cpy().scl(super.maxSpeed / super.speed.len());
-				}
-				super.position = super.position.add(super.speed);
-			}
+		
 
 		}
 		;
@@ -42,15 +35,6 @@ public class BulletFactory {
 					Vector2 direction) {
 				super(maxSpeed, acceleration, rotationSpeed, damage, position);
 				// TODO Auto-generated constructor stub
-			}
-
-			@Override
-			public void move(float deltaTime) {
-				super.speed = super.speed.mulAdd(direction.cpy(), deltaTime);
-				if (super.speed.len2() > maxSpeed) {
-					super.speed.cpy().scl(super.maxSpeed / super.speed.len());
-				}
-				super.position = super.position.add(super.speed);
 			}
 
 		}
