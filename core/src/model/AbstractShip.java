@@ -23,12 +23,13 @@ public abstract class AbstractShip implements Ship {
 	private ImageView sprite;
 	private Gun gun;
 
-	public AbstractShip(float health, float maxSpeed, float acceleration, float rotationSpeed) {
+	public AbstractShip(float health, float maxSpeed, float acceleration, float rotationSpeed,Vector2 newPosition ) {
 		super();
 		this.health = health;
 		this.maxSpeed = maxSpeed;
 		this.acceleration = acceleration;
 		this.rotationSpeed = rotationSpeed;
+		this.position=newPosition;
 	}
 
 	public void move(float deltaTime) {
