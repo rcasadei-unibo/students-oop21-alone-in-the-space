@@ -16,9 +16,7 @@ public class BulletFactory {
 					Vector2 direction) {
 				super(maxSpeed, acceleration, rotationSpeed, damage, position);
 				// TODO Auto-generated constructor stub
-			}
-
-		
+			}		
 
 		}
 		;
@@ -54,14 +52,17 @@ public class BulletFactory {
 				// TODO Auto-generated constructor stub
 				this.target=enemy;
 			}
-
+			
 			private final Ship target;
 
 			@Override
 			public void move(float deltaTime) {
 				// TODO Auto-generated method stub
 				if (target.isAlive()) {
-
+					Vector2 tragetDir = this.target.getPosition().cpy().sub(this.position).nor();
+					float delta = this.direction.cpy().nor().dot(tragetDir);
+					double angle = Math.acos(delta);
+					super.direction=super.direction.rotateDeg(rotationSpeed * deltaTime*(angle > 180 ? 1 : -1));
 				} else {
 					super.destroy();
 				}
