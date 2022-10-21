@@ -1,8 +1,5 @@
 package application;
 
-import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
-import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
-import controller.AloneInTheSpace;
 import controller.gameSwitcher.SceneController;
 import controller.gameSwitcher.SceneControllerImpl;
 import javafx.application.Application;
@@ -14,9 +11,9 @@ import utilities.EnumInt;
 // Please note that on macOS your application needs to be started with the -XstartOnFirstThread JVM argument
 public class Launcher extends Application {
 	public static void main (String[] arg) {
-		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
+		/*Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 		config.setForegroundFPS(60);
-		new Lwjgl3Application(new AloneInTheSpace(), config);
+		new Lwjgl3Application(new AloneInTheSpace(), config);*/
 		launch(arg);
 	}
 

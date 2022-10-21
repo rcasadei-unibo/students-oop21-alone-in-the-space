@@ -13,7 +13,7 @@
    <children>
       <ImageView fitHeight="1536.0" fitWidth="2730.0" pickOnBounds="true">
          <image>
-            <Image url="@../skybox13.jpg" />
+            <Image url="@../images/skybox13.jpg" />
          </image>
       </ImageView>
       <Text fill="#ff8c00" layoutX="820.0" layoutY="711.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CHOOSE THE NAME OF YOUR SPACESHIP">

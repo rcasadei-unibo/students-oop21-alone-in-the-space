@@ -1,5 +1,6 @@
 package view;
 
+import controller.gameEngine.GameEngine;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -7,11 +8,9 @@ import javafx.stage.Stage;
 import model.Bullet;
 import model.Entity;
 import model.Ship;
+import utilities.EnumInt;
 
 import javax.swing.text.html.ImageView;
-
-import controller.gameEngine.GameEngine;
-
 import java.util.HashSet;
 import java.util.Set;
 public class GameMapImpl implements GameMap{
@@ -51,7 +50,7 @@ public class GameMapImpl implements GameMap{
         this.enemyBullets = new HashSet<Bullet>();
         this.enemyShips = new HashSet<Ship>();
 
-        this.backGroundImage = new ImageView[];
+        this.backGroundImage = new ImageView[EnumInt.THREE.getValue()];
 
         this.width = width2;
         this.height = height2;
@@ -61,18 +60,18 @@ public class GameMapImpl implements GameMap{
     public AnchorPane getGameContainer() {
         return this.gameContainer;
     }
+
     public final Set<Entity> getActiveEntities() {
         return this.entities;
     }
+
     @Override
     public Number getWidth() {
-
         return this.width;
     }
 
     @Override
     public Number getHeight() {
-
         return this.height;
     }
 
@@ -90,13 +89,11 @@ public class GameMapImpl implements GameMap{
 
     @Override
     public Set<Ship> getActiveEnemyShips() {
-
         return this.enemyShips;
     }
 
     @Override
     public Set<Bullet> getBulletsShotByPlayer() {
-
         return this.playerBullets;
     }
 
@@ -109,7 +106,6 @@ public class GameMapImpl implements GameMap{
 
     @Override
     public Set<Bullet> getBulletsShotByEnemies() {
-
         return this.enemyBullets;
     }
 
@@ -140,7 +136,6 @@ public class GameMapImpl implements GameMap{
 
     @Override
     public void setStageReference(Stage stage) {
-
         this.stage = stage;
     }
 

@@ -15,7 +15,7 @@
    <children>
       <ImageView fitHeight="1536.0" fitWidth="2730.0" pickOnBounds="true">
          <image>
-            <Image url="@../skybox13.jpg" />
+            <Image url="@../images/skybox13.jpg" />
          </image>
       </ImageView>
       <Text fill="WHITE" layoutX="1047.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Controls">

@@ -13,7 +13,7 @@
    <children>
       <ImageView fitHeight="1536.0" fitWidth="2730.0" pickOnBounds="true">
          <image>
-            <Image url="@../skybox13.jpg" />
+            <Image url="@../images/skybox13.jpg" />
          </image>
       </ImageView>
       <TextFlow layoutX="905.0" layoutY="338.0" prefHeight="904.0" prefWidth="932.0" textAlignment="JUSTIFY" />
