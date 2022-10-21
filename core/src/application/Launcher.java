@@ -1,28 +1,29 @@
-package com.aits.game;
+package application;
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
-
 import controller.AloneInTheSpace;
+import controller.gameSwitcher.SceneController;
+import controller.gameSwitcher.SceneControllerImpl;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import utilities.EnumInt;
 
 // Please note that on macOS your application needs to be started with the -XstartOnFirstThread JVM argument
-public class DesktopLauncher extends Application {
+public class Launcher extends Application {
 	public static void main (String[] arg) {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 		config.setForegroundFPS(60);
-		config.setTitle("Alone in the space");
-		config.setWindowIcon("assets/icon.png");
 		new Lwjgl3Application(new AloneInTheSpace(), config);
+		launch(arg);
 	}
 
 	@Override
 	public void start(final Stage windowManager) throws Exception {
-		windowManager.setHeight(Double.valueOf());
-		windowManager.setWidth();
+		windowManager.setHeight(Double.valueOf(EnumInt.HEIGHT.getValue()));
+		windowManager.setWidth(Double.valueOf(EnumInt.WIDTH.getValue()));
 		windowManager.setTitle("Alone in the space");
 		windowManager.setResizable(false);
 		windowManager.getIcons().add(new Image("file:icon16.png"));
@@ -30,5 +31,7 @@ public class DesktopLauncher extends Application {
 			Platform.exit();
 			System.exit(0);
 		});
+		SceneController sc = new SceneControllerImpl(windowManager);
+		sc.switchToMainMenu();
 	}
 }
