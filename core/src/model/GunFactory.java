@@ -1,84 +1,72 @@
 package model;
 
 import java.util.List;
-
 import com.badlogic.gdx.math.Vector2;
 
+
+abstract class GunImpl implements Gun {
+   private int degRange;
+   private Ship actualShip;
+	public GunImpl(int degRange,Ship ship) {
+		this.degRange= degRange;
+		this.actualShip=ship;
+	}
+	
+	public Bullet shot(Vector2 direction) {
+		// TODO Auto-generated method stub
+		return BulletFactory.BasicBullet(actualShip.getPosition(),actualShip.getDirection());
+		 
+	}
+
+	public Boolean isInRange(Vector2 shipPos, Vector2 direction, List<Vector2> enemyPos) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public float getDegRange() {
+		// TODO Auto-generated method stub
+		return this.degRange;
+	}
+	
+}
 public class GunFactory {
 
-	public static Gun rifle() {
+	public static Gun rifle(Ship spaceship) {
 		// TODO Auto-generated method stub
-		return new Gun() {
-			private float gunRange = 30;
-			private Vector2 shipPos;
-			@Override
-			public Bullet shot() {
-				// TODO Auto-generated method stub
-				return BulletFactory.BasicBullet(shipPos);
-			}
+		class rifle extends GunImpl{
 
-			@Override
-			public Boolean refreshRange(Vector2 shipPos, Vector2 direction, List<Vector2> enemyPos) {
-				// TODO Auto-generated method stub
-				this.shipPos = shipPos;
-				return null;
+			public rifle(int degRange, Ship ship) {
+				super(degRange, ship);
+				// TODO Auto-generated constructor stub
 			}
-
-			@Override
-			public float getDegRange() {
-				// TODO Auto-generated method stub
-				return this.gunRange;
-			}
+			
 		};
+		return new rifle(10,spaceship);
 	}
 
-	public static Gun missile() {
+	public static Gun missile(Ship spaceship) {
 		// TODO Auto-generated method stub
-		return new Gun() {
+		class missile extends GunImpl{
 
-			@Override
-			public Bullet shot() {
-				// TODO Auto-generated method stub
-				return null;
+			public missile(int degRange, Ship ship) {
+				super(degRange, ship);
+				// TODO Auto-generated constructor stub
 			}
-
-			@Override
-			public Boolean refreshRange(Vector2 shipPos, Vector2 direction, List<Vector2> enemyPos) {
-				// TODO Auto-generated method stub
-				return null;
-			}
-
-			@Override
-			public float getDegRange() {
-				// TODO Auto-generated method stub
-				return 0;
-			}
-
-		};
+			
+		}return new missile(45,spaceship);
+	
 	}
 
-	public static Gun shootgun() {
+	public static Gun shootgun(Ship spaceship) {
 		// TODO Auto-generated method stub
-		return new Gun() {
+		class shootgun extends GunImpl{
 
-			@Override
-			public Bullet shot() {
-				// TODO Auto-generated method stub
-				return null;
+			public shootgun(int degRange, Ship ship) {
+				super(degRange, ship);
+				// TODO Auto-generated constructor stub
 			}
-
-			@Override
-			public Boolean refreshRange(Vector2 shipPos, Vector2 direction, List<Vector2> enemyPos) {
-				// TODO Auto-generated method stub
-				return null;
-			}
-
-			@Override
-			public float getDegRange() {
-				// TODO Auto-generated method stub
-				return 0;
-			}
-		};
+			
+		}return new shootgun(30,spaceship);
 	}
 
 }

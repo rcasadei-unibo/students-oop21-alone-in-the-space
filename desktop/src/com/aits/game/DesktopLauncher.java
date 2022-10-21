@@ -3,7 +3,7 @@ package com.aits.game;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 
-import controller.AloneInTheSpace;
+//import core.src.controller.sceneManager.AloneInTheSpace;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
@@ -16,7 +16,7 @@ public class DesktopLauncher extends Application {
 		config.setForegroundFPS(60);
 		config.setTitle("Alone in the space");
 		config.setWindowIcon("assets/icon.png");
-		new Lwjgl3Application(new AloneInTheSpace(), config);
+		//new Lwjgl3Application(new AloneInTheSpace(), config);
 	}
 
 	@Override

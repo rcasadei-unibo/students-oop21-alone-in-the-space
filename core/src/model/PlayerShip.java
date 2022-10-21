@@ -1,7 +1,6 @@
 package model;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
@@ -15,40 +14,59 @@ public class PlayerShip implements Ship {
 	// TODO Check movement and re-do it properly if it's baaaaad, maybe limited range shots so they don't keep going
 
 	private Vector2 position;
-	private float maxSpeed = 4.0f;
-	private float speed = 0; //watch out for thread competition
-	private float acceleration = 1; //static acceleration, not final
+	private float maxHealth;
+	private float health;
+	private float maxSpeed;
+	private Vector2 speed; //watch out for thread competition
+	private float acceleration;
+	private Vector2 direction;
 	private Texture shipTexture;
-	private float rotationSpeed = 1;
-
+	private float rotationSpeed;
 	private ImageView sprite;
-
 	private Gun playerGun;
+	private Node node;
+	private Vector2 rotation;
+	private float yaw;
 
 
 	public Bullet shot() {
-		// TODO Wrapper over AbstractPlayerGun, controller announces event
-		return playerGun.shot();
+		return playerGun.shot(rotation);
 	}
 
-	public PlayerShip (Vector2 position, float maxSpeed, float acceleration, float rotationSpeed) {
+	public PlayerShip (Vector2 position, float maxHealth, float maxSpeed, float acceleration, float rotationSpeed) {
 		this.position = new Vector2(position);
+		this.maxHealth = maxHealth;
+		this.health = this.maxHealth;
 		this.maxSpeed = maxSpeed;
 		this.acceleration = acceleration;
 		this.rotationSpeed = rotationSpeed;
+		this.rotation = new Vector2(1, 0);
+		this.yaw = 0;
+		this.rotation.setAngleDeg(yaw);
+		calculateDir();
 	}
+
 
 
 	public void move(float deltaTime) {
 		// TODO Check
-		this.setSpeed(speed + acceleration*deltaTime);
 		try {
-			//this.setPosition(new Vector2((float) (position.x + speed * Math.cos(position.angleRad() * deltaTime)), (float) (position.y + speed * Math.sin(position.angleRad() * deltaTime))));
-			this.getPosition().x = position.x + speed * (float) Math.cos(position.angleRad()) * deltaTime;
-			this.getPosition().y = position.y - speed * (float) Math.sin(position.angleRad()) * deltaTime;
+			float cosAlfa = calculateDir();
+			double a = Math.acos(cosAlfa);
+			this.direction = this.direction.rotateDeg(rotationSpeed * deltaTime * (a > 180 ? 1 : -1));
+			this.speed = this.speed.mulAdd(direction.cpy(), deltaTime * acceleration);
+			if (this.speed.len2() > maxSpeed) {
+				this.speed.cpy().scl(this.maxSpeed / this.speed.len());
+			}
+			this.position = this.position.add(this.speed);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+	}
+
+	private float calculateDir() {
+		Vector2 currentDir = this.position.cpy().add(rotation.x,rotation.y).sub(this.position).nor();
+		return this.direction.cpy().nor().dot(currentDir);
 	}
 
 	@Override
@@ -63,57 +81,49 @@ public class PlayerShip implements Ship {
 	}
 
 
-	private void setSpeed(float speed) {
-		// TODO maybe redundant
-		if(Math.abs(speed) <= maxSpeed)
-			this.speed = speed;
-	}
-
 	public void decaySpeed() {
-		this.setSpeed(speed*0.99f);
+		this.speed.mulAdd(direction.cpy(), 0.99f);
 	}
 	
 	public void thrust(InputCommands input) {
 		// TODO controller checks for if UP or DOWN are pressed
 		switch(input){
 			case UP:
-				acceleration = Math.abs(acceleration);
+				acceleration = Math.abs(acceleration == 0 ? 1 : acceleration);
 				break;
 			case DOWN:
-				acceleration = -Math.abs(acceleration);
+				acceleration = -Math.abs(acceleration == 0 ? 1 : acceleration);
 				break;
 		}
 	}
+
+	public void thrustReleased() {
+		this.acceleration = 0;
+	}
+
 	
-	/*public void thrustBackwards() {
-		// TODO controller checks for if DOWN pressed
-		if (acceleration <= 0) acceleration = acceleration; else acceleration = -acceleration;
-	}*/
-	
-	public void rotate(InputCommands input) {
-		//Assuming degrees go back to 0 after 360
-		switch(input) {
+	public void rotate(InputCommands input, float deltaTime) {
+		int direction = 1;
+		switch (input) {
 			case LEFT:
-				this.getPosition().setAngleDeg(this.getPosition().angleDeg() - rotationSpeed);
+				direction = direction;
 				break;
 			case RIGHT:
-				this.getPosition().setAngleDeg(this.getPosition().angleDeg() + rotationSpeed);
+				direction = -direction;
 				break;
 		}
+		this.yaw = Math.abs((yaw + rotationSpeed*deltaTime*direction)) % 360;
+		this.rotation.set((float)Math.cos(yaw), -(float)Math.sin(yaw));
 	}
-	
-/*	public void rotateLeft(float degrees) {
-		//TODO ditto
-		float newDegrees = this.getPosition().angleDeg() - degrees;
-		if (newDegrees < 0 ) newDegrees += 360 ;
-		this.getPosition().setAngleDeg(newDegrees);
-	}*/
 
+
+	public Vector2 getDirection() {
+		return this.direction;
+	}
 
 	public void destroy() {
 		// TODO Auto-generated method stub
 	}
-
 
 	public void setTarget(Ship target) {
 		// TODO might be redundant because player controlled aim, targeting seems not fun
@@ -121,12 +131,12 @@ public class PlayerShip implements Ship {
 
 	@Override
 	public void setGun(Gun gun) {
-
+		this.playerGun = gun;
 	}
 
 	@Override
 	public void hit(float damage) {
-
+		this.health -= damage;
 	}
 
 	@Override
@@ -155,7 +165,7 @@ public class PlayerShip implements Ship {
 
 	@Override
 	public Boolean isAlive() {
-		return null;
+		return this.health == 0 ? true : false;
 	}
 
 	public ImageView getSprite() {

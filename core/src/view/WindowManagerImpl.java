@@ -5,7 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class windowManagerImpl implements windowManager{
+public class WindowManagerImpl implements WindowManager {
 
     private Stage mainStage;
 
@@ -23,6 +23,7 @@ public class windowManagerImpl implements windowManager{
 
     @Override
     public Stage getStage() {
+
         return this.mainStage;
     }
 }

@@ -20,10 +20,8 @@ public abstract class AbstractShip implements Ship {
 	private Vector2 direction;
 	private Vector2 position;
 	private Ship target;
-	private Texture texture;
 	private ImageView sprite;
 	private Gun gun;
-	private List<Bullet> projectile = new ArrayList<>();
 
 	public AbstractShip(float health, float maxSpeed, float acceleration, float rotationSpeed) {
 		super();
@@ -49,15 +47,16 @@ public abstract class AbstractShip implements Ship {
 	}
 
 	public Bullet shot() {
-		return gun.shot();
+		Bullet bullet =  gun.shot(this.direction);
+		bullet.setPosition(this.position);
+		return bullet;
 	}
 
 	@Override
 	public void destroy() {
 		// TODO Auto-generated method stub
 		this.health = 0;
-		this.projectile.forEach(e -> e.destroy());
-		this.projectile.clear();
+		this.target=null;
 	}
 
 	@Override
@@ -71,21 +70,28 @@ public abstract class AbstractShip implements Ship {
 		// TODO Auto-generated method stub
 		return position;
 	}
+	@Override
+	public Vector2 getDirection() {
+		// TODO Auto-generated method stub
+		return this.direction;
+	}
+	@Override
+	public void setPosition(Vector2 newpos) {
+		// TODO Auto-generated method stub
+		 this.position=newpos;
+		 return ;
+	}
 
 	private float calculateDir() {
 		Vector2 target = this.target.getPosition().cpy().sub(this.position).nor();
 		return this.direction.cpy().nor().dot(target);
 	}
 
-	public Texture getTexture() {
-		// TODO Auto-generated method stub
-		return this.texture;
-	}
-
+	
 	@Override
 	public Boolean isInRangeOfAttack(List<Vector2> enemy) throws NullPointerException {
 		// TODO Auto-generated method stub
-		return gun.refreshRange(this.position.cpy(), this.direction.cpy(), enemy);
+		return gun.isInRange(this.position.cpy(), this.direction.cpy(), enemy);
 	}
 
 	@Override

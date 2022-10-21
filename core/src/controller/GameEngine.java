@@ -23,4 +23,5 @@ public interface GameEngine {
      * Initialize the launch of game.
      */
 	void initGame();
+	
 }

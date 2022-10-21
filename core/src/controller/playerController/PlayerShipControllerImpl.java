@@ -1,8 +1,10 @@
-package controller;
+package controller.playerController;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import model.GunFactory;
 import model.PlayerShip;
 import utilities.InputCommands;
 import utilities.PlayerShipValues;
@@ -12,36 +14,41 @@ public class PlayerShipControllerImpl implements PlayerShipController {
     private PlayerShip playerShip;
 
     @Override
-    public void initialisePlayerShip() {
+    public void initialisePlayerShip(Vector2 initialPos, Image sprite) {
         //playerShip = new PlayerShip();
         //sprite to be set in the center and visible
         //maybe initialize depending on ship????
         //use PlayerShipValues.MainShip
+        playerShip = new PlayerShip(initialPos, PlayerShipValues.MainShip.MAXHEALTH, PlayerShipValues.MainShip.MAXSPEED,
+                                                PlayerShipValues.MainShip.ACCELERATION, PlayerShipValues.MainShip.ROTATIONSPEED);
+        playerShip.setSprite(sprite);
+        //playerShip.setGun(GunFactory.shootgun()); //Needs proper playergun
     }
 
-    @Override
-    public Vector2 rotate(InputCommands input) {
+/*    private Vector2 rotate(InputCommands input) {
         playerShip.rotate(input);
         return playerShip.getPosition();
     }
 
-    @Override
-    public Vector2 thrust(InputCommands input) {
+    private Vector2 thrust(InputCommands input) {
         playerShip.thrust(input);
         return playerShip.getPosition();
-    }
+    }*/
 
     @Override
     public Vector2 move(float deltaTime) {
         playerShip.move(deltaTime);
-        if(!isThrustBeingHeld())
-            playerShip.decaySpeed();
+        playerShip.decaySpeed();
         return playerShip.getPosition();
-
     }
 
-    private boolean isThrustBeingHeld() {
-        return false;
+    public void changeMovement(InputCommands input, float deltaTime){
+        playerShip.thrust(input);
+        playerShip.rotate(input, deltaTime);
+    }
+
+    public void thrustReleased() {
+        playerShip.thrustReleased();
     }
 
     public void update(float deltaTime) {

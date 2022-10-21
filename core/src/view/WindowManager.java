@@ -2,7 +2,7 @@ package view;
 
 import javafx.stage.Stage;
 
-public interface windowManager {
+public interface WindowManager {
 
     /**
      * Add the gamemap to the stage and set its scene.
