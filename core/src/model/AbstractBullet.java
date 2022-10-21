@@ -26,7 +26,14 @@ public abstract class AbstractBullet implements Bullet {
 		this.position = position;
 		this.alive= true;
 	}
-
+	
+	public void move(float deltaTime) {
+		this.speed = this.speed.mulAdd(direction.cpy(), deltaTime);
+		if (this.speed.len() > maxSpeed) {
+			this.speed=this.speed.cpy().nor().scl(this.maxSpeed );
+		}
+		this.position = this.position.mulAdd(this.speed, deltaTime);
+	}
 	
 
 	public Boolean isCollided() {

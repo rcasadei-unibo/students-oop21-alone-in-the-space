@@ -23,25 +23,26 @@ public abstract class AbstractShip implements Ship {
 	private ImageView sprite;
 	private Gun gun;
 
-	public AbstractShip(float health, float maxSpeed, float acceleration, float rotationSpeed) {
+	public AbstractShip(float health, float maxSpeed, float acceleration, float rotationSpeed,Vector2 newPosition ) {
 		super();
 		this.health = health;
 		this.maxSpeed = maxSpeed;
 		this.acceleration = acceleration;
 		this.rotationSpeed = rotationSpeed;
+		this.position=newPosition;
 	}
 
 	public void move(float deltaTime) {
-		float cosAlfa = calculateDir();
-		double a = Math.acos(cosAlfa);
-		if (a < gun.getDegRange()) {
-			this.direction = this.direction.rotateDeg(rotationSpeed * deltaTime * (a > 180 ? 1 : -1));
+		float delta = calculateDir();
+		double angle = Math.acos(delta);
+		if (angle < gun.getDegRange()) {
+			this.direction = this.direction.rotateDeg(rotationSpeed * deltaTime * (angle > 180 ? 1 : -1));
 		}
 		this.speed = this.speed.mulAdd(direction.cpy(), deltaTime * acceleration);
-		if (this.speed.len2() > maxSpeed) {
-			this.speed.cpy().scl(this.maxSpeed / this.speed.len());
+		if (this.speed.len() > maxSpeed) {
+			this.speed=this.speed.cpy().nor().scl(this.maxSpeed );
 		}
-		this.position = this.position.add(this.speed);
+		this.position = this.position.mulAdd(this.speed, deltaTime );
 		this.sprite.setX(this.position.x);
 		this.sprite.setY(this.position.y);
 	}
@@ -81,10 +82,14 @@ public abstract class AbstractShip implements Ship {
 		 this.position=newpos;
 		 return ;
 	}
-
+	
+	/**
+	 * calculate the angle from the actual direction, and ideal direction 
+	 * @return
+	 */
 	private float calculateDir() {
-		Vector2 target = this.target.getPosition().cpy().sub(this.position).nor();
-		return this.direction.cpy().nor().dot(target);
+		Vector2 tragetDir = this.target.getPosition().cpy().sub(this.position).nor();
+		return this.direction.cpy().nor().dot(tragetDir);
 	}
 
 	

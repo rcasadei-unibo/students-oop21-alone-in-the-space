@@ -1,5 +1,7 @@
 package controller.gameEngine;
 
+import javafx.stage.Stage;
+
 public interface GameEngine {
 	
 	 /**
@@ -23,5 +25,9 @@ public interface GameEngine {
      * Initialize the launch of game.
      */
 	void initGame();
+	/**
+	 * 
+	 */
+	Stage getStage();
 	
 }
