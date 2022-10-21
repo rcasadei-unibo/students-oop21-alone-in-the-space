@@ -4,7 +4,7 @@ import java.util.List;
 import com.badlogic.gdx.math.Vector2;
 
 
-abstract class GunImpl implements Gun{
+abstract class GunImpl implements Gun {
    private int degRange;
    private Ship actualShip;
 	public GunImpl(int degRange,Ship ship) {
