@@ -4,6 +4,7 @@ import controller.eventController.EventController;
 import controller.eventController.EventControllerImpl;
 import controller.gameController.GameController;
 import controller.gameController.GameControllerImpl;
+import javafx.stage.Stage;
 import utilities.EnumInt;
 import view.GameMap;
 import view.GameMapImpl;
@@ -15,6 +16,7 @@ public class GameEngineImpl implements GameEngine {
 	private GameController game;
 	private GameMap map;
 	private EventController event;
+	private Stage stage;
 	
 	public GameEngineImpl() {
 		
@@ -78,5 +80,9 @@ public class GameEngineImpl implements GameEngine {
             }
         }
     }
+	
+	public Stage getStage() {
+		return this.stage;
+	}
 
 }
