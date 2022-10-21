@@ -1,10 +1,10 @@
 package controller.gameSwitcher;
 
-import java.io.IOException;
-
 import controller.inputController.InputController;
 import controller.ranking.Ranking;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 public interface SceneController {
 
     /**
@@ -24,6 +24,7 @@ public interface SceneController {
 
     /**
      * Switch to Score Menu.
+     *
      * @throws IOException
      */
     void switchToScores() throws IOException;
@@ -69,3 +70,4 @@ public interface SceneController {
      * @return input controller reference.
      */
     InputController getInputController();
+}

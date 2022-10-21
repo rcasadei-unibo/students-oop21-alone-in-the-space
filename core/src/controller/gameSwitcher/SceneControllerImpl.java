@@ -30,7 +30,7 @@ public class SceneControllerImpl implements SceneController{
 
     @Override
     public void switchToMainMenu() throws IOException {
-        Scene scene = this.getSceneFromFxml("fxml/MainMenu.fxml", new MainMenuController(this));
+        Scene scene = this.getSceneFromFxml("assets/fxml/MainMenu.fxml", new MainMenuController(this));
         this.inputController.changeScene(scene);
         this.windowManager.setScene(scene);
     }
@@ -47,7 +47,7 @@ public class SceneControllerImpl implements SceneController{
 
     @Override
     public void switchToScores() throws IOException {
-        Scene scene = this.getSceneFromFxml("fxml/Scores.fxml", new ScoresController(this));
+        Scene scene = this.getSceneFromFxml("assets/fxml/Scores.fxml", new ScoresController(this));
         this.inputController.changeScene(scene);
         this.windowManager.setScene(scene);
         this.windowManager.show();
@@ -55,7 +55,7 @@ public class SceneControllerImpl implements SceneController{
 
     @Override
     public void switchToNickname() throws IOException {
-        Scene scene = this.getSceneFromFxml("fxml/Nickname.fxml", new NicknameController(this));
+        Scene scene = this.getSceneFromFxml("assets/fxml/Nickname.fxml", new NicknameController(this));
         this.inputController.changeScene(scene);
         this.windowManager.setScene(scene);
     }
@@ -63,14 +63,14 @@ public class SceneControllerImpl implements SceneController{
     @Override
     public void switchToEndMenu(int scores) throws IOException {
         this.gameEngine.stop();
-        Scene scene = this.getSceneFromFxml("fxml/EndMenu.fxml",  new EndGameController(this, scores));
+        Scene scene = this.getSceneFromFxml("assets/fxml/EndMenu.fxml",  new EndGameController(this, scores));
         this.inputController.changeScene(scene);
         this.windowManager.setScene(scene);
     }
 
     @Override
     public void switchToControls() throws IOException {
-        Scene scene = this.getSceneFromFxml("fxml/Controls.fxml", new ControlsController(this));
+        Scene scene = this.getSceneFromFxml("assets/fxml/Controls.fxml", new ControlsController(this));
         this.inputController.changeScene(scene);
         this.windowManager.setScene(scene);
     }
