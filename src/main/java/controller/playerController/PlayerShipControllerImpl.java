@@ -1,5 +1,6 @@
 package controller.playerController;
 
+import com.almasb.fxgl.core.math.Vec2;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import javafx.scene.image.Image;
@@ -14,7 +15,7 @@ public class PlayerShipControllerImpl implements PlayerShipController {
     private PlayerShip playerShip;
 
     @Override
-    public void initialisePlayerShip(Vector2 initialPos, Image sprite) {
+    public void initialisePlayerShip(Vec2 initialPos, Image sprite) {
         //playerShip = new PlayerShip();
         //sprite to be set in the center and visible
         //maybe initialize depending on ship????
@@ -36,7 +37,7 @@ public class PlayerShipControllerImpl implements PlayerShipController {
     }*/
 
     @Override
-    public Vector2 move(float deltaTime) {
+    public Vec2 move(float deltaTime) {
         playerShip.move(deltaTime);
         playerShip.decaySpeed();
         return playerShip.getPosition();

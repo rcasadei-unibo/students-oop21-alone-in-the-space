@@ -1,9 +1,8 @@
 package model;
 
-import java.io.IOException;
-import java.util.List;
+import com.almasb.fxgl.core.math.Vec2;
 
-import com.badlogic.gdx.math.Vector2;
+import java.util.List;
 
 public interface Ship extends Entity{
 	
@@ -47,6 +46,6 @@ public interface Ship extends Entity{
 	 * @param enemy
 	 * @return
 	 */
-	Boolean isInRangeOfAttack(List<Vector2> enemy);
+	Boolean isInRangeOfAttack(List<Vec2> enemy);
 	
 }

@@ -1,14 +1,9 @@
 
 package model;
 
+import com.almasb.fxgl.core.math.Vec2;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
-
-import java.io.File;
-import java.io.IOException;
-
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.Vector2;
 
 public interface Entity {
 	
