@@ -3,7 +3,8 @@ package com.aits.game;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 
-//import core.src.controller.sceneManager.AloneInTheSpace;
+import controller.AloneInTheSpace;
+import utilities.EnumInt;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
@@ -16,13 +17,13 @@ public class DesktopLauncher extends Application {
 		config.setForegroundFPS(60);
 		config.setTitle("Alone in the space");
 		config.setWindowIcon("assets/icon.png");
-		//new Lwjgl3Application(new AloneInTheSpace(), config);
+		new Lwjgl3Application(new AloneInTheSpace(), config);
 	}
 
 	@Override
 	public void start(final Stage windowManager) throws Exception {
-		windowManager.setHeight(Double.valueOf());
-		windowManager.setWidth();
+		windowManager.setHeight(Double.valueOf(EnumInt.HEIGHT.getValue()));
+		windowManager.setWidth(Double.valueOf(EnumInt.WIDTH.getValue()));
 		windowManager.setTitle("Alone in the space");
 		windowManager.setResizable(false);
 		windowManager.getIcons().add(new Image("file:icon16.png"));

@@ -1,9 +1,10 @@
 sourceCompatibility = 1.8
-sourceSets.main.java.srcDirs = [ "src/" ]
+sourceSets.main.java.srcDirs = [ "../" ]
 sourceSets.main.resources.srcDirs = ["../assets"]
 
 project.ext.mainClassName = "com.aits.game.DesktopLauncher"
 project.ext.assetsDir = new File("../assets")
+project.ext.core = new File("../core/main")
 
 import org.gradle.internal.os.OperatingSystem
 

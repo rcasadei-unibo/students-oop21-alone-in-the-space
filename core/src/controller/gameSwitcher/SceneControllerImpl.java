@@ -37,12 +37,12 @@ public class SceneControllerImpl implements SceneController{
 
     @Override
     public void switchToGame(String name) throws IOException {
-        this.gameEngine  = new GameEngine(this);
+        /*this.gameEngine  = new GameEngine(this);
         this.gameEngine.setPlayerName(name);
         Scene scene = this.gameEngine.getGameMap().getGameContainer().getScene();
         this.windowManager.setScene(scene);
         this.inputController.changeScene(scene);
-        this.gameEngine.start();
+        this.gameEngine.start();*/
     }
 
     @Override
@@ -62,7 +62,7 @@ public class SceneControllerImpl implements SceneController{
 
     @Override
     public void switchToEndMenu(int scores) throws IOException {
-        this.gameEngine.stop();
+//        this.gameEngine.stop();
         Scene scene = this.getSceneFromFxml("assets/fxml/EndMenu.fxml",  new EndGameController(this, scores));
         this.inputController.changeScene(scene);
         this.windowManager.setScene(scene);

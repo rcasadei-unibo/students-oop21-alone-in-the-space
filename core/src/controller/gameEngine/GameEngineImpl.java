@@ -2,8 +2,8 @@ package controller.gameEngine;
 
 import controller.eventController.EventController;
 import controller.eventController.EventControllerImpl;
-import controller.gameController.GameController;
-import controller.gameController.GameControllerImpl;
+/*import controller.gameController.GameController;
+import controller.gameController.GameControllerImpl;*/
 import javafx.stage.Stage;
 import utilities.EnumInt;
 import view.GameMap;
@@ -13,7 +13,7 @@ public class GameEngineImpl implements GameEngine {
 	
 	private static final long PERIOD = 100L;
 	
-	private GameController game;
+//	private GameController game;
 	private GameMap map;
 	private EventController event;
 	private Stage stage;
@@ -65,7 +65,7 @@ public class GameEngineImpl implements GameEngine {
 	@Override
 	public void initGame() {
 		this.map = new GameMapImpl(EnumInt.HEIGHT.getValue(), EnumInt.WIDTH.getValue(), this); 
-		this.game = new GameControllerImpl(this.map);
+//		this.game = new GameControllerImpl(this.map);
 		this.event = new EventControllerImpl();
 	}
 	

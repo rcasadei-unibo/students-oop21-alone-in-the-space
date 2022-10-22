@@ -106,7 +106,7 @@ public class PlayerShip implements Ship {
 		int direction = 1;
 		switch (input) {
 			case LEFT:
-				direction = direction;
+				direction = Math.abs(direction);
 				break;
 			case RIGHT:
 				direction = -direction;
