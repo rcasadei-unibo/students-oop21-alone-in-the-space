@@ -42,10 +42,10 @@ public interface Ship extends Entity{
 	String drop();
 	
 	/**
-	 * check if at least an enemy is in range of this ship.
+	 * check if at least an enemy is in range of this ship and attack cooldown is off.
 	 * @param enemy
 	 * @return
 	 */
-	Boolean isInRangeOfAttack(List<Vec2> enemy);
+	Boolean isInRangeOfAttack(List<Vec2> enemy, long deltaTime);
 	
 }

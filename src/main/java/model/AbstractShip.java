@@ -12,6 +12,8 @@ public abstract class AbstractShip implements Ship {
 	private float maxSpeed;
 	private float acceleration;
 	private float rotationSpeed;// need to be in radiant
+	private long lastAttack = 0;
+	private final long attackCooldown ;
 	private Vec2 speed;
 	private Vec2 direction;
 	private Vec2 position;
@@ -19,8 +21,9 @@ public abstract class AbstractShip implements Ship {
 	private ImageView sprite;
 	private Gun gun;
 
-	public AbstractShip(float health, float maxSpeed, float acceleration, float rotationSpeed, Vec2 newPosition) {
+	public AbstractShip(float health, float maxSpeed, float acceleration, float rotationSpeed,long attackCD, Vec2 newPosition) {
 		super();
+		this.attackCooldown = attackCD;
 		this.health = health;
 		this.maxSpeed = maxSpeed;
 		this.acceleration = acceleration;
@@ -29,14 +32,15 @@ public abstract class AbstractShip implements Ship {
 	}
 
 	public void move(float deltaTime) {
-		deltaTime/=1000;
+		deltaTime /= 1000;
 		float delta = calculateDir();
 		double angle = Math.acos(delta);
 		if (angle > gun.getDegRange()) {
 			// how to rotate? TRUE->counterclockwise, FALSE->clockwise
 			Boolean verseOfRotation = (360 - this.target.getPosition().copy().sub(this.position).angle()) % 360
 					+ this.direction.angle() > 180;
-			this.direction = rotate(direction,(360+ this.rotationSpeed * deltaTime * (verseOfRotation?1:-1))%360);
+			this.direction = rotate(direction,
+					(360 + this.rotationSpeed * deltaTime * (verseOfRotation ? 1 : -1)) % 360);
 		}
 		this.speed = this.speed.add(direction.copy().mul(deltaTime * acceleration));
 		if (this.speed.length() > maxSpeed) {
@@ -86,8 +90,11 @@ public abstract class AbstractShip implements Ship {
 	}
 
 	@Override
-	public Boolean isInRangeOfAttack(List<Vec2> enemy) throws NullPointerException {
+	public Boolean isInRangeOfAttack(List<Vec2> enemy, long deltaTime) throws NullPointerException {
 		// TODO Auto-generated method stub
+		if(deltaTime-this.lastAttack<attackCooldown) {
+			return false;
+		}
 		return gun.isInRange(this.position.copy(), this.direction.copy(), enemy);
 	}
 
@@ -142,8 +149,10 @@ public abstract class AbstractShip implements Ship {
 		// return this.direction.copy().normalize().dot(tragetDir);
 		return Vec2.dot(this.direction.copy().normalize(), tragetDir);
 	}
+
 	/**
 	 * return a new vector, from input vector rotate by degree clockwise
+	 * 
 	 * @param vector
 	 * @param deg
 	 * @return
@@ -151,7 +160,7 @@ public abstract class AbstractShip implements Ship {
 	private Vec2 rotate(Vec2 vector, double deg) {
 		float x = (float) ((vector.x * Math.cos(deg)) - (vector.y * Math.sin(deg)));
 		float y = (float) ((vector.x * Math.sin(deg)) + (vector.y * Math.cos(deg)));
-		return new Vec2(x,y);
+		return new Vec2(x, y);
 
 	}
 
