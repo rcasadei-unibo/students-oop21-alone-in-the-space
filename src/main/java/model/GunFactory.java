@@ -22,7 +22,13 @@ abstract class GunImpl implements Gun {
 
 	public Boolean isInRange(Vec2 shipPos, Vec2 direction, List<Vec2> enemyPos) {
 		// TODO Auto-generated method stub
-		return null;
+		Boolean enemy = false;
+		return enemyPos.stream().map(e->{
+			 if(Math.abs(Math.acos(Vec2.dot(shipPos.copy().sub(e), direction)))-direction.angle()>0) {
+				 return true;
+			 }
+			 return false;
+		}).anyMatch(e->e);
 	}
 
 	public float getDegRange() {

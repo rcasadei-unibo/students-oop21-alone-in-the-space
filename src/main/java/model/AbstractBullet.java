@@ -42,8 +42,7 @@ public abstract class AbstractBullet implements Bullet {
 	
 
 	public Boolean isCollided() {
-		return !this.alive;
-		
+		return !this.alive;		
 	};
 
 	public void destroy() {
@@ -81,12 +80,10 @@ public abstract class AbstractBullet implements Bullet {
 	public void setPosition(Vec2 newpos) {
 		// TODO Auto-generated method stub
 		 this.position=newpos;
-		 return ;
 	}
 	// TODO Auto-generated method stub
 		public void setSprite(Image img) {
 			this.sprite=new ImageView();
 			this.sprite.setImage(img);
-
 		}
 }

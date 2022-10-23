@@ -55,20 +55,17 @@ public class BulletFactory {
 				// TODO Auto-generated constructor stub
 				this.target=enemy;
 			}
-
 			private final Ship target;
 
 			@Override
 			public void move(float deltaTime) {
 				// TODO Auto-generated method stub
 				if (target.isAlive()) {
-
 				} else {
 					super.destroy();
 				}
 			}
-		}
-		;
+		};
 		Bullet var = new missile(0, 0, 0, 0, position, direction,enemy);
 		var.setSprite(loadImage("missile_01.png"));
 		return var;

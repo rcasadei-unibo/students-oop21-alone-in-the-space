@@ -17,7 +17,6 @@ public class GameEngineImpl implements GameEngine {
 	private GameMap map;
 	private EventController event;
 	private Stage stage;
-	
 	public GameEngineImpl() {
 		
 	}

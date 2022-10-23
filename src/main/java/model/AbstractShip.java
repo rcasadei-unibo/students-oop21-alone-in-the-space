@@ -29,6 +29,7 @@ public abstract class AbstractShip implements Ship {
 	}
 
 	public void move(float deltaTime) {
+		deltaTime/=1000;
 		float delta = calculateDir();
 		double angle = Math.acos(delta);
 		if (angle > gun.getDegRange()) {
