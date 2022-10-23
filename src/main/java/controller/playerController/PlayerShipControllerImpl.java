@@ -1,8 +1,6 @@
 package controller.playerController;
 
 import com.almasb.fxgl.core.math.Vec2;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.Vector2;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import model.GunFactory;
@@ -20,10 +18,10 @@ public class PlayerShipControllerImpl implements PlayerShipController {
         //sprite to be set in the center and visible
         //maybe initialize depending on ship????
         //use PlayerShipValues.MainShip
-        playerShip = new PlayerShip(initialPos, PlayerShipValues.MainShip.MAXHEALTH, PlayerShipValues.MainShip.MAXSPEED,
-                                                PlayerShipValues.MainShip.ACCELERATION, PlayerShipValues.MainShip.ROTATIONSPEED);
+        playerShip = new PlayerShip(initialPos, PlayerShipValues.MAINSHIP.getValueFromKey("MAXHEALTH"), PlayerShipValues.MAINSHIP.getValueFromKey("MAXSPEED"),
+                                                PlayerShipValues.MAINSHIP.getValueFromKey("FIRERATE"), PlayerShipValues.MAINSHIP.getValueFromKey("ROTATIONSPEED"));
         playerShip.setSprite(sprite);
-        //playerShip.setGun(GunFactory.shootgun()); //Needs proper playergun
+        playerShip.setGun(GunFactory.shootgun(playerShip)); //Needs proper playergun
     }
 
 /*    private Vector2 rotate(InputCommands input) {
@@ -64,7 +62,7 @@ public class PlayerShipControllerImpl implements PlayerShipController {
         ImageView sprite = playerShip.getSprite();
         sprite.setX(playerShip.getPosition().x);
         sprite.setY(playerShip.getPosition().y);
-        sprite.setRotate(playerShip.getPosition().angleDeg());
+        sprite.setRotate(playerShip.getYaw());
         return sprite;
     }
 
@@ -73,8 +71,4 @@ public class PlayerShipControllerImpl implements PlayerShipController {
         playerShip.destroy();
     }
 
-    @Override
-    public Texture getTexture() {
-        return playerShip.getTexture();
-    }
 }

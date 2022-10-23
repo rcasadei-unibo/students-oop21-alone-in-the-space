@@ -18,6 +18,5 @@ public interface PlayerShipController  {
 
     void destroy();
 
-    Texture getTexture();
 
 }
