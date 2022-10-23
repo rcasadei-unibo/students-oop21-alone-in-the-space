@@ -1,7 +1,6 @@
 package model;
 
 import com.almasb.fxgl.core.math.Vec2;
-import com.badlogic.gdx.math.Vector2;
 
 import javafx.scene.Node;
 import javafx.scene.image.Image;

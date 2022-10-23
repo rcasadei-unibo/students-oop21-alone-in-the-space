@@ -28,11 +28,16 @@ public abstract class AbstractBullet implements Bullet {
 	}
 	
 	public void move(float deltaTime) {
-		this.speed = this.speed.mulAdd(direction.cpy(), deltaTime);
-		if (this.speed.len() > maxSpeed) {
-			this.speed=this.speed.cpy().nor().scl(this.maxSpeed );
+		deltaTime/=1000;//expected delta time to be in millisecond
+		//this.speed = this.speed.mulAdd(direction.cpy(), deltaTime);
+		this.speed= this.speed.add(direction.copy().mul(deltaTime));
+		if (this.speed.length() > maxSpeed) {
+			this.speed=this.speed.copy().normalize().mul(this.maxSpeed);
 		}
-		this.position = this.position.mulAdd(this.speed, deltaTime);
+		//this.position = this.position.mulAdd(this.speed, deltaTime);
+		this.position = this.position.add(speed.copy().mul(deltaTime));
+		this.sprite.setX(this.position.x);
+		this.sprite.setY(this.position.y);
 	}
 	
 
@@ -53,7 +58,7 @@ public abstract class AbstractBullet implements Bullet {
 	@Override
 	public Vec2 getPosition() {
 		// TODO Auto-generated method stub
-		return this.position;
+		return this.position.copy();
 	}
 
 	@Override
@@ -70,7 +75,7 @@ public abstract class AbstractBullet implements Bullet {
 	@Override
 	public Vec2 getDirection() {
 		// TODO Auto-generated method stub
-		return this.direction.cpy();
+		return this.direction.copy();
 	}
 	@Override
 	public void setPosition(Vec2 newpos) {
