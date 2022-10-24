@@ -18,7 +18,7 @@
       </ImageView>
       <VBox alignment="CENTER" layoutX="726.0" layoutY="458.0" prefHeight="980.0" prefWidth="1492.0" spacing="60.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#returnToMenu" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: yellow;" text="BACK TO MENU">
+            <Button mnemonicParsing="false" onAction="#showMainMenu" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: yellow;" text="BACK TO MENU">
                <font>
                   <Font name="System Bold" size="60.0" />
                </font>

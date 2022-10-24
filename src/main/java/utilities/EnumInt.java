@@ -54,7 +54,22 @@ public enum EnumInt {
     /**
      *
      */
-    DAMAGE_COLLISION(50);
+    DAMAGE_COLLISION(50),
+
+    /**
+     *
+     */
+    LIFE_POINTS(100),
+
+    /**
+     *
+     */
+    FONT_SIZE(18),
+
+    /**
+     *
+     */
+    MAX_POINTS(999);
 
     private final int value;
 

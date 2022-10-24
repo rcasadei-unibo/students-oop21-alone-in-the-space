@@ -21,12 +21,12 @@
             <Font name="System Bold" size="60.0" />
          </font>
       </Text>
-      <Button layoutX="1650.0" layoutY="973.0" mnemonicParsing="false" onAction="#nicknameEvent" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: yellow;" text="PLAY">
+      <Button layoutX="1650.0" layoutY="973.0" mnemonicParsing="false" onAction="#nameEvent" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: yellow;" text="PLAY">
          <font>
             <Font name="System Bold" size="60.0" />
          </font>
       </Button>
-      <TextField fx:id="nickname" layoutX="997.0" layoutY="773.0" onAction="#nicknameEvent">
+      <TextField fx:id="nickname" layoutX="997.0" layoutY="773.0" onAction="#nameEvent">
          <font>
             <Font name="System Bold" size="60.0" />
          </font>

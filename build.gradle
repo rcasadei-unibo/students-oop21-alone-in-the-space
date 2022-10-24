@@ -24,8 +24,8 @@ tasks.withType(JavaCompile) {
 }
 
 application {
-    mainModule = 'com.aits.aloneinthespacejavafx'
-    mainClass = 'com.aits.aloneinthespacejavafx.HelloApplication'
+    mainModule = 'application'
+    mainClass = 'application.Launcher'
 }
 
 javafx {

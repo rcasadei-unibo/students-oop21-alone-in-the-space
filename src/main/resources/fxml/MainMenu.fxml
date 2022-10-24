@@ -19,7 +19,7 @@
       </ImageView>
       <VBox alignment="CENTER" layoutX="527.0" layoutY="320.0" prefHeight="1216.0" prefWidth="1536.0" spacing="50.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#pickNickname" prefHeight="100.0" prefWidth="600.0" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: yellow;" text="PLAY">
+            <Button mnemonicParsing="false" onAction="#chooseNickname" prefHeight="100.0" prefWidth="600.0" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: yellow;" text="PLAY">
                <font>
                   <Font name="System Bold" size="80.0" />
                </font>

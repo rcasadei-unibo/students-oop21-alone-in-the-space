@@ -3,6 +3,7 @@ package view;
 import controller.gameEngine.GameEngine;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.Bullet;
@@ -10,7 +11,6 @@ import model.Entity;
 import model.Ship;
 import utilities.EnumInt;
 
-import javax.swing.text.html.ImageView;
 import java.util.HashSet;
 import java.util.Set;
 public class GameMapImpl implements GameMap{
