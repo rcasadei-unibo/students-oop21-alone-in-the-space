@@ -5,7 +5,6 @@ import java.util.List;
 import com.almasb.fxgl.core.math.Vec2;
 
 
-
 abstract class GunImpl implements Gun {
    private int degRange;
    private Ship actualShip;
@@ -75,6 +74,30 @@ public class GunFactory {
 			}
 			
 		}return new shootgun(30,spaceship);
+	}
+
+	public static Gun playerGun(PlayerShip ship) {
+
+		class playerGun extends GunImpl {
+			public playerGun(int degRange, PlayerShip playerShip) {
+				super(degRange, playerShip);
+			}
+			//Use predefined values from PlayerShipValues
+			private float bulletDamage;
+			private float bulletMaxSpeed;
+			private float bulletAcceleration;
+			private float bulletRotationSpeed;
+
+			public void changeDamage(float damage) {
+				this.bulletDamage = damage;
+			}
+
+			public Bullet shot() {
+				return BulletFactory.playerBullet(bulletMaxSpeed, bulletAcceleration, bulletRotationSpeed, bulletDamage, ship.getPosition(), ship.getDirection());
+			}
+		}
+
+		return new playerGun(40, ship);
 	}
 
 }

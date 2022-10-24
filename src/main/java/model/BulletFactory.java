@@ -72,6 +72,18 @@ public class BulletFactory {
 
 	}
 
+	public static Bullet playerBullet(float maxSpeed, float acceleration, float rotationSpeed, float damage, Vec2 position, Vec2 direction) {
+
+		class PlayerBullet extends AbstractBullet {
+			public PlayerBullet(float maxSpeed, float acceleration, float rotationSpeed, float damage, Vec2 position, Vec2 direction) {
+				super(maxSpeed, acceleration, rotationSpeed, damage, position);
+			}
+		}
+		Bullet var = new PlayerBullet(maxSpeed, acceleration, rotationSpeed, damage, position, direction);
+		var.setSprite(loadImage("bullet_02.png"));
+		return var;
+	}
+
 	private static Image loadImage(String pathName) throws IllegalArgumentException {
 		Image img;
 

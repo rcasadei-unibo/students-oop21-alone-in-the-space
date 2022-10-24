@@ -9,7 +9,7 @@ import javafx.scene.image.ImageView;
 import utilities.InputCommands;
 
 public class PlayerShip implements Ship {
-	private float fireRate;
+
 
 	// TODO Check movement and re-do it properly if it's baaaaad, maybe limited range shots so they don't keep going
 
@@ -23,9 +23,11 @@ public class PlayerShip implements Ship {
 	private float rotationSpeed;
 	private ImageView sprite;
 	private Gun playerGun;
-	private Node node;
 	private Vec2 rotation;
 	private float yaw;
+	private float fireRate;
+	private int points = 0;
+	private int currentLives;
 
 
 	public Bullet shot() {
@@ -43,6 +45,7 @@ public class PlayerShip implements Ship {
 		this.rotationSpeed = rotationSpeed;
 		this.rotation = new Vec2(1, 0);
 		this.yaw = 0;
+		this.currentLives = 3;
 		calculateDir();
 	}
 
@@ -136,7 +139,7 @@ public class PlayerShip implements Ship {
 	}
 
 	public void destroy() {
-		// TODO Auto-generated method stub
+		this.currentLives--;
 	}
 
 	public void setTarget(Ship target) {
@@ -151,6 +154,9 @@ public class PlayerShip implements Ship {
 	@Override
 	public void hit(float damage) {
 		this.health -= damage;
+		if(this.health <= 0) {
+			this.destroy();
+		}
 	}
 
 	@Override
@@ -173,11 +179,46 @@ public class PlayerShip implements Ship {
 
 	@Override
 	public Boolean isAlive() {
-		return this.health == 0 ? true : false;
+		return this.health <= 0 ? true : false;
+	}
+
+	public int getCurrentLives() {
+		return this.currentLives;
+	}
+
+	public void addLives() {
+		this.currentLives++;
+	}
+
+	public float getHealth() {
+		return this.health;
+	}
+	public void setHealth(float hitPoints) {
+		this.health = hitPoints;
+	}
+
+	public void heal(float hitPoints) {
+		this.health = (this.health + hitPoints) > maxHealth ? maxHealth : (this.health + hitPoints);
 	}
 
 
 	public double getYaw() {
 		return this.yaw;
+	}
+
+	public int getPoints() {
+		return this.points;
+	}
+
+	public void setPoints(int newPoints) {
+		this.points = newPoints;
+	}
+	public void addPoints(int pointsGained) {
+		this.points += pointsGained;
+		checkLevelUp();
+	}
+
+	private void checkLevelUp() {
+
 	}
 }
