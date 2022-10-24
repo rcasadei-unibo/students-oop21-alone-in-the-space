@@ -6,7 +6,7 @@ import javafx.scene.image.ImageView;
 import model.GunFactory;
 import model.PlayerShip;
 import utilities.InputCommands;
-import utilities.PlayerShipValues;
+import utilities.PlayerValues;
 
 public class PlayerShipControllerImpl implements PlayerShipController {
 
@@ -18,21 +18,12 @@ public class PlayerShipControllerImpl implements PlayerShipController {
         //sprite to be set in the center and visible
         //maybe initialize depending on ship????
         //use PlayerShipValues.MainShip
-        playerShip = new PlayerShip(initialPos, PlayerShipValues.MAINSHIP.getValueFromKey("MAXHEALTH"), PlayerShipValues.MAINSHIP.getValueFromKey("MAXSPEED"),
-                                                PlayerShipValues.MAINSHIP.getValueFromKey("FIRERATE"), PlayerShipValues.MAINSHIP.getValueFromKey("ROTATIONSPEED"));
+        playerShip = new PlayerShip(initialPos, PlayerValues.MAINSHIP.getValueFromKey("MAXHEALTH"), PlayerValues.MAINSHIP.getValueFromKey("MAXSPEED"),
+                                                PlayerValues.MAINSHIP.getValueFromKey("FIRERATE"), PlayerValues.MAINSHIP.getValueFromKey("ROTATIONSPEED"));
         playerShip.setSprite(sprite);
         playerShip.setGun(GunFactory.shootgun(playerShip)); //Needs proper playergun
     }
 
-/*    private Vector2 rotate(InputCommands input) {
-        playerShip.rotate(input);
-        return playerShip.getPosition();
-    }
-
-    private Vector2 thrust(InputCommands input) {
-        playerShip.thrust(input);
-        return playerShip.getPosition();
-    }*/
 
     @Override
     public Vec2 move(float deltaTime) {
