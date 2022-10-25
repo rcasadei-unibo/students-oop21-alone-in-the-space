@@ -74,7 +74,12 @@ public enum EnumInt {
     /**
      *
      */
-    EXP_REQUIRED(100);
+    EXP_REQUIRED(100),
+
+    /**
+     *
+     */
+    VIEW_ORDER(-51);
 
     private final int value;
 

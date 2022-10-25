@@ -2,9 +2,13 @@ package view.hud;
 
 import controller.collisionDetection.Collision;
 
-public class HUDInterface {
+public interface HUDInterface {
 
     boolean checkGameStatus();
 
     Collision getCollision();
+
+    int checkPoints();
+
+    int checkLives();
 }
