@@ -62,6 +62,7 @@ public class InputControllerImpl implements InputController{
         this.commandKeys.put(InputCommands.LEFT, KeyCode.A);
         this.commandKeys.put(InputCommands.RIGHT, KeyCode.D);
         this.commandKeys.put(InputCommands.ATTACK, KeyCode.K);
+        this.commandKeys.put(InputCommands.POWER_UP, KeyCode.L);
     }
 
     @Override
