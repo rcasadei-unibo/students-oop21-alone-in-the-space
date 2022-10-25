@@ -76,12 +76,21 @@ public class GunFactory {
 		}return new shootgun(30,spaceship);
 	}
 
-	public static Gun playerGun(PlayerShip ship) {
+	public static Gun playerGun(PlayerShip ship, float damage, float maxSpeed, float acceleration, float rotationSpeed) {
 
-		class playerGun extends GunImpl {
-			public playerGun(int degRange, PlayerShip playerShip) {
+		class PlayerGun extends GunImpl {
+			public PlayerGun(int degRange, PlayerShip playerShip) {
 				super(degRange, playerShip);
 			}
+
+			public PlayerGun(int degRange, PlayerShip playerShip, float bulletDamage,float bulletMaxSpeed, float bulletAcceleration, float bulletRotationSpeed) {
+				super(degRange, playerShip);
+				this.bulletDamage = bulletDamage;
+				this.bulletMaxSpeed = bulletMaxSpeed;
+				this.bulletAcceleration = bulletAcceleration;
+				this.bulletRotationSpeed = bulletRotationSpeed;
+			}
+
 			//Use predefined values from PlayerShipValues
 			private float bulletDamage;
 			private float bulletMaxSpeed;
@@ -97,7 +106,7 @@ public class GunFactory {
 			}
 		}
 
-		return new playerGun(40, ship);
+		return new PlayerGun(40, ship, damage, maxSpeed, acceleration, rotationSpeed);
 	}
 
 }

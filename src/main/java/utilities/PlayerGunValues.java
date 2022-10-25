@@ -2,16 +2,16 @@ package utilities;
 
 import java.util.HashMap;
 
-public enum PlayerValues {
+public enum PlayerGunValues {
 
-    MAIN_SHIP(100,35,2,2);
+    MAIN_GUN(100, 35, 2, 2);
 
     private HashMap<String, Float> shipValues = new HashMap<>();
 
-    PlayerValues(final float maxHealth, final float maxSpeed, final float fireRate, final float rotationSpeed) {
-        shipValues.put("MAXHEALTH", maxHealth);
+    PlayerGunValues(final float damage, final float maxSpeed, final float acceleration, final float rotationSpeed) {
+        shipValues.put("DAMAGE", damage);
         shipValues.put("MAXSPEED", maxSpeed);
-        shipValues.put("FIRERATE", fireRate);
+        shipValues.put("ACCELERATION", acceleration);
         shipValues.put("ROTATIONSPEED", rotationSpeed);
     }
 
@@ -19,4 +19,3 @@ public enum PlayerValues {
         return shipValues.get(key);
     }
 }
-
