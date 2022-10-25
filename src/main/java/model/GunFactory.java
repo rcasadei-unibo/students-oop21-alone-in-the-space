@@ -12,6 +12,7 @@ abstract class GunImpl implements Gun {
 		this.degRange = degRange;
 		this.actualShip = ship;
 	}
+
 	public Bullet shot(Vec2 direction) {
 		// TODO Auto-generated method stub
 		return BulletFactory.BasicBullet(actualShip.getPosition(), actualShip.getDirection());
@@ -20,16 +21,12 @@ abstract class GunImpl implements Gun {
 
 	public Boolean isInRange(Vec2 shipPos, Vec2 direction, List<Vec2> enemyPos) {
 		// TODO Auto-generated method stub
-		/* return enemyPos.stream().map(e->{
-			 if(Math.abs(Math.acos(Vec2.dot(shipPos.copy().sub(e), direction)))-direction.angle()>0) {
-				 return true;
-			 }
-			 return false;
-		}).anyMatch(e->e); */
-		// ,
 	return enemyPos.stream()
-				.anyMatch(e -> 
-				Math.abs(Math.acos(Vec2.dot(shipPos.copy().sub(e).normalizeLocal(), direction)))<this.degRange/2);
+				.anyMatch(e -> {
+					Vec2 enemyDir=shipPos.copy().sub(e).normalizeLocal();
+					return Math.abs(Math.acos(Vec2.dot(enemyDir, direction))) < this.degRange/2 
+							&& enemyDir.angle()*e.angle()>0;
+				});			
 
 	}
 

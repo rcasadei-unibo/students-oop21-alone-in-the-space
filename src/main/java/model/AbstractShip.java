@@ -32,15 +32,15 @@ public abstract class AbstractShip implements Ship {
 	}
 
 	public void move(float deltaTime) {
-		final int halfTurn=180;
+		final int halfTurn=180;//angle degree 
 		final int Turn=360;
-		deltaTime /= 1000;
+		deltaTime /= 1000;//conversion to seconds
 		float delta = calculateDir();
 		double angle = Math.acos(delta);
 		if (angle > gun.getDegRange()) {
 			// how to rotate? TRUE->counterclockwise, FALSE->clockwise
 			Boolean verseOfRotation = (Turn - this.target.getPosition().copy().sub(this.position).angle()) % Turn
-					+ this.direction.angle() > 180;
+					+ this.direction.angle() > halfTurn;
 			this.direction = rotate(direction,
 					(Turn + this.rotationSpeed * deltaTime * (verseOfRotation ? 1 : -1)) % Turn);
 		}
