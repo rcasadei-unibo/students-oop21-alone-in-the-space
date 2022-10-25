@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import utilities.EnumInt;
 import utilities.InputCommands;
+import utilities.PlayerGunValues;
 import utilities.PlayerValues;
 
 
@@ -235,20 +236,24 @@ public class PlayerShip implements Ship {
 	public void levelUp() {
 		this.maxHealth += 5 * (PlayerValues.MAIN_SHIP.getValueFromKey("MAXHEALTH"))/100;
 		this.health = this.maxHealth;
+
 		if(this.currentLevel % 3 == 0) {
 			this.fireRate += 5 * (PlayerValues.MAIN_SHIP.getValueFromKey("FIRERATE"))/100;
 		}
+
 		if(this.currentLevel % 5 == 0) {
-			this.gunLevelUp();
+			this.gunLevelUp(5 * (PlayerGunValues.MAIN_GUN.getValueFromKey("DAMAGE"))/100);
 		}
+
 		this.exp -= EnumInt.EXP_REQUIRED.getValue()*(Math.pow(2, this.currentLevel-1));
 	}
 
-	private void gunLevelUp() {
-		;
+	private void gunLevelUp(float newDamage) {
+		this.setGun(GunFactory.playerGun(this, newDamage, PlayerGunValues.MAIN_GUN.getValueFromKey("MAXSPEED"),
+				PlayerGunValues.MAIN_GUN.getValueFromKey("ACCELERATION"), PlayerGunValues.MAIN_GUN.getValueFromKey("ROTATIONSPEED")));
 	}
 
 	public boolean checkLevelUp() {
-		return this.exp >= EnumInt.EXP_REQUIRED.getValue()*(Math.pow(2, this.currentLevel-1)) ? true : false;
+		return this.exp >= EnumInt.EXP_REQUIRED.getValue() * (Math.pow(2, this.currentLevel - 1));
 	}
 }
