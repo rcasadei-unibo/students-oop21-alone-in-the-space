@@ -40,9 +40,9 @@ public class HUDLifeImpl extends Label implements HUDLife{
     }
 
     @Override
-    public void lifeDown() {
+    public void lifeDown(final int damage) {
         if (this.getLifePoints() > LESS_LIVES_POSSIBLE) {
-            this.lifePoints --;
+            this.lifePoints = this.lifePoints - damage;
         } else {
             this.lifePoints = EnumInt.ZERO.getValue();
             this.gameStatus = false;
