@@ -6,9 +6,13 @@ import com.almasb.fxgl.core.math.Vec2;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import utilities.EnumInt;
 import utilities.InputCommands;
+import utilities.PlayerValues;
+
 
 public class PlayerShip implements Ship {
+
 
 
 	// TODO Check movement and re-do it properly if it's baaaaad, maybe limited range shots so they don't keep going
@@ -26,13 +30,11 @@ public class PlayerShip implements Ship {
 	private Vec2 rotation;
 	private float yaw;
 	private float fireRate;
-	private int points = 0;
+	private int exp = 0;
+	private int score = 0;
 	private int currentLives;
+	private final int currentLevel;
 
-
-	public Bullet shot() {
-		return playerGun.shot(this.position.add(rotation));
-	}
 
 	public PlayerShip (Vec2 position, float maxHealth, float maxSpeed, float fireRate, float rotationSpeed) {
 		this.position = new Vec2(position);
@@ -46,10 +48,13 @@ public class PlayerShip implements Ship {
 		this.rotation = new Vec2(1, 0);
 		this.yaw = 0;
 		this.currentLives = 3;
+		this.currentLevel = 1;
 		calculateDir();
 	}
 
-
+	public Bullet shot() {
+		return playerGun.shot(this.position.add(rotation));
+	}
 
 	public void move(float deltaTime) {
 		// TODO Check
@@ -206,19 +211,44 @@ public class PlayerShip implements Ship {
 		return this.yaw;
 	}
 
-	public int getPoints() {
-		return this.points;
+	public int getExp() {
+		return this.exp;
+	}
+	public int getScore() {
+		return this.score;
 	}
 
-	public void setPoints(int newPoints) {
-		this.points = newPoints;
+	public void setExp(int newPoints) {
+		this.exp = newPoints;
 	}
-	public void addPoints(int pointsGained) {
-		this.points += pointsGained;
-		checkLevelUp();
+	public void setScore(int newScore) {
+		this.score = newScore;
+	}
+	public void addScoreExp(int expGained) {
+		this.score += expGained;
+		this.exp += expGained;
+		if(checkLevelUp()) {
+			this.levelUp();
+		}
 	}
 
-	private void checkLevelUp() {
+	public void levelUp() {
+		this.maxHealth += 5 * (PlayerValues.MAINSHIP.getValueFromKey("MAXHEALTH"))/100;
+		this.health = this.maxHealth;
+		if(this.currentLevel % 3 == 0) {
+			this.fireRate += 5 * (PlayerValues.MAINSHIP.getValueFromKey("FIRERATE"))/100;
+		}
+		if(this.currentLevel % 5 == 0) {
+			this.gunLevelUp();
+		}
+		this.exp -= EnumInt.LEVEL_THRESHHOLD.getValue()*this.currentLevel;
+	}
 
+	private void gunLevelUp() {
+
+	}
+
+	public boolean checkLevelUp() {
+		return this.exp >= EnumInt.LEVEL_THRESHHOLD.getValue()*this.currentLevel ? true : false;
 	}
 }

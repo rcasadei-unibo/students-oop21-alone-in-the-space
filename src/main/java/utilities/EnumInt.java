@@ -69,7 +69,12 @@ public enum EnumInt {
     /**
      *
      */
-    MAX_POINTS(999);
+    MAX_POINTS(999),
+
+    /**
+     *
+     */
+    LEVEL_THRESHHOLD(100);
 
     private final int value;
 
