@@ -233,22 +233,22 @@ public class PlayerShip implements Ship {
 	}
 
 	public void levelUp() {
-		this.maxHealth += 5 * (PlayerValues.MAINSHIP.getValueFromKey("MAXHEALTH"))/100;
+		this.maxHealth += 5 * (PlayerValues.MAIN_SHIP.getValueFromKey("MAXHEALTH"))/100;
 		this.health = this.maxHealth;
 		if(this.currentLevel % 3 == 0) {
-			this.fireRate += 5 * (PlayerValues.MAINSHIP.getValueFromKey("FIRERATE"))/100;
+			this.fireRate += 5 * (PlayerValues.MAIN_SHIP.getValueFromKey("FIRERATE"))/100;
 		}
 		if(this.currentLevel % 5 == 0) {
 			this.gunLevelUp();
 		}
-		this.exp -= EnumInt.LEVEL_THRESHHOLD.getValue()*this.currentLevel;
+		this.exp -= EnumInt.EXP_REQUIRED.getValue()*(Math.pow(2, this.currentLevel-1));
 	}
 
 	private void gunLevelUp() {
-
+		;
 	}
 
 	public boolean checkLevelUp() {
-		return this.exp >= EnumInt.LEVEL_THRESHHOLD.getValue()*this.currentLevel ? true : false;
+		return this.exp >= EnumInt.EXP_REQUIRED.getValue()*(Math.pow(2, this.currentLevel-1)) ? true : false;
 	}
 }

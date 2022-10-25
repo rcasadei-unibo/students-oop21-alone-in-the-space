@@ -74,7 +74,7 @@ public enum EnumInt {
     /**
      *
      */
-    LEVEL_THRESHHOLD(100);
+    EXP_REQUIRED(100);
 
     private final int value;
 
