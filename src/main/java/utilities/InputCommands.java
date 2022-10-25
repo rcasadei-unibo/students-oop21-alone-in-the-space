@@ -41,6 +41,11 @@ public enum InputCommands {
     RESUME,
 
     /**
+     * POWER UP.
+     */
+    POWER_UP,
+
+    /**
      * NONE.
      */
     NONE;

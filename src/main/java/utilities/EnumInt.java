@@ -44,12 +44,12 @@ public enum EnumInt {
     /**
      *
      */
-    WIDTH(2730),
+    WIDTH(1920),
 
     /**
      *
      */
-    HEIGHT(1536),
+    HEIGHT(1080),
 
     /**
      *
