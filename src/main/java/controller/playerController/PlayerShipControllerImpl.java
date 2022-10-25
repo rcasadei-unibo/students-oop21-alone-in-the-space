@@ -18,8 +18,8 @@ public class PlayerShipControllerImpl implements PlayerShipController {
         //sprite to be set in the center and visible
         //maybe initialize depending on ship????
         //use PlayerShipValues.MainShip
-        playerShip = new PlayerShip(initialPos, PlayerValues.MAINSHIP.getValueFromKey("MAXHEALTH"), PlayerValues.MAINSHIP.getValueFromKey("MAXSPEED"),
-                                                PlayerValues.MAINSHIP.getValueFromKey("FIRERATE"), PlayerValues.MAINSHIP.getValueFromKey("ROTATIONSPEED"));
+        playerShip = new PlayerShip(initialPos, PlayerValues.MAIN_SHIP.getValueFromKey("MAXHEALTH"), PlayerValues.MAIN_SHIP.getValueFromKey("MAXSPEED"),
+                                                PlayerValues.MAIN_SHIP.getValueFromKey("FIRERATE"), PlayerValues.MAIN_SHIP.getValueFromKey("ROTATIONSPEED"));
         playerShip.setSprite(sprite);
         playerShip.setGun(GunFactory.shootgun(playerShip)); //Needs proper playergun
     }

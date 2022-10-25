@@ -30,6 +30,9 @@ public class ControlsController extends BasicFXMLController {
     @FXML
     private Text controlsAttackText;
 
+    @FXML
+    private Text controlsPowerUpText;
+
     private InputController inputController;
     private KeyCode lastKeyPressed;
 
@@ -63,6 +66,7 @@ public class ControlsController extends BasicFXMLController {
         this.controlsLeftText.setText(this.inputController.getKeyMapped(InputCommands.LEFT).toString());
         this.controlsRightText.setText(this.inputController.getKeyMapped(InputCommands.RIGHT).toString());
         this.controlsAttackText.setText(this.inputController.getKeyMapped(InputCommands.ATTACK).toString());
+        this.controlsPowerUpText.setText(this.inputController.getKeyMapped(InputCommands.POWER_UP).toString());
     }
 
     /**
@@ -112,6 +116,12 @@ public class ControlsController extends BasicFXMLController {
     @FXML
     void changeAttackKey(final ActionEvent event) {
         this.inputController.addCommandKeys(lastKeyPressed, InputCommands.ATTACK);
+        this.refreshControls();
+    }
+
+    @FXML
+    void changePowerUpKey(final ActionEvent event) {
+        this.inputController.addCommandKeys(lastKeyPressed, InputCommands.POWER_UP);
         this.refreshControls();
     }
 

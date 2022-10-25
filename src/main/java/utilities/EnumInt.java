@@ -44,12 +44,12 @@ public enum EnumInt {
     /**
      *
      */
-    WIDTH(2730),
+    WIDTH(1920),
 
     /**
      *
      */
-    HEIGHT(1536),
+    HEIGHT(1080),
 
     /**
      *
@@ -69,7 +69,12 @@ public enum EnumInt {
     /**
      *
      */
-    MAX_POINTS(999);
+    MAX_POINTS(999),
+
+    /**
+     *
+     */
+    EXP_REQUIRED(100);
 
     private final int value;
 
