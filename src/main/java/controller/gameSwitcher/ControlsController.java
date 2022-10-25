@@ -119,6 +119,10 @@ public class ControlsController extends BasicFXMLController {
         this.refreshControls();
     }
 
+    /**
+     * Changes the power up key.
+     * @param event
+     */
     @FXML
     void changePowerUpKey(final ActionEvent event) {
         this.inputController.addCommandKeys(lastKeyPressed, InputCommands.POWER_UP);

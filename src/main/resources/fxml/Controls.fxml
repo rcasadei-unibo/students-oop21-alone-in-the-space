@@ -11,48 +11,48 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#detectKey" prefHeight="1536.0" prefWidth="2730.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#detectKey" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.gameSwitcher.ControlsController">
    <children>
-      <ImageView fitHeight="1536.0" fitWidth="2730.0" pickOnBounds="true">
+      <ImageView fitHeight="1080.0" fitWidth="1920.0" pickOnBounds="true">
          <image>
             <Image url="@../images/skybox13.jpg" />
          </image>
       </ImageView>
-      <Text fill="WHITE" layoutX="1047.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Controls">
+      <Text fill="WHITE" layoutX="641.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Controls">
          <font>
             <Font name="System Bold" size="149.0" />
          </font>
       </Text>
-      <Text fill="#00ff35" layoutX="619.0" layoutY="374.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Press a key and then choose the command you want to change">
+      <Text fill="#00ff35" layoutX="245.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Press a key and then choose the command you want to change">
          <font>
             <Font name="System Bold" size="50.0" />
          </font></Text>
-      <Text fill="#00ff35" layoutX="1044.0" layoutY="501.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selected key:">
+      <Text fill="#00ff35" layoutX="597.0" layoutY="396.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selected key:">
          <font>
             <Font name="System Bold" size="60.0" />
          </font></Text>
-      <Text fx:id="keyToSetText" fill="#ff8c00" layoutX="1491.0" layoutY="501.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Key">
+      <Text fx:id="keyToSetText" fill="#ff8c00" layoutX="1051.0" layoutY="394.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Key">
          <font>
             <Font name="System Bold" size="60.0" />
          </font></Text>
-      <VBox layoutX="595.0" layoutY="553.0" prefHeight="980.0" prefWidth="1492.0" spacing="10.0">
+      <VBox layoutX="317.0" layoutY="422.0" prefHeight="662.0" prefWidth="1204.0" spacing="10.0">
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1492.0" spacing="122.0">
                <children>
                   <Text boundsType="VISUAL" fill="#00ff35" strokeType="OUTSIDE" strokeWidth="0.0" text="UP">
                      <font>
-                        <Font name="System Bold" size="60.0" />
+                        <Font name="System Bold" size="30.0" />
                      </font></Text>
                   <Button alignment="CENTER" mnemonicParsing="false" onAction="#changeUpKey" prefHeight="100.0" prefWidth="600.0" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: yellow;" text="CHANGE">
                      <font>
-                        <Font name="System Bold" size="60.0" />
+                        <Font name="System Bold" size="30.0" />
                      </font>
                      <effect>
                         <DropShadow />
                      </effect></Button>
                   <Text fx:id="controlsUpText" boundsType="VISUAL" fill="DARKORANGE" strokeType="OUTSIDE" strokeWidth="0.0" text="key" textAlignment="CENTER">
                      <font>
-                        <Font name="System Bold" size="60.0" />
+                        <Font name="System Bold" size="30.0" />
                      </font></Text>
                </children>
                <VBox.margin>
@@ -63,15 +63,15 @@
                <children>
                   <Text boundsType="VISUAL" fill="#00ff35" strokeType="OUTSIDE" strokeWidth="0.0" text="DOWN" textAlignment="CENTER" wrappingWidth="639.822265625">
                      <font>
-                        <Font name="System Bold" size="60.0" />
+                        <Font name="System Bold" size="30.0" />
                      </font></Text>
                   <Button mnemonicParsing="false" onAction="#changeDownKey" prefHeight="100.0" prefWidth="600.0" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: yellow;" text="CHANGE">
                      <font>
-                        <Font name="System Bold" size="60.0" />
+                        <Font name="System Bold" size="30.0" />
                      </font></Button>
                   <Text fx:id="controlsDownText" boundsType="VISUAL" fill="DARKORANGE" strokeType="OUTSIDE" strokeWidth="0.0" text="key" textAlignment="CENTER">
                      <font>
-                        <Font name="System Bold" size="60.0" />
+                        <Font name="System Bold" size="30.0" />
                      </font></Text>
                </children>
             </HBox>
@@ -79,15 +79,15 @@
                <children>
                   <Text boundsType="VISUAL" fill="#00ff35" strokeType="OUTSIDE" strokeWidth="0.0" text="LEFT">
                      <font>
-                        <Font name="System Bold" size="60.0" />
+                        <Font name="System Bold" size="30.0" />
                      </font></Text>
                   <Button mnemonicParsing="false" onAction="#changeLeftKey" prefHeight="100.0" prefWidth="600.0" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: yellow;" text="CHANGE">
                      <font>
-                        <Font name="System Bold" size="60.0" />
+                        <Font name="System Bold" size="30.0" />
                      </font></Button>
                   <Text fx:id="controlsLeftText" boundsType="VISUAL" fill="DARKORANGE" strokeType="OUTSIDE" strokeWidth="0.0" text="key" textAlignment="CENTER">
                      <font>
-                        <Font name="System Bold" size="60.0" />
+                        <Font name="System Bold" size="30.0" />
                      </font></Text>
                </children>
             </HBox>
@@ -95,15 +95,15 @@
                <children>
                   <Text boundsType="VISUAL" fill="#00ff35" strokeType="OUTSIDE" strokeWidth="0.0" text="RIGHT">
                      <font>
-                        <Font name="System Bold" size="60.0" />
+                        <Font name="System Bold" size="30.0" />
                      </font></Text>
                   <Button mnemonicParsing="false" onAction="#changeRightKey" prefHeight="100.0" prefWidth="600.0" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: yellow;" text="CHANGE">
                      <font>
-                        <Font name="System Bold" size="60.0" />
+                        <Font name="System Bold" size="30.0" />
                      </font></Button>
                   <Text fx:id="controlsRightText" boundsType="VISUAL" fill="DARKORANGE" strokeType="OUTSIDE" strokeWidth="0.0" text="key">
                      <font>
-                        <Font name="System Bold" size="60.0" />
+                        <Font name="System Bold" size="30.0" />
                      </font></Text>
                </children>
             </HBox>
@@ -111,15 +111,15 @@
                <children>
                   <Text boundsType="VISUAL" fill="#00ff35" strokeType="OUTSIDE" strokeWidth="0.0" text="ATTACK">
                      <font>
-                        <Font name="System Bold" size="60.0" />
+                        <Font name="System Bold" size="30.0" />
                      </font></Text>
                   <Button mnemonicParsing="false" onAction="#changeAttackKey" prefHeight="100.0" prefWidth="600.0" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: yellow;" text="CHANGE">
                      <font>
-                        <Font name="System Bold" size="60.0" />
+                        <Font name="System Bold" size="30.0" />
                      </font></Button>
                   <Text fx:id="controlsAttackText" boundsType="VISUAL" fill="DARKORANGE" strokeType="OUTSIDE" strokeWidth="0.0" text="key">
                      <font>
-                        <Font name="System Bold" size="60.0" />
+                        <Font name="System Bold" size="30.0" />
                      </font></Text>
                </children>
             </HBox>
@@ -127,15 +127,15 @@
                <children>
                   <Text boundsType="VISUAL" fill="#00ff35" strokeType="OUTSIDE" strokeWidth="0.0" text="POWER UP">
                      <font>
-                        <Font name="System Bold" size="60.0" />
+                        <Font name="System Bold" size="30.0" />
                      </font></Text>
                   <Button mnemonicParsing="false" onAction="#changePowerUpKey" prefHeight="100.0" prefWidth="600.0" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: yellow;" text="CHANGE">
                      <font>
-                        <Font name="System Bold" size="60.0" />
+                        <Font name="System Bold" size="30.0" />
                      </font></Button>
                   <Text fx:id="controlsPowerUpText" boundsType="VISUAL" fill="DARKORANGE" strokeType="OUTSIDE" strokeWidth="0.0" text="key">
                      <font>
-                        <Font name="System Bold" size="60.0" />
+                        <Font name="System Bold" size="30.0" />
                      </font></Text>
                </children>
             </HBox>
@@ -144,7 +144,7 @@
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" />
                   <Button mnemonicParsing="false" onAction="#returnToMenu" prefHeight="100.0" prefWidth="600.0" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: yellow;" text="BACK">
                      <font>
-                        <Font name="System Bold" size="60.0" />
+                        <Font name="System Bold" size="30.0" />
                      </font></Button>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" />
                </children>

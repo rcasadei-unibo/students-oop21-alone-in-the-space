@@ -1,10 +1,19 @@
 package controller.eventController;
 
+import controller.gameEngine.GameEngine;
+import view.GameMap;
+
 import java.io.IOException;
 
-import controller.gameEngine.GameEngine;
-
 public class EventControllerImpl implements EventController{
+
+    //TODO
+    private HUDImpl hudBuilder;
+
+    public EventControllerImpl(final GameMap gameMap) {
+        this.hudBuilder = new HUDImpl(gameMap);
+    }
+
     @Override
     public int checkPoints() {
         return 0;
