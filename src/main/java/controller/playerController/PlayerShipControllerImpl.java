@@ -24,7 +24,7 @@ public class PlayerShipControllerImpl implements PlayerShipController {
     private boolean hasFired = false;
     private boolean hasPowerUp = false;
     private boolean activePowerUp = false;
-    private float gunDamage = PlayerGunValues.MAIN_GUN.getValueFromKey("DAMAGE");
+    private int gunDamage = (int) PlayerGunValues.MAIN_GUN.getValueFromKey("DAMAGE");
     private Gun normalPlayerGun;
     private long powerTime = 0;
 
@@ -47,7 +47,7 @@ public class PlayerShipControllerImpl implements PlayerShipController {
                                                 PlayerValues.MAIN_SHIP.getValueFromKey("MAXSPEED"),
                                                 PlayerValues.MAIN_SHIP.getValueFromKey("ROTATIONSPEED"));
         this.normalPlayerGun = GunFactory.playerGun(this.playerShip,
-                                                PlayerGunValues.MAIN_GUN.getValueFromKey("DAMAGE"),
+                                        (int)   PlayerGunValues.MAIN_GUN.getValueFromKey("DAMAGE"),
                                                 PlayerGunValues.MAIN_GUN.getValueFromKey("MAXSPEED"),
                                                 PlayerGunValues.MAIN_GUN.getValueFromKey("ACCELERATION"),
                                                 PlayerGunValues.MAIN_GUN.getValueFromKey("ROTATIONSPEED"));
@@ -183,9 +183,9 @@ public class PlayerShipControllerImpl implements PlayerShipController {
         this.exp -= EnumInt.EXP_REQUIRED.getValue()*(Math.pow(2, this.currentLevel-1));
     }
 
-    private void gunLevelUp(float newDamage) {
+    private void gunLevelUp(int newDamage) {
         this.playerShip.setGun(GunFactory.playerGun(this.playerShip,
-                                                    PlayerGunValues.MAIN_GUN.getValueFromKey("DAMAGE") + newDamage,
+                                (int)        PlayerGunValues.MAIN_GUN.getValueFromKey("DAMAGE") + newDamage,
                                                     PlayerGunValues.MAIN_GUN.getValueFromKey("MAXSPEED"),
                                                     PlayerGunValues.MAIN_GUN.getValueFromKey("ACCELERATION"),
                                                     PlayerGunValues.MAIN_GUN.getValueFromKey("ROTATIONSPEED")));

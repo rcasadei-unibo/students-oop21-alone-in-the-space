@@ -136,7 +136,7 @@ public class PlayerShip implements Ship {
 		return null;
 	}
 	@Override
-	public Boolean isInRangeOfAttack(List<Vec2> enemy, long deltaTime) {
+	public Boolean isInRangeOfAttack(List<Ship> enemy, long deltaTime) {
 		return null;
 	}
 	public Vec2 getPosition() {

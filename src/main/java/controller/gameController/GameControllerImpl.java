@@ -4,6 +4,7 @@ import controller.eventController.EventController;
 import controller.eventController.EventControllerImpl;
 import controller.inputController.InputController;
 import controller.playerController.PlayerShipController;
+import controller.playerController.PlayerShipControllerImpl;
 import controller.sceneManager.SceneManager;
 import model.Ship;
 import utilities.EnumString;
@@ -30,9 +31,9 @@ public class GameControllerImpl implements GameController {
         this.gameMap.setBackgroundImage(EnumString.IMAGE_FOLDER.getValue() + "skybox13.jpg");
 
 
-		this.playerShipController = new PlayerShipController();
+		this.playerShipController = new PlayerShipControllerImpl();
 		// TODO playerShipController
-		this.gameMap.setPlayer(this.playerShipController);
+		this.gameMap.setPlayer(this.playerShipController.getPlayerShip());
 
 		this.sceneManager = new SceneManager(this.gameMap);
 		this.eventController = new EventControllerImpl(this.gameMap);
@@ -45,24 +46,28 @@ public class GameControllerImpl implements GameController {
 		this.inputController.updatePlayerTasks();
 		// TODO player movements.
 		if (this.inputController.isTaskActive(InputCommands.UP)) {
-			// this.player.setDirection(Direction.UP);
+			this.playerShipController.thrust(InputCommands.UP);
 		}
 		if (this.inputController.isTaskActive(InputCommands.DOWN)) {
-			// this.player.setDirection(Direction.DOWN);
+			this.playerShipController.thrust(InputCommands.DOWN);
 		}
 		if (this.inputController.isTaskActive(InputCommands.LEFT)) {
-			// this.player.setDirection(Direction.LEFT);
+			this.playerShipController.rotate(InputCommands.LEFT);
 		}
 		if (this.inputController.isTaskActive(InputCommands.RIGHT)) {
-			// this.player.setDirection(Direction.RIGHT);
+			this.playerShipController.rotate(InputCommands.RIGHT);
 		}
 
 		if (this.inputController.isTaskActive(InputCommands.ATTACK)) {
-			// this.player.setDirection(Direction.ATTACK);
+			this.playerShipController.shot();
 		}
 
 		if (this.inputController.isTaskActive(InputCommands.POWER_UP)) {
-			// this.player.setDirection(Direction.POWER_UP);
+			this.playerShipController.activatePowerUp();
+		}
+
+		if(!this.inputController.isTaskActive(InputCommands.UP) && !this.inputController.isTaskActive(InputCommands.DOWN)) {
+			this.playerShipController.thrustReleased();
 		}
 
 		
