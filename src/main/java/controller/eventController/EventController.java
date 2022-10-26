@@ -1,10 +1,16 @@
 package controller.eventController;
 
-import java.io.IOException;
-
+import controller.collisionDetection.Collision;
 import controller.gameEngine.GameEngine;
 
+import java.io.IOException;
+
 public interface EventController {
+
+    /**
+     * @return collision.
+     */
+    Collision getCollision();
 
     /**
      * @return the value of the points.
