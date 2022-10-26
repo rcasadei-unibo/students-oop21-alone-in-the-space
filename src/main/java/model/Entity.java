@@ -34,7 +34,7 @@ public interface Entity {
 	  * move the entity for the interval specified
 	  * @param deltaTime
 	  */
-	void move(float deltaTime);
+	void move(long deltaTime);
 
 	 /**
 	  * return the node (of javaFX) associate at the object

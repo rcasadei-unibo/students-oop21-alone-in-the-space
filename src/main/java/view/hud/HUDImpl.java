@@ -34,8 +34,8 @@ public class HUDImpl implements HUDInterface{
         this.powerUpHUD = new HUDPowerUpImpl(this.gameMap);
 
 
-        this.collision = new CollisionImpl(this.gameMap, this.pointsHUD, this.livesHUD, this.powerUpHUD);
-
+        //this.collision = new CollisionImpl(this.gameMap, this.pointsHUD, this.livesHUD, this.powerUpHUD);
+        this.collision = new CollisionImpl();
     }
 
     @Override

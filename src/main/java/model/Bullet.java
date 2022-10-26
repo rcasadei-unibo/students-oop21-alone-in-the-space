@@ -23,7 +23,7 @@ public interface Bullet extends Entity{
 	 * the actual damage this bullet provide on hit.
 	 * @return
 	 */
-	public float getDamage();
+	public int getDamage();
 	
 	/**
 	 * return the position of this bullet.

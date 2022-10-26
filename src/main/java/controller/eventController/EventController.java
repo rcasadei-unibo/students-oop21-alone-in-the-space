@@ -15,7 +15,7 @@ public interface EventController {
      * @return the remaining life points.
      */
     int checkLifePoints();
-
+    
     /**
      * //todo
      *

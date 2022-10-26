@@ -26,19 +26,31 @@ public class CollisionImpl implements Collision {
 	}
 
 	@Override
-	public void checkAllCollision(Ship ship, Collection<Entity> enemies, Collection<Bullet> bullets) {
+	public void checkAllCollision(Ship ship, Collection<Ship> enemies, Collection<Bullet> playerBullets,
+			Collection<Bullet> enemiesBullets) {
+		
 		enemies.forEach((Entity enemy) -> {
-			if(checkEnemyCollision(ship, enemy)) {
+			if (checkEnemyCollision(ship, enemy)) {
 				ship.hit(EnumInt.DAMAGE_COLLISION.getValue());
 			}
 		});
 		
-		bullets.forEach((Bullet bullet) -> {
-			if(checkBulletCollision(ship, bullet)) {
+		playerBullets.forEach((Bullet bullet) -> {
+			enemies.forEach((Ship enemy) -> {
+				if (bullet.isAlive() && checkEnemyCollision(enemy ,  bullet)) {
+					ship.hit(bullet.getDamage());
+					bullet.destroy();
+				}
+			});
+		});
+		enemiesBullets.forEach((Bullet bullet) -> {
+			if (checkBulletCollision(ship, bullet)) {
 				ship.hit(bullet.getDamage());
+				bullet.destroy();
 			}
 		});
-
+		enemies.removeIf(e -> e.isAlive());
+		enemiesBullets.removeIf(e -> e.isAlive());
 	}
 
 }

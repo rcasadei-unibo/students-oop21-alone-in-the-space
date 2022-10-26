@@ -80,7 +80,7 @@ public class GunFactory {
 		return new shootgun(30, spaceship);
 	}
 
-	public static Gun playerGun(PlayerShip ship, float damage, float maxSpeed, float acceleration, float rotationSpeed) {
+	public static Gun playerGun(PlayerShip ship, int damage, float maxSpeed, float acceleration, float rotationSpeed) {
 
 		class PlayerGun extends GunImpl {
 			public PlayerGun(int degRange, PlayerShip playerShip) {
@@ -88,7 +88,7 @@ public class GunFactory {
 			}
 
 
-			public PlayerGun(int degRange, PlayerShip playerShip, float bulletDamage,float bulletMaxSpeed, float bulletAcceleration, float bulletRotationSpeed) {
+			public PlayerGun(int degRange, PlayerShip playerShip, int bulletDamage,float bulletMaxSpeed, float bulletAcceleration, float bulletRotationSpeed) {
 				super(degRange, playerShip);
 				this.bulletDamage = bulletDamage;
 				this.bulletMaxSpeed = bulletMaxSpeed;
@@ -97,12 +97,12 @@ public class GunFactory {
 			}
 
 			//Use predefined values from PlayerShipValues
-			private float bulletDamage;
+			private int bulletDamage;
 			private float bulletMaxSpeed;
 			private float bulletAcceleration;
 			private float bulletRotationSpeed;
 
-			public void changeDamage(float damage) {
+			public void changeDamage(int damage) {
 				this.bulletDamage = damage;
 			}
 

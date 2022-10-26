@@ -13,7 +13,7 @@ public class BulletFactory {
 
 		class BasicBullet extends AbstractBullet {
 
-			public BasicBullet(float maxSpeed, float acceleration, float rotationSpeed, float damage, Vec2 position,
+			public BasicBullet(float maxSpeed, float acceleration, float rotationSpeed, int damage, Vec2 position,
 					Vec2 direction) {
 				super(maxSpeed, acceleration, rotationSpeed, damage, position);
 				// TODO Auto-generated constructor stub
@@ -32,7 +32,7 @@ public class BulletFactory {
 
 		class RifleBullet extends AbstractBullet {
 
-			public RifleBullet(float maxSpeed, float acceleration, float rotationSpeed, float damage, Vec2 position,
+			public RifleBullet(float maxSpeed, float acceleration, float rotationSpeed, int damage, Vec2 position,
 					Vec2 direction) {
 				super(maxSpeed, acceleration, rotationSpeed, damage, position);
 				// TODO Auto-generated constructor stub
@@ -49,7 +49,7 @@ public class BulletFactory {
 	public static Bullet missile(Vec2 position, Vec2 direction, final Ship enemy) {
 
 		class missile extends AbstractBullet {
-			public missile(float maxSpeed, float acceleration, float rotationSpeed, float damage, Vec2 position,
+			public missile(float maxSpeed, float acceleration, float rotationSpeed, int damage, Vec2 position,
 					Vec2 direction,Ship enemy) {
 				super(maxSpeed, acceleration, rotationSpeed, damage, position);
 				// TODO Auto-generated constructor stub
@@ -58,7 +58,7 @@ public class BulletFactory {
 			private final Ship target;
 
 			@Override
-			public void move(float deltaTime) {
+			public void move(long deltaTime) {
 				// TODO Auto-generated method stub
 				if (target.isAlive()) {
 				} else {
@@ -72,10 +72,10 @@ public class BulletFactory {
 
 	}
 
-	public static Bullet playerBullet(float maxSpeed, float acceleration, float rotationSpeed, float damage, Vec2 position, Vec2 direction) {
+	public static Bullet playerBullet(float maxSpeed, float acceleration, float rotationSpeed, int damage, Vec2 position, Vec2 direction) {
 
 		class PlayerBullet extends AbstractBullet {
-			public PlayerBullet(float maxSpeed, float acceleration, float rotationSpeed, float damage, Vec2 position, Vec2 direction) {
+			public PlayerBullet(float maxSpeed, float acceleration, float rotationSpeed, int damage, Vec2 position, Vec2 direction) {
 				super(maxSpeed, acceleration, rotationSpeed, damage, position);
 			}
 		}

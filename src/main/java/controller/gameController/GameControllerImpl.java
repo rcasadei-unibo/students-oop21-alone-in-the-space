@@ -30,7 +30,7 @@ public class GameControllerImpl implements GameController{
         this.gameMap.setPlayer(this.playerShipController);
 
         this.sceneManager = new SceneManager(this.gameMap);
-        this.eventController = new EventControllerImpl(this.gameMap);
+        this.eventController = new EventControllerImpl(this.gameMap);//should be only enemies and bullets?
     }
 
 

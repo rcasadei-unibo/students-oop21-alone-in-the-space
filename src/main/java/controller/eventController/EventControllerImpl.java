@@ -34,4 +34,5 @@ public class EventControllerImpl implements EventController{
     public boolean checkGameStatus() {
         return false;
     }
+
 }
