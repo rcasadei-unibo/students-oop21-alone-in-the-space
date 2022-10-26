@@ -4,6 +4,7 @@ import controller.collisionDetection.Collision;
 import controller.collisionDetection.CollisionImpl;
 import model.hud.HUDLifeImpl;
 import model.hud.HUDPointsImpl;
+import model.hud.HUDPowerUp;
 import model.hud.HUDPowerUpImpl;
 import utilities.EnumInt;
 import view.GameMap;
@@ -12,7 +13,7 @@ public class HUDImpl implements HUDInterface{
 
     private HUDPointsImpl pointsHUD;
     private HUDLifeImpl livesHUD;
-    private HUDPowerUpImpl powerUpHUD;
+    private HUDPowerUp powerUpHUD;
     private Collision collision;
     private GameMap gameMap;
 
@@ -57,4 +58,11 @@ public class HUDImpl implements HUDInterface{
     public int checkLives() {
         return this.livesHUD.getLifePoints();
     }
+
+    @Override
+    public HUDPowerUp getPowerUpImpl() {
+        return this.powerUpHUD;
+    }
+
+
 }

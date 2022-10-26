@@ -1,7 +1,8 @@
 package controller.eventController;
 
 import controller.collisionDetection.Collision;
-import controller.gameEngine.GameEngine;
+import controller.gameSwitcher.SceneController;
+import model.hud.HUDPowerUp;
 
 import java.io.IOException;
 
@@ -28,10 +29,15 @@ public interface EventController {
      * @param gameEngine
      * @throws IOException
      */
-    void endGame(GameEngine gameEngine) throws IOException;
+    void endGame(SceneController sceneController) throws IOException;
 
     /**
      * @return the game status.
      */
     boolean checkGameStatus();
+
+    /**
+     * @return powerUp HUD reference.
+     */
+    HUDPowerUp getPowerUp();
 }

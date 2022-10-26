@@ -1,7 +1,8 @@
 package controller.eventController;
 
 import controller.collisionDetection.Collision;
-import controller.gameEngine.GameEngine;
+import controller.gameSwitcher.SceneController;
+import model.hud.HUDPowerUp;
 import view.GameMap;
 import view.hud.HUDImpl;
 
@@ -9,7 +10,6 @@ import java.io.IOException;
 
 public class EventControllerImpl implements EventController{
 
-    //TODO
     private HUDImpl hudBuilder;
 
     public EventControllerImpl(final GameMap gameMap) {
@@ -23,22 +23,32 @@ public class EventControllerImpl implements EventController{
 
     @Override
     public int checkPoints() {
-        return 0;
+        return this.hudBuilder.checkPoints();
     }
 
     @Override
     public int checkLifePoints() {
-        return 0;
+        return this.hudBuilder.checkLives();
     }
 
     @Override
-    public void endGame(GameEngine gameEngine) throws IOException {
-
+    public void endGame(SceneController sceneController) throws IOException {
+        try {
+            sceneController.getInputController().resetState();
+            sceneController.switchToEndMenu(this.checkPoints());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public boolean checkGameStatus() {
-        return false;
+        return this.hudBuilder.checkGameStatus();
+    }
+
+    @Override
+    public HUDPowerUp getPowerUp() {
+        return this.hudBuilder.getPowerUpImpl();
     }
 
 }

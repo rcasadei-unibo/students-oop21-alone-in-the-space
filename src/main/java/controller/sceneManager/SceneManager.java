@@ -2,6 +2,7 @@ package controller.sceneManager;
 
 import javafx.scene.Node;
 import model.Entity;
+import utilities.EnumInt;
 import view.GameMap;
 
 import java.util.Set;
@@ -44,7 +45,7 @@ public class SceneManager {
      */
     private void updateBackground() {
         for (Node image : this.gameMap.getBackground()) {
-           //TODO image.setLayoutY(image.getLayoutY() + );
+            image.setLayoutY(image.getLayoutY() + EnumInt.FOUR.getValue());
             if (image.getLayoutY() >= this.gameMap.getHeight().intValue()) {
                 image.setLayoutY(-this.gameMap.getHeight().intValue());
             }

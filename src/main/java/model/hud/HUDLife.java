@@ -12,6 +12,7 @@ public interface HUDLife {
      */
     void lifeDown(final int damage);
 
+
     /**
      * @return game status.
      */
