@@ -1,6 +1,6 @@
 package view;
 
-import controller.gameEngine.GameEngine;
+import controller.gameSwitcher.SceneController;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -9,11 +9,11 @@ public class WindowManagerImpl implements WindowManager {
 
     private Stage mainStage;
 
- /*   public WindowManagerImpl(final GameEngine gameEngine) {
-        this.mainStage = gameEngine.getStage();
+    public WindowManagerImpl(final SceneController sceneController) {
+        this.mainStage = sceneController.getStage();
         this.mainStage.setResizable(false);
     }
-*/
+
     @Override
     public void addGameMap(GameMapImpl gameMap) {
         Scene scene = new Scene(new VBox(gameMap.getGameContainer()));

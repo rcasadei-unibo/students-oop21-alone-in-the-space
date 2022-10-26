@@ -2,23 +2,37 @@ package controller.gameEngine;
 
 import controller.eventController.EventController;
 import controller.eventController.EventControllerImpl;
-/*import controller.gameController.GameController;
-import controller.gameController.GameControllerImpl;*/
+import controller.gameController.GameController;
+import controller.gameController.GameControllerImpl;
+import controller.gameSwitcher.SceneController;
 import javafx.stage.Stage;
 import utilities.EnumInt;
-import view.GameMap;
 import view.GameMapImpl;
+import view.WindowManager;
+import view.WindowManagerImpl;
 
 public class GameEngineImpl implements GameEngine {
 	
 	private static final long PERIOD = 100L;
 	
-//	private GameController game;
-	private GameMap map;
+	private GameControllerImpl game;
 	private EventController event;
 	private Stage stage;
-	public GameEngineImpl() {
-		
+	private String playerName;
+	private GameMapImpl gameMap;
+	private SceneController sceneController;
+	private WindowManager windowManager;
+
+
+	public GameEngineImpl(final SceneController sceneController) {
+		this.sceneController = sceneController;
+		this.windowManager = new WindowManagerImpl(this.sceneController);
+		this.gameMap = new GameMapImpl(EnumInt.WIDTH.getValue(), EnumInt.HEIGHT.getValue(), this);
+		this.windowManager.addGameMap(this.gameMap);
+
+		this.game = new GameControllerImpl(this.gameMap);
+		this.game.setInputController(this.sceneController.getInputController());
+
 	}
 	
 	@Override
@@ -82,6 +96,22 @@ public class GameEngineImpl implements GameEngine {
 	
 	public Stage getStage() {
 		return this.stage;
+	}
+
+	public void setPlayerName(final String name) {
+		this.playerName = name;
+	}
+
+	public String getPlayerName() {
+		return this.playerName;
+	}
+
+	public GameMapImpl getGameMap() {
+		return this.gameMap;
+	}
+
+	public SceneController getSceneController() {
+		return this.sceneController;
 	}
 
 }
