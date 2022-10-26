@@ -2,6 +2,7 @@ package controller.eventController;
 
 import controller.gameEngine.GameEngine;
 import view.GameMap;
+import view.hud.HUDImpl;
 
 import java.io.IOException;
 
