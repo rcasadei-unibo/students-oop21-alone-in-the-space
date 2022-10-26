@@ -1,5 +1,6 @@
 package controller.eventController;
 
+import controller.collisionDetection.Collision;
 import controller.gameEngine.GameEngine;
 import view.GameMap;
 import view.hud.HUDImpl;
@@ -13,6 +14,11 @@ public class EventControllerImpl implements EventController{
 
     public EventControllerImpl(final GameMap gameMap) {
         this.hudBuilder = new HUDImpl(gameMap);
+    }
+
+    @Override
+    public Collision getCollision() {
+        return this.hudBuilder.getCollision();
     }
 
     @Override
