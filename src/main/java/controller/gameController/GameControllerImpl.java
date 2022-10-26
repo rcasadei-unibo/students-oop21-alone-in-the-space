@@ -6,6 +6,7 @@ import controller.inputController.InputController;
 import controller.playerController.PlayerShipController;
 import controller.sceneManager.SceneManager;
 import model.Ship;
+import utilities.EnumString;
 import utilities.InputCommands;
 import view.GameMap;
 
@@ -23,7 +24,7 @@ public class GameControllerImpl implements GameController{
 
     public GameControllerImpl(final GameMap gameMap) {
         this.gameMap = gameMap;
-        this.gameMap.setBackgroundImage(/*todo*/);
+        this.gameMap.setBackgroundImage(EnumString.IMAGE_FOLDER.getValue() + "skybox13.jpg");
 
         this.playerShipController = new PlayerShipController();
         //TODO playerShipController
@@ -59,7 +60,7 @@ public class GameControllerImpl implements GameController{
             //this.player.setDirection(Direction.POWER_UP);
         }
 
-        this.eventController.getCollisionImpl.update();
+        this.eventController.getCollision().update();
         this.playerShipController.update();
         Arrays.stream(this.enemies).forEach(e -> e.move(deltaTime));
         this.sceneManager.update(deltaTime);

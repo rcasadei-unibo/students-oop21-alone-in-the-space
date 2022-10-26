@@ -10,7 +10,6 @@ import java.io.IOException;
 
 public class EventControllerImpl implements EventController{
 
-    //TODO
     private HUDImpl hudBuilder;
 
     public EventControllerImpl(final GameMap gameMap) {
