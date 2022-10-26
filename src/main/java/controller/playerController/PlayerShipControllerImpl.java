@@ -44,7 +44,7 @@ public class PlayerShipControllerImpl implements PlayerShipController {
                                                PlayerValues.MAIN_SHIP.getValueFromKey("ROTATIONSPEED"));
         fireRate            =                  PlayerValues.MAIN_SHIP.getValueFromKey("FIRERATE");
         playerShip.setGun(GunFactory.playerGun(playerShip,
-                                               PlayerGunValues.MAIN_GUN.getValueFromKey("DAMAGE"),
+                                               (int) PlayerGunValues.MAIN_GUN.getValueFromKey("DAMAGE"),
                                                PlayerGunValues.MAIN_GUN.getValueFromKey("MAXSPEED"),
                                                PlayerGunValues.MAIN_GUN.getValueFromKey("ACCELERATION"),
                                                PlayerGunValues.MAIN_GUN.getValueFromKey("ROTATIONSPEED")));
@@ -65,7 +65,7 @@ public class PlayerShipControllerImpl implements PlayerShipController {
         playerShip.rotate(input);
     }
 
-    private void move(float deltaTime) {
+    private void move(long deltaTime) {
         playerShip.move(deltaTime);
     }
     public void thrustReleased() {
@@ -73,7 +73,7 @@ public class PlayerShipControllerImpl implements PlayerShipController {
     }
 
     public void update(long deltaTime) {
-        float deltaTimeF = ((float) deltaTime) / 1000;
+        long deltaTimeF = ( deltaTime) / 1000;
         move(deltaTimeF);
         playerShip.decaySpeed();
         display();
@@ -156,15 +156,15 @@ public class PlayerShipControllerImpl implements PlayerShipController {
         }
 
         if(this.currentLevel % 5 == 0) {
-            this.gunLevelUp(5 * (PlayerGunValues.MAIN_GUN.getValueFromKey("DAMAGE"))/100);
+            this.gunLevelUp((int) (5 * (PlayerGunValues.MAIN_GUN.getValueFromKey("DAMAGE"))/100));
         }
 
         this.exp -= EnumInt.EXP_REQUIRED.getValue()*(Math.pow(2, this.currentLevel-1));
     }
 
-    private void gunLevelUp(float newDamage) {
+    private void gunLevelUp(int newDamage) {
         this.playerShip.setGun(GunFactory.playerGun(this.playerShip,
-                                                    PlayerGunValues.MAIN_GUN.getValueFromKey("DAMAGE") + newDamage,
+                                                    (int)PlayerGunValues.MAIN_GUN.getValueFromKey("DAMAGE") + newDamage,
                                                     PlayerGunValues.MAIN_GUN.getValueFromKey("MAXSPEED"),
                                                     PlayerGunValues.MAIN_GUN.getValueFromKey("ACCELERATION"),
                                                     PlayerGunValues.MAIN_GUN.getValueFromKey("ROTATIONSPEED")));

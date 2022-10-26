@@ -135,10 +135,7 @@ public class PlayerShip implements Ship {
 	public String drop() {
 		return null;
 	}
-	@Override
-	public Boolean isInRangeOfAttack(List<Vec2> enemy, long deltaTime) {
-		return null;
-	}
+	
 	public Vec2 getPosition() {
 		return position;
 	}
@@ -182,5 +179,12 @@ public class PlayerShip implements Ship {
 
 	public void setMaxHealth(float maxHealth) {
 		this.maxHealth = maxHealth;
+	}
+
+
+	@Override
+	public Boolean isInRangeOfAttack(List<Ship> enemy, long deltaTime) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
