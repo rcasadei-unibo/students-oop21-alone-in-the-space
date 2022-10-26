@@ -1,12 +1,12 @@
 package controller.gameSwitcher;
 
+import controller.inputController.InputController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import utilities.InputCommands;
-import controller.inputController.InputController;
 
 import java.io.IOException;
 
@@ -51,9 +51,9 @@ public class ControlsController extends BasicFXMLController {
      */
     @FXML
     private void initialize() {
+        System.out.println("init");
         this.inputController = super.getSceneController().getInputController();
-        this.lastKeyPressed = KeyCode.A;
-        this.keyToSetText.setText(this.lastKeyPressed.toString());
+        this.keyToSetText.setText(KeyCode.A.toString());
         this.refreshControls();
     }
 

@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="1536.0" minWidth="2730.0" prefHeight="1536.0" prefWidth="2730.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.gameSwitcher.ScoresController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="1536.0" minWidth="2730.0" prefHeight="1536.0" prefWidth="2730.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="1536.0" fitWidth="2730.0" pickOnBounds="true">
          <image>

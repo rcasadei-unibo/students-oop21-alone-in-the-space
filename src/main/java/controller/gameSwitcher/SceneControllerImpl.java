@@ -1,6 +1,7 @@
 package controller.gameSwitcher;
 
 import controller.gameEngine.GameEngine;
+import controller.gameEngine.GameEngineImpl;
 import controller.inputController.InputController;
 import controller.inputController.InputControllerImpl;
 import controller.ranking.Ranking;
@@ -37,12 +38,12 @@ public class SceneControllerImpl implements SceneController{
 
     @Override
     public void switchToGame(String name) throws IOException {
-        /*this.gameEngine  = new GameEngine(this);
+        this.gameEngine  = new GameEngineImpl(this);
         this.gameEngine.setPlayerName(name);
         Scene scene = this.gameEngine.getGameMap().getGameContainer().getScene();
         this.windowManager.setScene(scene);
         this.inputController.changeScene(scene);
-        this.gameEngine.start();*/
+        this.gameEngine.initGame();
     }
 
     @Override

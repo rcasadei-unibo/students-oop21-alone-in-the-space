@@ -2,6 +2,7 @@ package controller.gameEngine;
 
 import controller.gameSwitcher.SceneController;
 import javafx.stage.Stage;
+import view.GameMap;
 
 public interface GameEngine {
 	
@@ -34,4 +35,10 @@ public interface GameEngine {
 	SceneController getSceneController();
 
 	String getPlayerName();
+
+	void setPlayerName(String name);
+
+	GameMap getGameMap();
+
+	void stop();
 }

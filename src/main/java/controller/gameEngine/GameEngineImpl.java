@@ -104,7 +104,6 @@ public class GameEngineImpl implements GameEngine {
 
 	@Override
 	public void initGame() {
-		this.gameMap = new GameMapImpl(EnumInt.HEIGHT.getValue(), EnumInt.WIDTH.getValue(), this);
 		this.game = new GameControllerImpl(this.gameMap);
 		this.event = new EventControllerImpl(this.gameMap);
 		this.enemyTimer = System.currentTimeMillis();
@@ -136,6 +135,11 @@ public class GameEngineImpl implements GameEngine {
 
 	public GameMapImpl getGameMap() {
 		return this.gameMap;
+	}
+
+	@Override
+	public void stop() {
+
 	}
 
 	public SceneController getSceneController() {

@@ -38,6 +38,8 @@ public class SceneManager {
      */
     private void updateEntityPosition(final Entity entity, long deltaTime) {
         entity.move(deltaTime);
+        entity.getNode().setTranslateX(entity.getPosition().x);
+        entity.getNode().setTranslateY(entity.getPosition().y);
     }
 
     /**
