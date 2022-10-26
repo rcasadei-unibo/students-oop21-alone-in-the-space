@@ -1,5 +1,6 @@
 package view;
 
+import controller.gameEngine.GameEngine;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -9,8 +10,6 @@ import model.Entity;
 import model.Ship;
 
 import java.util.Set;
-
-import controller.gameEngine.GameEngine;
 
 public interface GameMap {
 

@@ -31,7 +31,7 @@ public abstract class AbstractShip implements Ship {
 		this.position = newPosition;
 	}
 
-	public void move(float deltaTime) {
+	public void move(long deltaTime) {
 		final int halfTurn=180;//angle degree 
 		final int Turn=360;
 		deltaTime /= 1000;//conversion to seconds
@@ -92,7 +92,7 @@ public abstract class AbstractShip implements Ship {
 	}
 
 	@Override
-	public Boolean isInRangeOfAttack(List<Vec2> enemy, long deltaTime) throws NullPointerException {
+	public Boolean isInRangeOfAttack(List<Ship> enemy, long deltaTime) throws NullPointerException {
 		// TODO Auto-generated method stub
 		if(deltaTime-this.lastAttack<attackCooldown) {
 			return false;
@@ -126,7 +126,7 @@ public abstract class AbstractShip implements Ship {
 	}
 
 	@Override
-	public void hit(float damage) {
+	public void hit(int damage) {
 		// TODO Auto-generated method stub
 		this.health -= damage;
 	}

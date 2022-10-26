@@ -42,7 +42,14 @@ public class PlayerShip implements Ship {
 		calculateDir();
 	}
 
-	public void move(float deltaTime) {
+
+	public Bullet shot() {
+		return playerGun.shot(this.position.add(rotation));
+	}
+
+	public void move(long deltaTime) {
+		// TODO Check
+
 		try {
 			float cosAlfa = calculateDir();
 			double a = Math.acos(cosAlfa);
@@ -112,15 +119,13 @@ public class PlayerShip implements Ship {
 	public void setTarget(Ship target) {
 		// TODO might be redundant because player controlled aim, targeting seems not fun
 	}
-	public Bullet shot() {
-		return playerGun.shot(this.position.add(rotation));
-	}
+	
 	@Override
 	public void setGun(Gun gun) {
 		this.playerGun = gun;
 	}
 	@Override
-	public void hit(float damage) {
+	public void hit(int damage) {
 		this.health -= damage;
 		if(this.health <= 0) {
 			this.destroy();
@@ -131,7 +136,7 @@ public class PlayerShip implements Ship {
 		return null;
 	}
 	@Override
-	public Boolean isInRangeOfAttack(List<Vec2> enemy, long deltaTime) {
+	public Boolean isInRangeOfAttack(List<Ship> enemy, long deltaTime) {
 		return null;
 	}
 	public Vec2 getPosition() {

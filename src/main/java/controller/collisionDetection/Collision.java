@@ -24,9 +24,11 @@ public interface Collision {
 	 * Check collision with enemies and bullets
 	 * @param ship
 	 * @param enemies
-	 * @param bullets
+	 * @param playerBullets
+	 * @param enemiesBullets
 	 */
-	void checkAllCollision(Ship ship, Collection<Entity> enemies, Collection<Bullet> bullets);
+	void checkAllCollision(Ship ship, Collection<Ship> enemies, Collection<Bullet> playerBullets,
+			Collection<Bullet> enemiesBullets);
 	
 	/**
 	 * Check if there is a collision with borders

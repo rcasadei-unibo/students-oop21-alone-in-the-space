@@ -1,8 +1,8 @@
 package model;
 
-import java.util.List;
-
 import com.almasb.fxgl.core.math.Vec2;
+
+import java.util.List;
 
 abstract class GunImpl implements Gun {
 	private int degRange;
@@ -19,13 +19,13 @@ abstract class GunImpl implements Gun {
 
 	}
 
-	public Boolean isInRange(Vec2 shipPos, Vec2 direction, List<Vec2> enemyPos) {
+	public boolean isInRange(Vec2 shipPos, Vec2 direction, List<Ship> enemy) {
 		// TODO Auto-generated method stub
-	return enemyPos.stream()
+	return enemy.stream()
 				.anyMatch(e -> {
-					Vec2 enemyDir=shipPos.copy().sub(e).normalizeLocal();
+					Vec2 enemyDir=shipPos.copy().sub(e.getPosition()).normalizeLocal();
 					return Math.abs(Math.acos(Vec2.dot(enemyDir, direction))) < this.degRange/2 
-							&& enemyDir.angle()*e.angle()>0;
+							&& enemyDir.angle()*e.getPosition().angle()>0;
 				});			
 
 	}
@@ -80,7 +80,7 @@ public class GunFactory {
 		return new shootgun(30, spaceship);
 	}
 
-	public static Gun playerGun(PlayerShip ship, float damage, float maxSpeed, float acceleration, float rotationSpeed) {
+	public static Gun playerGun(PlayerShip ship, int damage, float maxSpeed, float acceleration, float rotationSpeed) {
 
 		class PlayerGun extends GunImpl {
 			public PlayerGun(int degRange, PlayerShip playerShip) {
@@ -88,7 +88,7 @@ public class GunFactory {
 			}
 
 
-			public PlayerGun(int degRange, PlayerShip playerShip, float bulletDamage,float bulletMaxSpeed, float bulletAcceleration, float bulletRotationSpeed) {
+			public PlayerGun(int degRange, PlayerShip playerShip, int bulletDamage,float bulletMaxSpeed, float bulletAcceleration, float bulletRotationSpeed) {
 				super(degRange, playerShip);
 				this.bulletDamage = bulletDamage;
 				this.bulletMaxSpeed = bulletMaxSpeed;
@@ -97,12 +97,12 @@ public class GunFactory {
 			}
 
 			//Use predefined values from PlayerShipValues
-			private float bulletDamage;
+			private int bulletDamage;
 			private float bulletMaxSpeed;
 			private float bulletAcceleration;
 			private float bulletRotationSpeed;
 
-			public void changeDamage(float damage) {
+			public void changeDamage(int damage) {
 				this.bulletDamage = damage;
 			}
 

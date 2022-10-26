@@ -1,7 +1,5 @@
 package model;
 
-import com.almasb.fxgl.core.math.Vec2;
-
 import java.util.List;
 
 public interface Ship extends Entity{
@@ -27,7 +25,7 @@ public interface Ship extends Entity{
 	 * decrease the ship current health for the damage specified.
 	 * @param damage
 	 */
-	void hit(float damage);
+	void hit(int damage);
 	
 	/**
 	 * set the current target of this ship.
@@ -46,6 +44,6 @@ public interface Ship extends Entity{
 	 * @param enemy
 	 * @return
 	 */
-	Boolean isInRangeOfAttack(List<Vec2> enemy, long deltaTime);
+	Boolean isInRangeOfAttack(List<Ship> enemy, long deltaTime);
 	
 }

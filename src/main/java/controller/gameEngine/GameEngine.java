@@ -1,5 +1,6 @@
 package controller.gameEngine;
 
+import controller.gameSwitcher.SceneController;
 import javafx.stage.Stage;
 
 public interface GameEngine {
@@ -16,7 +17,7 @@ public interface GameEngine {
      * Update model state following input commands.
      * @param elapsed time
      */
-	void update(int elapsed);
+	void update(long elapsed);
 	/**
      * Update view interface.
      */
@@ -29,5 +30,8 @@ public interface GameEngine {
 	 * 
 	 */
 	Stage getStage();
-	
+
+	SceneController getSceneController();
+
+	String getPlayerName();
 }
