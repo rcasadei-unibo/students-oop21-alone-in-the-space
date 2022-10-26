@@ -1,6 +1,7 @@
 package view.hud;
 
 import controller.collisionDetection.Collision;
+import model.hud.HUDPowerUp;
 
 public interface HUDInterface {
 
@@ -11,4 +12,6 @@ public interface HUDInterface {
     int checkPoints();
 
     int checkLives();
+
+    HUDPowerUp getPowerUpImpl();
 }
