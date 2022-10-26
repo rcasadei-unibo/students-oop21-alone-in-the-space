@@ -13,7 +13,7 @@ public interface Collision {
 	 * 
 	 * @return True if a collision occurred
 	 */
-	boolean checkEnemyCollision(Ship ship, Entity enemy);
+	boolean checkEnemyCollision(Ship ship, Ship enemy);
 	/**
 	 * Check if there is a collision with bullets
 	 * 
