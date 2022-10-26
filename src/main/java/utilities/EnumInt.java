@@ -79,6 +79,11 @@ public enum EnumInt {
     /**
      *
      */
+    LIVES(3),
+
+    /**
+     *
+     */
     VIEW_ORDER(-51);
 
     private final int value;
