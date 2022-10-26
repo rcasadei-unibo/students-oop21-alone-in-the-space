@@ -16,10 +16,10 @@ public interface PlayerShipController  {
     Ship getPlayerShip();
     void thrust(InputCommands input);
     void rotate(InputCommands input);
-
     void shot();
-
+    int getCurrentLives();
+    void addLivesBy1();
+    int getExp();
     void activatePowerUp();
-
     void thrustReleased();
 }

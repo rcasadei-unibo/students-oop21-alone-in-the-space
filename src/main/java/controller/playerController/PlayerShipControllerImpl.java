@@ -3,6 +3,7 @@ package controller.playerController;
 import com.almasb.fxgl.core.math.Vec2;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import model.Gun;
 import model.GunFactory;
 import model.PlayerShip;
 import model.Ship;
@@ -23,6 +24,9 @@ public class PlayerShipControllerImpl implements PlayerShipController {
     private boolean hasFired = false;
     private boolean hasPowerUp = false;
     private boolean activePowerUp = false;
+    private float gunDamage = PlayerGunValues.MAIN_GUN.getValueFromKey("DAMAGE");
+    private Gun normalPlayerGun;
+    private long powerTime = 0;
 
     public PlayerShipControllerImpl() {
         this.currentLives = EnumInt.LIVES.getValue();
@@ -38,17 +42,18 @@ public class PlayerShipControllerImpl implements PlayerShipController {
 
     @Override
     public void initialisePlayerShip(Vec2 initialPos, Image sprite) {
-        playerShip          =   new PlayerShip(initialPos,
-                                               PlayerValues.MAIN_SHIP.getValueFromKey("MAXHEALTH"),
-                                               PlayerValues.MAIN_SHIP.getValueFromKey("MAXSPEED"),
-                                               PlayerValues.MAIN_SHIP.getValueFromKey("ROTATIONSPEED"));
-        fireRate            =                  PlayerValues.MAIN_SHIP.getValueFromKey("FIRERATE");
-        playerShip.setGun(GunFactory.playerGun(playerShip,
-                                               PlayerGunValues.MAIN_GUN.getValueFromKey("DAMAGE"),
-                                               PlayerGunValues.MAIN_GUN.getValueFromKey("MAXSPEED"),
-                                               PlayerGunValues.MAIN_GUN.getValueFromKey("ACCELERATION"),
-                                               PlayerGunValues.MAIN_GUN.getValueFromKey("ROTATIONSPEED")));
-        playerShip.setSprite(sprite);
+        this.playerShip = new PlayerShip(initialPos,
+                                                PlayerValues.MAIN_SHIP.getValueFromKey("MAXHEALTH"),
+                                                PlayerValues.MAIN_SHIP.getValueFromKey("MAXSPEED"),
+                                                PlayerValues.MAIN_SHIP.getValueFromKey("ROTATIONSPEED"));
+        this.normalPlayerGun = GunFactory.playerGun(this.playerShip,
+                                                PlayerGunValues.MAIN_GUN.getValueFromKey("DAMAGE"),
+                                                PlayerGunValues.MAIN_GUN.getValueFromKey("MAXSPEED"),
+                                                PlayerGunValues.MAIN_GUN.getValueFromKey("ACCELERATION"),
+                                                PlayerGunValues.MAIN_GUN.getValueFromKey("ROTATIONSPEED"));
+        this.fireRate = PlayerValues.MAIN_SHIP.getValueFromKey("FIRERATE");
+        this.playerShip.setGun(this.normalPlayerGun);
+        this.playerShip.setSprite(sprite);
     }
 
     public Ship getPlayerShip(){
@@ -59,29 +64,29 @@ public class PlayerShipControllerImpl implements PlayerShipController {
     public void thrust(InputCommands input) {
         playerShip.thrust(input);
     }
-
     @Override
     public void rotate(InputCommands input) {
         playerShip.rotate(input);
-    }
-
-    private void move(float deltaTime) {
-        playerShip.move(deltaTime);
     }
     public void thrustReleased() {
         playerShip.thrustReleased();
     }
 
     public void update(long deltaTime) {
-        float deltaTimeF = ((float) deltaTime) / 1000;
-        move(deltaTimeF);
-        playerShip.decaySpeed();
         display();
         if(this.hasFired) {
             this.gunRechargeTime += deltaTime;
             if(this.gunRechargeTime >= 1000/fireRate) {
                 this.hasFired = false;
                 this.gunRechargeTime = 0;
+            }
+        }
+        if(this.activePowerUp) {
+            this.powerTime += deltaTime;
+            if(this.powerTime >= EnumInt.POWER_UP_DURATION.getValue()) {
+                this.activePowerUp = false;
+                this.powerTime = 0;
+                this.endPowerUp();
             }
         }
     }
@@ -97,10 +102,23 @@ public class PlayerShipControllerImpl implements PlayerShipController {
 
     @Override
     public void activatePowerUp() {
-        if(hasPowerUp) {
-            fireRate *= 2;
+        if(hasPowerUp && !activePowerUp) {
+            this.hasPowerUp = false;
+            this.fireRate *= 2;
+            this.gunDamage *= 2;
+            this.playerShip.setGun(GunFactory.playerGun(this.playerShip,
+                                                        gunDamage,
+                                                        PlayerGunValues.MAIN_GUN.getValueFromKey("MAXSPEED"),
+                                                        PlayerGunValues.MAIN_GUN.getValueFromKey("ACCELERATION"),
+                                                        PlayerGunValues.MAIN_GUN.getValueFromKey("ROTATIONSPEED")));
             this.activePowerUp = true;
         }
+    }
+
+    private void endPowerUp() {
+        this.fireRate /= 2;
+        this.gunDamage /= 2;
+        this.playerShip.setGun(normalPlayerGun);
     }
 
     @Override
@@ -122,7 +140,7 @@ public class PlayerShipControllerImpl implements PlayerShipController {
         return this.currentLives;
     }
 
-    public void addLives() {
+    public void addLivesBy1() {
         this.currentLives++;
     }
 
@@ -140,6 +158,8 @@ public class PlayerShipControllerImpl implements PlayerShipController {
         this.score = newScore;
     }
     public void addScoreExp(int expGained) {
+        if((this.score + expGained) >= EnumInt.POWER_UP_SCORE.getValue())
+            this.hasPowerUp = true;
         this.score += expGained;
         this.exp += expGained;
         if(checkLevelUp()) {
@@ -156,7 +176,8 @@ public class PlayerShipControllerImpl implements PlayerShipController {
         }
 
         if(this.currentLevel % 5 == 0) {
-            this.gunLevelUp(5 * (PlayerGunValues.MAIN_GUN.getValueFromKey("DAMAGE"))/100);
+            this.gunDamage += 5 * (PlayerGunValues.MAIN_GUN.getValueFromKey("DAMAGE"))/100;
+            this.gunLevelUp(gunDamage);
         }
 
         this.exp -= EnumInt.EXP_REQUIRED.getValue()*(Math.pow(2, this.currentLevel-1));
