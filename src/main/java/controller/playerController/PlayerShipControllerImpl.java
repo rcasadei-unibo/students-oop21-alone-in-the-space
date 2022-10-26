@@ -3,10 +3,7 @@ package controller.playerController;
 import com.almasb.fxgl.core.math.Vec2;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import model.Gun;
-import model.GunFactory;
-import model.PlayerShip;
-import model.Ship;
+import model.*;
 import utilities.EnumInt;
 import utilities.InputCommands;
 import utilities.PlayerGunValues;
@@ -92,12 +89,14 @@ public class PlayerShipControllerImpl implements PlayerShipController {
     }
 
     @Override
-    public void shot() {
-        if(!hasFired) {
-            this.playerShip.shot();
+    public Bullet shot() {
+        Bullet bullet = null;
+        if(!this.hasFired) {
+            bullet = this.playerShip.shot();
             this.hasFired = true;
             this.gunRechargeTime = 0;
         }
+        return bullet;
     }
 
     @Override
@@ -169,7 +168,7 @@ public class PlayerShipControllerImpl implements PlayerShipController {
 
     public void levelUp() {
         this.playerShip.setMaxHealth(5 * (PlayerValues.MAIN_SHIP.getValueFromKey("MAXHEALTH"))/100) ;
-        this.playerShip.setHealth(this.playerShip.getMaxHealth());
+        this.playerShip.setHealth((int)this.playerShip.getMaxHealth());
 
         if(this.currentLevel % 3 == 0) {
             this.fireRate += 5 * (PlayerValues.MAIN_SHIP.getValueFromKey("FIRERATE"))/100;

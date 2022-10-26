@@ -4,6 +4,7 @@ import com.almasb.fxgl.core.math.Vec2;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import model.Bullet;
 import model.Ship;
 import utilities.InputCommands;
 
@@ -16,7 +17,7 @@ public interface PlayerShipController  {
     Ship getPlayerShip();
     void thrust(InputCommands input);
     void rotate(InputCommands input);
-    void shot();
+    Bullet shot();
     int getCurrentLives();
     void addLivesBy1();
     int getExp();

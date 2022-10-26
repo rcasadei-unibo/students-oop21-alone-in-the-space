@@ -157,11 +157,11 @@ public class PlayerShip implements Ship {
 		return this.health;
 	}
 	public float getMaxHealth() { return this.maxHealth; }
-	public void setHealth(float hitPoints) {
+	public void setHealth(int hitPoints) {
 		this.health = hitPoints;
 	}
 
-	public void heal(float hitPoints) {
+	public void heal(int hitPoints) {
 		this.health = Math.min((this.health + hitPoints), maxHealth);
 	}
 

@@ -133,6 +133,11 @@ public class GameEngineImpl implements GameEngine {
 		return this.playerName;
 	}
 
+	@Override
+	public void stop() {
+		
+	}
+
 	public GameMapImpl getGameMap() {
 		return this.gameMap;
 	}

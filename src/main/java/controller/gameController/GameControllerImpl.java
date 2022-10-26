@@ -6,6 +6,7 @@ import controller.inputController.InputController;
 import controller.playerController.PlayerShipController;
 import controller.playerController.PlayerShipControllerImpl;
 import controller.sceneManager.SceneManager;
+import model.Bullet;
 import model.Ship;
 import utilities.EnumString;
 import utilities.InputCommands;
@@ -15,6 +16,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 public class GameControllerImpl implements GameController {
 
@@ -59,7 +61,11 @@ public class GameControllerImpl implements GameController {
 		}
 
 		if (this.inputController.isTaskActive(InputCommands.ATTACK)) {
-			this.playerShipController.shot();
+			Optional<Bullet> playerBulletShot = Optional.of(this.playerShipController.shot());
+			if(!playerBulletShot.isEmpty()) {
+				this.gameMap.addPlayerBullet(playerBulletShot.get());
+			}
+
 		}
 
 		if (this.inputController.isTaskActive(InputCommands.POWER_UP)) {
