@@ -34,4 +34,6 @@ public interface GameEngine {
 	SceneController getSceneController();
 
 	String getPlayerName();
+
+    void stop();
 }
