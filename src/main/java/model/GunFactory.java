@@ -19,13 +19,13 @@ abstract class GunImpl implements Gun {
 
 	}
 
-	public Boolean isInRange(Vec2 shipPos, Vec2 direction, List<Vec2> enemyPos) {
+	public Boolean isInRange(Vec2 shipPos, Vec2 direction, List<Ship> enemy) {
 		// TODO Auto-generated method stub
-	return enemyPos.stream()
+	return enemy.stream()
 				.anyMatch(e -> {
-					Vec2 enemyDir=shipPos.copy().sub(e).normalizeLocal();
+					Vec2 enemyDir=shipPos.copy().sub(e.getPosition()).normalizeLocal();
 					return Math.abs(Math.acos(Vec2.dot(enemyDir, direction))) < this.degRange/2 
-							&& enemyDir.angle()*e.angle()>0;
+							&& enemyDir.angle()*e.getPosition().angle()>0;
 				});			
 
 	}

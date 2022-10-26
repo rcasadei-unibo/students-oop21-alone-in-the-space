@@ -46,6 +46,6 @@ public interface Ship extends Entity{
 	 * @param enemy
 	 * @return
 	 */
-	Boolean isInRangeOfAttack(List<Vec2> enemy, long deltaTime);
+	Boolean isInRangeOfAttack(List<Ship> enemy, long deltaTime);
 	
 }

@@ -24,7 +24,7 @@ public class SceneManager {
     /**
      * Game update.
      */
-    public void update(float deltaTime) {
+    public void update(long deltaTime) {
         this.updateBackground();
         //TODO soundmanager
         this.entities.forEach(entity -> updateEntityPosition(entity,deltaTime));
@@ -35,7 +35,7 @@ public class SceneManager {
      * @param entity
      * @param deltaTime
      */
-    private void updateEntityPosition(final Entity entity, float deltaTime) {
+    private void updateEntityPosition(final Entity entity, long deltaTime) {
         entity.move(deltaTime);
     }
 

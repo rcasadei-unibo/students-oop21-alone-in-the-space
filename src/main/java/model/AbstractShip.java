@@ -92,7 +92,7 @@ public abstract class AbstractShip implements Ship {
 	}
 
 	@Override
-	public Boolean isInRangeOfAttack(List<Vec2> enemy, long deltaTime) throws NullPointerException {
+	public Boolean isInRangeOfAttack(List<Ship> enemy, long deltaTime) throws NullPointerException {
 		// TODO Auto-generated method stub
 		if(deltaTime-this.lastAttack<attackCooldown) {
 			return false;
