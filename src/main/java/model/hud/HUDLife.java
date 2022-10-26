@@ -10,7 +10,8 @@ public interface HUDLife {
     /**
      * It decreases life points.
      */
-    void lifeDown(int damage);
+    void lifeDown(final int damage);
+
 
     /**
      * @return game status.

@@ -11,13 +11,13 @@ public abstract class AbstractBullet implements Bullet {
 	protected float maxSpeed;
 	protected float acceleration;
 	protected float rotationSpeed;
-	private float damage;
+	private int damage;
 	protected Vec2 speed;
 	protected Vec2 direction;
 	protected Vec2 position;
 	private ImageView sprite;
 	
-	public AbstractBullet(float maxSpeed, float acceleration, float rotationSpeed, float damage, Vec2 position) {
+	public AbstractBullet(float maxSpeed, float acceleration, float rotationSpeed, int damage, Vec2 position) {
 		super();
 		this.maxSpeed = maxSpeed;
 		this.acceleration = acceleration;
@@ -27,14 +27,12 @@ public abstract class AbstractBullet implements Bullet {
 		this.alive= true;
 	}
 	
-	public void move(float deltaTime) {
+	public void move(long deltaTime) {
 		deltaTime/=1000;//expected delta time to be in millisecond
-		//this.speed = this.speed.mulAdd(direction.cpy(), deltaTime);
 		this.speed= this.speed.add(direction.copy().mul(deltaTime));
 		if (this.speed.length() > maxSpeed) {
 			this.speed=this.speed.copy().normalize().mul(this.maxSpeed);
 		}
-		//this.position = this.position.mulAdd(this.speed, deltaTime);
 		this.position = this.position.add(speed.copy().mul(deltaTime));
 		this.sprite.setX(this.position.x);
 		this.sprite.setY(this.position.y);
@@ -49,7 +47,7 @@ public abstract class AbstractBullet implements Bullet {
 		this.alive=false;
 	};
 
-	public float getDamage() {
+	public int getDamage() {
 		return this.damage;
 	};
 

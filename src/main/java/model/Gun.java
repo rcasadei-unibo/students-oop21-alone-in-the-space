@@ -5,13 +5,13 @@ import java.util.List;
 import com.almasb.fxgl.core.math.Vec2;
 
 
-public interface Gun {
+interface Gun {
 	/**
 	 * shot a bullet in the direction specified.
 	 * @param direction
 	 * @return
 	 */
-	Bullet shot(Vec2 direction);
+	public Bullet shot(Vec2 direction);
 	
 	/**
 	 * check if there is at least an enemy in that direction, based on the range of the setted gun.
@@ -20,11 +20,11 @@ public interface Gun {
 	 * @param enemyPos
 	 * @return
 	 */
-	Boolean isInRange(Vec2 shipPos,Vec2 direction,List<Vec2> enemyPos);
+	public Boolean isInRange(Vec2 shipPos,Vec2 direction,List<Ship> enemy);
 	
 	/**
 	 * the actual range of this gun.
 	 * @return
 	 */
-	float getDegRange();
+	public float getDegRange();
 }

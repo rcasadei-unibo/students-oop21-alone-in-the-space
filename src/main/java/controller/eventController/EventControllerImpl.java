@@ -50,4 +50,5 @@ public class EventControllerImpl implements EventController{
     public HUDPowerUp getPowerUp() {
         return this.hudBuilder.getPowerUpImpl();
     }
+
 }

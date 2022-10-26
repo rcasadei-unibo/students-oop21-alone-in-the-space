@@ -16,7 +16,7 @@ public interface GameEngine {
      * Update model state following input commands.
      * @param elapsed time
      */
-	void update(int elapsed);
+	void update(long elapsed);
 	/**
      * Update view interface.
      */
