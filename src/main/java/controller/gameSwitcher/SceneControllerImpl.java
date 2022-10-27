@@ -17,7 +17,7 @@ import java.io.IOException;
 public class SceneControllerImpl implements SceneController {
 
     private Stage windowManager;
-    private GameEngine gameEngine;
+    private GameEngineImpl gameEngine;
     private InputController inputController;
     private Ranking ranking;
 
@@ -43,7 +43,7 @@ public class SceneControllerImpl implements SceneController {
         Scene scene = this.gameEngine.getGameMap().getGameContainer().getScene();
         this.windowManager.setScene(scene);
         this.inputController.changeScene(scene);
-        this.gameEngine.initGame();
+        this.gameEngine.start();
     }
 
     @Override

@@ -1,6 +1,7 @@
 package view;
 
 import controller.gameEngine.GameEngine;
+import controller.gameEngine.GameEngineImpl;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
@@ -23,7 +24,7 @@ public class GameMapImpl implements GameMap {
     private Ship player;
     private ImageView[] backGroundImage;
     private Scene scene;
-    private GameEngine gameEngine;
+    private GameEngineImpl gameEngine;
     private AnchorPane gameContainer;
     private Stage stage;
 
@@ -35,7 +36,7 @@ public class GameMapImpl implements GameMap {
      * @param width
      * @param height
      */
-    public GameMapImpl(final int width, final int height, final GameEngine engine) {
+    public GameMapImpl(final int width, final int height, final GameEngineImpl engine) {
         this(width, height);
         this.setGameEngine(engine);
     }
@@ -161,12 +162,12 @@ public class GameMapImpl implements GameMap {
     }
 
     @Override
-    public void setGameEngine(GameEngine gameEngine) {
+    public void setGameEngine(GameEngineImpl gameEngine) {
         this.gameEngine = gameEngine;
     }
 
     @Override
-    public GameEngine getGameEngine() {
+    public GameEngineImpl getGameEngine() {
         return this.gameEngine;
     }
 }

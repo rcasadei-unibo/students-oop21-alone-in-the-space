@@ -6,6 +6,7 @@ import controller.inputController.InputController;
 import controller.playerController.PlayerShipController;
 import controller.playerController.PlayerShipControllerImpl;
 import controller.sceneManager.SceneManager;
+import javafx.scene.image.Image;
 import model.Bullet;
 import model.Ship;
 import utilities.EnumString;
@@ -17,6 +18,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+
+import com.almasb.fxgl.core.math.Vec2;
 
 public class GameControllerImpl implements GameController {
 
@@ -33,7 +36,7 @@ public class GameControllerImpl implements GameController {
         this.gameMap.setBackgroundImage(EnumString.IMAGE_FOLDER.getValue() + "skybox13.jpg");
 
 
-		this.playerShipController = new PlayerShipControllerImpl();
+		this.playerShipController = new PlayerShipControllerImpl(new Vec2(100,100), new Image("images/ship_0.png"));
 		// TODO playerShipController
 		this.gameMap.setPlayer(this.playerShipController.getPlayerShip());
 

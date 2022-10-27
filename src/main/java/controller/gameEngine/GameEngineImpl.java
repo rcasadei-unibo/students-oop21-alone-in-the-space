@@ -5,6 +5,7 @@ import controller.eventController.EventController;
 import controller.eventController.EventControllerImpl;
 import controller.gameController.GameControllerImpl;
 import controller.gameSwitcher.SceneController;
+import javafx.animation.AnimationTimer;
 import javafx.stage.Stage;
 import model.EnemyFactory;
 import model.Ship;
@@ -19,8 +20,13 @@ import view.WindowManagerImpl;
  * Class that implements GameEngine interface.
  *
  */
-public class GameEngineImpl implements GameEngine {
+public class GameEngineImpl extends AnimationTimer{
 
+    private static final long SLEEP = 10000000;
+    private static final int SLEEP_TIMER = 100000;
+    private static final double VALUE = 1e9;
+
+    
     private static final long PERIOD = 100L;
     private GameControllerImpl game;
     private long enemyTimer;
@@ -29,11 +35,12 @@ public class GameEngineImpl implements GameEngine {
     private EventController event;
     private Stage stage;
     private String playerName;
-    private final GameMap gameMap;
+    private final GameMapImpl gameMap;
     private final SceneController sceneController;
     private final WindowManager windowManager;
 
-
+    private long prevTime;
+    
     public GameEngineImpl(final SceneController sceneController) {
         this.sceneController = sceneController;
         this.windowManager = new WindowManagerImpl(this.sceneController);
@@ -42,9 +49,33 @@ public class GameEngineImpl implements GameEngine {
         this.windowManager.addGameMap(this.gameMap);
         this.game = new GameControllerImpl(this.gameMap);
         this.game.setInputController(this.sceneController.getInputController());
+        this.game = new GameControllerImpl(this.gameMap);
+        this.event = new EventControllerImpl(this.gameMap);
+        this.enemyTimer = System.currentTimeMillis();
     }
 
+
     @Override
+    public void handle(long now) {
+        try  {
+            Thread.sleep(0, SLEEP_TIMER);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            this.game.update(now - prevTime);
+            this.prevTime = now;
+    }
+    
+    public double getFrameRateHertz(final long delta) {
+        double frameRate = 1d / delta;
+        return frameRate * VALUE;
+    }
+    
+    public long getTimeSleep() {
+        return SLEEP;
+    }
+
+    /*@Override
     public void mainLoop() {
         long lastTime = System.currentTimeMillis();
         while (event.checkGameStatus()) {
@@ -103,9 +134,7 @@ public class GameEngineImpl implements GameEngine {
 
 	@Override
 	public void initGame() {
-	    this.game = new GameControllerImpl(this.gameMap);
-	    this.event = new EventControllerImpl(this.gameMap);
-	    this.enemyTimer = System.currentTimeMillis();
+	    
 	}
 
 	protected void waitForNextFrame(final long current) {
@@ -117,7 +146,7 @@ public class GameEngineImpl implements GameEngine {
 	                e.printStackTrace();
 	            }
 	    }
-	}
+	}*/
 
 	public Stage getStage() {
 	    return this.stage;
@@ -144,5 +173,7 @@ public class GameEngineImpl implements GameEngine {
 	public SceneController getSceneController() {
 	    return this.sceneController;
 	}
+
+    
 
 }
