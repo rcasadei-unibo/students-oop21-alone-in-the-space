@@ -1,6 +1,5 @@
 package view;
 
-import controller.gameEngine.GameEngine;
 import controller.gameEngine.GameEngineImpl;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -110,7 +109,7 @@ public interface GameMap {
      *
      * @return the background.
      */
-    Node[] getBackground();
+    Node getBackground();
 
     /**
      * @return Stage reference.

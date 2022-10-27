@@ -44,6 +44,11 @@ public enum EnumInt {
     /**
      *
      */
+    THIRTY(30),
+
+    /**
+     *
+     */
     WIDTH(1280),
 
     /**

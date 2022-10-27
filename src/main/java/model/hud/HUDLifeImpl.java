@@ -24,6 +24,9 @@ public class HUDLifeImpl extends Label implements HUDLife {
 
     private boolean gameStatus;
 
+    /**
+     * Constructor.
+     */
     public HUDLifeImpl() {
         this.lifePoints = EnumInt.LIFE_POINTS.getValue();
 
@@ -32,6 +35,7 @@ public class HUDLifeImpl extends Label implements HUDLife {
         this.setText(MATTER + this.getLifePoints());
         this.setFont(new Font(EnumString.FONT.getValue(), EnumInt.FONT_SIZE.getValue()));
         this.setTextFill(Paint.valueOf(YELLOW));
+        this.gameStatus = true;
     }
 
     @Override

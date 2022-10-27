@@ -1,13 +1,10 @@
 package controller.sceneManager;
 
-import javafx.scene.Node;
+import com.almasb.fxgl.core.math.Vec2;
 import model.Entity;
-import utilities.EnumInt;
 import view.GameMap;
 
 import java.util.Set;
-
-import com.almasb.fxgl.core.math.Vec2;
 
 public class SceneManager {
 
@@ -28,7 +25,7 @@ public class SceneManager {
      * Game update.
      */
     public void update(long deltaTime) {
-        this.updateBackground();
+        //this.updateBackground();
         //TODO soundmanager
         this.entities.forEach(entity -> updateEntityPosition(entity, deltaTime));
     }
@@ -47,14 +44,14 @@ public class SceneManager {
     /**
      * Background update.
      */
-    private void updateBackground() {
+    /*private void updateBackground() {
         for (Node image : this.gameMap.getBackground()) {
             image.setLayoutY(image.getLayoutY() + EnumInt.FOUR.getValue());
             if (image.getLayoutY() >= this.gameMap.getHeight().intValue()) {
                 image.setLayoutY(-this.gameMap.getHeight().intValue());
             }
         }
-    }
+    }*/
 
 
 }

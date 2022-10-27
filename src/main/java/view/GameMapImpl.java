@@ -1,6 +1,5 @@
 package view;
 
-import controller.gameEngine.GameEngine;
 import controller.gameEngine.GameEngineImpl;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -22,7 +21,7 @@ public class GameMapImpl implements GameMap {
     private Set<Ship> enemyShips;
 
     private Ship player;
-    private ImageView[] backGroundImage;
+    private ImageView backGroundImage;
     private Scene scene;
     private GameEngineImpl gameEngine;
     private AnchorPane gameContainer;
@@ -51,7 +50,7 @@ public class GameMapImpl implements GameMap {
         this.enemyBullets = new HashSet<Bullet>();
         this.enemyShips = new HashSet<Ship>();
 
-        this.backGroundImage = new ImageView[EnumInt.THREE.getValue()];
+        this.backGroundImage = new ImageView();
 
         this.width = width2;
         this.height = height2;
@@ -142,12 +141,17 @@ public class GameMapImpl implements GameMap {
 
     @Override
     public void setBackgroundImage(String path) {
-
+            this.backGroundImage = new ImageView("images/skybox13.jpg");
+            this.backGroundImage.setLayoutX(EnumInt.ZERO.getValue());
+            this.backGroundImage.setLayoutY(EnumInt.ZERO.getValue());
+            this.backGroundImage.setFitWidth(this.width);
+            this.backGroundImage.setFitHeight(this.height);
+            this.gameContainer.getChildren().add(this.backGroundImage);
     }
 
     @Override
-    public Node[] getBackground() {
-        return new Node[0];
+    public Node getBackground() {
+        return this.backGroundImage;
     }
 
     @Override
@@ -158,6 +162,7 @@ public class GameMapImpl implements GameMap {
     @Override
     public void addEnemyShip(Ship enemy) {
         this.enemyShips.add(enemy);
+        this.entities.add(enemy);
         this.gameContainer.getChildren().add(enemy.getNode());
     }
 

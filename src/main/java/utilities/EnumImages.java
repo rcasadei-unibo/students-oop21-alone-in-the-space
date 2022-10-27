@@ -7,22 +7,22 @@ public enum EnumImages {
     /**
      *
      */
-    BULLET("assets/images/bullet.png"),
+    BULLET("images/bullet.png"),
 
     /**
      *
      */
-    BACKGROUND("assets/images/skybox13.png"),
+    BACKGROUND("images/skybox13.jpg"),
 
     /**
      *
      */
-    PLAYER("assets/images/playerShip.png"),
+    PLAYER("images/playerShip.png"),
 
     /**
      *
      */
-    ENEMY("assets/images/enemy.png");
+    ENEMY("images/enemy.png");
 
     private Image value;
 

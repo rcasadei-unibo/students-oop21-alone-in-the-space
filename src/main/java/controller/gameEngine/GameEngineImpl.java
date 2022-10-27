@@ -1,14 +1,11 @@
 package controller.gameEngine;
 
-import com.almasb.fxgl.core.math.Vec2;
 import controller.eventController.EventController;
 import controller.eventController.EventControllerImpl;
 import controller.gameController.GameControllerImpl;
 import controller.gameSwitcher.SceneController;
 import javafx.animation.AnimationTimer;
 import javafx.stage.Stage;
-import model.EnemyFactory;
-import model.Ship;
 import utilities.EnumInt;
 import view.GameMap;
 import view.GameMapImpl;
@@ -49,7 +46,6 @@ public class GameEngineImpl extends AnimationTimer{
         this.windowManager.addGameMap(this.gameMap);
         this.game = new GameControllerImpl(this.gameMap);
         this.game.setInputController(this.sceneController.getInputController());
-        this.game = new GameControllerImpl(this.gameMap);
         this.event = new EventControllerImpl(this.gameMap);
         this.enemyTimer = System.currentTimeMillis();
     }
