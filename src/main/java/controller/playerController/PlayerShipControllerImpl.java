@@ -53,7 +53,7 @@ public class PlayerShipControllerImpl implements PlayerShipController {
         this.playerShip.setSprite(sprite);
     }
 
-    public Ship getPlayerShip(){
+    public Ship getPlayerShip() {
         return this.playerShip;
     }
 
@@ -71,16 +71,16 @@ public class PlayerShipControllerImpl implements PlayerShipController {
 
     public void update(long deltaTime) {
         display();
-        if(this.hasFired) {
+        if (this.hasFired) {
             this.gunRechargeTime += deltaTime;
-            if(this.gunRechargeTime >= 1000/fireRate) {
+            if (this.gunRechargeTime >= 1000 / fireRate) {
                 this.hasFired = false;
                 this.gunRechargeTime = 0;
             }
         }
-        if(this.activePowerUp) {
+        if (this.activePowerUp) {
             this.powerTime += deltaTime;
-            if(this.powerTime >= EnumInt.POWER_UP_DURATION.getValue()) {
+            if (this.powerTime >= EnumInt.POWER_UP_DURATION.getValue()) {
                 this.activePowerUp = false;
                 this.powerTime = 0;
                 this.endPowerUp();
@@ -91,7 +91,7 @@ public class PlayerShipControllerImpl implements PlayerShipController {
     @Override
     public Bullet shot() {
         Bullet bullet = null;
-        if(!this.hasFired) {
+        if (!this.hasFired) {
             bullet = this.playerShip.shot();
             this.hasFired = true;
             this.gunRechargeTime = 0;
@@ -101,7 +101,7 @@ public class PlayerShipControllerImpl implements PlayerShipController {
 
     @Override
     public void activatePowerUp() {
-        if(hasPowerUp && !activePowerUp) {
+        if (hasPowerUp && !activePowerUp) {
             this.hasPowerUp = false;
             this.fireRate *= 2;
             this.gunDamage *= 2;
@@ -157,29 +157,31 @@ public class PlayerShipControllerImpl implements PlayerShipController {
         this.score = newScore;
     }
     public void addScoreExp(int expGained) {
-        if((this.score + expGained) >= EnumInt.POWER_UP_SCORE.getValue())
+        if ((this.score + expGained) >= EnumInt.POWER_UP_SCORE.getValue()) {
             this.hasPowerUp = true;
+        }
+            
         this.score += expGained;
         this.exp += expGained;
-        if(checkLevelUp()) {
+        if (checkLevelUp()) {
             this.levelUp();
         }
     }
 
     public void levelUp() {
-        this.playerShip.setMaxHealth(5 * (PlayerValues.MAIN_SHIP.getValueFromKey("MAXHEALTH"))/100) ;
-        this.playerShip.setHealth((int)this.playerShip.getMaxHealth());
+        this.playerShip.setMaxHealth(5 * (PlayerValues.MAIN_SHIP.getValueFromKey("MAXHEALTH")) / 100);
+        this.playerShip.setHealth((int) this.playerShip.getMaxHealth());
 
-        if(this.currentLevel % 3 == 0) {
-            this.fireRate += 5 * (PlayerValues.MAIN_SHIP.getValueFromKey("FIRERATE"))/100;
+        if (this.currentLevel % 3 == 0) {
+            this.fireRate += 5 * (PlayerValues.MAIN_SHIP.getValueFromKey("FIRERATE")) / 100;
         }
 
-        if(this.currentLevel % 5 == 0) {
-            this.gunDamage += 5 * (PlayerGunValues.MAIN_GUN.getValueFromKey("DAMAGE"))/100;
+        if (this.currentLevel % 5 == 0) {
+            this.gunDamage += 5 * (PlayerGunValues.MAIN_GUN.getValueFromKey("DAMAGE")) / 100;
             this.gunLevelUp(gunDamage);
         }
 
-        this.exp -= EnumInt.EXP_REQUIRED.getValue()*(Math.pow(2, this.currentLevel-1));
+        this.exp -= EnumInt.EXP_REQUIRED.getValue() * (Math.pow(2, this.currentLevel - 1));
     }
 
     private void gunLevelUp(int newDamage) {

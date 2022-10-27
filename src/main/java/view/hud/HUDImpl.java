@@ -9,7 +9,7 @@ import model.hud.HUDPowerUpImpl;
 import utilities.EnumInt;
 import view.GameMap;
 
-public class HUDImpl implements HUDInterface{
+public class HUDImpl implements HUDInterface {
 
     private HUDPointsImpl pointsHUD;
     private HUDLifeImpl livesHUD;

@@ -2,7 +2,7 @@ package model;
 
 import java.util.List;
 
-public interface Ship extends Entity{
+public interface Ship extends Entity {
 	
 	/**
 	 * Generate a bullet with the current direction and position of the ship.

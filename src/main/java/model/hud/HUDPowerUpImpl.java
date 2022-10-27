@@ -9,7 +9,7 @@ import view.GameMap;
 import java.util.stream.IntStream;
 
 
-public class HUDPowerUpImpl implements HUDPowerUp{
+public class HUDPowerUpImpl implements HUDPowerUp {
 
     private static final int SPACING = 30;
     private static final int X_LAYOUT = 50;
@@ -33,7 +33,7 @@ public class HUDPowerUpImpl implements HUDPowerUp{
     private void addPowerUp() {
         IntStream.range(EnumInt.ZERO.getValue(), EnumInt.ONE.getValue()).forEach(index -> {
             this.powerUp[index] = new ImageView(new Image(getClass().getResourceAsStream("/Images/" + "powerUp" + index + ".png"),
-                SPACING, SPACING, false,true));
+                SPACING, SPACING, false, true));
             this.powerUp[index].setLayoutX(EnumInt.WIDTH.getValue() - X_LAYOUT);
             this.powerUp[index].setLayoutY(index * -SPACING);
             this.powerUp[index].setTranslateY(Y_TRANSLATION);

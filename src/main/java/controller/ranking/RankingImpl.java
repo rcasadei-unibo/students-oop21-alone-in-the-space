@@ -5,7 +5,7 @@ import java.net.URLDecoder;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class RankingImpl implements Ranking{
+public class RankingImpl implements Ranking {
 
     private Map<String, Integer> map;
     private File file;
@@ -31,7 +31,7 @@ public class RankingImpl implements Ranking{
      * @throws IOException
      */
     private void loadFromFile() throws IOException {
-        if(this.file.exists()) {
+        if (this.file.exists()) {
             this.map.clear();
             Properties properties = new Properties();
             properties.load(new FileInputStream(this.file));

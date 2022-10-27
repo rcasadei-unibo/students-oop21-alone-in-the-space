@@ -39,7 +39,7 @@ public class GameControllerImpl implements GameController {
 
 		this.sceneManager = new SceneManager(this.gameMap);
 		this.eventController = new EventControllerImpl(this.gameMap);
-		this.enemies=this.gameMap.getActiveEnemyShips();
+		this.enemies = this.gameMap.getActiveEnemyShips();
 		
 	}
 
@@ -62,7 +62,7 @@ public class GameControllerImpl implements GameController {
 
 		if (this.inputController.isTaskActive(InputCommands.ATTACK)) {
 			Optional<Bullet> playerBulletShot = Optional.of(this.playerShipController.shot());
-			if(!playerBulletShot.isEmpty()) {
+			if (!playerBulletShot.isEmpty()) {
 				this.gameMap.addPlayerBullet(playerBulletShot.get());
 			}
 
@@ -72,7 +72,7 @@ public class GameControllerImpl implements GameController {
 			this.playerShipController.activatePowerUp();
 		}
 
-		if(!this.inputController.isTaskActive(InputCommands.UP) && !this.inputController.isTaskActive(InputCommands.DOWN)) {
+		if (!this.inputController.isTaskActive(InputCommands.UP) && !this.inputController.isTaskActive(InputCommands.DOWN)) {
 			this.playerShipController.thrustReleased();
 		}
 
@@ -83,8 +83,8 @@ public class GameControllerImpl implements GameController {
 				this.gameMap.getBulletsShotByPlayer());
 		//this.playerShipController.update(deltaTime);
 
-		this.enemies.forEach((Ship enemy)->{
-			if(enemy.isInRangeOfAttack(List.of(this.playerShipController.getPlayerShip()), deltaTime)) {
+		this.enemies.forEach((Ship enemy) -> {
+			if (enemy.isInRangeOfAttack(List.of(this.playerShipController.getPlayerShip()), deltaTime)) {
 				this.gameMap.addEnemyBullet(enemy.shot());
 			}
 		});

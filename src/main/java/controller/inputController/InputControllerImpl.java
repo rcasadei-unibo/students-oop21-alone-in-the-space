@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
  * It also manages player tasks based on the inputs.
  */
 
-public class InputControllerImpl implements InputController{
+public class InputControllerImpl implements InputController {
 
     private Map<KeyCode, Boolean> pressedKeys;
     private Map<InputCommands, KeyCode> commandKeys;
@@ -49,7 +49,7 @@ public class InputControllerImpl implements InputController{
 
     @Override
     public void resetState() {
-        List.of(InputCommands.values()).forEach(e -> this.task.put(e,false));
+        List.of(InputCommands.values()).forEach(e -> this.task.put(e, false));
         List.of(KeyCode.values()).forEach(e -> this.pressedKeys.put(e, false));
     }
 

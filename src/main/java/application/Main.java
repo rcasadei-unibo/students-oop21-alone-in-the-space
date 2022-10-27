@@ -10,7 +10,7 @@ import utilities.EnumInt;
 
 // Please note that on macOS your application needs to be started with the -XstartOnFirstThread JVM argument
 public class Main extends Application {
-	public static void main (String[] arg) {
+	public static void main(String[] arg) {
 		launch(arg);
 	}
 

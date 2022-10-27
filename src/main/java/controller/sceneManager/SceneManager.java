@@ -30,7 +30,7 @@ public class SceneManager {
     public void update(long deltaTime) {
         this.updateBackground();
         //TODO soundmanager
-        this.entities.forEach(entity -> updateEntityPosition(entity,deltaTime));
+        this.entities.forEach(entity -> updateEntityPosition(entity, deltaTime));
     }
 
     /**
@@ -40,7 +40,7 @@ public class SceneManager {
      */
     private void updateEntityPosition(final Entity entity, long deltaTime) {
         entity.move(deltaTime);
-        Vec2 position =entity.getPosition();
+        Vec2 position = entity.getPosition();
         entity.getNode().relocate(position.x, position.y);
     }
 

@@ -3,7 +3,7 @@ package model;
 import com.almasb.fxgl.core.math.Vec2;
 
 
-public interface Bullet extends Entity{
+public interface Bullet extends Entity {
 	//public void move(float deltaTime);
 	
 	/**

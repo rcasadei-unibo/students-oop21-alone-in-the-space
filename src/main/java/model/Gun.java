@@ -20,7 +20,7 @@ public interface Gun {
 	 * @param enemyPos
 	 * @return
 	 */
-	boolean isInRange(Vec2 shipPos,Vec2 direction,List<Ship> enemy);
+	boolean isInRange(Vec2 shipPos, Vec2 direction, List<Ship> enemy);
 	
 	/**
 	 * the actual range of this gun.

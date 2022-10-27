@@ -4,7 +4,7 @@ import java.io.File;
 
 public final class Multiplatform {
 	
-	public enum OSType{
+	public enum OSType {
 		
 		/**
 		 * Gets operating system file separator.
@@ -18,7 +18,7 @@ public final class Multiplatform {
 		
 		private final String property;
 		
-		OSType(final String property){
+		OSType(final String property) {
 			this.property = property;
 		}
 		

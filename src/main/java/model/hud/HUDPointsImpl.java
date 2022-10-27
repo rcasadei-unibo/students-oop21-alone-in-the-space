@@ -36,7 +36,7 @@ public class HUDPointsImpl extends Label implements HUDPoints {
 
     @Override
     public void pointsUp() {
-        if(this.getPoints() < EnumInt.MAX_POINTS.getValue()) {
+        if (this.getPoints() < EnumInt.MAX_POINTS.getValue()) {
             this.setPoints(POINTS_UP);
         }
     }

@@ -8,7 +8,7 @@ import view.hud.HUDImpl;
 
 import java.io.IOException;
 
-public class EventControllerImpl implements EventController{
+public class EventControllerImpl implements EventController {
 
     private HUDImpl hudBuilder;
 

@@ -23,9 +23,9 @@ abstract class GunImpl implements Gun {
 		// TODO Auto-generated method stub
 	return enemy.stream()
 				.anyMatch(e -> {
-					Vec2 enemyDir=shipPos.copy().sub(e.getPosition()).normalizeLocal();
-					return Math.abs(Math.acos(Vec2.dot(enemyDir, direction))) < this.degRange/2 
-							&& enemyDir.angle()*e.getPosition().angle()>0;
+					Vec2 enemyDir = shipPos.copy().sub(e.getPosition()).normalizeLocal();
+					return Math.abs(Math.acos(Vec2.dot(enemyDir, direction))) < this.degRange / 2 
+							&& enemyDir.angle() * e.getPosition().angle() > 0;
 				});			
 
 	}
@@ -88,7 +88,7 @@ public class GunFactory {
 			}
 
 
-			public PlayerGun(int degRange, PlayerShip playerShip, int bulletDamage,float bulletMaxSpeed, float bulletAcceleration, float bulletRotationSpeed) {
+			public PlayerGun(int degRange, PlayerShip playerShip, int bulletDamage, float bulletMaxSpeed, float bulletAcceleration, float bulletRotationSpeed) {
 				super(degRange, playerShip);
 				this.bulletDamage = bulletDamage;
 				this.bulletMaxSpeed = bulletMaxSpeed;

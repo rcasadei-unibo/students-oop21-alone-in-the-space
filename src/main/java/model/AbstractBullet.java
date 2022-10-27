@@ -24,14 +24,14 @@ public abstract class AbstractBullet implements Bullet {
 		this.rotationSpeed = rotationSpeed;
 		this.damage = damage;
 		this.position = position;
-		this.alive= true;
+		this.alive = true;
 	}
 	
 	public void move(long deltaTime) {
-		deltaTime/=1000;//expected delta time to be in millisecond
-		this.speed= this.speed.add(direction.copy().mul(deltaTime));
+		deltaTime /= 1000; //expected delta time to be in millisecond
+		this.speed = this.speed.add(direction.copy().mul(deltaTime));
 		if (this.speed.length() > maxSpeed) {
-			this.speed=this.speed.copy().normalize().mul(this.maxSpeed);
+			this.speed = this.speed.copy().normalize().mul(this.maxSpeed);
 		}
 		this.position = this.position.add(speed.copy().mul(deltaTime));
 	}
@@ -42,7 +42,7 @@ public abstract class AbstractBullet implements Bullet {
 	};
 
 	public void destroy() {
-		this.alive=false;
+		this.alive = false;
 	};
 
 	public int getDamage() {
@@ -75,11 +75,11 @@ public abstract class AbstractBullet implements Bullet {
 	@Override
 	public void setPosition(Vec2 newpos) {
 		// TODO Auto-generated method stub
-		 this.position=newpos;
+		 this.position = newpos;
 	}
 	// TODO Auto-generated method stub
 		public void setSprite(Image img) {
-			this.sprite=new ImageView();
+			this.sprite = new ImageView();
 			this.sprite.setImage(img);
 		}
 }

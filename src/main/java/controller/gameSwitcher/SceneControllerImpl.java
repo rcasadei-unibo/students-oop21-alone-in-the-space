@@ -14,14 +14,14 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class SceneControllerImpl implements SceneController{
+public class SceneControllerImpl implements SceneController {
 
     private Stage windowManager;
     private GameEngine gameEngine;
     private InputController inputController;
     private Ranking ranking;
 
-    public SceneControllerImpl(final Stage windowManager) throws IOException{
+    public SceneControllerImpl(final Stage windowManager) throws IOException {
         this.windowManager = windowManager;
         this.ranking = new RankingImpl();
         this.inputController = new InputControllerImpl(new Scene(new Group()));

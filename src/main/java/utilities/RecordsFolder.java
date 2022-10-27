@@ -29,7 +29,7 @@ public class RecordsFolder {
 		
 		private String path;
 		
-		RankingsPath(final String path){
+		RankingsPath(final String path) {
 			this.path = path;
 		}
 		

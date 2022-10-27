@@ -10,7 +10,7 @@ import utilities.InputCommands;
 
 
 public interface PlayerShipController  {
-    void initialisePlayerShip (Vec2 initialPos, Image sprite);
+    void initialisePlayerShip(Vec2 initialPos, Image sprite);
     void update(long deltaTime);
     ImageView display();
     void destroy();

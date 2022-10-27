@@ -6,7 +6,7 @@ import javafx.scene.text.Font;
 import utilities.EnumInt;
 import utilities.EnumString;
 
-public class HUDLifeImpl extends Label implements HUDLife{
+public class HUDLifeImpl extends Label implements HUDLife {
 
     /*
      * HUD structure

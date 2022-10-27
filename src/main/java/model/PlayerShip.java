@@ -29,11 +29,11 @@ public class PlayerShip implements Ship {
 	private float yaw;
 
 
-	public PlayerShip (Vec2 position, float maxHealth, float maxSpeed, float rotationSpeed) {
+	public PlayerShip(Vec2 position, float maxHealth, float maxSpeed, float rotationSpeed) {
 		this.position = new Vec2(position);
 		this.maxHealth = maxHealth;
 		this.health = this.maxHealth;
-		this.speed = new Vec2(0,0);
+		this.speed = new Vec2(0, 0);
 		this.maxSpeed = maxSpeed;
 		this.direction = this.position.copy();
 		this.rotationSpeed = rotationSpeed;
@@ -65,8 +65,8 @@ public class PlayerShip implements Ship {
 	}
 
 	private void rotateDir(float rotationAmount) {
-		float cos = (float)Math.cos(Math.toRadians(rotationAmount));
-		float sin = (float)Math.sin(Math.toRadians(rotationAmount));
+		float cos = (float) Math.cos(Math.toRadians(rotationAmount));
+		float sin = (float) Math.sin(Math.toRadians(rotationAmount));
 
 		float newX = this.direction.x * cos - this.direction.y * sin;
 		float newY = this.direction.x * sin + this.direction.y * cos;
@@ -75,7 +75,7 @@ public class PlayerShip implements Ship {
 	}
 
 	private float calculateDir() {
-		Vec2 currentDir = this.position.add(rotation.x,rotation.y).normalize();
+		Vec2 currentDir = this.position.add(rotation.x, rotation.y).normalize();
 		return Vec2.dot(this.direction.normalize(), currentDir);
 	}
 
@@ -84,7 +84,7 @@ public class PlayerShip implements Ship {
 	}
 	public void thrust(InputCommands input) {
 		// TODO controller checks for if UP or DOWN are pressed
-		switch(input){
+		switch (input) {
 			case UP:
 				acceleration = 1;
 				break;
@@ -106,7 +106,7 @@ public class PlayerShip implements Ship {
 				direction = -Math.abs(direction);
 				break;
 		}
-		this.yaw = Math.abs((yaw + rotationSpeed*direction)) % 360;
+		this.yaw = Math.abs((yaw + rotationSpeed * direction)) % 360;
 		this.rotation.setFromAngle(yaw);
 	}
 	public double getYaw() {
@@ -127,7 +127,7 @@ public class PlayerShip implements Ship {
 	@Override
 	public void hit(int damage) {
 		this.health -= damage;
-		if(this.health <= 0) {
+		if (this.health <= 0) {
 			this.destroy();
 		}
 	}
@@ -156,7 +156,9 @@ public class PlayerShip implements Ship {
 	public float getHealth() {
 		return this.health;
 	}
-	public float getMaxHealth() { return this.maxHealth; }
+	public float getMaxHealth() {
+	    return this.maxHealth; 
+	}
 	public void setHealth(int hitPoints) {
 		this.health = hitPoints;
 	}

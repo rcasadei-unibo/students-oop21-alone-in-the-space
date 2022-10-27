@@ -10,7 +10,7 @@ public interface WindowManager {
      * @param gameMap
      */
 
-    void addGameMap(GameMapImpl gameMap);
+    void addGameMap(GameMap gameMap);
     /**
      * @return actual Stage.
      */

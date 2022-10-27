@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 
 import java.io.IOException;
 
-public class MainMenuController extends BasicFXMLController{
+public class MainMenuController extends BasicFXMLController {
 
 
     /**

@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public enum PlayerValues {
 
-    MAIN_SHIP(100,35,2,2);
+    MAIN_SHIP(100, 35, 2, 2);
 
     private HashMap<String, Float> shipValues = new HashMap<>();
 

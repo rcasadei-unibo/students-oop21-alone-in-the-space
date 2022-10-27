@@ -4,41 +4,72 @@ import controller.gameSwitcher.SceneController;
 import javafx.stage.Stage;
 import view.GameMap;
 
+/**
+ * 
+ * This interface handle the loop of the game.
+ *
+ */
 public interface GameEngine {
-	
-	 /**
+
+    /**
      * Capture frames of view once every "Period".
      */
-	void mainLoop();
-	 /**
+    void mainLoop();
+
+    /**
      * Detect the action executed by the mouse or the keyboard.
      */
-	void processInput();
-	/**
+
+    void processInput();
+    /**
      * Update model state following input commands.
      * @param elapsed time
      */
-	void update(long elapsed);
-	/**
+
+    void update(long elapsed);
+    /**
      * Update view interface.
      */
-	void render();
-	 /**
+
+    void render();
+
+    /**
      * Initialize the launch of game.
      */
-	void initGame();
-	/**
-	 * 
-	 */
-	Stage getStage();
+    void initGame();
 
-	SceneController getSceneController();
+    /**
+     * Give the actual stage.
+     * @return a Stage
+     */
+    Stage getStage();
 
-	String getPlayerName();
+    /**
+     * Give the actual scene controller.
+     * @return a SceneController
+     */
+    SceneController getSceneController();
 
-	void setPlayerName(String name);
+    /**
+     * Give the name player.
+     * @return a String
+     */
+    String getPlayerName();
 
-	GameMap getGameMap();
+    /**
+     * Set the name player.
+     * @param name
+     */
+    void setPlayerName(String name);
 
-	void stop();
+    /**
+     * Give the game map.
+     * @return a GameMap
+     */
+    GameMap getGameMap();
+
+    /**
+     * Stop the game session.
+     */
+    void stop();
 }

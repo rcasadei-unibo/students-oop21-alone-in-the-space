@@ -11,9 +11,9 @@ public abstract class AbstractShip implements Ship {
 	private float health;
 	private float maxSpeed;
 	private float acceleration;
-	private float rotationSpeed;// need to be in radiant
+	private float rotationSpeed; // need to be in radiant
 	private long lastAttack = 0;
-	private final long attackCooldown ;
+	private final long attackCooldown;
 	private Vec2 speed;
 	private Vec2 direction;
 	private Vec2 position;
@@ -21,7 +21,7 @@ public abstract class AbstractShip implements Ship {
 	private ImageView sprite;
 	private Gun gun;
 
-	public AbstractShip(float health, float maxSpeed, float acceleration, float rotationSpeed,long attackCD, Vec2 newPosition) {
+	public AbstractShip(float health, float maxSpeed, float acceleration, float rotationSpeed, long attackCD, Vec2 newPosition) {
 		super();
 		this.attackCooldown = attackCD;
 		this.health = health;
@@ -32,9 +32,9 @@ public abstract class AbstractShip implements Ship {
 	}
 
 	public void move(long deltaTime) {
-		final int halfTurn=180;//angle degree 
-		final int Turn=360;
-		deltaTime /= 1000;//conversion to seconds
+		final int halfTurn = 180; //angle degree 
+		final int Turn = 360;
+		deltaTime /= 1000; //conversion to seconds
 		float delta = calculateDir();
 		double angle = Math.acos(delta);
 		if (angle > gun.getDegRange()) {
@@ -92,7 +92,7 @@ public abstract class AbstractShip implements Ship {
 	@Override
 	public Boolean isInRangeOfAttack(List<Ship> enemy, long deltaTime) throws NullPointerException {
 		// TODO Auto-generated method stub
-		if(deltaTime-this.lastAttack<attackCooldown) {
+		if (deltaTime - this.lastAttack < attackCooldown) {
 			return false;
 		}
 		return gun.isInRange(this.position.copy(), this.direction.copy(), enemy);
