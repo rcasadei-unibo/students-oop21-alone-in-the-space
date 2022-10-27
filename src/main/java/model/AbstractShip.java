@@ -29,7 +29,7 @@ public abstract class AbstractShip implements Ship {
 		this.acceleration = acceleration;
 		this.rotationSpeed = rotationSpeed;
 		this.position = newPosition;
-		this.direction=new Vec2(0,0);
+		this.direction=new Vec2(0, 0);
 		this.speed=new Vec2(0,0);
 	}
 
@@ -91,7 +91,6 @@ public abstract class AbstractShip implements Ship {
 	public void setPosition(Vec2 newpos) {
 		// TODO Auto-generated method stub
 		this.position = newpos;
-		return;
 	}
 
 	@Override
@@ -154,8 +153,8 @@ public abstract class AbstractShip implements Ship {
 	 */
 	private float calculateDir() {
 	    	//Vec2 tragetDir2 = this.target.getPosition().copy();
-		Vec2 tragetDir = new Vec2(1,0);//this.target.getPosition().sub(this.position);
-		Vec2 dir = this.direction.copy().normalizeLocal();
+		final Vec2 tragetDir = new Vec2(1,0);//this.target.getPosition().sub(this.position);
+		final Vec2 dir = this.direction.copy().normalizeLocal();
 		return Vec2.dot(dir, tragetDir);
 	}
 

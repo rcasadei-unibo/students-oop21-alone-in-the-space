@@ -45,10 +45,10 @@ public class GameMapImpl implements GameMap {
         this.gameContainer.prefWidth(width2);
         this.gameContainer.prefHeight(height2);
 
-        this.entities = new HashSet<Entity>();
-        this.playerBullets = new HashSet<Bullet>();
-        this.enemyBullets = new HashSet<Bullet>();
-        this.enemyShips = new HashSet<Ship>();
+        this.entities = new HashSet<>();
+        this.playerBullets = new HashSet<>();
+        this.enemyBullets = new HashSet<>();
+        this.enemyShips = new HashSet<>();
 
         this.backGroundImage = new ImageView();
 

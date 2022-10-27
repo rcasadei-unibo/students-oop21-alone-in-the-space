@@ -83,7 +83,8 @@ public class SceneControllerImpl implements SceneController {
     }
 
     private Scene getSceneFromFxml(final String path, final BasicFXMLController controller) throws IOException {
-        final FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource(path));
+        //final FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource(path));
+        final FXMLLoader loader = new FXMLLoader(Thread.currentThread().getContextClassLoader().getResource(path));
         loader.setController(controller);
         return new Scene(loader.load());
     }

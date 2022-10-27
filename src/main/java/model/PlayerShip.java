@@ -59,8 +59,8 @@ public class PlayerShip implements Ship {
 	public void move(long deltaTime) {
 		// TODO Check
 		try {
-			float cosAlfa = calculateDir();
-			double a = Math.acos(cosAlfa);
+			final float cosAlfa = calculateDir();
+			final double a = Math.acos(cosAlfa);
 			rotateDir(this.rotationSpeed * deltaTime * (a > 180 ? 1 : -1));
 			this.speed.addLocal(this.direction.mul(deltaTime * this.acceleration));
 			if (this.speed.lengthSquared() > this.maxSpeed) {

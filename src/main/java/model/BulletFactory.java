@@ -49,7 +49,7 @@ public class BulletFactory {
 	public static Bullet missile(Vec2 position, Vec2 direction, final Ship enemy) {
 
 		class missile extends AbstractBullet {
-			public missile(float maxSpeed, float acceleration, float rotationSpeed, int damage, Vec2 position,
+			public missile(final float maxSpeed, final float acceleration, final float rotationSpeed, final int damage, final Vec2 position,
 					Vec2 direction, Ship enemy) {
 				super(maxSpeed, acceleration, rotationSpeed, damage, position, direction);
 				// TODO Auto-generated constructor stub
@@ -89,7 +89,7 @@ public class BulletFactory {
 				super(maxSpeed, acceleration, rotationSpeed, damage, position, direction);
 			}
 		}
-		Bullet var = new PlayerBullet(maxSpeed, acceleration, rotationSpeed, damage, position, direction);
+		final Bullet var = new PlayerBullet(maxSpeed, acceleration, rotationSpeed, damage, position, direction);
 		var.setSprite(loadImage("bullet_00.png"));
 		return var;
 	}

@@ -22,11 +22,10 @@ public interface EventController {
      * @return the remaining life points.
      */
     int checkLifePoints();
-    
+
     /**
-     * //todo
-     *
-     * @param gameEngine
+     * //todo.
+     * @param sceneController
      * @throws IOException
      */
     void endGame(SceneController sceneController) throws IOException;
