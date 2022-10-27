@@ -1,5 +1,6 @@
 package controller.gameController;
 
+import com.almasb.fxgl.core.math.Vec2;
 import controller.eventController.EventController;
 import controller.eventController.EventControllerImpl;
 import controller.inputController.InputController;
@@ -8,18 +9,16 @@ import controller.playerController.PlayerShipControllerImpl;
 import controller.sceneManager.SceneManager;
 import javafx.scene.image.Image;
 import model.Bullet;
+import model.EnemyFactory;
 import model.Ship;
 import utilities.EnumString;
 import utilities.InputCommands;
 import view.GameMap;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
-
-import com.almasb.fxgl.core.math.Vec2;
 
 public class GameControllerImpl implements GameController {
 
@@ -47,7 +46,7 @@ public class GameControllerImpl implements GameController {
 	}
 
 	@Override
-	public void update(final long deltaTime) {
+	public void update(final long deltaTime, final long current) {
 		this.inputController.updatePlayerTasks();
 		// TODO player movements.
 		if (this.inputController.isTaskActive(InputCommands.UP)) {
@@ -106,6 +105,8 @@ public class GameControllerImpl implements GameController {
 			}
 		}
 
+		this.gameMap.addEnemyShip(randomShip());
+
 	}
 
 	public GameMap getGameMap() {
@@ -115,5 +116,22 @@ public class GameControllerImpl implements GameController {
 	public final void setInputController(final InputController inputController) {
 		this.inputController = inputController;
 		this.inputController.changeScene(this.playerShipController.display().getScene());
+	}
+
+	private Ship randomShip() {
+		// TODO Auto-generated method stub
+		int typeShip = (int) (Math.random() * 3) + 1;
+		Vec2 spawnPosition = new Vec2((float) this.gameMap.getWidth() / 2, 0);
+		spawnPosition.setFromAngle(Math.random() * 360);
+		spawnPosition.addLocal((float) this.gameMap.getWidth() / 2, (float) this.gameMap.getHeight() / 2);
+		switch (typeShip) {
+			case 1:
+				return EnemyFactory.BasicEnemy(spawnPosition);
+			case 2:
+				return EnemyFactory.MissileEnemy(spawnPosition);
+			case 3:
+				return EnemyFactory.RifleEnemy(spawnPosition);
+		}
+		return null;
 	}
 }

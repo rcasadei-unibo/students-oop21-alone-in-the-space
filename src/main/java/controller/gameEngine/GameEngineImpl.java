@@ -58,7 +58,7 @@ public class GameEngineImpl extends AnimationTimer{
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            this.game.update(now - prevTime);
+            this.game.update(now - prevTime, now);
             this.prevTime = now;
     }
     
@@ -105,7 +105,7 @@ public class GameEngineImpl extends AnimationTimer{
 	        this.difficultFactor *= 1.02;
 	    }
 	}
-	
+	/*
 	private Ship randomShip() {
 	    // TODO Auto-generated method stub
 	    int typeShip = (int) (Math.random() * 3) + 1;
