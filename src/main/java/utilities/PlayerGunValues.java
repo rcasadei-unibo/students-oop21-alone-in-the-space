@@ -2,6 +2,9 @@ package utilities;
 
 import java.util.HashMap;
 
+/**
+ * default player gun values stored for convenience’s sake
+ */
 public enum PlayerGunValues {
 
     MAIN_GUN(100, 35, 2, 2);

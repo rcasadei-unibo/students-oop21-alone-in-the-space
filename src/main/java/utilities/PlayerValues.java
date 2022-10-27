@@ -2,6 +2,9 @@ package utilities;
 
 import java.util.HashMap;
 
+/**
+ * default player ship values stored here for convenience’s sake
+ */
 public enum PlayerValues {
 
     MAIN_SHIP(100, 35, 2, 2);

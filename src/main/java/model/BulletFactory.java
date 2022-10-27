@@ -15,7 +15,7 @@ public class BulletFactory {
 
 			public BasicBullet(float maxSpeed, float acceleration, float rotationSpeed, int damage, Vec2 position,
 					Vec2 direction) {
-				super(maxSpeed, acceleration, rotationSpeed, damage, position);
+				super(maxSpeed, acceleration, rotationSpeed, damage, position, direction);
 				// TODO Auto-generated constructor stub
 			}
 
@@ -34,7 +34,7 @@ public class BulletFactory {
 
 			public RifleBullet(float maxSpeed, float acceleration, float rotationSpeed, int damage, Vec2 position,
 					Vec2 direction) {
-				super(maxSpeed, acceleration, rotationSpeed, damage, position);
+				super(maxSpeed, acceleration, rotationSpeed, damage, position, direction);
 				// TODO Auto-generated constructor stub
 			}
 
@@ -51,7 +51,7 @@ public class BulletFactory {
 		class missile extends AbstractBullet {
 			public missile(float maxSpeed, float acceleration, float rotationSpeed, int damage, Vec2 position,
 					Vec2 direction, Ship enemy) {
-				super(maxSpeed, acceleration, rotationSpeed, damage, position);
+				super(maxSpeed, acceleration, rotationSpeed, damage, position, direction);
 				// TODO Auto-generated constructor stub
 				this.target = enemy;
 			}
@@ -72,15 +72,25 @@ public class BulletFactory {
 
 	}
 
+	/**
+	 * PlayerBullets which change value depending on the player gun modifications
+	 * @param maxSpeed top speed
+	 * @param acceleration how fast it reaches its top speed
+	 * @param rotationSpeed if it can curve
+	 * @param damage how much damage it does on impact
+	 * @param position spawn position
+	 * @param direction direction and trajectory to follow
+	 * @return bullet entity that's been shot
+	 */
 	public static Bullet playerBullet(float maxSpeed, float acceleration, float rotationSpeed, int damage, Vec2 position, Vec2 direction) {
 
 		class PlayerBullet extends AbstractBullet {
 			public PlayerBullet(float maxSpeed, float acceleration, float rotationSpeed, int damage, Vec2 position, Vec2 direction) {
-				super(maxSpeed, acceleration, rotationSpeed, damage, position);
+				super(maxSpeed, acceleration, rotationSpeed, damage, position, direction);
 			}
 		}
 		Bullet var = new PlayerBullet(maxSpeed, acceleration, rotationSpeed, damage, position, direction);
-		var.setSprite(loadImage("bullet_02.png"));
+		var.setSprite(loadImage("bullet_00.png"));
 		return var;
 	}
 

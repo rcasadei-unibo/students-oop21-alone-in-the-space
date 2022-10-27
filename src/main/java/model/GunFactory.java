@@ -80,14 +80,29 @@ public class GunFactory {
 		return new shootgun(30, spaceship);
 	}
 
+	/**
+	 * creates and returns the player gun to the ship
+	 * @param ship the player
+	 * @param damage how much damage the bullet does, has a default value
+	 * @param maxSpeed how fast the bullet can traverse the map
+	 * @param acceleration how fast the bullet can reach its top speed
+	 * @param rotationSpeed if the bullet can curve
+	 * @return gun set with the default values
+	 */
 	public static Gun playerGun(PlayerShip ship, int damage, float maxSpeed, float acceleration, float rotationSpeed) {
-
+		/**
+		 * PlayerGun implementation
+		 */
 		class PlayerGun extends GunImpl {
-			public PlayerGun(int degRange, PlayerShip playerShip) {
-				super(degRange, playerShip);
-			}
-
-
+			/**
+			 * constructor
+			 * @param degRange range of the bullets
+			 * @param playerShip the player to give it to
+			 * @param bulletDamage how much damage the bullet does
+			 * @param bulletMaxSpeed top speed of the bullet
+			 * @param bulletAcceleration how fast the bullet can get to its top speed
+			 * @param bulletRotationSpeed if the bullet can curve
+			 */
 			public PlayerGun(int degRange, PlayerShip playerShip, int bulletDamage, float bulletMaxSpeed, float bulletAcceleration, float bulletRotationSpeed) {
 				super(degRange, playerShip);
 				this.bulletDamage = bulletDamage;
@@ -102,16 +117,11 @@ public class GunFactory {
 			private float bulletAcceleration;
 			private float bulletRotationSpeed;
 
-			public void changeDamage(int damage) {
-				this.bulletDamage = damage;
-			}
-
 			public Bullet shot() {
 				return BulletFactory.playerBullet(bulletMaxSpeed, bulletAcceleration, bulletRotationSpeed, bulletDamage,
 						ship.getPosition(), ship.getDirection());
 			}
 		}
-
 		return new PlayerGun(40, ship, damage, maxSpeed, acceleration, rotationSpeed);
 	}
 
