@@ -1,11 +1,14 @@
 package controller.gameEngine;
 
+import com.almasb.fxgl.core.math.Vec2;
 import controller.eventController.EventController;
 import controller.eventController.EventControllerImpl;
 import controller.gameController.GameControllerImpl;
 import controller.gameSwitcher.SceneController;
 import javafx.animation.AnimationTimer;
 import javafx.stage.Stage;
+import model.EnemyFactory;
+import model.Ship;
 import utilities.EnumInt;
 import view.GameMap;
 import view.GameMapImpl;
@@ -58,7 +61,13 @@ public class GameEngineImpl extends AnimationTimer{
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            this.game.update(now - prevTime, now);
+            long deltaEnemy = (now *1000000) - this.enemyTimer;
+            if (deltaEnemy > DELTAENEMY / this.difficultFactor) {
+                this.gameMap.addEnemyShip(randomShip());
+                this.enemyTimer = now * 1000000;
+                this.difficultFactor *= 1.02;
+            }
+            this.game.update(now - prevTime);
             this.prevTime = now;
     }
     
@@ -105,7 +114,7 @@ public class GameEngineImpl extends AnimationTimer{
 	        this.difficultFactor *= 1.02;
 	    }
 	}
-	/*
+	*/
 	private Ship randomShip() {
 	    // TODO Auto-generated method stub
 	    int typeShip = (int) (Math.random() * 3) + 1;
@@ -122,7 +131,7 @@ public class GameEngineImpl extends AnimationTimer{
 	    }
 	    return null;
 	}
-
+/*
 	@Override
 	public void render() {
 	    // TODO Auto-generated method stub

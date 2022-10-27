@@ -9,7 +9,6 @@ import controller.playerController.PlayerShipControllerImpl;
 import controller.sceneManager.SceneManager;
 import javafx.scene.image.Image;
 import model.Bullet;
-import model.EnemyFactory;
 import model.Ship;
 import utilities.EnumString;
 import utilities.InputCommands;
@@ -22,12 +21,15 @@ import java.util.Optional;
 
 public class GameControllerImpl implements GameController {
 
+	private static final long DELTAENEMY = 5000000;
+	private double difficultFactor = 1;
 	private GameMap gameMap;
 	private SceneManager sceneManager;
 	private EventController eventController;
 	private PlayerShipController playerShipController;
 	private InputController inputController;
 	private Collection<Ship> enemies;
+	private long enemyTimer;
 
 
     public GameControllerImpl(final GameMap gameMap) {
@@ -42,11 +44,12 @@ public class GameControllerImpl implements GameController {
 		this.sceneManager = new SceneManager(this.gameMap);
 		this.eventController = new EventControllerImpl(this.gameMap);
 		this.enemies = this.gameMap.getActiveEnemyShips();
+		this.enemyTimer = System.currentTimeMillis();
 		
 	}
 
 	@Override
-	public void update(final long deltaTime, final long current) {
+	public void update(final long deltaTime) {
 		this.inputController.updatePlayerTasks();
 		// TODO player movements.
 		if (this.inputController.isTaskActive(InputCommands.UP)) {
@@ -104,9 +107,6 @@ public class GameControllerImpl implements GameController {
 				e.printStackTrace();
 			}
 		}
-
-		this.gameMap.addEnemyShip(randomShip());
-
 	}
 
 	public GameMap getGameMap() {
@@ -118,20 +118,5 @@ public class GameControllerImpl implements GameController {
 		this.inputController.changeScene(this.playerShipController.display().getScene());
 	}
 
-	private Ship randomShip() {
-		// TODO Auto-generated method stub
-		int typeShip = (int) (Math.random() * 3) + 1;
-		Vec2 spawnPosition = new Vec2((float) this.gameMap.getWidth() / 2, 0);
-		spawnPosition.setFromAngle(Math.random() * 360);
-		spawnPosition.addLocal((float) this.gameMap.getWidth() / 2, (float) this.gameMap.getHeight() / 2);
-		switch (typeShip) {
-			case 1:
-				return EnemyFactory.BasicEnemy(spawnPosition);
-			case 2:
-				return EnemyFactory.MissileEnemy(spawnPosition);
-			case 3:
-				return EnemyFactory.RifleEnemy(spawnPosition);
-		}
-		return null;
-	}
+
 }

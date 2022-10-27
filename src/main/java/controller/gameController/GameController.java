@@ -5,5 +5,5 @@ public interface GameController {
     /**
      * updates the game and its elements.
      */
-    void update(long delta, long current);
+    void update(long delta);
 }
