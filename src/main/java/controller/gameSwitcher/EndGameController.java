@@ -30,7 +30,8 @@ public class EndGameController extends BasicFXMLController {
      */
     @FXML
     private void initialize() {
-        this.score.setText(Integer.valueOf(this.scores).toString());
+        //this.score.setText(Integer.valueOf(this.scores).toString());
+        this.score.setText(Integer.toString(this.scores));
         this.score.setVisible(true);
     }
 

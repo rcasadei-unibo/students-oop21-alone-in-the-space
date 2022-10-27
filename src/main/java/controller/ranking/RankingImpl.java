@@ -34,13 +34,15 @@ public class RankingImpl implements Ranking {
         if (this.file.exists()) {
             this.map.clear();
             Properties properties = new Properties();
-            properties.load(new FileInputStream(this.file));
-            for (String key : properties.stringPropertyNames()) {
-                String value = properties.getProperty(key);
-                this.map.put(key, Integer.valueOf(value));
+            try(FileInputStream fileStream = new FileInputStream(this.file)){
+                properties.load(fileStream);
+                for (String key : properties.stringPropertyNames()) {
+                    String value = properties.getProperty(key);
+                    this.map.put(key, Integer.valueOf(value));
+                }
             }
         } else {
-            this.file.createNewFile();
+            boolean result = this.file.createNewFile();
             this.saveToFile();
         }
     }

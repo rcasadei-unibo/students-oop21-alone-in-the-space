@@ -37,6 +37,7 @@ public class GameEngineImpl implements GameEngine {
     public GameEngineImpl(final SceneController sceneController) {
         this.sceneController = sceneController;
         this.windowManager = new WindowManagerImpl(this.sceneController);
+        this.stage = this.windowManager.getStage();
         this.gameMap = new GameMapImpl(EnumInt.WIDTH.getValue(), EnumInt.HEIGHT.getValue(), this);
         this.windowManager.addGameMap(this.gameMap);
         this.game = new GameControllerImpl(this.gameMap);
@@ -71,7 +72,7 @@ public class GameEngineImpl implements GameEngine {
 	    // TODO Auto-generated method stub
 	    this.game.update(elapsed);
 	    long current = System.currentTimeMillis();
-	    if ((current - this.enemyTimer) > this.DELTAENEMY / this.difficultFactor) {
+	    if ((current - this.enemyTimer) > DELTAENEMY / this.difficultFactor) {
 	        this.gameMap.addEnemyShip(randomShip());
 	        this.enemyTimer = current;
 	        this.difficultFactor *= 1.02;
