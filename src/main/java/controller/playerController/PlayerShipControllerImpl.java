@@ -123,7 +123,7 @@ public class PlayerShipControllerImpl implements PlayerShipController {
 
     @Override
     public ImageView display() {
-        ImageView sprite = playerShip.getSprite();
+        final ImageView sprite = playerShip.getSprite();
         sprite.setX(playerShip.getPosition().x);
         sprite.setY(playerShip.getPosition().y);
         sprite.setRotate(playerShip.getYaw());

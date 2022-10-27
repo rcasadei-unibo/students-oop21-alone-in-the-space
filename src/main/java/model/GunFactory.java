@@ -23,7 +23,7 @@ abstract class GunImpl implements Gun {
 		// TODO Auto-generated method stub
 	return enemy.stream()
 				.anyMatch(e -> {
-					Vec2 enemyDir = shipPos.copy().sub(e.getPosition()).normalizeLocal();
+					final Vec2 enemyDir = shipPos.copy().sub(e.getPosition()).normalizeLocal();
 					return Math.abs(Math.acos(Vec2.dot(enemyDir, direction))) < this.degRange / 2 
 							&& enemyDir.angle() * e.getPosition().angle() > 0;
 				});			

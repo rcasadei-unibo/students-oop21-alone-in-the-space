@@ -37,7 +37,7 @@ public class SceneManager {
      */
     private void updateEntityPosition(final Entity entity, long deltaTime) {
         entity.move(deltaTime);
-        Vec2 position = entity.getPosition();
+        final Vec2 position = entity.getPosition();
         entity.getNode().relocate(position.x, position.y);
     }
 
@@ -45,7 +45,7 @@ public class SceneManager {
      * Background update.
      */
     /*private void updateBackground() {
-        for (Node image : this.gameMap.getBackground()) {
+        for (final Node image : this.gameMap.getBackground()) {
             image.setLayoutY(image.getLayoutY() + EnumInt.FOUR.getValue());
             if (image.getLayoutY() >= this.gameMap.getHeight().intValue()) {
                 image.setLayoutY(-this.gameMap.getHeight().intValue());

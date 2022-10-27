@@ -13,7 +13,7 @@ public class BulletFactory {
 
 		class BasicBullet extends AbstractBullet {
 
-			public BasicBullet(float maxSpeed, float acceleration, float rotationSpeed, int damage, Vec2 position,
+			public BasicBullet(float maxSpeed, final float acceleration, float rotationSpeed, int damage, Vec2 position,
 					Vec2 direction) {
 				super(maxSpeed, acceleration, rotationSpeed, damage, position, direction);
 				// TODO Auto-generated constructor stub
@@ -23,7 +23,7 @@ public class BulletFactory {
 
 		}
 		;
-		Bullet var = new BasicBullet(0, 0, 0, 0, position, direction);
+		final Bullet var = new BasicBullet(0, 0, 0, 0, position, direction);
 		var.setSprite(loadImage("bullet_01.png"));
 		return var;
 	}
@@ -32,7 +32,7 @@ public class BulletFactory {
 
 		class RifleBullet extends AbstractBullet {
 
-			public RifleBullet(float maxSpeed, float acceleration, float rotationSpeed, int damage, Vec2 position,
+			public RifleBullet(float maxSpeed, final float acceleration, float rotationSpeed, int damage, Vec2 position,
 					Vec2 direction) {
 				super(maxSpeed, acceleration, rotationSpeed, damage, position, direction);
 				// TODO Auto-generated constructor stub
@@ -40,7 +40,7 @@ public class BulletFactory {
 
 		}
 		;
-		Bullet var = new RifleBullet(0, 0, 0, 0, position, direction);
+		final Bullet var = new RifleBullet(0, 0, 0, 0, position, direction);
 		var.setSprite(loadImage("bullet_02.png"));
 		return var;
 
@@ -66,7 +66,7 @@ public class BulletFactory {
 				}
 			}
 		};
-		Bullet var = new missile(0, 0, 0, 0, position, direction, enemy);
+		final Bullet var = new missile(0, 0, 0, 0, position, direction, enemy);
 		var.setSprite(loadImage("missile_01.png"));
 		return var;
 

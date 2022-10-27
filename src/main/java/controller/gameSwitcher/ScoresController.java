@@ -34,7 +34,7 @@ public class ScoresController extends BasicFXMLController {
     }
 
     public void refreshScoresData() {
-        Text rankText = new Text(this.getSceneController().getRanking().getFormattedRanking(5));
+        final Text rankText = new Text(this.getSceneController().getRanking().getFormattedRanking(5));
         rankText.setFill(Color.BLUE);
         //rankText.setFont();
         this.scoreText.getChildren().add(rankText);

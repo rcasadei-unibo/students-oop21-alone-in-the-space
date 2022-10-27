@@ -32,7 +32,7 @@ public class NicknameController extends BasicFXMLController {
      */
     @FXML
     void nameEvent(final ActionEvent event) throws IOException {
-        String name = this.nickname.getText();
+        final String name = this.nickname.getText();
         if (!name.isBlank() && name.length() <= this.maxNameLength) {
             //super.buttonPressedSound();
             super.getSceneController().switchToGame(name);

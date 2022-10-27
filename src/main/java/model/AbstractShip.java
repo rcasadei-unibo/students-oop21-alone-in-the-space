@@ -21,7 +21,7 @@ public abstract class AbstractShip implements Ship {
 	private ImageView sprite;
 	private Gun gun;
 
-	public AbstractShip(float health, float maxSpeed, float acceleration, float rotationSpeed, long attackCD, Vec2 newPosition) {
+	public AbstractShip(float health, float maxSpeed, final float acceleration, float rotationSpeed, long attackCD, Vec2 newPosition) {
 		super();
 		this.attackCooldown = attackCD;
 		this.health = health;
@@ -37,11 +37,11 @@ public abstract class AbstractShip implements Ship {
 		final int halfTurn = 180; //angle degree 
 		final int Turn = 360;
 		deltaTime /= 1000; //conversion to seconds
-		float delta = calculateDir();
-		double angle = Math.acos(delta);
+		final float delta = calculateDir();
+		final double angle = Math.acos(delta);
 		if (angle > gun.getDegRange()) {
 			// how to rotate? TRUE->counterclockwise, FALSE->clockwise
-			Boolean verseOfRotation = (Turn - this.target.getPosition().copy().sub(this.position).angle()) % Turn
+			final Boolean verseOfRotation = (Turn - this.target.getPosition().copy().sub(this.position).angle()) % Turn
 					+ this.direction.angle() > halfTurn;
 			this.direction = rotate(direction,
 					(Turn + this.rotationSpeed * deltaTime * (verseOfRotation ? 1 : -1)) % Turn);
@@ -55,7 +55,9 @@ public abstract class AbstractShip implements Ship {
 
 	public Bullet shot() {
 	    	this.lastAttack -= this.attackCooldown;
-		Bullet bullet = gun.shot(this.direction.copy());
+		
+		final Bullet bullet = gun.shot(this.direction.copy());
+
 		bullet.setPosition(this.position.copy());
 		return bullet;
 	}
@@ -165,8 +167,8 @@ public abstract class AbstractShip implements Ship {
 	 * @return
 	 */
 	private Vec2 rotate(Vec2 vector, double deg) {
-		float x = (float) ((vector.x * Math.cos(deg)) - (vector.y * Math.sin(deg)));
-		float y = (float) ((vector.x * Math.sin(deg)) + (vector.y * Math.cos(deg)));
+		final float x = (float) ((vector.x * Math.cos(deg)) - (vector.y * Math.sin(deg)));
+		final float y = (float) ((vector.x * Math.sin(deg)) + (vector.y * Math.cos(deg)));
 		return new Vec2(x, y);
 
 	}

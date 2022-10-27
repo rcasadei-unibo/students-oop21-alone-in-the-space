@@ -25,7 +25,7 @@ public class Main extends Application {
 			Platform.exit();
 			System.exit(0);
 		});
-		SceneController sc = new SceneControllerImpl(windowManager);
+		final SceneController sc = new SceneControllerImpl(windowManager);
 		sc.switchToMainMenu();
 	}
 }

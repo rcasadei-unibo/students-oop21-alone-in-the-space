@@ -78,11 +78,12 @@ public class PlayerShip implements Ship {
 	 */
 	private void rotateDir(float rotationAmount) {
 
-		float cos = (float) Math.cos(Math.toRadians(rotationAmount));
-		float sin = (float) Math.sin(Math.toRadians(rotationAmount));
+		final float cos = (float) Math.cos(Math.toRadians(rotationAmount));
+		final float sin = (float) Math.sin(Math.toRadians(rotationAmount));
 
-		float newX = this.direction.x * cos - this.direction.y * sin;
-		float newY = this.direction.x * sin + this.direction.y * cos;
+
+		final float newX = this.direction.x * cos - this.direction.y * sin;
+		final float newY = this.direction.x * sin + this.direction.y * cos;
 
 		this.direction.set(newX, newY);
 	}
@@ -92,7 +93,7 @@ public class PlayerShip implements Ship {
 	 * @return inverse cosine value
 	 */
 	private float calculateDir() {
-		Vec2 currentDir = this.position.add(rotation.x, rotation.y).normalize();
+		final Vec2 currentDir = this.position.add(rotation.x, rotation.y).normalize();
 		return Vec2.dot(this.direction.normalize(), currentDir);
 	}
 
