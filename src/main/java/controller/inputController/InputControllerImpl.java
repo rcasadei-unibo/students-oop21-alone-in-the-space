@@ -67,7 +67,7 @@ public class InputControllerImpl implements InputController{
 
     @Override
     public KeyCode getKeyMapped(InputCommands command) {
-        return null;
+        return this.commandKeys.get(command);
     }
 
     @Override

@@ -7,6 +7,7 @@ import java.io.IOException;
 
 public class MainMenuController extends BasicFXMLController{
 
+
     /**
      * Constructor.
      *
