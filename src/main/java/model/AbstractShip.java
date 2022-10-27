@@ -29,6 +29,8 @@ public abstract class AbstractShip implements Ship {
 		this.acceleration = acceleration;
 		this.rotationSpeed = rotationSpeed;
 		this.position = newPosition;
+		this.direction=new Vec2(0,0);
+		this.speed=new Vec2(0,0);
 	}
 
 	public void move(long deltaTime) {
@@ -52,6 +54,7 @@ public abstract class AbstractShip implements Ship {
 	}
 
 	public Bullet shot() {
+	    	this.lastAttack -= this.attackCooldown;
 		Bullet bullet = gun.shot(this.direction.copy());
 		bullet.setPosition(this.position.copy());
 		return bullet;
@@ -92,10 +95,13 @@ public abstract class AbstractShip implements Ship {
 	@Override
 	public Boolean isInRangeOfAttack(List<Ship> enemy, long deltaTime) throws NullPointerException {
 		// TODO Auto-generated method stub
-		if (deltaTime - this.lastAttack < attackCooldown) {
-			return false;
+	     //gun.isInRange(this.position.copy(), this.direction.copy(), enemy);
+		if (deltaTime - this.lastAttack > attackCooldown) {
+		    //can attack;
+		    this.lastAttack+=deltaTime;
+		   // return gun.isInRange(this.position.copy(), this.direction.copy(), enemy);
 		}
-		return gun.isInRange(this.position.copy(), this.direction.copy(), enemy);
+		return false;
 	}
 
 	@Override
@@ -145,9 +151,10 @@ public abstract class AbstractShip implements Ship {
 	 * @return
 	 */
 	private float calculateDir() {
-		Vec2 tragetDir = this.target.getPosition().copy().sub(this.position);
-		// return this.direction.copy().normalize().dot(tragetDir);
-		return Vec2.dot(this.direction.copy().normalize(), tragetDir);
+	    	//Vec2 tragetDir2 = this.target.getPosition().copy();
+		Vec2 tragetDir = new Vec2(1,0);//this.target.getPosition().sub(this.position);
+		Vec2 dir = this.direction.copy().normalizeLocal();
+		return Vec2.dot(dir, tragetDir);
 	}
 
 	/**
