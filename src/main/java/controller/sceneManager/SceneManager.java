@@ -7,6 +7,8 @@ import view.GameMap;
 
 import java.util.Set;
 
+import com.almasb.fxgl.core.math.Vec2;
+
 public class SceneManager {
 
     private GameMap gameMap;
@@ -38,8 +40,8 @@ public class SceneManager {
      */
     private void updateEntityPosition(final Entity entity, long deltaTime) {
         entity.move(deltaTime);
-        entity.getNode().setTranslateX(entity.getPosition().x);
-        entity.getNode().setTranslateY(entity.getPosition().y);
+        Vec2 position =entity.getPosition();
+        entity.getNode().relocate(position.x, position.y);
     }
 
     /**

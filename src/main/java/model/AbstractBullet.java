@@ -34,8 +34,6 @@ public abstract class AbstractBullet implements Bullet {
 			this.speed=this.speed.copy().normalize().mul(this.maxSpeed);
 		}
 		this.position = this.position.add(speed.copy().mul(deltaTime));
-		this.sprite.setX(this.position.x);
-		this.sprite.setY(this.position.y);
 	}
 	
 
