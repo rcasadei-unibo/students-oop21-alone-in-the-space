@@ -83,8 +83,9 @@ public class GameEngineImpl implements GameEngine {
 	private Ship randomShip() {
 		// TODO Auto-generated method stub
 		int typeShip = (int) (Math.random() * 3) + 1;
-		Vec2 spawnPosition = new Vec2((float) this.gameMap.getWidth(), 0);
+		Vec2 spawnPosition = new Vec2((float) this.gameMap.getWidth()/2, 0);
 		spawnPosition.setFromAngle(Math.random() * 360);
+		spawnPosition.addLocal((float) this.gameMap.getWidth()/2,( float) this.gameMap.getHeight()/2);
 		switch (typeShip) {
 		case 1:
 			return EnemyFactory.BasicEnemy(spawnPosition);

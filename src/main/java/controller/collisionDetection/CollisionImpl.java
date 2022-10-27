@@ -10,7 +10,7 @@ import utilities.EnumInt;
 public class CollisionImpl implements Collision {
 
 	@Override
-	public boolean checkEnemyCollision(Ship ship, Entity enemy) {
+	public boolean checkEnemyCollision(Ship ship, Ship enemy) {
 		return ship.getNode().getBoundsInParent().intersects(enemy.getNode().getBoundsInParent());
 	}
 
@@ -29,28 +29,32 @@ public class CollisionImpl implements Collision {
 	public void checkAllCollision(Ship ship, Collection<Ship> enemies, Collection<Bullet> playerBullets,
 			Collection<Bullet> enemiesBullets) {
 		
-		enemies.forEach((Entity enemy) -> {
+		enemies.forEach((Ship enemy) -> {
 			if (checkEnemyCollision(ship, enemy)) {
 				ship.hit(EnumInt.DAMAGE_COLLISION.getValue());
+				enemy.hit(EnumInt.DAMAGE_COLLISION.getValue());
 			}
 		});
 		
 		playerBullets.forEach((Bullet bullet) -> {
 			enemies.forEach((Ship enemy) -> {
-				if (bullet.isAlive() && checkEnemyCollision(enemy ,  bullet)) {
-					ship.hit(bullet.getDamage());
+				if (bullet.isAlive() && checkBulletCollision(enemy ,  bullet)) {
+					enemy.hit(bullet.getDamage());
 					bullet.destroy();
 				}
 			});
 		});
+		
 		enemiesBullets.forEach((Bullet bullet) -> {
-			if (checkBulletCollision(ship, bullet)) {
+			if (bullet.isAlive() && checkBulletCollision(ship, bullet)) {
 				ship.hit(bullet.getDamage());
 				bullet.destroy();
 			}
 		});
-		enemies.removeIf(e -> e.isAlive());
-		enemiesBullets.removeIf(e -> e.isAlive());
+		
+		enemies.removeIf(e -> !(e.isAlive()));
+		enemiesBullets.removeIf(e -> !(e.isAlive()));
+		playerBullets.removeIf(e -> !(e.isAlive()));
 	}
 
 }
