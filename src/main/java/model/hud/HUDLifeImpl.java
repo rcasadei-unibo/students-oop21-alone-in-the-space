@@ -29,7 +29,6 @@ public class HUDLifeImpl extends Label implements HUDLife {
      */
     public HUDLifeImpl() {
         this.lifePoints = EnumInt.LIFE_POINTS.getValue();
-
         this.setLayoutX(EnumInt.WIDTH.getValue() - X_LAYOUT);
         this.setLayoutY(Y_LAYOUT);
         this.setText(MATTER + this.getLifePoints());

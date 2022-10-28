@@ -55,7 +55,8 @@ public class CollisionImpl implements Collision {
                 if (bullet.isAlive() && checkBulletCollision(enemy, bullet)) {
                     enemy.hit(bullet.getDamage());
                     bullet.destroy();
-                    this.hudImpl.getPointsImpl().pointsUp();
+                    this.gameMap.getStatus().setPoints();
+                    this.hudImpl.getPointsImpl().setPoints(this.gameMap.getStatus().getPoints());
                 }
             });
         });

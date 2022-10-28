@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import model.Bullet;
 import model.Entity;
 import model.Ship;
+import model.status.StatusImpl;
 
 import java.util.Set;
 
@@ -136,5 +137,18 @@ public interface GameMap {
      * @return GameLoop reference.
      */
     GameEngineImpl getGameEngine();
+
+    /**
+     * Set a Status reference.
+     * @param points
+     * @param lifePoints
+     * @param lives
+     */
+    void setStatus(StatusImpl status);
+
+    /**
+     * @return Status reference.
+     */
+    StatusImpl getStatus();
 
 }

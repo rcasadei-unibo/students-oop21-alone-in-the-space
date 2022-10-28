@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import model.Bullet;
 import model.Entity;
 import model.Ship;
+import model.status.StatusImpl;
 import utilities.EnumInt;
 
 import java.util.HashSet;
@@ -26,6 +27,8 @@ public class GameMapImpl implements GameMap {
     private GameEngineImpl gameEngine;
     private AnchorPane gameContainer;
     private Stage stage;
+
+    private StatusImpl status;
 
     private final int width;
     private final int height;
@@ -174,6 +177,16 @@ public class GameMapImpl implements GameMap {
     @Override
     public GameEngineImpl getGameEngine() {
         return this.gameEngine;
+    }
+
+    @Override
+    public void setStatus(StatusImpl status) {
+        this.status = status;
+    }
+
+    @Override
+    public StatusImpl getStatus() {
+        return this.status;
     }
 
 }
