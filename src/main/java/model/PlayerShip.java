@@ -247,7 +247,7 @@ public class PlayerShip implements Ship {
 	 */
 	@Override
 	public Boolean isAlive() {
-		return this.health <= 0;
+		return this.health > 0;
 	}
 
 	/**
@@ -323,5 +323,12 @@ public class PlayerShip implements Ship {
 
 	public float getAcceleration() {
 		return this.acceleration;
+	}
+
+	@Override
+	public Ship getTarget() {
+	    // TODO Auto-generated method stub
+	    return null;
+
 	}
 }

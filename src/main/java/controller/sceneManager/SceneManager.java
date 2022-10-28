@@ -36,9 +36,15 @@ public class SceneManager {
      * @param deltaTime
      */
     private void updateEntityPosition(final Entity entity, long deltaTime) {
-        entity.move(deltaTime);
-        final Vec2 position = entity.getPosition();
-        entity.getNode().relocate(position.x, position.y);
+	if(entity.isAlive()) {
+	    entity.move(deltaTime);
+	    final Vec2 position = entity.getPosition();
+	    entity.getNode().relocate(position.x, position.y);
+	}
+	else {
+	    this.gameMap.removeEntity(entity);
+	}
+	    
     }
 
     /**

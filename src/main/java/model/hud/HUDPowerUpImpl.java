@@ -28,8 +28,8 @@ public class HUDPowerUpImpl implements HUDPowerUp {
     }
 
     private void addPowerUp() {
-            this.powerUp = new ImageView(new Image(getClass().getResourceAsStream("/Images/" + "powerUp" + ".png"),
-                SPACING, SPACING, false, true));
+            //this.powerUp = new ImageView(new Image(getClass().getResourceAsStream("/Images/" + "powerUp" + ".png"),
+              //  SPACING, SPACING, false, true));
             this.powerUp.setLayoutX(EnumInt.WIDTH.getValue() - X_LAYOUT);
             this.powerUp.setLayoutY(-SPACING);
     }
