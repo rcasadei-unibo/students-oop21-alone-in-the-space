@@ -35,7 +35,7 @@ public class GameControllerImpl implements GameController {
     public GameControllerImpl(final GameMap gameMap) {
         this.gameMap = gameMap;
         this.gameMap.setBackgroundImage(EnumString.IMAGE_FOLDER.getValue() + "skybox13.jpg");
-        this.playerShipController = new PlayerShipControllerImpl(new Vec2(100, 100), new Image("images/ship_0.png"));
+        this.playerShipController = new PlayerShipControllerImpl(new Vec2(100, 100), new Image("images/shipPlayer.png"));
         // TODO playerShipController
         this.gameMap.setPlayer(this.playerShipController.getPlayerShip());
         this.sceneManager = new SceneManager(this.gameMap);
@@ -81,7 +81,7 @@ public class GameControllerImpl implements GameController {
 		this.eventController.getCollision().checkAllCollision(this.playerShipController.getPlayerShip(),
 				this.enemies, this.gameMap.getBulletsShotByPlayer(),
 				this.gameMap.getBulletsShotByPlayer());
-		//this.playerShipController.update(deltaTime);
+		this.playerShipController.update(deltaTime);
 	        this.gameMap.getActiveEnemyShips().removeIf(e -> !(e.isAlive()));
 	        this.gameMap.getBulletsShotByEnemies().removeIf(e -> !(e.isAlive()));
 	        this.gameMap.getBulletsShotByPlayer().removeIf(e -> !(e.isAlive()));
