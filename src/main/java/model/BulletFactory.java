@@ -44,6 +44,8 @@ public class BulletFactory {
     public static Bullet missile(Vec2 position, Vec2 direction, final Ship enemy) {
 
 	class missile extends AbstractBullet {
+	    
+	    protected final Ship target;
 	    public missile(float maxSpeed, float acceleration, float rotationSpeed, int damage, Vec2 position,
 		    Vec2 direction, Ship enemy) {
 		super(maxSpeed, acceleration, rotationSpeed, damage, position, direction);
@@ -51,7 +53,6 @@ public class BulletFactory {
 		this.target = enemy;
 	    }
 
-	    private final Ship target;
 
 //			@Override
 //			public void move(long deltaTime) {

@@ -89,7 +89,7 @@ public enum EnumInt {
     /**
      *
      */
-    POWER_UP_DURATION(30000),
+    POWER_UP_DURATION(30_000),
 
     /**
      *

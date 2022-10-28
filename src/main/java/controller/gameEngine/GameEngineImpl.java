@@ -22,8 +22,8 @@ import view.WindowManagerImpl;
  */
 public class GameEngineImpl extends AnimationTimer {
 
-    private static final long SLEEP = 10000000;
-    private static final int SLEEP_TIMER = 100000;
+    private static final long SLEEP = 10_000_000;
+    private static final int SLEEP_TIMER = 100_000;
     private static final double VALUE = 1e9;
 
     private static final long PERIOD = 100L;
@@ -37,19 +37,18 @@ public class GameEngineImpl extends AnimationTimer {
     private final GameMapImpl gameMap;
     private final SceneController sceneController;
     private final WindowManager windowManager;
-
     private long prevTime;
 
     public GameEngineImpl(final SceneController sceneController) {
-	this.sceneController = sceneController;
-	this.windowManager = new WindowManagerImpl(this.sceneController);
-	this.stage = this.windowManager.getStage();
-	this.gameMap = new GameMapImpl(EnumInt.WIDTH.getValue(), EnumInt.HEIGHT.getValue(), this);
-	this.windowManager.addGameMap(this.gameMap);
-	this.game = new GameControllerImpl(this.gameMap);
-	this.game.setInputController(this.sceneController.getInputController());
-	this.event = new EventControllerImpl(this.gameMap);
-	this.enemyTimer = 0;
+        this.sceneController = sceneController;
+        this.windowManager = new WindowManagerImpl(this.sceneController);
+        this.stage = this.windowManager.getStage();
+        this.gameMap = new GameMapImpl(EnumInt.WIDTH.getValue(), EnumInt.HEIGHT.getValue(), this);
+        this.windowManager.addGameMap(this.gameMap);
+        this.game = new GameControllerImpl(this.gameMap);
+        this.game.setInputController(this.sceneController.getInputController());
+        this.event = new EventControllerImpl(this.gameMap);
+        this.enemyTimer = 0;
     }
 
     @Override
@@ -76,12 +75,12 @@ public class GameEngineImpl extends AnimationTimer {
     }
 
     public double getFrameRateHertz(final long delta) {
-	double frameRate = 1d / delta;
-	return frameRate * VALUE;
+        final double frameRate = 1d / delta;
+        return frameRate * VALUE;
     }
 
     public long getTimeSleep() {
-	return SLEEP;
+        return SLEEP;
     }
 
     /*
@@ -102,8 +101,8 @@ public class GameEngineImpl extends AnimationTimer {
      */
     private Ship randomShip() {
 	int typeShip = (int) (Math.random() * 3) + 1;
-	
 	Vec2 spawnPosition = new Vec2(0, 0);
+	
 	spawnPosition.setFromAngle(Math.random() * 360);
 	spawnPosition.mulLocal(this.gameMap.getWidth().floatValue() / 2);
 	spawnPosition.addLocal(this.gameMap.getWidth().floatValue() / 2, this.gameMap.getHeight().floatValue() / 2);

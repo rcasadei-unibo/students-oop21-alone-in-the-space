@@ -59,8 +59,8 @@ public class PlayerShip implements Ship {
 	public void move(long deltaTime) {
 		// TODO Check
 		try {
-			float cosAlfa = calculateDir();
-			double a = Math.acos(cosAlfa);
+			final float cosAlfa = calculateDir();
+			final double a = Math.acos(cosAlfa);
 			rotateDir(this.rotationSpeed * deltaTime * (a > 180 ? 1 : -1));
 			this.speed.addLocal(this.direction.mul(deltaTime * this.acceleration));
 			if (this.speed.lengthSquared() > this.maxSpeed) {
@@ -78,11 +78,12 @@ public class PlayerShip implements Ship {
 	 */
 	private void rotateDir(float rotationAmount) {
 
-		float cos = (float) Math.cos(Math.toRadians(rotationAmount));
-		float sin = (float) Math.sin(Math.toRadians(rotationAmount));
+		final float cos = (float) Math.cos(Math.toRadians(rotationAmount));
+		final float sin = (float) Math.sin(Math.toRadians(rotationAmount));
 
-		float newX = this.direction.x * cos - this.direction.y * sin;
-		float newY = this.direction.x * sin + this.direction.y * cos;
+
+		final float newX = this.direction.x * cos - this.direction.y * sin;
+		final float newY = this.direction.x * sin + this.direction.y * cos;
 
 		this.direction.set(newX, newY);
 	}
@@ -92,7 +93,7 @@ public class PlayerShip implements Ship {
 	 * @return inverse cosine value
 	 */
 	private float calculateDir() {
-		Vec2 currentDir = this.position.add(rotation.x, rotation.y).normalize();
+		final Vec2 currentDir = this.position.add(rotation.x, rotation.y).normalize();
 		return Vec2.dot(this.direction.normalize(), currentDir);
 	}
 
@@ -235,7 +236,7 @@ public class PlayerShip implements Ship {
 	 */
 	@Override
 	public Boolean isAlive() {
-		return this.health <= 0;
+		return this.health > 0;
 	}
 
 	/**
@@ -303,5 +304,11 @@ public class PlayerShip implements Ship {
 	 */
 	public void setMaxHealth(float maxHealth) {
 		this.maxHealth = maxHealth;
+	}
+
+	@Override
+	public Ship getTarget() {
+	    // TODO Auto-generated method stub
+	    return null;
 	}
 }

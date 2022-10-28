@@ -16,7 +16,7 @@ public class WindowManagerImpl implements WindowManager {
 
     @Override
     public void addGameMap(GameMap gameMap) {
-        Scene scene = new Scene(new VBox(gameMap.getGameContainer()));
+        final Scene scene = new Scene(new VBox(gameMap.getGameContainer()));
         gameMap.setScene(scene);
         gameMap.setStageReference(this.getStage());
     }

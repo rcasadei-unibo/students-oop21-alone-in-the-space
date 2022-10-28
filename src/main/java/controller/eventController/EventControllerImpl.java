@@ -32,7 +32,7 @@ public class EventControllerImpl implements EventController {
     }
 
     @Override
-    public void endGame(SceneController sceneController) throws IOException {
+    public void endGame(final SceneController sceneController) throws IOException {
         try {
             sceneController.getInputController().resetState();
             sceneController.switchToEndMenu(this.checkPoints());

@@ -36,16 +36,22 @@ public class SceneManager {
      * @param deltaTime
      */
     private void updateEntityPosition(final Entity entity, long deltaTime) {
-        entity.move(deltaTime);
-        Vec2 position = entity.getPosition();
-        entity.getNode().relocate(position.x, position.y);
+	if(entity.isAlive()) {
+	    entity.move(deltaTime);
+	    final Vec2 position = entity.getPosition();
+	    entity.getNode().relocate(position.x, position.y);
+	}
+	else {
+	    this.gameMap.removeEntity(entity);
+	}
+	    
     }
 
     /**
      * Background update.
      */
     /*private void updateBackground() {
-        for (Node image : this.gameMap.getBackground()) {
+        for (final Node image : this.gameMap.getBackground()) {
             image.setLayoutY(image.getLayoutY() + EnumInt.FOUR.getValue());
             if (image.getLayoutY() >= this.gameMap.getHeight().intValue()) {
                 image.setLayoutY(-this.gameMap.getHeight().intValue());

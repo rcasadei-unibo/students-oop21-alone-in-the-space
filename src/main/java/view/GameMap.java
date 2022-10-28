@@ -137,5 +137,4 @@ public interface GameMap {
      */
     GameEngineImpl getGameEngine();
 
-
 }

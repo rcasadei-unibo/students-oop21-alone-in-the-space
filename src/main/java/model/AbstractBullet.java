@@ -17,7 +17,9 @@ public abstract class AbstractBullet implements Bullet {
 	protected Vec2 position;
 	private ImageView sprite;
 	
+
 	public AbstractBullet(float maxSpeed, float acceleration, float rotationSpeed, int damage, Vec2 position, Vec2 direction) {
+
 		this.maxSpeed = maxSpeed;
 		this.acceleration = acceleration;
 		this.rotationSpeed = rotationSpeed;

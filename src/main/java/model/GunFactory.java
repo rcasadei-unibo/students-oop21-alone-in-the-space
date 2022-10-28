@@ -6,7 +6,7 @@ import java.util.List;
 
 abstract class GunImpl implements Gun {
 	private int degRange;
-	private Ship actualShip;
+	protected Ship actualShip;
 
 	public GunImpl(int degRange, Ship ship) {
 		this.degRange = degRange;
@@ -22,8 +22,8 @@ abstract class GunImpl implements Gun {
 	public boolean isInRange(Vec2 shipPos, Vec2 direction, List<Ship> enemy) {
 		// TODO Auto-generated method stub
 	return enemy.stream()
-				.anyMatch(e -> {
-					Vec2 enemyDir = shipPos.copy().sub(e.getPosition()).normalizeLocal();
+			.anyMatch(e -> {
+					final Vec2 enemyDir = shipPos.copy().sub(e.getPosition()).normalizeLocal();
 					return Math.abs(Math.acos(Vec2.dot(enemyDir, direction))) < this.degRange / 2 
 							&& enemyDir.angle() * e.getPosition().angle() > 0;
 				});			
@@ -47,10 +47,15 @@ public class GunFactory {
 				super(degRange, ship);
 				// TODO Auto-generated constructor stub
 			}
+			public Bullet shot(Vec2 direction) {
+				// TODO Auto-generated method stub
+				return BulletFactory.RifleBullet(super.actualShip.getPosition(), super.actualShip.getDirection());
 
-		}
-		;
-		return new rifle(10, spaceship);
+			}
+
+		};
+		var gun =new rifle(10, spaceship);
+		return gun;
 	}
 
 	public static Gun missile(Ship spaceship) {
@@ -59,8 +64,14 @@ public class GunFactory {
 
 			public missile(int degRange, Ship ship) {
 				super(degRange, ship);
-				// TODO Auto-generated constructor stub
 			}
+			
+			 public Bullet shot(Vec2 direction) {
+				// TODO Auto-generated method stub
+				return BulletFactory.missile(super.actualShip.getPosition(), super.actualShip.getDirection(),super.actualShip);
+
+			}
+			 
 
 		}
 		return new missile(45, spaceship);
@@ -75,6 +86,7 @@ public class GunFactory {
 				super(degRange, ship);
 				// TODO Auto-generated constructor stub
 			}
+			
 
 		}
 		return new shootgun(30, spaceship);

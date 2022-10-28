@@ -5,7 +5,7 @@ import utilities.PowerUpEnum;
 
 public interface HUDPowerUp {
 
-    ImageView[] getPowerUp();
+    ImageView getPowerUp();
 
     void showPowerUp(PowerUpEnum powerUp);
 

@@ -19,6 +19,7 @@ public class EnemyFactory {
 	en.setGun(GunFactory.missile(en));
 	en.setSprite(new Image("images/ship_0.png"));
 	return en;
+
     }
 
     public static Ship MissileEnemy(Vec2 newPosition) throws IllegalArgumentException {
@@ -36,6 +37,7 @@ public class EnemyFactory {
 	en.setGun(GunFactory.missile(en));
 	en.setSprite(new Image("images/ship_30.png"));
 	return en;
+
     }
 
     public static Ship RifleEnemy(Vec2 newPosition) throws IllegalArgumentException {

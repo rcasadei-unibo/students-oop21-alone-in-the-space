@@ -34,6 +34,12 @@ public interface Ship extends Entity {
 	void setTarget(Ship target);
 	
 	/**
+	 * get the current target of this ship.
+	 * @return target
+	 */
+	Ship getTarget();
+	
+	/**
 	 * Drop of this ship when destroyed.
 	 * @return
 	 */

@@ -73,8 +73,8 @@ public class InputControllerImpl implements InputController {
     @Override
     public void addCommandKeys(KeyCode key, InputCommands command) {
         if (this.commandKeys.values().stream().anyMatch(e -> e.equals(key))) {
-            InputCommands otherCommand = this.getKeyFromValue(this.commandKeys, key);
-            KeyCode otherKey = this.commandKeys.get(command);
+            final InputCommands otherCommand = this.getKeyFromValue(this.commandKeys, key);
+            final KeyCode otherKey = this.commandKeys.get(command);
             this.commandKeys.replace(otherCommand, key, otherKey);
             this.commandKeys.replace(command, otherKey, key);
         } else {
@@ -99,9 +99,9 @@ public class InputControllerImpl implements InputController {
      */
     private void updateKeysInfo() {
         //
-        Set<KeyCode> activeKeys = this.pressedKeys.entrySet().stream().filter(entry -> entry.getValue())
+        final Set<KeyCode> activeKeys = this.pressedKeys.entrySet().stream().filter(entry -> entry.getValue())
                 .map(entry -> entry.getKey()).collect(Collectors.toSet());
-        Set<InputCommands> activeCommand = this.commandKeys.entrySet().stream()
+        final Set<InputCommands> activeCommand = this.commandKeys.entrySet().stream()
                 .filter(entry -> activeKeys.contains(entry.getValue())).map(entry -> entry.getKey())
                 .collect(Collectors.toSet());
         // Set the state of task.

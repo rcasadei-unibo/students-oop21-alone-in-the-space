@@ -1,11 +1,13 @@
 package controller.collisionDetection;
 
-import java.util.Collection;
-
 import model.Bullet;
 import model.Entity;
 import model.Ship;
 import utilities.EnumInt;
+import view.GameMap;
+import view.hud.HUDImpl;
+
+import java.util.Collection;
 
 /**
  * 
@@ -13,6 +15,14 @@ import utilities.EnumInt;
  *
  */
 public class CollisionImpl implements Collision {
+
+    private GameMap gameMap;
+    private HUDImpl hudImpl;
+
+    public CollisionImpl(final GameMap gameMap, final HUDImpl hudImpl) {
+        this.gameMap = gameMap;
+        this.hudImpl = hudImpl;
+    }
 
     @Override
     public boolean checkEnemyCollision(final Ship ship, final Ship enemy) {
@@ -33,9 +43,11 @@ public class CollisionImpl implements Collision {
     public void checkAllCollision(final Ship player, final Collection<Ship> enemies, final Collection<Bullet> playerBullets, final Collection<Bullet> enemiesBullets) {
 
         enemies.forEach((Ship enemy) -> {
-            if (checkEnemyCollision(player, enemy)) {
-                player.hit(EnumInt.DAMAGE_COLLISION.getValue());
-                //enemy.hit(EnumInt.DAMAGE_COLLISION.getValue());
+            if (enemy.isAlive() && checkEnemyCollision(player, enemy)) {
+        	player.hit(EnumInt.DAMAGE_COLLISION.getValue());
+                enemy.hit(EnumInt.DAMAGE_COLLISION.getValue());
+                this.hudImpl.getLifeImpl().lifeDown(EnumInt.DAMAGE_COLLISION.getValue());
+
             }
         });
 
@@ -44,6 +56,7 @@ public class CollisionImpl implements Collision {
                 if (bullet.isAlive() && checkBulletCollision(enemy, bullet)) {
                     enemy.hit(bullet.getDamage());
                     bullet.destroy();
+                    this.hudImpl.getPointsImpl().pointsUp();
                 }
             });
         });
@@ -52,6 +65,7 @@ public class CollisionImpl implements Collision {
             if (bullet.isAlive() && checkBulletCollision(player, bullet)) {
                 player.hit(bullet.getDamage());
                 bullet.destroy();
+                this.hudImpl.getLifeImpl().lifeDown(bullet.getDamage());
             }
         });
 

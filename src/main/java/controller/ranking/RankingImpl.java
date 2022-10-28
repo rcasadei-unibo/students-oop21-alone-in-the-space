@@ -33,16 +33,16 @@ public class RankingImpl implements Ranking {
     private void loadFromFile() throws IOException {
         if (this.file.exists()) {
             this.map.clear();
-            Properties properties = new Properties();
+            final Properties properties = new Properties();
             try(FileInputStream fileStream = new FileInputStream(this.file)){
                 properties.load(fileStream);
-                for (String key : properties.stringPropertyNames()) {
-                    String value = properties.getProperty(key);
+                for (final String key : properties.stringPropertyNames()) {
+                    final String value = properties.getProperty(key);
                     this.map.put(key, Integer.valueOf(value));
                 }
             }
         } else {
-            boolean result = this.file.createNewFile();
+            final boolean result = this.file.createNewFile();
             this.saveToFile();
         }
     }
@@ -53,7 +53,7 @@ public class RankingImpl implements Ranking {
      * @throws IOException
      */
     private void saveToFile() throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(this.file));
+        final BufferedWriter writer = new BufferedWriter(new FileWriter(this.file));
         this.map.entrySet().forEach(e -> {
             try {
                 writer.write(e.getKey() + "=" + e.getValue().toString() + "\n");
@@ -88,7 +88,7 @@ public class RankingImpl implements Ranking {
 
     @Override
     public String getFormattedRanking(int limit) {
-        StringJoiner joiner = new StringJoiner("");
+        final StringJoiner joiner = new StringJoiner("");
         List<Map.Entry<String, Integer>> sortedEntry;
         sortedEntry = this.getSortedList(this.map).stream().limit(limit).collect(Collectors.toList());
         sortedEntry.forEach(e -> joiner.add(e.getValue().toString() + "\t" + e.getKey() + "\n"));
