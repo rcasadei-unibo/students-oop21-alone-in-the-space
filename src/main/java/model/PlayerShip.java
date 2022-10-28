@@ -16,6 +16,7 @@ public class PlayerShip implements Ship {
 	private float health;
 	private float maxSpeed;
 	private Vec2 speed; //watch out for thread competition
+	private float speed2 = 0;
 	private float acceleration = 0;
 	private Vec2 direction;
 	private float rotationSpeed;
@@ -39,8 +40,8 @@ public class PlayerShip implements Ship {
 		this.maxSpeed = maxSpeed;
 		this.direction = this.position.copy();
 		this.rotationSpeed = rotationSpeed;
-		this.rotation = new Vec2(1, 0);
-		this.yaw = 0;
+		this.rotation = new Vec2(0, 1);
+		this.yaw = 1;
 		calculateDir();
 	}
 
@@ -49,7 +50,7 @@ public class PlayerShip implements Ship {
 	 * @return the bullet fire
 	 */
 	public Bullet shot() {
-		return playerGun.shot(this.position.add(rotation));
+		return playerGun.shot(this.position);
 	}
 
 	/**
@@ -58,18 +59,27 @@ public class PlayerShip implements Ship {
 	 */
 	public void move(long deltaTime) {
 		// TODO Check
+		float newSpeed = speed2 + acceleration * 0.01f * ((float)deltaTime)/1_000_000L;
+		this.setSpeed(newSpeed);
 		try {
-			final float cosAlfa = calculateDir();
-			final double a = Math.acos(cosAlfa);
-			rotateDir(this.rotationSpeed * deltaTime * (a > 180 ? 1 : -1));
-			this.speed.addLocal(this.direction.mul(deltaTime * this.acceleration));
-			if (this.speed.lengthSquared() > this.maxSpeed) {
-				this.speed.normalizeLocal().mulLocal(this.maxSpeed / this.speed.length());
-			}
-			this.position.addLocal(this.speed);
+			float newX = (float) (speed2 * Math.cos(Math.toRadians(yaw)));
+			float newY = (float) (speed2 * Math.sin(Math.toRadians(yaw)));
+			this.direction.addLocal(newX*1.01, newY*1.01);
+			this.position.addLocal(newX,newY);
+			System.out.println("Position: " + this.position + " Direction: " + this.direction);
 		} catch (Exception e) {
-			e.printStackTrace();
+			// TODO: handle exception
 		}
+	}
+
+	private void setSpeed(float newSpeed) {
+		if(newSpeed >= maxSpeed)
+			this.speed2 = maxSpeed;
+		else if(newSpeed <= -maxSpeed){
+			this.speed2 = -maxSpeed;
+		}
+		else
+			this.speed2 = newSpeed;
 	}
 
 	/**
@@ -102,6 +112,7 @@ public class PlayerShip implements Ship {
 	 */
 	public void decaySpeed() {
 		this.speed.addLocal(direction.mul(0.99f));
+		this.setSpeed(speed2*0.95f);
 	}
 	/**
 	 * change movement based on the input from player
@@ -129,16 +140,16 @@ public class PlayerShip implements Ship {
 	 * @param input user input
 	 */
 	public void rotate(InputCommands input) {
-		int direction = 1;
+		int direction = -1;
 		switch (input) {
 			case LEFT:
-				direction = Math.abs(direction);
-				break;
-			case RIGHT:
 				direction = -Math.abs(direction);
 				break;
+			case RIGHT:
+				direction = Math.abs(direction);
+				break;
 		}
-		this.yaw = Math.abs((yaw + rotationSpeed * direction)) % 360;
+		this.yaw = (yaw + rotationSpeed * direction) % 360;
 		this.rotation.setFromAngle(yaw);
 	}
 
@@ -296,6 +307,10 @@ public class PlayerShip implements Ship {
 	public void setSprite(Image img) {
 		this.sprite = new ImageView();
 		this.sprite.setImage(img);
+		this.sprite.setTranslateX((img.getWidth()/2));
+		this.sprite.setTranslateY((img.getHeight()/2));
+		this.sprite.translateXProperty();
+		this.sprite.translateYProperty();
 	}
 
 	/**
@@ -304,5 +319,9 @@ public class PlayerShip implements Ship {
 	 */
 	public void setMaxHealth(float maxHealth) {
 		this.maxHealth = maxHealth;
+	}
+
+	public float getAcceleration() {
+		return this.acceleration;
 	}
 }
