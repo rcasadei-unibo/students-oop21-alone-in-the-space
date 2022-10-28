@@ -23,7 +23,7 @@ public abstract class AbstractShip implements Ship {
 
 	public AbstractShip(int health, float maxSpeed, float acceleration, float rotationSpeed, long attackCD, Vec2 newPosition) {
 
-		this.attackCooldown = attackCD*1000000000L;
+		this.attackCooldown = attackCD*1000000L;
 		
 		this.health = health;
 		this.maxSpeed = maxSpeed;

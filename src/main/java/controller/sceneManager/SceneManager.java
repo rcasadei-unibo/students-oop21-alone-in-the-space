@@ -1,6 +1,8 @@
 package controller.sceneManager;
 
 import com.almasb.fxgl.core.math.Vec2;
+
+import javafx.scene.image.ImageView;
 import model.Entity;
 import view.GameMap;
 
@@ -39,8 +41,9 @@ public class SceneManager {
 	if(entity.isAlive()) {
 	    entity.move(deltaTime);
 	    final Vec2 position = entity.getPosition();
-	    
-	    entity.getNode().relocate(position.x, position.y);
+	    ImageView vara = (ImageView) entity.getNode();
+	    vara.getImage().getHeight();
+	    entity.getNode().relocate(position.x-vara.getImage().getWidth()/2, position.y- vara.getImage().getHeight()/2);
 	    entity.getNode().setRotate(entity.getAngle());
 	}
 	else {
