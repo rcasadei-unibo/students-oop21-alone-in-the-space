@@ -16,8 +16,7 @@ public class BulletFactory {
 		// TODO Auto-generated constructor stub
 	    }
 
-	}
-	;
+	};
 	Bullet var = new BasicBullet(100, 100, 10, 10, position, direction);
 	var.setSprite(new Image("images/bullet_01.png"));
 	return var;
@@ -65,7 +64,7 @@ public class BulletFactory {
 	}
 	;
 	Bullet var = new missile(100, 100, 10, 10, position, direction, enemy);
-	var.setSprite(new Image("images/bullet_00.png"));
+	var.setSprite(new Image("images/missile_01.png"));
 	return var;
 
     }

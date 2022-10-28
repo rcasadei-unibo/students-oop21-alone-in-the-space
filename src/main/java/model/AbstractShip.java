@@ -52,7 +52,6 @@ public abstract class AbstractShip implements Ship {
 	public Bullet shot() {
 	    	this.lastAttack -= this.attackCooldown;
 		Bullet bullet = gun.shot(this.getDirection());
-
 		bullet.setPosition(this.position.copy());
 		return bullet;
 	}
@@ -98,9 +97,12 @@ public abstract class AbstractShip implements Ship {
 	@Override
 	public Boolean isInRangeOfAttack( long deltaTime) throws NullPointerException {
 	    	
-	    	this.lastAttack+=deltaTime;
+	    	
 		if (  this.lastAttack > this.attackCooldown) {
 		   return gun.isInRange(this.position.copy(), this.direction.copy(), this.target);
+		}
+		else {
+		    this.lastAttack+=deltaTime;
 		}
 		return false;
 	}

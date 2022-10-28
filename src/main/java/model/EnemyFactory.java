@@ -16,7 +16,7 @@ public class EnemyFactory {
 	}
 	;
 	Ship en = new BasicEnemy(50, 50, 20f, 180, 1000, newPosition);
-	en.setGun(GunFactory.missile(en));
+	en.setGun(GunFactory.shootgun(en));
 	en.setSprite(new Image("images/ship_0.png"));
 	return en;
 

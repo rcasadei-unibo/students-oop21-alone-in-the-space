@@ -88,7 +88,6 @@ public class GameControllerImpl implements GameController {
 		this.enemies.forEach((Ship enemy) -> {
 			if (enemy.isInRangeOfAttack( deltaTime)) {
 				this.gameMap.addEnemyBullet(enemy.shot());
-				System.out.println("shooted");
 			}
 		});
 
