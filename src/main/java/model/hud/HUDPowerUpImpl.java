@@ -1,6 +1,5 @@
 package model.hud;
 
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import utilities.EnumInt;
 import utilities.PowerUpEnum;
