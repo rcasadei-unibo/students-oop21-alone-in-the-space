@@ -40,13 +40,14 @@ public class CollisionImpl implements Collision {
     }
 
     @Override
-    public void checkAllCollision(final Ship ship, final Collection<Ship> enemies, final Collection<Bullet> playerBullets, final Collection<Bullet> enemiesBullets) {
+    public void checkAllCollision(final Ship player, final Collection<Ship> enemies, final Collection<Bullet> playerBullets, final Collection<Bullet> enemiesBullets) {
 
         enemies.forEach((Ship enemy) -> {
-            if (checkEnemyCollision(ship, enemy)) {
-                ship.hit(EnumInt.DAMAGE_COLLISION.getValue());
+            if (enemy.isAlive() && checkEnemyCollision(player, enemy)) {
+        	player.hit(EnumInt.DAMAGE_COLLISION.getValue());
                 enemy.hit(EnumInt.DAMAGE_COLLISION.getValue());
                 this.hudImpl.getLifeImpl().lifeDown(EnumInt.DAMAGE_COLLISION.getValue());
+
             }
         });
 
@@ -62,16 +63,14 @@ public class CollisionImpl implements Collision {
         });
 
         enemiesBullets.forEach((Bullet bullet) -> {
-            if (bullet.isAlive() && checkBulletCollision(ship, bullet)) {
-                ship.hit(bullet.getDamage());
+            if (bullet.isAlive() && checkBulletCollision(player, bullet)) {
+                player.hit(bullet.getDamage());
                 bullet.destroy();
                 this.hudImpl.getLifeImpl().lifeDown(bullet.getDamage());
             }
         });
 
-        enemies.removeIf(e -> !(e.isAlive()));
-        enemiesBullets.removeIf(e -> !(e.isAlive()));
-        playerBullets.removeIf(e -> !(e.isAlive()));
+        
     }
 
 }

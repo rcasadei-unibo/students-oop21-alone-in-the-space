@@ -32,7 +32,7 @@ public class GameMapImpl implements GameMap {
 
     private final int width;
     private final int height;
-
+    private int shipCounter=1;
     /**
      *
      * @param width
@@ -81,6 +81,7 @@ public class GameMapImpl implements GameMap {
     @Override
     public void setPlayer(Ship player) {
         this.player = player;
+        this.player.getNode().setId(String.valueOf(this.shipCounter++));
         this.gameContainer.getChildren().add(this.player.getNode());
         this.entities.add(player);
     }
@@ -102,8 +103,11 @@ public class GameMapImpl implements GameMap {
 
     @Override
     public void addPlayerBullet(final Bullet bullet) {
+	bullet.getNode().setId(String.valueOf(this.shipCounter++));
+	Node var = null;
         this.entities.add(bullet);
         this.playerBullets.add(bullet);
+        this.gameContainer.getChildren().add(this.player.getNode());
         this.gameContainer.getChildren().add(bullet.getNode());
     }
 
@@ -114,6 +118,7 @@ public class GameMapImpl implements GameMap {
 
     @Override
     public void addEnemyBullet(Bullet bullet) {
+	bullet.getNode().setId(String.valueOf(this.shipCounter++));
         this.entities.add(bullet);
         this.enemyBullets.add(bullet);
         this.gameContainer.getChildren().add(bullet.getNode());
@@ -164,6 +169,7 @@ public class GameMapImpl implements GameMap {
 
     @Override
     public void addEnemyShip(Ship enemy) {
+	enemy.getNode().setId(String.valueOf(this.shipCounter++));
         this.enemyShips.add(enemy);
         this.entities.add(enemy);
         this.gameContainer.getChildren().add(enemy.getNode());

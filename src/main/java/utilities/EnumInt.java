@@ -59,7 +59,7 @@ public enum EnumInt {
     /**
      *
      */
-    DAMAGE_COLLISION(50),
+    DAMAGE_COLLISION(5),
 
     /**
      *

@@ -37,7 +37,6 @@ public class GameEngineImpl extends AnimationTimer {
     private final GameMapImpl gameMap;
     private final SceneController sceneController;
     private final WindowManager windowManager;
-
     private long prevTime;
 
     public GameEngineImpl(final SceneController sceneController) {
@@ -53,29 +52,26 @@ public class GameEngineImpl extends AnimationTimer {
     }
 
     @Override
-    public void handle(final long now) {
-        try {
-            Thread.sleep(0, SLEEP_TIMER);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        System.out.println(gameMap.getActiveEnemyShips().size());
-        System.out.println(gameMap.getActiveEntities().size());
-        System.out.println(gameMap.getBulletsShotByEnemies().size());
-        System.out.println(gameMap.getBulletsShotByPlayer().size());
-        if (this.enemyTimer == 0) {
-            System.out.println("time : " + (now - this.enemyTimer));
-            this.enemyTimer = now; 
-        }
-        System.out.println("time : " + (now - this.enemyTimer) / 1_000_000_000L);
-        if ((now - this.enemyTimer) / 1_000_000L > (DELTAENEMY / this.difficultFactor)) {
-            System.out.println("new enemy");
-            this.enemyTimer = now;
-            this.difficultFactor *= 1.02;
-            this.gameMap.addEnemyShip(randomShip());
-        }
-        this.game.update(now - prevTime);
-        this.prevTime = now;
+    public void handle(long now) {
+	try {
+	    Thread.sleep(0, SLEEP_TIMER);
+	} catch (InterruptedException e) {
+	    e.printStackTrace();
+	}
+	if (this.enemyTimer == 0) {
+	    System.out.println("time : " + (now - this.enemyTimer));
+	    this.enemyTimer = now;
+	}
+	System.out.println("time : " + (now - this.enemyTimer) / 1000000000L);
+	if ((now - this.enemyTimer) / 1000000L > (DELTAENEMY / this.difficultFactor)) {
+	    System.out.println("new enemy");
+	    this.enemyTimer = now;
+	    this.difficultFactor *= 1.02;
+	    Ship enemy = randomShip();
+	    this.gameMap.addEnemyShip(enemy);
+	}
+	this.game.update((now - prevTime));
+	this.prevTime = now;
     }
 
     public double getFrameRateHertz(final long delta) {
@@ -104,25 +100,28 @@ public class GameEngineImpl extends AnimationTimer {
      * this.difficultFactor *= 1.02; } }
      */
     private Ship randomShip() {
-	// TODO Auto-generated method stub
-	//System.out.println("new enemy!");
-	final int typeShip = (int) (Math.random() * 3) + 1;
-	final Vec2 spawnPosition = new Vec2( this.gameMap.getWidth().floatValue() / 2, 0);
+	int typeShip = (int) (Math.random() * 3) + 1;
+	Vec2 spawnPosition = new Vec2(0, 0);
+	
 	spawnPosition.setFromAngle(Math.random() * 360);
-	spawnPosition.addLocal(this.gameMap.getWidth().floatValue() / 2,  this.gameMap.getHeight().floatValue() / 2);
+	spawnPosition.mulLocal(this.gameMap.getWidth().floatValue() / 2);
+	spawnPosition.addLocal(this.gameMap.getWidth().floatValue() / 2, this.gameMap.getHeight().floatValue() / 2);
+	
 	Ship enemy = null;
 	switch (typeShip) {
 	case 1:
 	    enemy = EnemyFactory.BasicEnemy(spawnPosition);
+	    break;
 	case 2:
 	    enemy = EnemyFactory.MissileEnemy(spawnPosition);
+	    break;
 	case 3:
 	    enemy = EnemyFactory.RifleEnemy(spawnPosition);
+	    break;
 	default:
 	    enemy = EnemyFactory.BasicEnemy(spawnPosition);
 	    break;
 	}
-	this.gameMap.getPlayer().getPosition();
 	enemy.setTarget(this.gameMap.getPlayer());
 	return enemy;
     }
