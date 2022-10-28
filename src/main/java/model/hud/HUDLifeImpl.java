@@ -11,7 +11,7 @@ public class HUDLifeImpl extends Label implements HUDLife {
     /*
      * HUD structure
      */
-    private static final int X_LAYOUT = 130;
+    private static final int X_LAYOUT = 330;
     private static final int Y_LAYOUT = 20;
     private static final int POINTS_UP = 1;
     private static final String YELLOW = "yellow";
