@@ -2,10 +2,7 @@ package view.hud;
 
 import controller.collisionDetection.Collision;
 import controller.collisionDetection.CollisionImpl;
-import model.hud.HUDLifeImpl;
-import model.hud.HUDPointsImpl;
-import model.hud.HUDPowerUp;
-import model.hud.HUDPowerUpImpl;
+import model.hud.*;
 import utilities.EnumInt;
 import view.GameMap;
 
@@ -35,8 +32,7 @@ public class HUDImpl implements HUDInterface {
         this.powerUpHUD = new HUDPowerUpImpl(this.gameMap);
 
 
-        //this.collision = new CollisionImpl(this.gameMap, this.pointsHUD, this.livesHUD, this.powerUpHUD);
-        this.collision = new CollisionImpl();
+        this.collision = new CollisionImpl(this.gameMap, this);
     }
 
     @Override
@@ -62,6 +58,16 @@ public class HUDImpl implements HUDInterface {
     @Override
     public HUDPowerUp getPowerUpImpl() {
         return this.powerUpHUD;
+    }
+
+    @Override
+    public HUDLife getLifeImpl() {
+        return this.livesHUD;
+    }
+
+    @Override
+    public HUDPoints getPointsImpl() {
+        return this.pointsHUD;
     }
 
 

@@ -175,4 +175,5 @@ public class GameMapImpl implements GameMap {
     public GameEngineImpl getGameEngine() {
         return this.gameEngine;
     }
+
 }
