@@ -15,7 +15,7 @@ abstract class GunImpl implements Gun {
 
 	public Bullet shot(Vec2 direction) {
 		// TODO Auto-generated method stub
-		return BulletFactory.BasicBullet(actualShip.getPosition(), actualShip.getDirection());
+		return BulletFactory.BasicBullet(actualShip.getPosition(), direction);
 
 	}
 
