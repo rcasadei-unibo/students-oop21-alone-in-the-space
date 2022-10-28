@@ -66,7 +66,6 @@ public class PlayerShip implements Ship {
 			float newY = (float) (speed2 * Math.sin(Math.toRadians(yaw)));
 			this.direction.addLocal(newX*1.01, newY*1.01);
 			this.position.addLocal(newX,newY);
-			System.out.println("Position: " + this.position + " Direction: " + this.direction);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -214,7 +213,7 @@ public class PlayerShip implements Ship {
 	 * @return
 	 */
 	@Override
-	public Boolean isInRangeOfAttack(List<Ship> enemy, long deltaTime) {
+	public Boolean isInRangeOfAttack( long deltaTime) {
 		return null;
 	}
 
@@ -330,5 +329,11 @@ public class PlayerShip implements Ship {
 	    // TODO Auto-generated method stub
 	    return null;
 
+	}
+
+	@Override
+	public double getAngle() {
+	    // TODO Auto-generated method stub
+	    return (this.getYaw());
 	}
 }

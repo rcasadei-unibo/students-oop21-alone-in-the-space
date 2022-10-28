@@ -11,7 +11,7 @@ public abstract class AbstractShip implements Ship {
 	private int health;
 	private float maxSpeed;
 	private float acceleration;
-	private float rotationSpeed; // need to be in radiant
+	private float rotationSpeed; 
 	private long lastAttack = 0;
 	private final long attackCooldown;
 	private Vec2 speed;
@@ -21,10 +21,9 @@ public abstract class AbstractShip implements Ship {
 	private ImageView sprite;
 	private Gun gun;
 
-
 	public AbstractShip(int health, float maxSpeed, float acceleration, float rotationSpeed, long attackCD, Vec2 newPosition) {
 
-		this.attackCooldown = attackCD;
+		this.attackCooldown = attackCD*1000000000L;
 		
 		this.health = health;
 		this.maxSpeed = maxSpeed;
@@ -32,43 +31,27 @@ public abstract class AbstractShip implements Ship {
 		this.rotationSpeed = rotationSpeed;
 		this.position = newPosition;
 		this.direction=new Vec2(0,1);
-
 		this.speed=new Vec2(0,0);
 	}
 
 	public void move(long deltaTime) {
 		
-		final int halfTurn = 180; //angle degree 
-		final int Turn = 360;
 		double newdeltaTime = ((double)deltaTime) / 1000000000L; //conversion to seconds
-		float delta = calculateDir();
-		double angle =Math.toDegrees( Math.acos(delta));
-		System.out.println("gradient  :::"+ angle);
-
-		if (angle > gun.getDegRange()) {
-			// how to rotate? TRUE->counterclockwise, FALSE->clockwise
-			final Boolean verseOfRotation = (Turn - this.target.getPosition().copy().sub(this.position).angle()) % Turn
-					+ this.direction.angle() > halfTurn;
-			this.direction = rotate(direction,
-					(Turn + this.rotationSpeed * newdeltaTime * (verseOfRotation ? 1 : -1)) % Turn);
+		var angle = (calculateDir());
+		if(Math.abs(angle)>this.gun.getDegRange()/2) {
+		    this.direction=this.direction.add((new Vec2(1,0).setFromAngle(angle)).mul(newdeltaTime*this.rotationSpeed)) ;		    
 		}
-		else {
-		    System.out.println("can shoot");
-		}
-		this.speed = this.speed.add(direction.copy().mul(newdeltaTime * acceleration));
+		this.speed = this.speed.add(direction.mul(newdeltaTime * acceleration));
 		if (this.speed.length() > maxSpeed) {
-			this.speed = this.speed.copy().normalize().mul(this.maxSpeed);
+			this.speed = this.speed.normalize().mul(this.maxSpeed);
 		}
-		this.position = this.position.add(speed.copy().mul(newdeltaTime));
-		System.out.println("pos :"+this.position);
-		System.out.println("speed :"+this.speed);
-		System.out.println("dir :"+this.direction);
-		System.out.println("delta TIME :"+newdeltaTime);
+		this.position = this.position.add(speed.mul(newdeltaTime));
+		
 	}
 
 	public Bullet shot() {
 	    	this.lastAttack -= this.attackCooldown;
-		Bullet bullet = gun.shot(this.target.getPosition().sub(this.position).normalizeLocal());
+		Bullet bullet = gun.shot(this.getDirection());
 
 		bullet.setPosition(this.position.copy());
 		return bullet;
@@ -76,16 +59,12 @@ public abstract class AbstractShip implements Ship {
 
 	@Override
 	public void destroy() {
-		// TODO Auto-generated method stub
-	    System.out.println("dioporco");
 		this.health = 0;
 		this.target = null;
 	}
 
 	@Override
 	public void setTarget(Ship enemy) {
-		// TODO Auto-generated method stub
-	    System.out.println("target setted");
 		this.target = enemy;
 		this.target.getPosition().copy();
 	}
@@ -94,10 +73,15 @@ public abstract class AbstractShip implements Ship {
 	public Ship getTarget() {
 		return this.target;
 	}
+	
+	@Override
+	public double getAngle() {	
+	    return  (this.speed.angle()-90);
+	 
+	}
 
 	@Override
 	public Vec2 getPosition() {
-		// TODO Auto-generated method stub
 		return position.copy();
 	}
 
@@ -112,11 +96,11 @@ public abstract class AbstractShip implements Ship {
 	}
 
 	@Override
-	public Boolean isInRangeOfAttack(List<Ship> enemy, long deltaTime) throws NullPointerException {
-	    
-		if (deltaTime - this.lastAttack > attackCooldown) {
-		    this.lastAttack+=deltaTime;
-		   return gun.isInRange(this.position.copy(), this.direction.copy(), enemy);
+	public Boolean isInRangeOfAttack( long deltaTime) throws NullPointerException {
+	    	
+	    	this.lastAttack+=deltaTime;
+		if (  this.lastAttack > this.attackCooldown) {
+		   return gun.isInRange(this.position.copy(), this.direction.copy(), this.target);
 		}
 		return false;
 	}
@@ -149,7 +133,6 @@ public abstract class AbstractShip implements Ship {
 
 	@Override
 	public Boolean isAlive() {
-		// TODO Auto-generated method stub
 		if (this.health > 0) {
 			return true;
 		}{
@@ -164,23 +147,8 @@ public abstract class AbstractShip implements Ship {
 	 * @return
 	 */
 	private float calculateDir() {
-	    	Vec2 tragetDir = this.target.getPosition().sub(this.position).normalizeLocal();
-		Vec2 dir = this.direction.copy().normalizeLocal();
-		return Vec2.dot(dir, tragetDir);
+		return this.target.getPosition().sub(this.position).angle();
 	}
 
-	/**
-	 * return a new vector, from input vector rotate by degree clockwise
-	 * 
-	 * @param vector
-	 * @param deg
-	 * @return
-	 */
-	private Vec2 rotate(Vec2 vector, double deg) {
-		final float x = (float) ((vector.x * Math.cos(deg)) - (vector.y * Math.sin(deg)));
-		final float y = (float) ((vector.x * Math.sin(deg)) + (vector.y * Math.cos(deg)));
-		return new Vec2(x, y);
-
-	}
-
+	
 }

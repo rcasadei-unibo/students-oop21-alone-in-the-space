@@ -15,7 +15,7 @@ public class EnemyFactory {
 
 	}
 	;
-	Ship en = new BasicEnemy(50, 100, 20f, 450, 1000000, newPosition);
+	Ship en = new BasicEnemy(50, 50, 20f, 180, 1, newPosition);
 	en.setGun(GunFactory.missile(en));
 	en.setSprite(new Image("images/ship_0.png"));
 	return en;
@@ -33,9 +33,9 @@ public class EnemyFactory {
 
 	}
 	;
-	Ship en = new MissileEnemy(100, 50, 5f, 100, 2000000, newPosition);
+	Ship en = new MissileEnemy(100, 35, 5f, 120, 10, newPosition);
 	en.setGun(GunFactory.missile(en));
-	en.setSprite(new Image("images/ship_30.png"));
+	en.setSprite(new Image("images/ship_22.png"));
 	return en;
 
     }
@@ -49,11 +49,11 @@ public class EnemyFactory {
 		// TODO Auto-generated constructor stub
 	    }
 
-	}
-	;
-	Ship en = new RifleEnemy(25, 150, 10f, 300, 500000, newPosition);
+	};
+	
+	Ship en = new RifleEnemy(25, 80, 10f, 360, 5, newPosition);
 	en.setGun(GunFactory.rifle(en));
-	en.setSprite(new Image("images/ship_22.png"));
+	en.setSprite(new Image("images/ship_30.png"));
 	return en;
     }
 

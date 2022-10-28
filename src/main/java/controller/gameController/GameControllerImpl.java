@@ -86,8 +86,9 @@ public class GameControllerImpl implements GameController {
 	        this.gameMap.getBulletsShotByEnemies().removeIf(e -> !(e.isAlive()));
 	        this.gameMap.getBulletsShotByPlayer().removeIf(e -> !(e.isAlive()));
 		this.enemies.forEach((Ship enemy) -> {
-			if (enemy.isInRangeOfAttack(List.of(this.playerShipController.getPlayerShip()), deltaTime)) {
+			if (enemy.isInRangeOfAttack( deltaTime)) {
 				this.gameMap.addEnemyBullet(enemy.shot());
+				System.out.println("shooted");
 			}
 		});
 

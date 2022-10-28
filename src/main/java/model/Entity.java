@@ -7,6 +7,12 @@ import javafx.scene.image.Image;
 
 public interface Entity {
 	
+    /**
+	 * get the current angle of this ship.
+	 * @return angle in degrees
+	 */
+	double getAngle();
+	
 	 /**
 	  * Get the position of the entity
 	  * @return

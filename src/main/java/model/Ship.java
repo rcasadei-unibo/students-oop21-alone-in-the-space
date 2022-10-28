@@ -39,6 +39,8 @@ public interface Ship extends Entity {
 	 */
 	Ship getTarget();
 	
+	
+	
 	/**
 	 * Drop of this ship when destroyed.
 	 * @return
@@ -50,6 +52,6 @@ public interface Ship extends Entity {
 	 * @param enemy
 	 * @return
 	 */
-	Boolean isInRangeOfAttack(List<Ship> enemy, long deltaTime);
+	Boolean isInRangeOfAttack( long deltaTime);
 	
 }

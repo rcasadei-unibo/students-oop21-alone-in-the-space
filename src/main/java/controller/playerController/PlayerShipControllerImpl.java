@@ -128,7 +128,7 @@ public class PlayerShipControllerImpl implements PlayerShipController {
         final ImageView sprite = playerShip.getSprite();
         sprite.setX(playerShip.getPosition().x);
         sprite.setY(playerShip.getPosition().y);
-        sprite.setRotate(playerShip.getYaw());
+       // sprite.setRotate(playerShip.getYaw());
         return sprite;
     }
 

@@ -45,7 +45,7 @@ public class CollisionImpl implements Collision {
         enemies.forEach((Ship enemy) -> {
             if (enemy.isAlive() && checkEnemyCollision(player, enemy)) {
         	player.hit(EnumInt.DAMAGE_COLLISION.getValue());
-                enemy.hit(EnumInt.DAMAGE_COLLISION.getValue());
+                //enemy.hit(EnumInt.DAMAGE_COLLISION.getValue());
                 this.hudImpl.getLifeImpl().lifeDown(EnumInt.DAMAGE_COLLISION.getValue());
 
             }

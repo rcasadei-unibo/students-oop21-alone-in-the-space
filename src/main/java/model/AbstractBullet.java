@@ -31,14 +31,18 @@ public abstract class AbstractBullet implements Bullet {
 	}
 	
 	public void move(long deltaTime) {
-		deltaTime /= 1000; //expected delta time to be in millisecond
-		this.speed = this.speed.add(direction.copy().mul(deltaTime));
+	    	double newdeltaTime = ((double)deltaTime) / 1000000000L; //conversion to seconds
+		this.speed = this.speed.add(direction.mul(newdeltaTime * acceleration));
 		if (this.speed.length() > maxSpeed) {
-			this.speed = this.speed.copy().normalize().mul(this.maxSpeed);
+			this.speed = this.speed.normalize().mul(this.maxSpeed);
 		}
-		this.position = this.position.add(speed.copy().mul(deltaTime));
+		this.position = this.position.add(speed.mul(newdeltaTime));
 	}
 	
+	@Override
+	public double getAngle() {
+		return this.direction.angle();
+	}
 
 	public Boolean isCollided() {
 		return !this.alive;		

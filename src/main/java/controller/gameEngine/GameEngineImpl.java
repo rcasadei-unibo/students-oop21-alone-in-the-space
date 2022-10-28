@@ -62,9 +62,8 @@ public class GameEngineImpl extends AnimationTimer {
 	    System.out.println("time : " + (now - this.enemyTimer));
 	    this.enemyTimer = now;
 	}
-	System.out.println("time : " + (now - this.enemyTimer) / 1000000000L);
-	if ((now - this.enemyTimer) / 1000000L > (DELTAENEMY / this.difficultFactor)) {
-	    System.out.println("new enemy");
+	if ((now - this.enemyTimer) / 1000000L > (DELTAENEMY / this.difficultFactor) && this.gameMap.getActiveEntities().size()<2) {
+	    
 	    this.enemyTimer = now;
 	    this.difficultFactor *= 1.02;
 	    Ship enemy = randomShip();
@@ -103,8 +102,8 @@ public class GameEngineImpl extends AnimationTimer {
 	int typeShip = (int) (Math.random() * 3) + 1;
 	Vec2 spawnPosition = new Vec2(0, 0);
 	
-	spawnPosition.setFromAngle(Math.random() * 360);
-	spawnPosition.mulLocal(this.gameMap.getWidth().floatValue() / 2);
+	//spawnPosition.setFromAngle(Math.random() * 360);
+	//spawnPosition.mulLocal(this.gameMap.getWidth().floatValue() / 2);
 	spawnPosition.addLocal(this.gameMap.getWidth().floatValue() / 2, this.gameMap.getHeight().floatValue() / 2);
 	
 	Ship enemy = null;

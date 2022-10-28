@@ -39,7 +39,9 @@ public class SceneManager {
 	if(entity.isAlive()) {
 	    entity.move(deltaTime);
 	    final Vec2 position = entity.getPosition();
+	    
 	    entity.getNode().relocate(position.x, position.y);
+	    entity.getNode().setRotate(entity.getAngle());
 	}
 	else {
 	    this.gameMap.removeEntity(entity);
