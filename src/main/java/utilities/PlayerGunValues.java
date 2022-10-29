@@ -8,7 +8,7 @@ import java.util.Map;
  */
 public enum PlayerGunValues {
 
-    MAIN_GUN(100, 100, 5, 2, 0.05f);
+    MAIN_GUN(100, 4, 1, 2, 0.05f);
 
     private Map<String, Float> gunValues = new HashMap<>();
 

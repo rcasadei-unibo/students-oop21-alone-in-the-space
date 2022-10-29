@@ -69,7 +69,6 @@ public class PlayerShip implements Ship {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		System.out.println(this.position + " " + this.direction);
 	}
 
 	private void setSpeed(float newSpeed) {
