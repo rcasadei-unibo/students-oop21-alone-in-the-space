@@ -1,6 +1,10 @@
-package model;
+package model.ship;
 
 import java.util.List;
+
+import model.Entity;
+import model.bullet.Bullet;
+import model.gun.Gun;
 
 public interface Ship extends Entity {
 	

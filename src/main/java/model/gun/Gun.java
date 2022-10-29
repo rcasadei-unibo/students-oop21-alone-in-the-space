@@ -1,6 +1,9 @@
-package model;
+package model.gun;
 
 import com.almasb.fxgl.core.math.Vec2;
+
+import model.bullet.Bullet;
+import model.ship.Ship;
 
 import java.util.List;
 

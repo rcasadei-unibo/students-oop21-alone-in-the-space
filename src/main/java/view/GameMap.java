@@ -5,9 +5,9 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import model.Bullet;
 import model.Entity;
-import model.Ship;
+import model.bullet.Bullet;
+import model.ship.Ship;
 import model.status.StatusImpl;
 
 import java.util.Set;

@@ -1,4 +1,4 @@
-package model;
+package model.bullet;
 
 import com.almasb.fxgl.core.math.Vec2;
 

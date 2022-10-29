@@ -4,8 +4,8 @@ import com.almasb.fxgl.core.math.Vec2;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import model.Bullet;
-import model.Ship;
+import model.bullet.Bullet;
+import model.ship.Ship;
 import utilities.InputCommands;
 
 /**

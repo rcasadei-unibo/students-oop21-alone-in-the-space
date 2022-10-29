@@ -1,8 +1,8 @@
 package controller.collisionDetection;
 
-import model.Bullet;
 import model.Entity;
-import model.Ship;
+import model.bullet.Bullet;
+import model.ship.Ship;
 
 import java.util.Collection;
 

@@ -1,4 +1,4 @@
-package model;
+package model.ship;
 
 import java.util.List;
 
@@ -6,6 +6,8 @@ import com.almasb.fxgl.core.math.Vec2;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import model.bullet.Bullet;
+import model.gun.Gun;
 import utilities.InputCommands;
 
 

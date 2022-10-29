@@ -1,6 +1,8 @@
-package model;
+package model.bullet;
 
 import com.almasb.fxgl.core.math.Vec2;
+
+import model.Entity;
 
 
 public interface Bullet extends Entity {

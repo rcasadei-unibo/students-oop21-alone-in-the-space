@@ -1,7 +1,8 @@
-package model;
+package model.ship;
 
 import com.almasb.fxgl.core.math.Vec2;
 import javafx.scene.image.Image;
+import model.gun.GunFactory;
 
 public class EnemyFactory {
     public static Ship BasicEnemy(Vec2 newPosition) throws IllegalArgumentException {

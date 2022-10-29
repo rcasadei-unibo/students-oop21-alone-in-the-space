@@ -1,8 +1,9 @@
-package model;
+package model.bullet;
 
 import com.almasb.fxgl.core.math.Vec2;
 
 import javafx.scene.image.Image;
+import model.ship.Ship;
 
 public class BulletFactory {
 
