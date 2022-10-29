@@ -66,7 +66,7 @@ public class GameControllerImpl implements GameController {
 		}
 
 		if (this.inputController.isTaskActive(InputCommands.ATTACK)) {
-			final Optional<Bullet> playerBulletShot = Optional.of(this.playerShipController.shot());
+			final Optional<Bullet> playerBulletShot = Optional.ofNullable(this.playerShipController.shot());
 			playerBulletShot.ifPresent(bullet -> this.gameMap.addPlayerBullet(bullet));
 
 		}

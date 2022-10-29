@@ -76,7 +76,7 @@ public class PlayerShipControllerImpl implements PlayerShipController {
     public ImageView update(long deltaTime) {
         if (this.hasFired) {
             this.gunRechargeTime += deltaTime;
-            if (this.gunRechargeTime >= 1000000 / fireRate) {
+            if (this.gunRechargeTime >= 10000000 / fireRate) {
                 this.hasFired = false;
                 this.gunRechargeTime = 0;
             }
