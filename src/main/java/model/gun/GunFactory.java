@@ -7,41 +7,12 @@ import model.bullet.BulletFactory;
 import model.ship.PlayerShip;
 import model.ship.Ship;
 
-import java.util.List;
-
-abstract class GunImpl implements Gun {
-	private int degRange;
-	protected Ship actualShip;
-
-	public GunImpl(int degRange, Ship ship) {
-		this.degRange = degRange;
-		this.actualShip = ship;
-	}
-
-	public Bullet shot(Vec2 direction) {
-		// TODO Auto-generated method stub
-		return BulletFactory.BasicBullet(actualShip.getPosition(), direction);
-
-	}
-
-	public boolean isInRange(Vec2 shipPos, Vec2 direction,Ship enemy) {
-		// TODO Auto-generated method stub
-	    return Math.abs(enemy.getPosition().sub(shipPos).angle()-direction.angle())<this.degRange/2;		
-
-	}
-
-	public float getDegRange() {
-		// TODO Auto-generated method stub
-		return this.degRange;
-	}
-
-}
 
 public class GunFactory {
 
 	public static Gun rifle(Ship spaceship) {
 		// TODO Auto-generated method stub
-		class Rifle extends GunImpl {
+		class Rifle extends AbstractGun {
 
 			public Rifle(int degRange, Ship ship) {
 				super(degRange, ship);
@@ -60,7 +31,7 @@ public class GunFactory {
 
 	public static Gun missile(Ship spaceship) {
 		// TODO Auto-generated method stub
-		class Missile extends GunImpl {
+		class Missile extends AbstractGun {
 
 			public Missile(int degRange, Ship ship) {
 				super(degRange, ship);
@@ -80,7 +51,7 @@ public class GunFactory {
 
 	public static Gun boltGun(Ship spaceship) {
 		// TODO Auto-generated method stub
-		class BoltGun extends GunImpl {
+		class BoltGun extends AbstractGun {
 
 			public BoltGun(int degRange, Ship ship) {
 				super(degRange, ship);
@@ -105,7 +76,7 @@ public class GunFactory {
 		/**
 		 * PlayerGun implementation
 		 */
-		class PlayerGun extends GunImpl {
+		class PlayerGun extends AbstractGun {
 			/**
 			 * constructor
 			 * @param degRange range of the bullets

@@ -133,7 +133,7 @@ public class PlayerShipControllerImpl implements PlayerShipController {
         final ImageView sprite = playerShip.getSprite();
         sprite.setX(playerShip.getPosition().x - sprite.getImage().getWidth()/2);
         sprite.setY(playerShip.getPosition().y + sprite.getImage().getHeight()/2);
-       // sprite.setRotate(playerShip.getYaw());
+        sprite.setRotate(playerShip.getAngle());
         return sprite;
     }
 
@@ -171,7 +171,7 @@ public class PlayerShipControllerImpl implements PlayerShipController {
         * every 5 levels, gun damage is increased by 5% of the original value
         */
         this.playerShip.setMaxHealth(5 * (PlayerValues.MAIN_SHIP.getValueFromKey("MAXHEALTH")) / 100);
-        this.playerShip.setHealth((int) this.playerShip.getMaxHealth());
+        this.playerShip.setHealth(this.playerShip.getMaxHealth());
 
         if (this.currentLevel % 3 == 0) {
             this.fireRate += 5 * (PlayerValues.MAIN_SHIP.getValueFromKey("FIRERATE")) / 100;

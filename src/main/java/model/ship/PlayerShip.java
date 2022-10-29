@@ -158,11 +158,13 @@ public class PlayerShip implements Ship {
 	 * getter
 	 * @return angle of the ship
 	 */
-	public double getYaw() {
+	@Override
+	public double getAngle() {
 		return this.yaw;
 	}
 
 	/**
+	 *
 	 * getter
 	 * @return direction of the ship
 	 */
@@ -263,7 +265,7 @@ public class PlayerShip implements Ship {
 	 * getter
 	 * @return current max health of the player
 	 */
-	public float getMaxHealth() {
+	public int getMaxHealth() {
 	    return this.maxHealth; 
 	}
 
@@ -329,9 +331,4 @@ public class PlayerShip implements Ship {
 
 	}
 
-	@Override
-	public double getAngle() {
-	    // TODO Auto-generated method stub
-	    return (this.getYaw());
-	}
 }

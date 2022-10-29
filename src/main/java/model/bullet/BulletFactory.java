@@ -88,7 +88,7 @@ public class BulletFactory {
 	class PlayerBullet extends AbstractBullet {
 	    public PlayerBullet(float maxSpeed, float acceleration, float rotationSpeed, int damage, PlayerShip playerShip) {
 			super(maxSpeed, acceleration, rotationSpeed, damage, playerShip.getPosition().copy(), playerShip.getDirection().copy());
-			this.yaw = playerShip.getYaw();
+			this.yaw = playerShip.getAngle();
 	    }
 		private float speed2=0;
 		private final double yaw;

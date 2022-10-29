@@ -60,7 +60,7 @@ public class GameEngineImpl extends AnimationTimer {
 	    System.out.println("time : " + (now - this.enemyTimer));
 	    this.enemyTimer = now;
 	}
-	if ((now - this.enemyTimer) / 1000000L > (DELTAENEMY / this.difficultFactor) && this.gameMap.getActiveEntities().size()<7) {
+	if ((now - this.enemyTimer) / 1000000L > (DELTAENEMY / this.difficultFactor) && this.gameMap.getActiveEnemyShips().size()<7) {
 	    
 	    this.enemyTimer = now;
 	    this.difficultFactor *= 1.02;
