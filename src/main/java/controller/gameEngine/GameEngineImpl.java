@@ -25,8 +25,6 @@ public class GameEngineImpl extends AnimationTimer {
     private static final long SLEEP = 10_000_000;
     private static final int SLEEP_TIMER = 100_000;
     private static final double VALUE = 1e9;
-
-    private static final long PERIOD = 100L;
     private GameControllerImpl game;
     private long enemyTimer;
     private static final long DELTAENEMY = 5000L;
@@ -81,29 +79,13 @@ public class GameEngineImpl extends AnimationTimer {
     public long getTimeSleep() {
         return SLEEP;
     }
-
-    /*
-     * @Override public void mainLoop() { long lastTime =
-     * System.currentTimeMillis(); while (event.checkGameStatus()) { long current =
-     * System.currentTimeMillis(); long elapsed = (current - lastTime);
-     * processInput(); update(elapsed); render(); try { waitForNextFrame(current); }
-     * catch (IllegalArgumentException e) { e.printStackTrace(); } lastTime =
-     * current; } }
-     * 
-     * @Override public void processInput() { // TODO Auto-generated method stub }
-     * 
-     * @Override public void update(long elapsed) { // TODO Auto-generated method
-     * stub this.game.update(elapsed); long current = System.currentTimeMillis(); if
-     * ((current - this.enemyTimer) > DELTAENEMY / this.difficultFactor) {
-     * this.gameMap.addEnemyShip(randomShip()); this.enemyTimer = current;
-     * this.difficultFactor *= 1.02; } }
-     */
+    
     private Ship randomShip() {
 	int typeShip = (int) (Math.random() * 3) + 1;
 	Vec2 spawnPosition = new Vec2(0, 0);
 	
-	//spawnPosition.setFromAngle(Math.random() * 360);
-	//spawnPosition.mulLocal(this.gameMap.getWidth().floatValue() / 2);
+	spawnPosition.setFromAngle(Math.random() * 360);
+	spawnPosition.mulLocal(this.gameMap.getWidth().floatValue() / 2);
 	spawnPosition.addLocal(this.gameMap.getWidth().floatValue() / 2, this.gameMap.getHeight().floatValue() / 2);
 	
 	Ship enemy = null;
@@ -124,18 +106,6 @@ public class GameEngineImpl extends AnimationTimer {
 	enemy.setTarget(this.gameMap.getPlayer());
 	return enemy;
     }
-    /*
-     * @Override public void render() { // TODO Auto-generated method stub }
-     * 
-     * @Override public void initGame() {
-     * 
-     * }
-     * 
-     * protected void waitForNextFrame(final long current) { long dt =
-     * System.currentTimeMillis() - current; if (dt < PERIOD) { try {
-     * Thread.sleep(PERIOD - dt); } catch (IllegalArgumentException |
-     * InterruptedException e) { e.printStackTrace(); } } }
-     */
 
     public Stage getStage() {
 	return this.stage;

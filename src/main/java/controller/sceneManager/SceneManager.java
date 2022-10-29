@@ -41,9 +41,9 @@ public class SceneManager {
 	    if(entity.isAlive()) {
 	        entity.move(deltaTime);
 	        final Vec2 position = entity.getPosition();
-	        ImageView vara = (ImageView) entity.getNode();
-	        vara.getImage().getHeight();
-	        entity.getNode().relocate(position.x-vara.getImage().getWidth()/2, position.y- vara.getImage().getHeight()/2);
+	        ImageView image = (ImageView) entity.getNode();
+	        image.getImage().getHeight();
+	        entity.getNode().relocate(position.x-image.getImage().getWidth()/2, position.y- image.getImage().getHeight()/2);
 	        entity.getNode().setRotate(entity.getAngle());
 	    }
 	    else {

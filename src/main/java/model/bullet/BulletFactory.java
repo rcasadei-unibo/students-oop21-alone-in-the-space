@@ -23,11 +23,11 @@ public class BulletFactory {
 	return var;
     }
 
-    public static Bullet RifleBullet(Vec2 position, Vec2 direction) {
+    public static Bullet bolt(Vec2 position, Vec2 direction) {
 
-	class RifleBullet extends AbstractBullet {
+	class Bolt extends AbstractBullet {
 
-	    public RifleBullet(float maxSpeed, float acceleration, float rotationSpeed, int damage, Vec2 position,
+	    public Bolt(float maxSpeed, float acceleration, float rotationSpeed, int damage, Vec2 position,
 		    Vec2 direction) {
 		super(maxSpeed, acceleration, rotationSpeed, damage, position, direction);
 		// TODO Auto-generated constructor stub
@@ -35,7 +35,7 @@ public class BulletFactory {
 
 	}
 	;
-	Bullet var = new RifleBullet(100, 100, 10, 10, position, direction);
+	Bullet var = new Bolt(100, 100, 10, 10, position, direction);
 	var.setSprite(new Image("images/bullet_02.png"));
 	return var;
 
@@ -43,10 +43,10 @@ public class BulletFactory {
 
     public static Bullet missile(Vec2 position, Vec2 direction, final Ship enemy) {
 
-	class missile extends AbstractBullet {
+	class Missile extends AbstractBullet {
 	    
 	    protected final Ship target;
-	    public missile(float maxSpeed, float acceleration, float rotationSpeed, int damage, Vec2 position,
+	    public Missile(float maxSpeed, float acceleration, float rotationSpeed, int damage, Vec2 position,
 		    Vec2 direction, Ship enemy) {
 		super(maxSpeed, acceleration, rotationSpeed, damage, position, direction);
 		// TODO Auto-generated constructor stub
@@ -64,7 +64,7 @@ public class BulletFactory {
 //			}
 	}
 	;
-	Bullet var = new missile(100, 100, 10, 10, position, direction, enemy);
+	Bullet var = new Missile(100, 100, 10, 10, position, direction, enemy);
 	var.setSprite(new Image("images/missile_01.png"));
 	return var;
 

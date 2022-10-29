@@ -41,28 +41,28 @@ public class GunFactory {
 
 	public static Gun rifle(Ship spaceship) {
 		// TODO Auto-generated method stub
-		class rifle extends GunImpl {
+		class Rifle extends GunImpl {
 
-			public rifle(int degRange, Ship ship) {
+			public Rifle(int degRange, Ship ship) {
 				super(degRange, ship);
 				// TODO Auto-generated constructor stub
 			}
 			public Bullet shot(Vec2 direction) {
 				// TODO Auto-generated method stub
-				return BulletFactory.RifleBullet(super.actualShip.getPosition(), super.actualShip.getDirection());
+				return BulletFactory.bolt(super.actualShip.getPosition(), super.actualShip.getDirection());
 
 			}
 
 		};
-		var gun =new rifle(10, spaceship);
+		var gun =new Rifle(10, spaceship);
 		return gun;
 	}
 
 	public static Gun missile(Ship spaceship) {
 		// TODO Auto-generated method stub
-		class missile extends GunImpl {
+		class Missile extends GunImpl {
 
-			public missile(int degRange, Ship ship) {
+			public Missile(int degRange, Ship ship) {
 				super(degRange, ship);
 			}
 			
@@ -74,22 +74,22 @@ public class GunFactory {
 			 
 
 		}
-		return new missile(45, spaceship);
+		return new Missile(45, spaceship);
 
 	}
 
-	public static Gun shootgun(Ship spaceship) {
+	public static Gun bolt(Ship spaceship) {
 		// TODO Auto-generated method stub
-		class shootgun extends GunImpl {
+		class Bolt extends GunImpl {
 
-			public shootgun(int degRange, Ship ship) {
+			public Bolt(int degRange, Ship ship) {
 				super(degRange, ship);
 				// TODO Auto-generated constructor stub
 			}
 			
 
 		}
-		return new shootgun(30, spaceship);
+		return new Bolt(30, spaceship);
 	}
 
 	/**

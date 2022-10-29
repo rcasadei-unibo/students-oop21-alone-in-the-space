@@ -88,5 +88,7 @@ public abstract class AbstractBullet implements Bullet {
 		public void setSprite(Image img) {
 			this.sprite = new ImageView();
 			this.sprite.setImage(img);
+			this.sprite.setFitWidth(50);
+			this.sprite.setFitHeight(50);
 		}
 }
