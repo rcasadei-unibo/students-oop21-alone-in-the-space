@@ -40,7 +40,7 @@ public abstract class AbstractShip implements Ship {
 		
 		double newdeltaTime = ((double)deltaTime) / 1000000000L; //conversion to seconds
 		var angle = (calculateDir());
-		if(Math.abs(angle)>this.gun.getDegRange()/2) {
+		if(Math.abs(this.speed.angle()-angle)>90 ||Math.abs(angle)>this.gun.getDegRange()/2) {
 		    this.direction=this.direction.add((new Vec2(1,0).setFromAngle(angle)).mul(newdeltaTime*this.rotationSpeed)) ;		    
 		}
 		this.speed = this.speed.add(direction.mul(newdeltaTime * acceleration));
