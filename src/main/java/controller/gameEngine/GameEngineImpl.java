@@ -91,16 +91,16 @@ public class GameEngineImpl extends AnimationTimer {
 	Ship enemy = null;
 	switch (typeShip) {
 	case 1:
-	    enemy = EnemyFactory.BasicEnemy(spawnPosition);
+	    enemy = EnemyFactory.basicEnemy(spawnPosition);
 	    break;
 	case 2:
-	    enemy = EnemyFactory.MissileEnemy(spawnPosition);
+	    enemy = EnemyFactory.missileEnemy(spawnPosition);
 	    break;
 	case 3:
-	    enemy = EnemyFactory.RifleEnemy(spawnPosition);
+	    enemy = EnemyFactory.rifleEnemy(spawnPosition);
 	    break;
 	default:
-	    enemy = EnemyFactory.BasicEnemy(spawnPosition);
+	    enemy = EnemyFactory.basicEnemy(spawnPosition);
 	    break;
 	}
 	enemy.setTarget(this.gameMap.getPlayer());
