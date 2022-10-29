@@ -16,6 +16,7 @@ import utilities.EnumString;
 import utilities.InputCommands;
 import utilities.PlayerValues;
 import view.GameMap;
+import view.hud.HUDImpl;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -44,6 +45,7 @@ public class GameControllerImpl implements GameController {
 		this.playerShipController.setStatus(this.gameMap.getStatus());
         this.sceneManager = new SceneManager(this.gameMap);
         this.eventController = new EventControllerImpl(this.gameMap);
+		this.eventController.getHudBuilder().setStatus(this.gameMap.getStatus());
         this.enemies = this.gameMap.getActiveEnemyShips();
         this.enemyTimer = System.currentTimeMillis();
     }
@@ -92,6 +94,7 @@ public class GameControllerImpl implements GameController {
 		});
 
 		this.sceneManager.update(deltaTime);
+		this.eventController.getHudBuilder().update();
 		//this.playerShipController.update(deltaTime);should be included in the scene manager
 
 		if (!this.eventController.checkGameStatus()) {

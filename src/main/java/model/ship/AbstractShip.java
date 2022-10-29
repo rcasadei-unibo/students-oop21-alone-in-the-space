@@ -77,7 +77,7 @@ public abstract class AbstractShip implements Ship {
 	
 	@Override
 	public double getAngle() {	
-	    return  (this.speed.angle()-90);
+	    return  (this.speed.angle()+90);
 	 
 	}
 

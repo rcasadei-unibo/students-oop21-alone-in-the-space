@@ -21,6 +21,10 @@ public class EventControllerImpl implements EventController {
         return this.hudBuilder.getCollision();
     }
 
+    public HUDImpl getHudBuilder() {
+        return this.hudBuilder;
+    }
+
     @Override
     public int checkPoints() {
         return this.hudBuilder.checkPoints();

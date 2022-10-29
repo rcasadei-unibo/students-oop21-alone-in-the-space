@@ -21,10 +21,9 @@ public class HUDPointsImpl extends Label implements HUDPoints {
 
     public HUDPointsImpl() {
         this.points = EnumInt.ZERO.getValue();
-
         this.setLayoutX(EnumInt.WIDTH.getValue() - X_LAYOUT);
         this.setLayoutY(Y_LAYOUT);
-        this.setText(MATTER + this.getPoints());
+        this.setText(MATTER);
         this.setFont(new Font(EnumString.FONT.getValue(), EnumInt.FONT_SIZE.getValue()));
         this.setTextFill(Paint.valueOf(YELLOW));
     }
@@ -44,6 +43,11 @@ public class HUDPointsImpl extends Label implements HUDPoints {
     @Override
     public void setPoints(int value) {
         this.points += value;
+        this.setText(MATTER + this.getPoints());
+    }
+
+    public void update(int points) {
+        this.points = points;
         this.setText(MATTER + this.getPoints());
     }
 }

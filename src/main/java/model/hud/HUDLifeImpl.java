@@ -5,6 +5,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import utilities.EnumInt;
 import utilities.EnumString;
+import utilities.PlayerValues;
 
 public class HUDLifeImpl extends Label implements HUDLife {
 
@@ -28,10 +29,10 @@ public class HUDLifeImpl extends Label implements HUDLife {
      * Constructor.
      */
     public HUDLifeImpl() {
-        this.lifePoints = EnumInt.LIFE_POINTS.getValue();
+        this.lifePoints = PlayerValues.MAIN_SHIP.getValueFromKey("MAXHEALTH");
         this.setLayoutX(EnumInt.WIDTH.getValue() - X_LAYOUT);
         this.setLayoutY(Y_LAYOUT);
-        this.setText(MATTER + this.getLifePoints());
+        this.setText(MATTER);
         this.setFont(new Font(EnumString.FONT.getValue(), EnumInt.FONT_SIZE.getValue()));
         this.setTextFill(Paint.valueOf(YELLOW));
         this.gameStatus = true;
@@ -44,17 +45,19 @@ public class HUDLifeImpl extends Label implements HUDLife {
 
     @Override
     public void lifeDown(final int damage) {
-        if (this.getLifePoints() > LESS_LIVES_POSSIBLE) {
-            this.lifePoints = this.lifePoints - damage;
-        } else {
-            this.lifePoints = EnumInt.ZERO.getValue();
-            this.gameStatus = false;
-        }
     }
 
 
     @Override
     public boolean getStatus() {
         return this.gameStatus;
+    }
+
+    public void update(int lifePoints) {
+        this.lifePoints = lifePoints;
+        this.setText(MATTER + this.lifePoints);
+        if(this.lifePoints <= 0) {
+            this.gameStatus=false;
+        }
     }
 }

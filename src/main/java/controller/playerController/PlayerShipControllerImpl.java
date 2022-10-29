@@ -44,7 +44,7 @@ public class PlayerShipControllerImpl implements PlayerShipController {
     @Override
     public void initialisePlayerShip(Vec2 initialPos, Image sprite) {
         this.playerShip = new PlayerShip(initialPos,
-                                                PlayerValues.MAIN_SHIP.getValueFromKey("MAXHEALTH")*10000,
+                                                PlayerValues.MAIN_SHIP.getValueFromKey("MAXHEALTH"),
                                                 PlayerValues.MAIN_SHIP.getValueFromKey("MAXSPEED"),
                                                 PlayerValues.MAIN_SHIP.getValueFromKey("ROTATIONSPEED"));
         this.normalPlayerGun = GunFactory.playerGun(this.playerShip,
@@ -76,7 +76,7 @@ public class PlayerShipControllerImpl implements PlayerShipController {
     public ImageView update(long deltaTime) {
         if (this.hasFired) {
             this.gunRechargeTime += deltaTime;
-            if (this.gunRechargeTime >= 10000000 / fireRate) {
+            if (this.gunRechargeTime >= 1_000_000_000 / fireRate) {
                 this.hasFired = false;
                 this.gunRechargeTime = 0;
             }
