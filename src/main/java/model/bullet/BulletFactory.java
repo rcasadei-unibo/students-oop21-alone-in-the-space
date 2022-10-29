@@ -3,6 +3,8 @@ package model.bullet;
 import com.almasb.fxgl.core.math.Vec2;
 
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import model.ship.PlayerShip;
 import model.ship.Ship;
 
 public class BulletFactory {
@@ -77,20 +79,48 @@ public class BulletFactory {
      * @param acceleration  how fast it reaches its top speed
      * @param rotationSpeed if it can curve
      * @param damage        how much damage it does on impact
-     * @param position      spawn position
-     * @param direction     direction and trajectory to follow
+	 * @param playerShip 	player ship to get position, direction, yaw
      * @return bullet entity that's been shot
      */
     public static Bullet playerBullet(float maxSpeed, float acceleration, float rotationSpeed, int damage,
-	    Vec2 position, Vec2 direction) {
+	    PlayerShip playerShip) {
 
 	class PlayerBullet extends AbstractBullet {
-	    public PlayerBullet(float maxSpeed, float acceleration, float rotationSpeed, int damage, Vec2 position,
-		    Vec2 direction) {
-		super(maxSpeed, acceleration, rotationSpeed, damage, position, direction);
+	    public PlayerBullet(float maxSpeed, float acceleration, float rotationSpeed, int damage, PlayerShip playerShip) {
+			super(maxSpeed, acceleration, rotationSpeed, damage, playerShip.getPosition().copy(), playerShip.getDirection().copy());
+			this.yaw = playerShip.getYaw();
 	    }
+		private float speed2=0;
+		private final double yaw;
+		public void move(long deltaTime) {
+			// TODO Check
+			float newSpeed = speed2 + acceleration * 0.01f * ((float)deltaTime)/1_000_000L;
+			this.setSpeed(newSpeed);
+			try {
+				float newX = (float) (speed2 * Math.cos(Math.toRadians(yaw)));
+				float newY = (float) (speed2 * Math.sin(Math.toRadians(yaw)));
+				this.direction.set(this.direction.x + newX*1.01f, this.direction.y + newY*1.01f);
+				this.position.addLocal(newX,newY);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		}
+
+		private void setSpeed(float newSpeed) {
+			if(newSpeed >= maxSpeed)
+				this.speed2 = maxSpeed;
+			else if(newSpeed <= -maxSpeed){
+				this.speed2 = -maxSpeed;
+			}
+			else
+				this.speed2 = newSpeed;
+		}
+
+		public double getAngle(){
+			return this.yaw;
+		}
 	}
-	Bullet var = new PlayerBullet(maxSpeed, acceleration, rotationSpeed, damage, position, direction);
+	Bullet var = new PlayerBullet(maxSpeed, acceleration, rotationSpeed, damage, playerShip);
 	var.setSprite(new Image("images/bullet_00.png"));
 	return var;
     }
