@@ -22,11 +22,17 @@ fds=0
 
 sdf=0
 
-asdf=0
+asdf=190
 
 saf=0
 
 sdfa=0
+
+afds=0
+
+afsd=6
+
+adsf=36
 
 asfd=0
 

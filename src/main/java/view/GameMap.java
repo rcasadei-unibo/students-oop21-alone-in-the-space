@@ -150,5 +150,6 @@ public interface GameMap {
      * @return Status reference.
      */
     StatusImpl getStatus();
-
+    
+    void removeDeadEntity();
 }
