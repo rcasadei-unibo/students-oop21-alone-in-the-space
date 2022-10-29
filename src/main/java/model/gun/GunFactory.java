@@ -78,18 +78,18 @@ public class GunFactory {
 
 	}
 
-	public static Gun bolt(Ship spaceship) {
+	public static Gun boltGun(Ship spaceship) {
 		// TODO Auto-generated method stub
-		class Bolt extends GunImpl {
+		class BoltGun extends GunImpl {
 
-			public Bolt(int degRange, Ship ship) {
+			public BoltGun(int degRange, Ship ship) {
 				super(degRange, ship);
 				// TODO Auto-generated constructor stub
 			}
 			
 
 		}
-		return new Bolt(30, spaceship);
+		return new BoltGun(30, spaceship);
 	}
 
 	/**
