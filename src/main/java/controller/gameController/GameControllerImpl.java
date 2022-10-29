@@ -82,7 +82,7 @@ public class GameControllerImpl implements GameController {
 
 		this.eventController.getCollision().checkAllCollision(this.playerShipController.getPlayerShip(),
 				this.enemies, this.gameMap.getBulletsShotByPlayer(),
-				this.gameMap.getBulletsShotByPlayer());
+				this.gameMap.getBulletsShotByEnemies());
 		this.playerShipController.update(deltaTime);
 	        this.gameMap.getActiveEnemyShips().removeIf(e -> !(e.isAlive()));
 	        this.gameMap.getBulletsShotByEnemies().removeIf(e -> !(e.isAlive()));
