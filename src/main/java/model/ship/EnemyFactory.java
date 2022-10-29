@@ -5,7 +5,7 @@ import javafx.scene.image.Image;
 import model.gun.GunFactory;
 
 public class EnemyFactory {
-    public static Ship BasicEnemy(Vec2 newPosition) throws IllegalArgumentException {
+    public static Ship basicEnemy(Vec2 newPosition) throws IllegalArgumentException {
 	class BasicEnemy extends AbstractShip {
 
 	    public BasicEnemy(int health, float maxSpeed, float acceleration, float rotationSpeed, long attackCD,
@@ -23,7 +23,7 @@ public class EnemyFactory {
 
     }
 
-    public static Ship MissileEnemy(Vec2 newPosition) throws IllegalArgumentException {
+    public static Ship missileEnemy(Vec2 newPosition) throws IllegalArgumentException {
 	class MissileEnemy extends AbstractShip {
 
 	    public MissileEnemy(int health, float maxSpeed, float acceleration, float rotationSpeed, long attackCD,
@@ -41,7 +41,7 @@ public class EnemyFactory {
 
     }
 
-    public static Ship RifleEnemy(Vec2 newPosition) throws IllegalArgumentException {
+    public static Ship rifleEnemy(Vec2 newPosition) throws IllegalArgumentException {
 	class RifleEnemy extends AbstractShip {
 
 	    public RifleEnemy(int health, float maxSpeed, float acceleration, float rotationSpeed, long attackCD,

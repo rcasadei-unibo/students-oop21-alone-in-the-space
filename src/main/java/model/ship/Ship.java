@@ -29,7 +29,7 @@ public interface Ship extends Entity {
 	 * decrease the ship current health for the damage specified.
 	 * @param damage
 	 */
-	void hit(int damage);
+	void strike(int damage);
 	
 	/**
 	 * set the current target of this ship.

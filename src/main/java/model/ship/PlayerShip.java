@@ -194,7 +194,7 @@ public class PlayerShip implements Ship {
 	 * @param damage inflicted damage amount
 	 */
 	@Override
-	public void hit(int damage) {
+	public void strike(int damage) {
 		this.health -= damage;
 		if (this.health <= 0) {
 			this.destroy();

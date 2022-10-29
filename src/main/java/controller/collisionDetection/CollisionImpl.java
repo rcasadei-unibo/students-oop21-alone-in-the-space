@@ -44,7 +44,7 @@ public class CollisionImpl implements Collision {
 
         enemies.forEach((Ship enemy) -> {
             if (enemy.isAlive() && checkEnemyCollision(player, enemy)) {
-        	player.hit(EnumInt.DAMAGE_COLLISION.getValue());
+        	player.strike(EnumInt.DAMAGE_COLLISION.getValue());
                 //enemy.hit(EnumInt.DAMAGE_COLLISION.getValue());
                 this.hudImpl.getLifeImpl().lifeDown(EnumInt.DAMAGE_COLLISION.getValue());
 
@@ -53,7 +53,7 @@ public class CollisionImpl implements Collision {
 
         playerBullets.forEach((Bullet bullet) -> enemies.forEach((Ship enemy) -> {
             if (bullet.isAlive() && checkBulletCollision(enemy, bullet)) {
-                enemy.hit(bullet.getDamage());
+                enemy.strike(bullet.getDamage());
                 bullet.destroy();
                 if(!enemy.isAlive()) {
                     this.gameMap.getStatus().setPoints(this.gameMap.getStatus().getPoints() + EnumInt.ONE.getValue());
@@ -64,7 +64,7 @@ public class CollisionImpl implements Collision {
 
         enemiesBullets.forEach((Bullet bullet) -> {
             if (bullet.isAlive() && checkBulletCollision(player, bullet)) {
-                player.hit(bullet.getDamage());
+                player.strike(bullet.getDamage());
                 bullet.destroy();
                 this.gameMap.getStatus().setLifePoints(this.gameMap.getStatus().getLifePoints()- bullet.getDamage());
                 this.hudImpl.getLifeImpl().lifeDown(bullet.getDamage());

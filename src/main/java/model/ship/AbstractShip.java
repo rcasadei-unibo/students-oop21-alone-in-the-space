@@ -131,7 +131,7 @@ public abstract class AbstractShip implements Ship {
 	}
 
 	@Override
-	public void hit(int damage) {
+	public void strike(int damage) {
 		this.health -= damage;
 	}
 
