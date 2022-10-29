@@ -8,18 +8,17 @@ import java.util.Map;
  */
 public enum PlayerValues {
 
-    MAIN_SHIP(100, 5, 0.5f, 2);
+    MAIN_SHIP(100, 5, 2);
 
-    private Map<String, Float> shipValues = new HashMap<>();
+    private Map<String, Integer> shipValues = new HashMap<>();
 
-    PlayerValues(final float maxHealth, final float maxSpeed, final float fireRate, final float rotationSpeed) {
+    PlayerValues(final int maxHealth, final int maxSpeed, final int rotationSpeed) {
         shipValues.put("MAXHEALTH", maxHealth);
         shipValues.put("MAXSPEED", maxSpeed);
-        shipValues.put("FIRERATE", fireRate);
         shipValues.put("ROTATIONSPEED", rotationSpeed);
     }
 
-    public float getValueFromKey(String key) {
+    public int getValueFromKey(String key) {
         return shipValues.get(key);
     }
 }

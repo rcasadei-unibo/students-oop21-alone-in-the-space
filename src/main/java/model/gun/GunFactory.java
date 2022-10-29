@@ -129,9 +129,9 @@ public class GunFactory {
 			private float bulletAcceleration;
 			private float bulletRotationSpeed;
 
-			public Bullet shot() {
+			public Bullet shot(Vec2 direction) {
 				return BulletFactory.playerBullet(bulletMaxSpeed, bulletAcceleration, bulletRotationSpeed, bulletDamage,
-						ship.getPosition(), ship.getDirection());
+						ship.getPosition().copy().add(80,80), direction.copy());
 			}
 		}
 		return new PlayerGun(40, ship, damage, maxSpeed, acceleration, rotationSpeed);

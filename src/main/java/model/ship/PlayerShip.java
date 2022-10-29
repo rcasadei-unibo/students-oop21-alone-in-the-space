@@ -1,7 +1,5 @@
 package model.ship;
 
-import java.util.List;
-
 import com.almasb.fxgl.core.math.Vec2;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
@@ -14,14 +12,14 @@ import utilities.InputCommands;
 public class PlayerShip implements Ship {
 
 	private Vec2 position;
-	private float maxHealth;
-	private float health;
-	private float maxSpeed;
+	private int maxHealth;
+	private int health;
+	private int maxSpeed;
 	private Vec2 speed; //watch out for thread competition
 	private float speed2 = 0;
 	private float acceleration = 0;
 	private Vec2 direction;
-	private float rotationSpeed;
+	private int rotationSpeed;
 	private ImageView sprite;
 	private Gun playerGun;
 	private Vec2 rotation;
@@ -34,7 +32,7 @@ public class PlayerShip implements Ship {
 	 * @param maxSpeed how fast the ship goes
 	 * @param rotationSpeed how fast the ship turns
 	 */
-	public PlayerShip(Vec2 position, float maxHealth, float maxSpeed, float rotationSpeed) {
+	public PlayerShip(Vec2 position, int maxHealth, int maxSpeed, int rotationSpeed) {
 		this.position = new Vec2(position);
 		this.maxHealth = maxHealth;
 		this.health = this.maxHealth;
@@ -52,7 +50,7 @@ public class PlayerShip implements Ship {
 	 * @return the bullet fire
 	 */
 	public Bullet shot() {
-		return playerGun.shot(this.position);
+		return playerGun.shot(this.direction);
 	}
 
 	/**
@@ -66,11 +64,12 @@ public class PlayerShip implements Ship {
 		try {
 			float newX = (float) (speed2 * Math.cos(Math.toRadians(yaw)));
 			float newY = (float) (speed2 * Math.sin(Math.toRadians(yaw)));
-			this.direction.addLocal(newX*1.01, newY*1.01);
+			this.direction.set(this.direction.x + newX*1.01f, this.direction.y + newY*1.01f);
 			this.position.addLocal(newX,newY);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+		System.out.println(this.position + " " + this.direction);
 	}
 
 	private void setSpeed(float newSpeed) {
@@ -151,7 +150,9 @@ public class PlayerShip implements Ship {
 				break;
 		}
 		this.yaw = (yaw + rotationSpeed * direction) % 360;
-		this.rotation.setFromAngle(yaw);
+		float newX = (float) (Math.cos(Math.toRadians(yaw)));
+		float newY = (float) (Math.sin(Math.toRadians(yaw)));
+		this.direction.set(this.position.x + newX*1.01f, this.position.y + newY*1.01f);
 	}
 
 	/**
@@ -210,7 +211,6 @@ public class PlayerShip implements Ship {
 
 	/**
 	 * not useful for player, potentially reworkable for new gun type
-	 * @param enemy
 	 * @param deltaTime
 	 * @return
 	 */
@@ -253,9 +253,10 @@ public class PlayerShip implements Ship {
 
 	/**
 	 * getter
+	 *
 	 * @return current health of the player
 	 */
-	public float getHealth() {
+	public int getHealth() {
 		return this.health;
 	}
 
@@ -308,17 +309,13 @@ public class PlayerShip implements Ship {
 	public void setSprite(Image img) {
 		this.sprite = new ImageView();
 		this.sprite.setImage(img);
-		this.sprite.setTranslateX((img.getWidth()/2));
-		this.sprite.setTranslateY((img.getHeight()/2));
-		this.sprite.translateXProperty();
-		this.sprite.translateYProperty();
 	}
 
 	/**
 	 * setter
 	 * @param maxHealth new max health the player can reach
 	 */
-	public void setMaxHealth(float maxHealth) {
+	public void setMaxHealth(int maxHealth) {
 		this.maxHealth = maxHealth;
 	}
 

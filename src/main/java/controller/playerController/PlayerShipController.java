@@ -6,6 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import model.bullet.Bullet;
 import model.ship.Ship;
+import model.status.Status;
 import utilities.InputCommands;
 
 /**
@@ -61,51 +62,10 @@ public interface PlayerShipController  {
      */
     Bullet shot();
 
-    /**
-     * getter method
-     * @return current lives of the Player
-     */
-    int getCurrentLives();
+    Status getStatus();
 
-    /**
-     * add one extra life to the Player
-     */
-    void addLivesBy1();
+    void setStatus(Status status);
 
-    /**
-     * getter
-     * @return how many EXP points the player has
-     */
-    int getExp();
-
-    /**
-     * getter
-     * @return player score
-     */
-    int getScore();
-
-    /**
-     * adds score to both the Player score and EXP amount, checks for level ups; EXP and score correlate
-     * @param scoreGained how many points the player gains on kill
-     */
-    void addScoreExp(int scoreGained);
-
-    /**
-     * setter
-     * @param newScore
-     */
-    void setScore(int newScore);
-
-    /**
-     * setter
-     * @param newExp
-     */
-    void setExp(int newExp);
-
-    /**
-     * if the player has the power up, it can activate it to enter Powered Up mode, enhancing damage and fire rate
-     * ends after 30 secs
-     */
     void activatePowerUp();
 
     /**

@@ -10,8 +10,11 @@ import controller.sceneManager.SceneManager;
 import javafx.scene.image.Image;
 import model.bullet.Bullet;
 import model.ship.Ship;
+import model.status.StatusImpl;
+import utilities.EnumInt;
 import utilities.EnumString;
 import utilities.InputCommands;
+import utilities.PlayerValues;
 import view.GameMap;
 
 import java.io.IOException;
@@ -36,8 +39,9 @@ public class GameControllerImpl implements GameController {
         this.gameMap = gameMap;
         this.gameMap.setBackgroundImage(EnumString.IMAGE_FOLDER.getValue() + "skybox13.jpg");
         this.playerShipController = new PlayerShipControllerImpl(new Vec2(100, 100), new Image("images/shipPlayer.png"));
-        // TODO playerShipController
         this.gameMap.setPlayer(this.playerShipController.getPlayerShip());
+		this.gameMap.setStatus(new StatusImpl(0, PlayerValues.MAIN_SHIP.getValueFromKey("MAXHEALTH"), EnumInt.LIVES.getValue()));
+		this.playerShipController.setStatus(this.gameMap.getStatus());
         this.sceneManager = new SceneManager(this.gameMap);
         this.eventController = new EventControllerImpl(this.gameMap);
         this.enemies = this.gameMap.getActiveEnemyShips();
@@ -63,9 +67,7 @@ public class GameControllerImpl implements GameController {
 
 		if (this.inputController.isTaskActive(InputCommands.ATTACK)) {
 			final Optional<Bullet> playerBulletShot = Optional.of(this.playerShipController.shot());
-			if (!playerBulletShot.isEmpty()) {
-				this.gameMap.addPlayerBullet(playerBulletShot.get());
-			}
+			playerBulletShot.ifPresent(bullet -> this.gameMap.addPlayerBullet(bullet));
 
 		}
 

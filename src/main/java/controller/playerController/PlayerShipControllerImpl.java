@@ -9,6 +9,8 @@ import model.gun.Gun;
 import model.gun.GunFactory;
 import model.ship.PlayerShip;
 import model.ship.Ship;
+import model.status.Status;
+import model.status.StatusImpl;
 import utilities.EnumInt;
 import utilities.InputCommands;
 import utilities.PlayerGunValues;
@@ -17,23 +19,20 @@ import utilities.PlayerValues;
 public class PlayerShipControllerImpl implements PlayerShipController {
 
     private PlayerShip playerShip;
-    private int currentLives;
-    private int currentLevel;
-    private int exp;
-    private int score;
+    private Status playerStatus;
     private float fireRate;
     private float gunRechargeTime = 0;
     private boolean hasFired = false;
     private boolean hasPowerUp = false;
     private boolean activePowerUp = false;
+    private long powerTime = 0;
+    private int currentLevel;
     private int gunDamage = (int) PlayerGunValues.MAIN_GUN.getValueFromKey("DAMAGE");
     private Gun normalPlayerGun;
-    private long powerTime = 0;
+    private int exp;
 
     public PlayerShipControllerImpl() {
-        this.currentLives = EnumInt.LIVES.getValue();
         this.exp = 0;
-        this.score = 0;
         this.currentLevel = 1;
     }
 
@@ -53,7 +52,7 @@ public class PlayerShipControllerImpl implements PlayerShipController {
                                                 PlayerGunValues.MAIN_GUN.getValueFromKey("MAXSPEED"),
                                                 PlayerGunValues.MAIN_GUN.getValueFromKey("ACCELERATION"),
                                                 PlayerGunValues.MAIN_GUN.getValueFromKey("ROTATIONSPEED"));
-        this.fireRate = PlayerValues.MAIN_SHIP.getValueFromKey("FIRERATE");
+        this.fireRate = PlayerGunValues.MAIN_GUN.getValueFromKey("FIRERATE");
         this.playerShip.setGun(this.normalPlayerGun);
         this.playerShip.setSprite(sprite);
     }
@@ -92,6 +91,7 @@ public class PlayerShipControllerImpl implements PlayerShipController {
         }
         if(this.playerShip.getAcceleration() == 0)
             this.playerShip.decaySpeed();
+        this.playerStatus.setLifePoints(this.playerShip.getHealth());
         return display();
     }
 
@@ -131,45 +131,34 @@ public class PlayerShipControllerImpl implements PlayerShipController {
     @Override
     public ImageView display() {
         final ImageView sprite = playerShip.getSprite();
-        sprite.setX(playerShip.getPosition().x);
-        sprite.setY(playerShip.getPosition().y);
+        sprite.setX(playerShip.getPosition().x - sprite.getImage().getWidth()/2);
+        sprite.setY(playerShip.getPosition().y + sprite.getImage().getHeight()/2);
        // sprite.setRotate(playerShip.getYaw());
         return sprite;
     }
 
     @Override
     public void destroy() {
-        this.currentLives--;
+        this.playerStatus.setLives(this.playerStatus.getLives()-1);
         playerShip.destroy();
     }
-
-    public int getCurrentLives() {
-        return this.currentLives;
+    public Status getStatus() {
+        return this.playerStatus;
+    }
+    public void setStatus(Status status) {
+        this.playerStatus = status;
     }
 
-    public void addLivesBy1() {
-        this.currentLives++;
-    }
 
-    public int getExp() {
+    private int getExp() {
         return this.exp;
     }
-    public int getScore() {
-        return this.score;
-    }
 
-    public void setExp(int newPoints) {
+    private void setExp(int newPoints) {
         this.exp = newPoints;
     }
-    public void setScore(int newScore) {
-        this.score = newScore;
-    }
-    public void addScoreExp(int expGained) {
+    public void addExp(int expGained) {
         //TODO: increase requirement naturally
-        if ((this.score + expGained) >= EnumInt.POWER_UP_SCORE.getValue()) {
-            this.hasPowerUp = true;
-        }
-        this.score += expGained;
         this.exp += expGained;
         if (checkLevelUp()) {
             this.levelUp();
@@ -208,7 +197,10 @@ public class PlayerShipControllerImpl implements PlayerShipController {
 
     private boolean checkLevelUp() {
         //level requirement increases exponentially
-        return this.exp >= EnumInt.EXP_REQUIRED.getValue() * (Math.pow(2, this.currentLevel - 1));
+        return this.exp >= nextLevelUp();
+    }
+    private int nextLevelUp() {
+        return EnumInt.EXP_REQUIRED.getValue() * (int) (Math.pow(2, this.currentLevel - 1));
     }
 
 }
