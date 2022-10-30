@@ -1,7 +1,6 @@
 package model.status;
 
 import controller.playerController.PlayerShipController;
-import controller.playerController.PlayerShipControllerImpl;
 import utilities.EnumInt;
 
 public class StatusImpl implements Status{
@@ -10,6 +9,7 @@ public class StatusImpl implements Status{
     private int lifePoints;
     private int powerUpActivations = 0;
     private PlayerShipController playerController;
+    private boolean powerUp = false;
 
     public StatusImpl(int points, int lifePoints) {
         this.points = points;
@@ -50,6 +50,11 @@ public class StatusImpl implements Status{
     @Override
     public int getLifePoints() {
         return this.lifePoints;
+    }
+
+    @Override
+    public boolean switchPowerUp() {
+        return !this.powerUp;
     }
 
 

@@ -75,7 +75,10 @@ public class PlayerShipControllerImpl implements PlayerShipController {
 
     @Override
     public void acquirePowerUp() {
-        this.hasPowerUp = true;
+        if(!hasPowerUp) {
+            this.hasPowerUp = true;
+            this.playerStatus.switchPowerUp();
+        }
     }
 
     public ImageView update(long deltaTime) {
@@ -115,6 +118,7 @@ public class PlayerShipControllerImpl implements PlayerShipController {
     public void activatePowerUp() {
         if (hasPowerUp && !activePowerUp) {
             this.hasPowerUp = false;
+            this.playerStatus.switchPowerUp();
             this.fireRate *= 2;
             this.gunDamage *= 2;
             //bit jank, but it will have to do; original playergun is remembered in the class
