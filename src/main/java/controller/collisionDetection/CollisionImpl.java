@@ -38,14 +38,14 @@ public class CollisionImpl implements Collision {
 
     @Override
     public void checkBorderCollision(final Entity ship) {
-        if (ship.getPosition().y >= EnumInt.HEIGHT.getValue()) {
-            ship.setPosition(new Vec2(EnumInt.WIDTH.getValue() - ship.getPosition().x , 0));
-        } else if (ship.getPosition().y <= 0) {
-            ship.setPosition(new Vec2(EnumInt.WIDTH.getValue() - ship.getPosition().x , EnumInt.HEIGHT.getValue()));
-        } else if (ship.getPosition().x >= EnumInt.WIDTH.getValue()) {
-            ship.setPosition(new Vec2(0 , EnumInt.HEIGHT.getValue() - ship.getPosition().y));
-        } else if (ship.getPosition().x <= 0) {
-            ship.setPosition(new Vec2(EnumInt.WIDTH.getValue() , EnumInt.HEIGHT.getValue() - ship.getPosition().y));
+        if (ship.getPosition().y >= EnumInt.HEIGHT.getValue() + EnumInt.SLACK.getValue()) {
+            ship.setPosition(new Vec2(ship.getPosition().x , 0));
+        } else if (ship.getPosition().y <= -EnumInt.SLACK.getValue()) {
+            ship.setPosition(new Vec2(ship.getPosition().x , EnumInt.HEIGHT.getValue()));
+        } else if (ship.getPosition().x >= EnumInt.WIDTH.getValue() + EnumInt.SLACK.getValue()) {
+            ship.setPosition(new Vec2(0 , ship.getPosition().y));
+        } else if (ship.getPosition().x <= -EnumInt.SLACK.getValue()) {
+            ship.setPosition(new Vec2(EnumInt.WIDTH.getValue() , ship.getPosition().y));
         }
     }
 

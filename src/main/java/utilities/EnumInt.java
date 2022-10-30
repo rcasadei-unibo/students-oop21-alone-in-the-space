@@ -89,17 +89,22 @@ public enum EnumInt {
     /**
      *
      */
-    POWER_UP_DURATION(30_000),
+    POWER_UP_DURATION(30),
 
     /**
      *
      */
-    POWER_UP_SCORE(100),
+    POWER_UP_SCORE(10),
 
     /**
      *
      */
-    VIEW_ORDER(-51);
+    VIEW_ORDER(-51),
+
+    /**
+     *
+     */
+    SLACK(100);
 
     private final int value;
 
