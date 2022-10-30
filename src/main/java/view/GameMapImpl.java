@@ -140,9 +140,7 @@ public class GameMapImpl implements GameMap {
 
     @Override
     public void setScene(Scene scene) {
-	this.scene = scene;
-	System.out.println(scene.getX());
-	System.out.println(scene.getY());
+	    this.scene = scene;
     }
 
     @Override
