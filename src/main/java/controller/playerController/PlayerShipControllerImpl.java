@@ -83,7 +83,7 @@ public class PlayerShipControllerImpl implements PlayerShipController {
         }
         if (this.activePowerUp) {
             this.powerTime += deltaTime;
-            if (this.powerTime >= EnumInt.POWER_UP_DURATION.getValue()) {
+            if (this.powerTime >= EnumInt.POWER_UP_DURATION.getValue() * 1_000_000_000L) {
                 this.activePowerUp = false;
                 this.powerTime = 0;
                 this.endPowerUp();
@@ -131,9 +131,6 @@ public class PlayerShipControllerImpl implements PlayerShipController {
     @Override
     public ImageView display() {
         final ImageView sprite = playerShip.getSprite();
-        sprite.setX(playerShip.getPosition().x - sprite.getImage().getWidth()/2);
-        sprite.setY(playerShip.getPosition().y + sprite.getImage().getHeight()/2);
-        sprite.setRotate(playerShip.getAngle());
         return sprite;
     }
 
@@ -174,7 +171,7 @@ public class PlayerShipControllerImpl implements PlayerShipController {
         this.playerShip.setHealth(this.playerShip.getMaxHealth());
 
         if (this.currentLevel % 3 == 0) {
-            this.fireRate += 5 * (PlayerValues.MAIN_SHIP.getValueFromKey("FIRERATE")) / 100;
+            this.fireRate += 5f * (PlayerValues.MAIN_SHIP.getValueFromKey("FIRERATE")) / 100;
         }
 
         if (this.currentLevel % 5 == 0) {

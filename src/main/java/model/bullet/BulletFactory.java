@@ -3,6 +3,7 @@ package model.bullet;
 import com.almasb.fxgl.core.math.Vec2;
 
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import model.ship.PlayerShip;
 import model.ship.Ship;
 
@@ -105,6 +106,10 @@ public class BulletFactory {
 		super(maxSpeed, acceleration, rotationSpeed, damage, playerShip.getPosition().copy(),
 			playerShip.getDirection().copy());
 		this.yaw = playerShip.getAngle();
+		float newX = (float) (Math.cos(Math.toRadians(yaw)));
+		float newY = (float) (Math.sin(Math.toRadians(yaw)));
+		this.position.addLocal(playerShip.getSprite().getImage().getWidth()*newX, playerShip.getSprite().getImage().getHeight()*newY);
+
 	    }
 
 	    private float speed2 = 0;

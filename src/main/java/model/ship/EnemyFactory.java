@@ -52,7 +52,7 @@ public class EnemyFactory {
 
 	};
 	
-	Ship en = new RifleEnemy(2, 80, 10f, 360, 500, newPosition);
+	Ship en = new RifleEnemy(20, 80, 10f, 360, 500, newPosition);
 	en.setGun(GunFactory.rifle(en));
 	en.setSprite(new Image("images/ship_30.png"));
 	return en;

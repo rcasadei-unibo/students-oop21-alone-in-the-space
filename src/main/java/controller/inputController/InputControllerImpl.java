@@ -99,13 +99,13 @@ public class InputControllerImpl implements InputController {
      */
     private void updateKeysInfo() {
         //
-        final Set<KeyCode> activeKeys = this.pressedKeys.entrySet().stream().filter(entry -> entry.getValue())
-                .map(entry -> entry.getKey()).collect(Collectors.toSet());
+        final Set<KeyCode> activeKeys = this.pressedKeys.entrySet().stream().filter(Map.Entry::getValue)
+                .map(Map.Entry::getKey).collect(Collectors.toSet());
         final Set<InputCommands> activeCommand = this.commandKeys.entrySet().stream()
-                .filter(entry -> activeKeys.contains(entry.getValue())).map(entry -> entry.getKey())
+                .filter(entry -> activeKeys.contains(entry.getValue())).map(Map.Entry::getKey)
                 .collect(Collectors.toSet());
         // Set the state of task.
-        this.task.keySet().stream().filter(key -> activeCommand.contains(key)).forEach(key -> this.task.put(key, true));
+        this.task.keySet().stream().filter(activeCommand::contains).forEach(key -> this.task.put(key, true));
         this.task.keySet().stream().filter(key -> !activeCommand.contains(key))
                 .forEach(key -> this.task.put(key, false));
     }
@@ -156,7 +156,7 @@ public class InputControllerImpl implements InputController {
      * Manager of the fire logic.
      */
     private void fireLogic() {
-        if (this.isTaskActive(InputCommands.ATTACK)) {
+        /*if (this.isTaskActive(InputCommands.ATTACK)) {
             if (this.fireLabel) {
                 this.fireLabel = false;
             } else {
@@ -164,6 +164,6 @@ public class InputControllerImpl implements InputController {
             }
         } else {
             this.fireLabel = true;
-        }
+        }*/
     }
 }

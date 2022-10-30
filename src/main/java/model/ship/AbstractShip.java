@@ -117,6 +117,7 @@ public abstract class AbstractShip implements Ship {
 	public void setSprite(Image img) {
 		this.sprite = new ImageView();
 		this.sprite.setImage(img);
+		this.sprite.setViewOrder(-2);
 
 	}
 

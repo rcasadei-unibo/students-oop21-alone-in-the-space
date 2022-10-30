@@ -39,7 +39,7 @@ public class GameControllerImpl implements GameController {
     public GameControllerImpl(final GameMap gameMap) {
         this.gameMap = gameMap;
         this.gameMap.setBackgroundImage(EnumString.IMAGE_FOLDER.getValue() + "skybox13.jpg");
-        this.playerShipController = new PlayerShipControllerImpl(new Vec2(100, 100), new Image("images/shipPlayer.png"));
+        this.playerShipController = new PlayerShipControllerImpl(new Vec2(this.gameMap.getWidth().doubleValue()/2, this.getGameMap().getHeight().doubleValue()/2), new Image("images/shipPlayer.png"));
         this.gameMap.setPlayer(this.playerShipController.getPlayerShip());
 		this.gameMap.setStatus(new StatusImpl(0, PlayerValues.MAIN_SHIP.getValueFromKey("MAXHEALTH"), EnumInt.LIVES.getValue()));
 		this.playerShipController.setStatus(this.gameMap.getStatus());
