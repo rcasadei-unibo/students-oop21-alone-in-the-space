@@ -8,7 +8,7 @@ import java.util.Map;
  */
 public enum PlayerValues {
 
-    MAIN_SHIP(100, 5, 2);
+    MAIN_SHIP(100, 3, 2);
 
     private Map<String, Integer> shipValues = new HashMap<>();
 

@@ -69,7 +69,7 @@ public class CollisionImpl implements Collision {
                 enemy.strike(bullet.getDamage());
                 bullet.destroy();
                 if(!enemy.isAlive()) {
-                    this.gameMap.getStatus().setPoints(this.gameMap.getStatus().getPoints() + EnumInt.ONE.getValue());
+                    this.gameMap.getStatus().addPoints(EnumInt.ONE.getValue());
                     this.hudImpl.getPointsImpl().setPoints(this.gameMap.getStatus().getPoints());
                 }
             }

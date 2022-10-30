@@ -45,6 +45,7 @@ public class HUDLifeImpl extends Label implements HUDLife {
 
     @Override
     public void lifeDown(final int damage) {
+
     }
 
 
