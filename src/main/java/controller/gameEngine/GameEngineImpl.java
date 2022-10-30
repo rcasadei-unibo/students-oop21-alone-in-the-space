@@ -81,7 +81,7 @@ public class GameEngineImpl extends AnimationTimer {
     }
     
     private Ship randomShip() {
-	int typeShip = (int) (Math.random() * 3) + 1;
+	int typeShip = (int) (Math.random() * 100) + 1;
 	Vec2 spawnPosition = new Vec2(0, 0);
 	
 	spawnPosition.setFromAngle(Math.random() * 360);
@@ -89,20 +89,12 @@ public class GameEngineImpl extends AnimationTimer {
 	spawnPosition.addLocal(this.gameMap.getWidth().floatValue() / 2, this.gameMap.getHeight().floatValue() / 2);
 	
 	Ship enemy = null;
-	switch (typeShip) {
-	case 1:
-	    enemy = EnemyFactory.basicEnemy(spawnPosition);
-	    break;
-	case 2:
-	    enemy = EnemyFactory.missileEnemy(spawnPosition);
-	    break;
-	case 3:
-	    enemy = EnemyFactory.rifleEnemy(spawnPosition);
-	    break;
-	default:
-	    enemy = EnemyFactory.basicEnemy(spawnPosition);
-	    break;
-	}
+    if(typeShip > 0 && typeShip <= 80)
+        enemy = EnemyFactory.basicEnemy(spawnPosition);
+    else if(typeShip > 80 && typeShip <= 95)
+        enemy = EnemyFactory.rifleEnemy(spawnPosition);
+    else
+        enemy = EnemyFactory.missileEnemy(spawnPosition);
 	enemy.setTarget(this.gameMap.getPlayer());
 	return enemy;
     }
