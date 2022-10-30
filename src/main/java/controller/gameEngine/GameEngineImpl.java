@@ -66,8 +66,8 @@ public class GameEngineImpl extends AnimationTimer {
 	    Ship enemy = randomShip();
 	    this.gameMap.addEnemyShip(enemy);
 	}
-	this.game.update((now - prevTime));
-	this.prevTime = now;
+	    this.game.update((now - prevTime));
+	    this.prevTime = now;
     }
 
     public double getFrameRateHertz(final long delta) {
@@ -84,7 +84,7 @@ public class GameEngineImpl extends AnimationTimer {
 	Vec2 spawnPosition = new Vec2(0, 0);
 	
 	spawnPosition.setFromAngle(Math.random() * 360);
-	spawnPosition.mulLocal(this.gameMap.getWidth().floatValue() / 2);
+	spawnPosition.set(spawnPosition.x * (this.gameMap.getWidth().floatValue() / 2 + 10), spawnPosition.y + (this.gameMap.getHeight().floatValue() / 2 + 10));
 	spawnPosition.addLocal(this.gameMap.getWidth().floatValue() / 2, this.gameMap.getHeight().floatValue() / 2);
 	
 	Ship enemy = null;
@@ -112,11 +112,6 @@ public class GameEngineImpl extends AnimationTimer {
 
     public GameMap getGameMap() {
 	return this.gameMap;
-    }
-
-    @Override
-    public void stop() {
-
     }
 
     public SceneController getSceneController() {
