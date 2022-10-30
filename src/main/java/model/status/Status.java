@@ -1,5 +1,7 @@
 package model.status;
 
+import controller.playerController.PlayerShipController;
+
 public interface Status {
 
     void setPoints(int value);
@@ -10,8 +12,7 @@ public interface Status {
 
     int getLifePoints();
 
-    void setLives(int value);
+    void addPoints(int value);
 
-    int getLives();
-
+    void setPlayerController(PlayerShipController playerShipController);
 }

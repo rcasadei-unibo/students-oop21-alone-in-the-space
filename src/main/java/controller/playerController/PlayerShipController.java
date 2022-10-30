@@ -73,4 +73,14 @@ public interface PlayerShipController  {
      * consequently the speed will decay
      */
     void thrustReleased();
+
+    void acquirePowerUp();
+
+    int getExp();
+
+    void setExp(int expPoints);
+
+    void addExp(int value);
+
+    boolean isInPowerUp();
 }

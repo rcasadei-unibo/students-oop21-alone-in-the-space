@@ -108,7 +108,7 @@ public class BulletFactory {
 		this.yaw = playerShip.getAngle();
 		float newX = (float) (Math.cos(Math.toRadians(yaw)));
 		float newY = (float) (Math.sin(Math.toRadians(yaw)));
-		this.position.addLocal(playerShip.getSprite().getImage().getWidth()*newX, playerShip.getSprite().getImage().getHeight()*newY);
+		this.position.addLocal((playerShip.getSprite().getImage().getWidth()-20)*newX, (playerShip.getSprite().getImage().getHeight()-20)*newY);
 
 	    }
 

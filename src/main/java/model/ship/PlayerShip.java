@@ -14,7 +14,7 @@ public class PlayerShip implements Ship {
 	private Vec2 position;
 	private int maxHealth;
 	private int health;
-	private int maxSpeed;
+	private final int maxSpeed;
 	private Vec2 speed; //watch out for thread competition
 	private float speed2 = 0;
 	private float acceleration = 0;
@@ -22,7 +22,6 @@ public class PlayerShip implements Ship {
 	private int rotationSpeed;
 	private ImageView sprite;
 	private Gun playerGun;
-	private Vec2 rotation;
 	private float yaw;
 
 	/**
@@ -40,9 +39,7 @@ public class PlayerShip implements Ship {
 		this.maxSpeed = maxSpeed;
 		this.direction = this.position.copy();
 		this.rotationSpeed = rotationSpeed;
-		this.rotation = new Vec2(0, 1);
 		this.yaw = 1;
-		calculateDir();
 	}
 
 	/**
@@ -101,10 +98,6 @@ public class PlayerShip implements Ship {
 	 * calculate the new direction value that the ship has to go to
 	 * @return inverse cosine value
 	 */
-	private float calculateDir() {
-		final Vec2 currentDir = this.position.add(rotation.x, rotation.y).normalize();
-		return Vec2.dot(this.direction.normalize(), currentDir);
-	}
 
 	/**
 	 * slows down the ship gradually (P.S.: Space doesn't have friction for this to happen)
