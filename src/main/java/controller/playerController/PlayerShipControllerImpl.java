@@ -73,6 +73,14 @@ public class PlayerShipControllerImpl implements PlayerShipController {
         playerShip.thrustReleased();
     }
 
+    @Override
+    public void acquirePowerUp() {
+        if(!hasPowerUp) {
+            this.hasPowerUp = true;
+            this.playerStatus.switchPowerUp();
+        }
+    }
+
     public ImageView update(long deltaTime) {
         if (this.hasFired) {
             this.gunRechargeTime += deltaTime;
@@ -110,9 +118,10 @@ public class PlayerShipControllerImpl implements PlayerShipController {
     public void activatePowerUp() {
         if (hasPowerUp && !activePowerUp) {
             this.hasPowerUp = false;
+            this.playerStatus.switchPowerUp();
             this.fireRate *= 2;
             this.gunDamage *= 2;
-            //bit jank, but it will have to do; original playergun is remembered here
+            //bit jank, but it will have to do; original playergun is remembered in the class
             this.playerShip.setGun(GunFactory.playerGun(this.playerShip,
                                                         gunDamage,
                                                         PlayerGunValues.MAIN_GUN.getValueFromKey("MAXSPEED"),
@@ -136,8 +145,7 @@ public class PlayerShipControllerImpl implements PlayerShipController {
 
     @Override
     public void destroy() {
-        this.playerStatus.setLives(this.playerStatus.getLives()-1);
-        playerShip.destroy();
+        this.playerShip.destroy();
     }
     public Status getStatus() {
         return this.playerStatus;
@@ -147,19 +155,25 @@ public class PlayerShipControllerImpl implements PlayerShipController {
     }
 
 
-    private int getExp() {
+    public int getExp() {
         return this.exp;
     }
 
-    private void setExp(int newPoints) {
+    public void setExp(int newPoints) {
         this.exp = newPoints;
-    }
-    public void addExp(int expGained) {
-        //TODO: increase requirement naturally
-        this.exp += expGained;
         if (checkLevelUp()) {
             this.levelUp();
         }
+    }
+
+    @Override
+    public void addExp(int value) {
+        this.setExp(this.getExp()+value);
+    }
+
+    @Override
+    public boolean isInPowerUp() {
+        return this.activePowerUp;
     }
 
     private void levelUp() {
@@ -167,19 +181,19 @@ public class PlayerShipControllerImpl implements PlayerShipController {
         * every 3 levels, fire rate increases by 5% of the original value
         * every 5 levels, gun damage is increased by 5% of the original value
         */
-        this.playerShip.setMaxHealth(5 * (PlayerValues.MAIN_SHIP.getValueFromKey("MAXHEALTH")) / 100);
-        this.playerShip.setHealth(this.playerShip.getMaxHealth());
+        this.playerShip.setMaxHealth(this.playerShip.getMaxHealth() + 5 * (PlayerValues.MAIN_SHIP.getValueFromKey("MAXHEALTH")) / 100);
+        this.playerShip.heal(50);
 
         if (this.currentLevel % 3 == 0) {
-            this.fireRate += 5f * (PlayerValues.MAIN_SHIP.getValueFromKey("FIRERATE")) / 100;
+            this.fireRate += 5f * (float) (PlayerGunValues.MAIN_GUN.getValueFromKey("FIRERATE")) / 100f;
         }
 
         if (this.currentLevel % 5 == 0) {
             this.gunDamage += 5 * (PlayerGunValues.MAIN_GUN.getValueFromKey("DAMAGE")) / 100;
             this.gunLevelUp(gunDamage);
         }
-
-        this.exp -= EnumInt.EXP_REQUIRED.getValue() * (Math.pow(2, this.currentLevel - 1));
+        this.setExp(this.getExp() - (EnumInt.EXP_REQUIRED.getValue() * (int) (Math.pow(2, this.currentLevel - 1))));
+        this.currentLevel++;
     }
 
     private void gunLevelUp(int newDamage) {
@@ -197,7 +211,7 @@ public class PlayerShipControllerImpl implements PlayerShipController {
         return this.exp >= nextLevelUp();
     }
     private int nextLevelUp() {
-        return EnumInt.EXP_REQUIRED.getValue() * (int) (Math.pow(2, this.currentLevel - 1));
+        return EnumInt.EXP_REQUIRED.getValue() * (int) ((Math.pow(2, this.currentLevel - 1)));
     }
 
 }

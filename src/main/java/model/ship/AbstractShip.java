@@ -155,5 +155,9 @@ public abstract class AbstractShip implements Ship {
 		return this.target.getPosition().sub(this.position).angle();
 	}
 
+	public int getHealth() {
+		return this.health;
+	}
+
 	
 }

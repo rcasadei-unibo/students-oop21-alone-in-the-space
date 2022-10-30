@@ -44,6 +44,11 @@ public enum EnumInt {
     /**
      *
      */
+    SIXTEEN(16),
+
+    /**
+     *
+     */
     THIRTY(30),
 
     /**
@@ -79,27 +84,27 @@ public enum EnumInt {
     /**
      *
      */
-    EXP_REQUIRED(100),
+    EXP_REQUIRED(10),
 
     /**
      *
      */
-    LIVES(3),
+    POWER_UP_DURATION(15),
 
     /**
      *
      */
-    POWER_UP_DURATION(30),
-
-    /**
-     *
-     */
-    POWER_UP_SCORE(10),
+    POWER_UP_SCORE(15),
 
     /**
      *
      */
     VIEW_ORDER(-51),
+
+    /**
+     *
+     */
+    RESPAWN_TIME(3),
 
     /**
      *

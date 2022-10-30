@@ -41,8 +41,9 @@ public class GameControllerImpl implements GameController {
         this.gameMap.setBackgroundImage(EnumString.IMAGE_FOLDER.getValue() + "skybox13.jpg");
         this.playerShipController = new PlayerShipControllerImpl(new Vec2(this.gameMap.getWidth().doubleValue()/2, this.getGameMap().getHeight().doubleValue()/2), new Image("images/shipPlayer.png"));
         this.gameMap.setPlayer(this.playerShipController.getPlayerShip());
-		this.gameMap.setStatus(new StatusImpl(0, PlayerValues.MAIN_SHIP.getValueFromKey("MAXHEALTH"), EnumInt.LIVES.getValue()));
+		this.gameMap.setStatus(new StatusImpl(0, PlayerValues.MAIN_SHIP.getValueFromKey("MAXHEALTH")));
 		this.playerShipController.setStatus(this.gameMap.getStatus());
+		this.gameMap.getStatus().setPlayerController(this.playerShipController);
         this.sceneManager = new SceneManager(this.gameMap);
         this.eventController = new EventControllerImpl(this.gameMap);
 		this.eventController.getHudBuilder().setStatus(this.gameMap.getStatus());
@@ -86,7 +87,7 @@ public class GameControllerImpl implements GameController {
 				this.enemies, this.gameMap.getBulletsShotByPlayer(),
 				this.gameMap.getBulletsShotByEnemies());
 		this.playerShipController.update(deltaTime);
-	        this.gameMap.removeDeadEntity();
+		this.gameMap.removeDeadEntity();
 		this.enemies.forEach((Ship enemy) -> {
 			if (enemy.isInRangeOfAttack( deltaTime)) {
 				this.gameMap.addEnemyBullet(enemy.shot());
@@ -94,6 +95,7 @@ public class GameControllerImpl implements GameController {
 		});
 
 		this.sceneManager.update(deltaTime);
+		this.gameMap.getStatus().update();
 		this.eventController.getHudBuilder().update();
 		//this.playerShipController.update(deltaTime);should be included in the scene manager
 

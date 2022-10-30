@@ -53,9 +53,10 @@ public interface Ship extends Entity {
 	
 	/**
 	 * check if at least an enemy is in range of this ship and attack cooldown is off.
-	 * @param enemy
+	 * @param deltaTime
 	 * @return
 	 */
 	Boolean isInRangeOfAttack( long deltaTime);
-	
+
+	int getHealth();
 }

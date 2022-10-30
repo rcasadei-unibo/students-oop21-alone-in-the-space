@@ -53,6 +53,7 @@ public class CollisionImpl implements Collision {
     public void checkAllCollision(final Ship player, final Collection<Ship> enemies, final Collection<Bullet> playerBullets, final Collection<Bullet> enemiesBullets) {
         
         checkBorderCollision(player);
+        checkBulletsBorderCollision(playerBullets, enemiesBullets);
         
         enemies.forEach((Ship enemy) -> {
             if (enemy.isAlive() && checkEnemyCollision(player, enemy)) {
@@ -68,7 +69,7 @@ public class CollisionImpl implements Collision {
                 enemy.strike(bullet.getDamage());
                 bullet.destroy();
                 if(!enemy.isAlive()) {
-                    this.gameMap.getStatus().setPoints(this.gameMap.getStatus().getPoints() + EnumInt.ONE.getValue());
+                    this.gameMap.getStatus().addPoints(EnumInt.ONE.getValue());
                     this.hudImpl.getPointsImpl().setPoints(this.gameMap.getStatus().getPoints());
                 }
             }
@@ -86,6 +87,23 @@ public class CollisionImpl implements Collision {
 
 
         
+    }
+
+    @Override
+    public void checkBulletsBorderCollision(Collection<Bullet> playerBullets, Collection<Bullet> enemiesBullets) {
+        playerBullets.forEach((Bullet bullet) -> {
+            if(bullet.getPosition().x <= 0 || bullet.getPosition().x >= EnumInt.WIDTH.getValue() || 
+                    bullet.getPosition().y <= 0 || bullet.getPosition().y >= EnumInt.HEIGHT.getValue()) {
+                bullet.destroy();
+            }
+        });
+        
+        enemiesBullets.forEach((Bullet bullet) -> {
+            if(bullet.getPosition().x <= 0 || bullet.getPosition().x >= EnumInt.WIDTH.getValue() || 
+                    bullet.getPosition().y <= 0 || bullet.getPosition().y >= EnumInt.HEIGHT.getValue()) {
+                bullet.destroy();
+            }
+        });
     }
 
 }

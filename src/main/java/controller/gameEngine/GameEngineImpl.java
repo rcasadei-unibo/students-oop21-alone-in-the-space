@@ -57,7 +57,6 @@ public class GameEngineImpl extends AnimationTimer {
 	    e.printStackTrace();
 	}
 	if (this.enemyTimer == 0) {
-	    System.out.println("time : " + (now - this.enemyTimer));
 	    this.enemyTimer = now;
 	}
 	if ((now - this.enemyTimer) / 1000000L > (DELTAENEMY / this.difficultFactor) && this.gameMap.getActiveEnemyShips().size()<7) {
