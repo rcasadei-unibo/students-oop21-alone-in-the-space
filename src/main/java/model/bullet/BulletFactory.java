@@ -38,7 +38,7 @@ public class BulletFactory {
 
 	}
 	;
-	Bullet var = new Bolt(100, 100, 10, 10, position, direction);
+	Bullet var = new Bolt(300, 100, 10, 3, position, direction);
 	var.setSprite(new Image("images/bullet_02.png"));
 	return var;
 
@@ -81,7 +81,7 @@ public class BulletFactory {
 	    }
 	}
 	;
-	Bullet var = new Missile(100, 100, 30, 10, 360, position, direction, enemy);
+	Bullet var = new Missile(150, 20, 30, 10, 90, position, direction, enemy);
 	var.setSprite(new Image("images/missile_01.png"));
 	return var;
 
