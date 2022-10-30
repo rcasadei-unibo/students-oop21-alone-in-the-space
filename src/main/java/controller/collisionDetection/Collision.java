@@ -43,5 +43,7 @@ public interface Collision {
      * @param ship the player ship
      */
     void checkBorderCollision(Entity ship);
+    
+    void checkBulletsBorderCollision(Collection<Bullet> playerBullets, Collection<Bullet> enemiesBullets);
 
 }
