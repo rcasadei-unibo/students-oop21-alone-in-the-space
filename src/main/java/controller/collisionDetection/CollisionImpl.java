@@ -9,6 +9,8 @@ import view.hud.HUDImpl;
 
 import java.util.Collection;
 
+import com.almasb.fxgl.core.math.Vec2;
+
 /**
  * 
  * Class that implements Collision interface.
@@ -36,12 +38,22 @@ public class CollisionImpl implements Collision {
 
     @Override
     public void checkBorderCollision(final Entity ship) {
-        // TODO Auto-generated method stub
+        if (ship.getPosition().y >= EnumInt.HEIGHT.getValue()) {
+            ship.setPosition(new Vec2(EnumInt.WIDTH.getValue() - ship.getPosition().x , 0));
+        } else if (ship.getPosition().y <= 0) {
+            ship.setPosition(new Vec2(EnumInt.WIDTH.getValue() - ship.getPosition().x , EnumInt.HEIGHT.getValue()));
+        } else if (ship.getPosition().x >= EnumInt.WIDTH.getValue()) {
+            ship.setPosition(new Vec2(0 , EnumInt.HEIGHT.getValue() - ship.getPosition().y));
+        } else if (ship.getPosition().x <= 0) {
+            ship.setPosition(new Vec2(EnumInt.WIDTH.getValue() , EnumInt.HEIGHT.getValue() - ship.getPosition().y));
+        }
     }
 
     @Override
     public void checkAllCollision(final Ship player, final Collection<Ship> enemies, final Collection<Bullet> playerBullets, final Collection<Bullet> enemiesBullets) {
-
+        
+        checkBorderCollision(player);
+        
         enemies.forEach((Ship enemy) -> {
             if (enemy.isAlive() && checkEnemyCollision(player, enemy)) {
         	player.strike(EnumInt.DAMAGE_COLLISION.getValue());
