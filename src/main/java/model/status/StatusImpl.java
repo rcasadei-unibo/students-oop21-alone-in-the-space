@@ -64,12 +64,16 @@ public class StatusImpl implements Status {
     }
 
     @Override
-    public boolean switchPowerUp() {
-        return !this.powerUp;
+    public void switchPowerUp() {
     }
 
     @Override
     public void setPlayerController(final PlayerShipController playerShipController) {
         this.playerController = playerShipController;
+    }
+
+    @Override
+    public boolean hasPowerUp() {
+        return this.powerUp;
     }
 }

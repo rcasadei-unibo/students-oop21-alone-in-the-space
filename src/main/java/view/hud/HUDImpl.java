@@ -5,6 +5,7 @@ import controller.collisionDetection.CollisionImpl;
 import model.hud.*;
 import model.status.Status;
 import utilities.EnumInt;
+import utilities.PowerUpEnum;
 import view.GameMap;
 
 public class HUDImpl implements HUDInterface {
@@ -43,11 +44,16 @@ public class HUDImpl implements HUDInterface {
     public void update() {
         this.livesHUD.update(status.getLifePoints());
         this.pointsHUD.update(status.getPoints());
+        if(this.status.hasPowerUp()) {
+            this.powerUpHUD.showPowerUp(PowerUpEnum.WeaponDamage);
+        } else {
+            this.powerUpHUD.hidePowerUp(PowerUpEnum.WeaponDamage);
+        }
     }
 
     @Override
     public boolean checkGameStatus() {
-        return this.livesHUD.getStatus();
+        return this.livesHUD.getGameStatus();
     }
 
     @Override

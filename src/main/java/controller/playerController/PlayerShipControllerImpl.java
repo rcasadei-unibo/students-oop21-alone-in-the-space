@@ -42,14 +42,14 @@ public class PlayerShipControllerImpl implements PlayerShipController {
     @Override
     public void initialisePlayerShip(Vec2 initialPos, Image sprite) {
         this.playerShip = new PlayerShip(initialPos,
-                                                PlayerValues.MAIN_SHIP.getValueFromKey("MAXHEALTH"),
-                                                PlayerValues.MAIN_SHIP.getValueFromKey("MAXSPEED"),
-                                                PlayerValues.MAIN_SHIP.getValueFromKey("ROTATIONSPEED"));
+                PlayerValues.MAIN_SHIP.getValueFromKey("MAXHEALTH"),
+                PlayerValues.MAIN_SHIP.getValueFromKey("MAXSPEED"),
+                PlayerValues.MAIN_SHIP.getValueFromKey("ROTATIONSPEED"));
         this.normalPlayerGun = GunFactory.playerGun(this.playerShip,
-                                        (int)   PlayerGunValues.MAIN_GUN.getValueFromKey("DAMAGE"),
-                                                PlayerGunValues.MAIN_GUN.getValueFromKey("MAXSPEED"),
-                                                PlayerGunValues.MAIN_GUN.getValueFromKey("ACCELERATION"),
-                                                PlayerGunValues.MAIN_GUN.getValueFromKey("ROTATIONSPEED"));
+                (int)   PlayerGunValues.MAIN_GUN.getValueFromKey("DAMAGE"),
+                PlayerGunValues.MAIN_GUN.getValueFromKey("MAXSPEED"),
+                PlayerGunValues.MAIN_GUN.getValueFromKey("ACCELERATION"),
+                PlayerGunValues.MAIN_GUN.getValueFromKey("ROTATIONSPEED"));
         this.fireRate = PlayerGunValues.MAIN_GUN.getValueFromKey("FIRERATE");
         this.playerShip.setGun(this.normalPlayerGun);
         this.playerShip.setSprite(sprite);
@@ -121,10 +121,10 @@ public class PlayerShipControllerImpl implements PlayerShipController {
             this.gunDamage *= 2;
             //bit jank, but it will have to do; original playergun is remembered in the class
             this.playerShip.setGun(GunFactory.playerGun(this.playerShip,
-                                                        gunDamage,
-                                                        PlayerGunValues.MAIN_GUN.getValueFromKey("MAXSPEED"),
-                                                        PlayerGunValues.MAIN_GUN.getValueFromKey("ACCELERATION"),
-                                                        PlayerGunValues.MAIN_GUN.getValueFromKey("ROTATIONSPEED")));
+                    gunDamage,
+                    PlayerGunValues.MAIN_GUN.getValueFromKey("MAXSPEED"),
+                    PlayerGunValues.MAIN_GUN.getValueFromKey("ACCELERATION"),
+                    PlayerGunValues.MAIN_GUN.getValueFromKey("ROTATIONSPEED")));
             this.activePowerUp = true;
         }
     }
@@ -176,9 +176,9 @@ public class PlayerShipControllerImpl implements PlayerShipController {
 
     private void levelUp() {
         /* every level the player gains 5% MaxHP of the original MaxHP value and gets healed
-        * every 3 levels, fire rate increases by 5% of the original value
-        * every 5 levels, gun damage is increased by 5% of the original value
-        */
+         * every 3 levels, fire rate increases by 5% of the original value
+         * every 5 levels, gun damage is increased by 5% of the original value
+         */
         this.playerShip.setMaxHealth(this.playerShip.getMaxHealth() + 5 * (PlayerValues.MAIN_SHIP.getValueFromKey("MAXHEALTH")) / 100);
         this.playerShip.heal(50);
 
@@ -198,9 +198,9 @@ public class PlayerShipControllerImpl implements PlayerShipController {
         //modify the playergun in here to keep it updated for whenever the player activated Power Up mode
         this.normalPlayerGun = GunFactory.playerGun(this.playerShip,
                 (int)        PlayerGunValues.MAIN_GUN.getValueFromKey("DAMAGE") + newDamage,
-                                    PlayerGunValues.MAIN_GUN.getValueFromKey("MAXSPEED"),
-                                    PlayerGunValues.MAIN_GUN.getValueFromKey("ACCELERATION"),
-                                    PlayerGunValues.MAIN_GUN.getValueFromKey("ROTATIONSPEED"));
+                PlayerGunValues.MAIN_GUN.getValueFromKey("MAXSPEED"),
+                PlayerGunValues.MAIN_GUN.getValueFromKey("ACCELERATION"),
+                PlayerGunValues.MAIN_GUN.getValueFromKey("ROTATIONSPEED"));
         this.playerShip.setGun(normalPlayerGun);
     }
 

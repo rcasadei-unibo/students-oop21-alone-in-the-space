@@ -149,17 +149,17 @@ public class GameMapImpl implements GameMap {
 
     @Override
     public void setBackgroundImage(String path) {
-	this.backGroundImage = new ImageView("images/skybox13.jpg");
-	this.backGroundImage.setLayoutX(EnumInt.ZERO.getValue());
-	this.backGroundImage.setLayoutY(EnumInt.ZERO.getValue());
-	this.backGroundImage.setFitWidth(this.width);
-	this.backGroundImage.setFitHeight(this.height);
-	this.gameContainer.getChildren().add(this.backGroundImage);
+	    this.backGroundImage = new ImageView("images/skybox13.jpg");
+	    this.backGroundImage.setLayoutX(EnumInt.ZERO.getValue());
+	    this.backGroundImage.setLayoutY(EnumInt.ZERO.getValue());
+	    this.backGroundImage.setFitWidth(this.width);
+	    this.backGroundImage.setFitHeight(this.height);
+	    this.gameContainer.getChildren().add(this.backGroundImage);
     }
 
     @Override
     public Node getBackground() {
-	return this.backGroundImage;
+	    return this.backGroundImage;
     }
 
     @Override
@@ -169,10 +169,10 @@ public class GameMapImpl implements GameMap {
 
     @Override
     public void addEnemyShip(Ship enemy) {
-	enemy.getNode().setId(String.valueOf(this.shipCounter++));
-	this.enemyShips.add(enemy);
-	this.entities.add(enemy);
-	this.gameContainer.getChildren().add(enemy.getNode());
+	    enemy.getNode().setId(String.valueOf(this.shipCounter++));
+	    this.enemyShips.add(enemy);
+	    this.entities.add(enemy);
+	    this.gameContainer.getChildren().add(enemy.getNode());
     }
 
     @Override
@@ -198,15 +198,15 @@ public class GameMapImpl implements GameMap {
     @Override
     public void removeDeadEntity() {
 	// TODO Auto-generated method stub
-	this.enemyBullets.removeIf(e -> !(e.isAlive()));
-	this.enemyShips.removeIf(e -> !(e.isAlive()));
-	this.playerBullets.removeIf(e -> !(e.isAlive()));
-	this.entities.removeIf(e -> {
-	    if (!e.isAlive()) {
-		this.gameContainer.getChildren().remove(e.getNode());
-	    }
-	    return !e.isAlive();
-	});
+	    this.enemyBullets.removeIf(e -> !(e.isAlive()));
+	    this.enemyShips.removeIf(e -> !(e.isAlive()));
+	    this.playerBullets.removeIf(e -> !(e.isAlive()));
+	    this.entities.removeIf(e -> {
+	        if (!e.isAlive()) {
+		    this.gameContainer.getChildren().remove(e.getNode());
+	        }
+	        return !e.isAlive();
+	    });
     }
 
 }

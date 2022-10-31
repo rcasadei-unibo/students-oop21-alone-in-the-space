@@ -44,10 +44,6 @@ public abstract class AbstractBullet implements Bullet {
 		return this.direction.angle();
 	}
 
-	public Boolean isCollided() {
-		return !this.alive;		
-	};
-
 	public void destroy() {
 		this.alive = false;
 	};

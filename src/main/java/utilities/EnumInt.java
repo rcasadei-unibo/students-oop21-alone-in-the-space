@@ -94,17 +94,13 @@ public enum EnumInt {
     /**
      *
      */
-    POWER_UP_SCORE(15),
+    POWER_UP_SCORE(1),
 
     /**
      *
      */
     VIEW_ORDER(-51),
 
-    /**
-     *
-     */
-    RESPAWN_TIME(3),
 
     /**
      *
@@ -113,7 +109,7 @@ public enum EnumInt {
 
     private final int value;
 
-    private EnumInt(final int value) {
+    EnumInt(final int value) {
         this.value = value;
     }
 

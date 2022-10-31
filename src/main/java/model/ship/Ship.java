@@ -34,7 +34,8 @@ public interface Ship extends Entity {
 	 * @param target
 	 */
 	void setTarget(Ship target);
-	
+
+
 	/**
 	 * get the current target of this ship.
 	 * @return target
@@ -56,5 +57,9 @@ public interface Ship extends Entity {
 	 */
 	Boolean isInRangeOfAttack( long deltaTime);
 
+	/**
+	 * getter
+	 * @return current health of the ship
+	 */
 	int getHealth();
 }

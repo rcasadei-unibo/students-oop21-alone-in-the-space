@@ -44,18 +44,13 @@ public class HUDLifeImpl extends Label implements HUDLife {
     }
 
     @Override
-    public void lifeDown(final int damage) {
-
-    }
-
-    @Override
-    public boolean getStatus() {
+    public boolean getGameStatus() {
         return this.gameStatus;
     }
 
     /**
      * update life points.
-     * 
+     *
      * @param lifePoints
      */
     public void update(final int lifePoints) {

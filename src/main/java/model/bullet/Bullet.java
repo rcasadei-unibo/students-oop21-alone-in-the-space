@@ -6,32 +6,27 @@ import model.Entity;
 
 
 public interface Bullet extends Entity {
-	//public void move(float deltaTime);
-	
-	/**
-	 * statement if this bullet actually has collided.
-	 * @return
-	 */
-	public Boolean isCollided();
-	
+
 	/**
      *	destroy this bullet.
      */
-	public void destroy();
+	void destroy();
 	
 	/**
-	 * the actual damage this bullet provide on hit.
-	 * @return
+	 * getter
+	 * @return how much damage the bullet does
 	 */
-	public int getDamage();
+	int getDamage();
 	
 	/**
-	 * return the position of this bullet.
+	 * getter
+	 * @return the position of this bullet.
 	 */
-	public Vec2 getPosition();
+	Vec2 getPosition();
 	
 	/**
-	 * return the direction of this bullet.
+	 * getter
+	 * @return the direction of this bullet.
 	 */
-	public Vec2 getDirection();
+	Vec2 getDirection();
 }

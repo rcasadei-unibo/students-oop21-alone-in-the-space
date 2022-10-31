@@ -141,7 +141,6 @@ public class InputControllerImpl implements InputController {
     @Override
     public void updatePlayerTasks() {
         this.updateKeysInfo();
-        this.fireLogic();
         this.movementLogic();
     }
 
@@ -152,18 +151,4 @@ public class InputControllerImpl implements InputController {
         }
     }
 
-    /**
-     * Manager of the fire logic.
-     */
-    private void fireLogic() {
-        /*if (this.isTaskActive(InputCommands.ATTACK)) {
-            if (this.fireLabel) {
-                this.fireLabel = false;
-            } else {
-                this.task.put(InputCommands.ATTACK, false);
-            }
-        } else {
-            this.fireLabel = true;
-        }*/
-    }
 }
