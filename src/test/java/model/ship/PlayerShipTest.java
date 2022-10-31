@@ -68,7 +68,7 @@ public final class PlayerShipTest {
     @DisplayName("Bullet Shot Test")
     void testShot() {
         Gun playerGun = GunFactory.playerGun(this.playerShip,
-                (int)   PlayerGunValues.MAIN_GUN.getValueFromKey("DAMAGE"),
+                (int)   PlayerGunValues.MAIN_GUN.getValueFromKey("DAMAGE")*100,
                 PlayerGunValues.MAIN_GUN.getValueFromKey("MAXSPEED"),
                 PlayerGunValues.MAIN_GUN.getValueFromKey("ACCELERATION"),
                 PlayerGunValues.MAIN_GUN.getValueFromKey("ROTATIONSPEED"));
@@ -78,5 +78,7 @@ public final class PlayerShipTest {
         Vec2 currentPos = bullet.getPosition();
         bullet.move(1000000L);
         assertNotEquals(currentPos, bullet.getPosition());
+        EnemyFactory.basicEnemy(bullet.getPosition());
+
     }
 }
