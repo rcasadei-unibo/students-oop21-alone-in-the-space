@@ -25,8 +25,7 @@ public class RankingImpl implements Ranking {
     }
 
     /**
-     * Load scores from file.
-     * If file doesn't exist, create a new one.
+     * Load scores from file. If file doesn't exist, create a new one.
      *
      * @throws IOException
      */
@@ -34,7 +33,7 @@ public class RankingImpl implements Ranking {
         if (this.file.exists()) {
             this.map.clear();
             final Properties properties = new Properties();
-            try(FileInputStream fileStream = new FileInputStream(this.file)){
+            try (FileInputStream fileStream = new FileInputStream(this.file)) {
                 properties.load(fileStream);
                 for (final String key : properties.stringPropertyNames()) {
                     final String value = properties.getProperty(key);

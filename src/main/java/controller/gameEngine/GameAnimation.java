@@ -1,6 +1,7 @@
 package controller.gameEngine;
 
 import com.almasb.fxgl.core.math.Vec2;
+
 import controller.gameController.GameControllerImpl;
 import controller.gameSwitcher.SceneController;
 import javafx.animation.AnimationTimer;
@@ -47,71 +48,91 @@ public class GameAnimation extends AnimationTimer {
 
     @Override
     public void handle(long now) {
-	try {
-	    Thread.sleep(0, SLEEP_TIMER);
-	} catch (InterruptedException e) {
-	    e.printStackTrace();
-	}
-	if (this.enemyTimer == 0) {
-	    this.enemyTimer = now;
-	}
-	if ((now - this.enemyTimer) / 1000000L > (DELTAENEMY / this.difficultFactor) && this.gameMap.getActiveEnemyShips().size()<7) {
-	    
-	    this.enemyTimer = now;
-	    this.difficultFactor *= 1.02;
-	    Ship enemy = randomShip();
-	    this.gameMap.addEnemyShip(enemy);
-	}
-	    this.game.update((now - prevTime));
-	    this.prevTime = now;
+        try {
+            Thread.sleep(0, SLEEP_TIMER);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        if (this.enemyTimer == 0) {
+            this.enemyTimer = now;
+        }
+        if ((now - this.enemyTimer) / 1000000L > (DELTAENEMY / this.difficultFactor)
+                && this.gameMap.getActiveEnemyShips().size() < 7) {
+
+            this.enemyTimer = now;
+            this.difficultFactor *= 1.02;
+            Ship enemy = randomShip();
+            this.gameMap.addEnemyShip(enemy);
+        }
+        this.game.update((now - prevTime));
+        this.prevTime = now;
     }
 
+    /**
+     * @param delta value.
+     * @return the actual frame rate based on value passed.
+     */
     public double getFrameRateHertz(final long delta) {
         final double frameRate = 1d / delta;
         return frameRate * VALUE;
     }
 
+    /**
+     * @return time sleep value.
+     */
     public long getTimeSleep() {
         return SLEEP;
     }
-    
+
     private Ship randomShip() {
-	int typeShip = (int) (Math.random() * 100) + 1;
-	Vec2 spawnPosition = new Vec2(0, 0);
-	
-	spawnPosition.setFromAngle(Math.random() * 360);
-	spawnPosition.set(spawnPosition.x * (this.gameMap.getWidth().floatValue() / 2 + 10), spawnPosition.y + (this.gameMap.getHeight().floatValue() / 2 + 10));
-	spawnPosition.addLocal(this.gameMap.getWidth().floatValue() / 2, this.gameMap.getHeight().floatValue() / 2);
-	
-	Ship enemy = null;
-    if(typeShip > 0 && typeShip <= 80)
-        enemy = EnemyFactory.basicEnemy(spawnPosition);
-    else if(typeShip > 80 && typeShip <= 95)
-        enemy = EnemyFactory.rifleEnemy(spawnPosition);
-    else
-        enemy = EnemyFactory.missileEnemy(spawnPosition);
-	enemy.setTarget(this.gameMap.getPlayer());
-	return enemy;
+        int typeShip = (int) (Math.random() * 100) + 1;
+        Vec2 spawnPosition = new Vec2(0, 0);
+
+        spawnPosition.setFromAngle(Math.random() * 360);
+        spawnPosition.set(spawnPosition.x * (this.gameMap.getWidth().floatValue() / 2 + 10),
+                spawnPosition.y + (this.gameMap.getHeight().floatValue() / 2 + 10));
+        spawnPosition.addLocal(this.gameMap.getWidth().floatValue() / 2, this.gameMap.getHeight().floatValue() / 2);
+
+        Ship enemy = null;
+        if (typeShip > 0 && typeShip <= 80) {
+            enemy = EnemyFactory.basicEnemy(spawnPosition);
+        } else if (typeShip > 80 && typeShip <= 95) {
+            enemy = EnemyFactory.rifleEnemy(spawnPosition);
+        } else {
+            enemy = EnemyFactory.missileEnemy(spawnPosition);
+        }
+        enemy.setTarget(this.gameMap.getPlayer());
+        return enemy;
     }
 
-    public Stage getStage() {
-	return this.stage;
-    }
-
+    /**
+     * Sets player name.
+     * 
+     * @param name
+     */
     public void setPlayerName(final String name) {
-	this.playerName = name;
+        this.playerName = name;
     }
 
+    /**
+     * @return player name.
+     */
     public String getPlayerName() {
-	return this.playerName;
+        return this.playerName;
     }
 
+    /**
+     * @return GameMap reference.
+     */
     public GameMap getGameMap() {
-	return this.gameMap;
+        return this.gameMap;
     }
 
+    /**
+     * @return scene controller reference.
+     */
     public SceneController getSceneController() {
-	return this.sceneController;
+        return this.sceneController;
     }
 
 }

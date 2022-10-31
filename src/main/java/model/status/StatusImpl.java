@@ -3,7 +3,7 @@ package model.status;
 import controller.playerController.PlayerShipController;
 import utilities.EnumInt;
 
-public class StatusImpl implements Status{
+public class StatusImpl implements Status {
 
     private int points;
     private int lifePoints;
@@ -11,28 +11,39 @@ public class StatusImpl implements Status{
     private PlayerShipController playerController;
     private boolean powerUp = false;
 
-    public StatusImpl(int points, int lifePoints) {
+    /**
+     * Constructor.
+     * 
+     * @param points
+     * @param lifePoints
+     */
+    public StatusImpl(final int points, final int lifePoints) {
         this.points = points;
         this.lifePoints = lifePoints;
     }
 
+    /**
+     * Update the status data.
+     */
     public void update() {
-        if(this.points >= EnumInt.POWER_UP_SCORE.getValue() * (powerUpActivations+1)) {
+        if (this.points >= EnumInt.POWER_UP_SCORE.getValue() * (powerUpActivations + 1)) {
             this.playerController.acquirePowerUp();
-            if(!this.playerController.isInPowerUp())
+            if (!this.playerController.isInPowerUp()) {
                 this.powerUpActivations++;
+            }
         }
         this.setLifePoints(this.playerController.getPlayerShip().getHealth());
 
     }
 
     @Override
-    public void setPoints(int value) {
+    public void setPoints(final int value) {
         this.points = value;
         this.playerController.setExp(value);
     }
+
     @Override
-    public void addPoints(int value) {
+    public void addPoints(final int value) {
         this.points += value;
         this.playerController.addExp(value);
     }
@@ -43,7 +54,7 @@ public class StatusImpl implements Status{
     }
 
     @Override
-    public void setLifePoints(int value) {
+    public void setLifePoints(final int value) {
         this.lifePoints = value;
     }
 
@@ -57,10 +68,8 @@ public class StatusImpl implements Status{
         return !this.powerUp;
     }
 
-
-
     @Override
-    public void setPlayerController(PlayerShipController playerShipController) {
+    public void setPlayerController(final PlayerShipController playerShipController) {
         this.playerController = playerShipController;
     }
 }
