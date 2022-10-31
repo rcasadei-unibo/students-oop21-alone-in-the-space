@@ -41,16 +41,16 @@ public final class PlayerShipTest {
         double yaw = playerShip.getAngle();
         playerShip.thrust(InputCommands.UP);
         playerShip.move(1000000L);
-        assertNotEquals(currentPosition, playerShip.getPosition());
+        assertNotEquals(currentPosition, playerShip.getPosition(), "Player has moved");
         assertEquals(yaw,playerShip.getAngle());
         playerShip.rotate(InputCommands.RIGHT);
         playerShip.move(1000000L);
-        assertNotEquals(currentPosition, playerShip.getPosition());
-        assertNotEquals(yaw,playerShip.getAngle());
+        assertNotEquals(currentPosition, playerShip.getPosition(), "Player has moved in another direction");
+        assertNotEquals(yaw,playerShip.getAngle(), "Player has changed angle");
         currentPosition = playerShip.getPosition().copy();
         playerShip.decaySpeed();
-        playerShip.move(1L);
-        assertNotEquals(currentPosition, playerShip.getPosition());
+        playerShip.move(1000000L);
+        assertNotEquals(currentPosition, playerShip.getPosition(), "Player has slowed down");
     }
 
     @RepeatedTest(5)
@@ -59,9 +59,9 @@ public final class PlayerShipTest {
         int damageAmount = 5;
         int currentHealth = playerShip.getHealth();
         playerShip.strike(damageAmount);
-        assertEquals(currentHealth-damageAmount, playerShip.getHealth());
+        assertEquals(currentHealth-damageAmount, playerShip.getHealth(), "Player took damage");
         playerShip.setHealth(0);
-        assertFalse(playerShip.isAlive());
+        assertFalse(playerShip.isAlive(), "Player has died");
     }
 
     @Test
@@ -73,12 +73,13 @@ public final class PlayerShipTest {
                 PlayerGunValues.MAIN_GUN.getValueFromKey("ACCELERATION"),
                 PlayerGunValues.MAIN_GUN.getValueFromKey("ROTATIONSPEED"));
         playerShip.setGun(playerGun);
-        assertNotNull(playerShip.shot());
+        assertNotNull(playerShip.shot(), "Player has shot");
         Bullet bullet = playerShip.shot();
         Vec2 currentPos = bullet.getPosition();
         bullet.move(1000000L);
-        assertNotEquals(currentPos, bullet.getPosition());
-        EnemyFactory.basicEnemy(bullet.getPosition());
-
+        assertNotEquals(currentPos, bullet.getPosition(), "Player has moved");
+        Ship enemy = EnemyFactory.basicEnemy(bullet.getPosition());
+        enemy.strike(bullet.getDamage());
+        assertFalse(enemy.isAlive(), "Enemy got hit and died");
     }
 }
