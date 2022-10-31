@@ -1,6 +1,6 @@
 package view;
 
-import controller.gameEngine.GameEngineImpl;
+import controller.gameEngine.GameAnimation;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -131,12 +131,12 @@ public interface GameMap {
      *
      * @param gameEngine
      */
-    void setGameEngine(GameEngineImpl gameEngine);
+    void setGameEngine(GameAnimation gameEngine);
 
     /**
      * @return GameLoop reference.
      */
-    GameEngineImpl getGameEngine();
+    GameAnimation getGameEngine();
 
     /**
      * Set a Status reference.

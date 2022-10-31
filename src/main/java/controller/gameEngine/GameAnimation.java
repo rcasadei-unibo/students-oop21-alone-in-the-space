@@ -20,7 +20,7 @@ import view.WindowManagerImpl;
  * Class that implements GameEngine interface.
  *
  */
-public class GameEngineImpl extends AnimationTimer {
+public class GameAnimation extends AnimationTimer {
 
     private static final long SLEEP = 10_000_000;
     private static final int SLEEP_TIMER = 100_000;
@@ -37,7 +37,7 @@ public class GameEngineImpl extends AnimationTimer {
     private final WindowManager windowManager;
     private long prevTime;
 
-    public GameEngineImpl(final SceneController sceneController) {
+    public GameAnimation(final SceneController sceneController) {
         this.sceneController = sceneController;
         this.windowManager = new WindowManagerImpl(this.sceneController);
         this.stage = this.windowManager.getStage();
