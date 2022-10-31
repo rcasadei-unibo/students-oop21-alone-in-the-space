@@ -113,3 +113,9 @@ Thumbs.db
 /ios/xcode/native/
 /ios/IOSLauncher.app
 /ios/IOSLauncher.app.dSYM
+
+## Various
+/out/*
+/AloneInTheSpace.jar
+/META-INF/*
+
