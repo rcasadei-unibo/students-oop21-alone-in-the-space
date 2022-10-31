@@ -1,6 +1,5 @@
 package controller.gameSwitcher;
 
-import controller.gameEngine.GameEngine;
 import controller.gameEngine.GameAnimation;
 import controller.inputController.InputController;
 import controller.inputController.InputControllerImpl;
