@@ -11,29 +11,23 @@ import javafx.scene.image.Image;
 import model.bullet.Bullet;
 import model.ship.Ship;
 import model.status.StatusImpl;
-import utilities.EnumInt;
 import utilities.EnumString;
 import utilities.InputCommands;
 import utilities.PlayerValues;
 import view.GameMap;
-import view.hud.HUDImpl;
 
 import java.io.IOException;
 import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
 
 public class GameControllerImpl implements GameController {
 
-    private static final long DELTAENEMY = 5_000_000;
-    private double difficultFactor = 1;
     private GameMap gameMap;
     private SceneManager sceneManager;
     private EventController eventController;
     private PlayerShipController playerShipController;
     private InputController inputController;
     private Collection<Ship> enemies;
-    private long enemyTimer;
 
 
     public GameControllerImpl(final GameMap gameMap) {
@@ -48,7 +42,6 @@ public class GameControllerImpl implements GameController {
         this.eventController = new EventControllerImpl(this.gameMap);
 		this.eventController.getHudBuilder().setStatus(this.gameMap.getStatus());
         this.enemies = this.gameMap.getActiveEnemyShips();
-        this.enemyTimer = System.currentTimeMillis();
     }
 
 	@Override

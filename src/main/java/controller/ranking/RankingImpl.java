@@ -42,7 +42,7 @@ public class RankingImpl implements Ranking {
                 }
             }
         } else {
-            final boolean result = this.file.createNewFile();
+            this.file.createNewFile();
             this.saveToFile();
         }
     }

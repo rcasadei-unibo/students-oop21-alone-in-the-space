@@ -3,7 +3,6 @@ package controller.eventController;
 import controller.collisionDetection.Collision;
 import controller.gameSwitcher.SceneController;
 import model.hud.HUDPowerUp;
-import model.status.Status;
 import view.hud.HUDImpl;
 
 import java.io.IOException;

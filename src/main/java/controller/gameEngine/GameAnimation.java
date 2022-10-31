@@ -1,8 +1,6 @@
 package controller.gameEngine;
 
 import com.almasb.fxgl.core.math.Vec2;
-import controller.eventController.EventController;
-import controller.eventController.EventControllerImpl;
 import controller.gameController.GameControllerImpl;
 import controller.gameSwitcher.SceneController;
 import javafx.animation.AnimationTimer;
@@ -29,7 +27,6 @@ public class GameAnimation extends AnimationTimer {
     private long enemyTimer;
     private static final long DELTAENEMY = 5000L;
     private double difficultFactor = 1;
-    private EventController event;
     private Stage stage;
     private String playerName;
     private final GameMapImpl gameMap;
@@ -45,7 +42,6 @@ public class GameAnimation extends AnimationTimer {
         this.windowManager.addGameMap(this.gameMap);
         this.game = new GameControllerImpl(this.gameMap);
         this.game.setInputController(this.sceneController.getInputController());
-        this.event = new EventControllerImpl(this.gameMap);
         this.enemyTimer = 0;
     }
 

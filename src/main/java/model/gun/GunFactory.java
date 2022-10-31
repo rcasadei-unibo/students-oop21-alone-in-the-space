@@ -7,8 +7,6 @@ import model.bullet.BulletFactory;
 import model.ship.PlayerShip;
 import model.ship.Ship;
 
-import java.util.List;
-
 
 
 public class GunFactory {

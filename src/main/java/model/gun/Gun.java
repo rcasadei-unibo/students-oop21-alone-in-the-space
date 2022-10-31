@@ -5,7 +5,6 @@ import com.almasb.fxgl.core.math.Vec2;
 import model.bullet.Bullet;
 import model.ship.Ship;
 
-import java.util.List;
 
 
 public interface Gun {

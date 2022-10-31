@@ -107,7 +107,6 @@ public class GameMapImpl implements GameMap {
     @Override
     public void addPlayerBullet(final Bullet bullet) {
 	bullet.getNode().setId(String.valueOf(this.shipCounter++));
-	Node var = null;
 	this.playerBullets.add(bullet);
 	this.entities.add(bullet);
 	// this.gameContainer.getChildren().add(this.player.getNode());

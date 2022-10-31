@@ -210,7 +210,7 @@ public class PlayerShip implements Ship {
 	 */
 	@Override
 	public Boolean isInRangeOfAttack( long deltaTime) {
-		return null;
+		return false;
 	}
 
 	/**

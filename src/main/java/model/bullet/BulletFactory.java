@@ -3,7 +3,6 @@ package model.bullet;
 import com.almasb.fxgl.core.math.Vec2;
 
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import model.ship.PlayerShip;
 import model.ship.Ship;
 

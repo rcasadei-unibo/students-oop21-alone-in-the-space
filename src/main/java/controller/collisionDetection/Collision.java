@@ -1,6 +1,5 @@
 package controller.collisionDetection;
 
-import model.Entity;
 import model.bullet.Bullet;
 import model.ship.Ship;
 
