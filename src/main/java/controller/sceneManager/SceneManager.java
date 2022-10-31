@@ -25,6 +25,8 @@ public class SceneManager {
 
     /**
      * Game update.
+     *
+     * @param deltaTime tic update
      */
     public void update(long deltaTime) {
         //this.updateBackground();
@@ -36,23 +38,23 @@ public class SceneManager {
      * @param entity entity to update
      * @param deltaTime tic update
      */
-    private void updateEntityPosition(final Entity entity, long deltaTime) {
-	    if(entity.isAlive()) {
-	        entity.move(deltaTime);
-	        final Vec2 position = entity.getPosition();
-	        ImageView image = (ImageView) entity.getNode();
-	        entity.getNode().relocate(position.x-image.getImage().getWidth()/2, position.y- image.getImage().getHeight()/2);
-	        entity.getNode().setRotate(entity.getAngle());
-	    }
-	    else {
+    private void updateEntityPosition(final Entity entity, final long deltaTime) {
+        if (entity.isAlive()) {
+            entity.move(deltaTime);
+            final Vec2 position = entity.getPosition();
+            ImageView image = (ImageView) entity.getNode();
+            entity.getNode().relocate(position.x - image.getImage().getWidth() / 2,
+                    position.y - image.getImage().getHeight() / 2);
+            entity.getNode().setRotate(entity.getAngle());
+        } else {
             try {
                 this.gameMap.removeEntity(entity);
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
-	}
-	    
+        }
+
     }
 
     /*private void updateBackground() {

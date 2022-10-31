@@ -48,12 +48,16 @@ public class HUDLifeImpl extends Label implements HUDLife {
         return this.gameStatus;
     }
 
-    @Override
-    public void update(int lifePoints) {
+    /**
+     * update life points.
+     *
+     * @param lifePoints
+     */
+    public void update(final int lifePoints) {
         this.lifePoints = lifePoints;
         this.setText(MATTER + this.lifePoints);
-        if(this.lifePoints <= 0) {
-            this.gameStatus=false;
+        if (this.lifePoints <= 0) {
+            this.gameStatus = false;
         }
     }
 }

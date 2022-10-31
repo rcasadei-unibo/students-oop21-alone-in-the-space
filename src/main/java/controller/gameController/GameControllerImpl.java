@@ -34,14 +34,16 @@ public class GameControllerImpl implements GameController {
     public GameControllerImpl(final GameMap gameMap) {
         this.gameMap = gameMap;
         this.gameMap.setBackgroundImage(EnumString.IMAGE_FOLDER.getValue() + "skybox13.jpg");
-        this.playerShipController = new PlayerShipControllerImpl(new Vec2(this.gameMap.getWidth().doubleValue()/2, this.getGameMap().getHeight().doubleValue()/2), new Image("images/shipPlayer.png"));
+        this.playerShipController = new PlayerShipControllerImpl(
+                new Vec2(this.gameMap.getWidth().doubleValue() / 2, this.getGameMap().getHeight().doubleValue() / 2),
+                new Image("images/shipPlayer.png"));
         this.gameMap.setPlayer(this.playerShipController.getPlayerShip());
-		this.gameMap.setStatus(new StatusImpl(0, PlayerValues.MAIN_SHIP.getValueFromKey("MAXHEALTH")));
-		this.playerShipController.setStatus(this.gameMap.getStatus());
-		this.gameMap.getStatus().setPlayerController(this.playerShipController);
+        this.gameMap.setStatus(new StatusImpl(0, PlayerValues.MAIN_SHIP.getValueFromKey("MAXHEALTH")));
+        this.playerShipController.setStatus(this.gameMap.getStatus());
+        this.gameMap.getStatus().setPlayerController(this.playerShipController);
         this.sceneManager = new SceneManager(this.gameMap);
         this.eventController = new EventControllerImpl(this.gameMap);
-		this.eventController.getHudBuilder().setStatus(this.gameMap.getStatus());
+        this.eventController.getHudBuilder().setStatus(this.gameMap.getStatus());
         this.enemies = this.gameMap.getActiveEnemyShips();
     }
 
@@ -96,26 +98,26 @@ public class GameControllerImpl implements GameController {
 		this.gameMap.getStatus().update();
 		this.eventController.getHudBuilder().update();
 
-		if (!this.eventController.checkGameStatus()) {
-			this.gameMap.getGameEngine().stop();
-			try {
-				this.eventController.endGame(this.gameMap.getGameEngine().getSceneController());
-				this.gameMap.getGameEngine().getSceneController().getRanking()
-						.addPlayer(this.gameMap.getGameEngine().getPlayerName(), this.eventController.checkPoints());
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-	}
+        if (!this.eventController.checkGameStatus()) {
+            this.gameMap.getGameEngine().stop();
+            try {
+                this.eventController.endGame(this.gameMap.getGameEngine().getSceneController());
+                this.gameMap.getGameEngine().getSceneController().getRanking()
+                        .addPlayer(this.gameMap.getGameEngine().getPlayerName(), this.eventController.checkPoints());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
-	public GameMap getGameMap() {
-		return this.gameMap;
-	}
+    public GameMap getGameMap() {
+        return this.gameMap;
+    }
 
-	public final void setInputController(final InputController inputController) {
-		this.inputController = inputController;
-		this.inputController.changeScene(this.playerShipController.display().getScene());
-	}
+    public final void setInputController(final InputController inputController) {
+        this.inputController = inputController;
+        this.inputController.changeScene(this.playerShipController.display().getScene());
+    }
 
 
 }
