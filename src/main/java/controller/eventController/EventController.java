@@ -27,7 +27,7 @@ public interface EventController {
     HUDImpl getHudBuilder();
 
     /**
-     * //todo.
+     *
      * @param sceneController
      * @throws IOException
      */

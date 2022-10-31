@@ -8,10 +8,10 @@ import javafx.scene.image.ImageView;
 
 public abstract class AbstractBullet implements Bullet {
 	private boolean alive;
-	protected float maxSpeed;
-	protected float acceleration;
-	protected float rotationSpeed;
-	private int damage;
+	protected final float maxSpeed;
+	protected final float acceleration;
+	protected final float rotationSpeed;
+	private final int damage;
 	protected Vec2 speed;
 	protected Vec2 direction;
 	protected Vec2 position;
@@ -31,12 +31,12 @@ public abstract class AbstractBullet implements Bullet {
 	}
 	
 	public void move(long deltaTime) {
-	    	double newdeltaTime = ((double)deltaTime) / 1000000000L; //conversion to seconds
-		this.speed = this.speed.add(direction.mul(newdeltaTime * acceleration));
+		double newDeltaTime = ((double)deltaTime) / 1_000_000_000L; //conversion to seconds
+		this.speed = this.speed.add(direction.mul(newDeltaTime * acceleration));
 		if (this.speed.length() > maxSpeed) {
 			this.speed = this.speed.normalize().mul(this.maxSpeed);
 		}
-		this.position = this.position.add(speed.mul(newdeltaTime));
+		this.position = this.position.add(speed.mul(newDeltaTime));
 	}
 	
 	@Override
@@ -55,32 +55,26 @@ public abstract class AbstractBullet implements Bullet {
 
 	@Override
 	public Vec2 getPosition() {
-		// TODO Auto-generated method stub
 		return this.position.copy();
 	}
 
 	@Override
 	public Boolean isAlive() {
-		// TODO Auto-generated method stub
 		return this.alive;
 	}
 	@Override
 	public Node getNode() {
-		// TODO Auto-generated method stub
 		return this.sprite;
 	}
 
 	@Override
 	public Vec2 getDirection() {
-		// TODO Auto-generated method stub
 		return this.direction.copy();
 	}
 	@Override
-	public void setPosition(Vec2 newpos) {
-		// TODO Auto-generated method stub
-		 this.position = newpos;
+	public void setPosition(Vec2 newPos) {
+		 this.position = newPos;
 	}
-	// TODO Auto-generated method stub
 		public void setSprite(Image img) {
 			this.sprite = new ImageView();
 			this.sprite.setImage(img);

@@ -10,13 +10,13 @@ import java.util.Set;
 
 public class SceneManager {
 
-    private GameMap gameMap;
-    private Set<Entity> entities;
+    private final GameMap gameMap;
+    private final Set<Entity> entities;
 
     /**
      * Constructor.
      *
-     * @param gameMap
+     * @param gameMap the game map
      */
     public SceneManager(final GameMap gameMap) {
         this.gameMap = gameMap;
@@ -28,21 +28,19 @@ public class SceneManager {
      */
     public void update(long deltaTime) {
         //this.updateBackground();
-        //TODO soundmanager
         this.entities.forEach(entity -> updateEntityPosition(entity, deltaTime));
     }
 
     /**
      * Entity position update.
-     * @param entity
-     * @param deltaTime
+     * @param entity entity to update
+     * @param deltaTime tic update
      */
     private void updateEntityPosition(final Entity entity, long deltaTime) {
 	    if(entity.isAlive()) {
 	        entity.move(deltaTime);
 	        final Vec2 position = entity.getPosition();
 	        ImageView image = (ImageView) entity.getNode();
-	        image.getImage().getHeight();
 	        entity.getNode().relocate(position.x-image.getImage().getWidth()/2, position.y- image.getImage().getHeight()/2);
 	        entity.getNode().setRotate(entity.getAngle());
 	    }
@@ -57,9 +55,6 @@ public class SceneManager {
 	    
     }
 
-    /**
-     * Background update.
-     */
     /*private void updateBackground() {
         for (final Node image : this.gameMap.getBackground()) {
             image.setLayoutY(image.getLayoutY() + EnumInt.FOUR.getValue());

@@ -10,9 +10,9 @@ import model.gun.Gun;
 
 public abstract class AbstractShip implements Ship {
 	private int health;
-	private float maxSpeed;
-	private float acceleration;
-	private float rotationSpeed; 
+	private final float maxSpeed;
+	private final float acceleration;
+	private final float rotationSpeed;
 	private long lastAttack = 0;
 	private final long attackCooldown;
 	private Vec2 speed;
@@ -91,8 +91,8 @@ public abstract class AbstractShip implements Ship {
 	}
 
 	@Override
-	public void setPosition(Vec2 newpos) {
-		this.position = newpos;
+	public void setPosition(Vec2 newPos) {
+		this.position = newPos;
 	}
 
 	@Override

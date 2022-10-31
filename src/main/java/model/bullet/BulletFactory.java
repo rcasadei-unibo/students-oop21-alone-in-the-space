@@ -41,7 +41,7 @@ public class BulletFactory {
 		class Missile extends AbstractBullet {
 
 			protected final Ship target;
-			private float researchRange;
+			private final float researchRange;
 
 			public Missile(float maxSpeed, float acceleration, float rotationSpeed, int damage, float researchRange,
 						   Vec2 position, Vec2 direction, Ship enemy) {

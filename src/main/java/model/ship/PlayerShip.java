@@ -11,14 +11,15 @@ import utilities.InputCommands;
 
 public class PlayerShip implements Ship {
 
-	private Vec2 position;
+	private final Vec2 position;
+	private final Vec2 direction;
 	private int maxHealth;
 	private int health;
 	private final int maxSpeed;
 	private float speed;
 	private float acceleration = 0;
-	private Vec2 direction;
-	private int rotationSpeed;
+	private final float directionMul = 1.01f;
+	private final int rotationSpeed;
 	private ImageView sprite;
 	private Gun playerGun;
 	private float yaw;
@@ -55,12 +56,14 @@ public class PlayerShip implements Ship {
 	 * @param deltaTime time elapsed
 	 */
 	public void move(long deltaTime) {
-		float newSpeed = speed + acceleration * 0.01f * ((float)deltaTime)/1_000_000L;
+		float accelerationAmount = 0.01f;
+		long delta = 1_000_000L;
+		float newSpeed = speed + acceleration * accelerationAmount * ((float)deltaTime)/ delta;
 		this.setSpeed(newSpeed);
 		try {
 			float newX = (float) (speed * Math.cos(Math.toRadians(yaw)));
 			float newY = (float) (speed * Math.sin(Math.toRadians(yaw)));
-			this.direction.set(this.direction.x + newX*1.01f, this.direction.y + newY*1.01f);
+			this.direction.set(this.direction.x + newX * directionMul, this.direction.y + newY * directionMul);
 			this.position.addLocal(newX,newY);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -86,7 +89,8 @@ public class PlayerShip implements Ship {
 	 * slows down the ship gradually (P.S.: Space doesn't have friction for this to happen)
 	 */
 	public void decaySpeed() {
-		this.setSpeed(speed *0.95f);
+		float decaySpeedMul = 0.95f;
+		this.setSpeed(speed * decaySpeedMul);
 	}
 	/**
 	 * change movement based on the input from player
@@ -98,6 +102,8 @@ public class PlayerShip implements Ship {
 				break;
 			case DOWN:
 				acceleration = -1;
+				break;
+			default:
 				break;
 		}
 	}
@@ -114,21 +120,14 @@ public class PlayerShip implements Ship {
 	 * @param input user input
 	 */
 	public void rotate(InputCommands input) {
-		int direction = -1;
-		switch (input) {
-			case LEFT:
-				direction = -Math.abs(direction);
-				break;
-			case RIGHT:
-				direction = Math.abs(direction);
-				break;
-			default:
-				break;
+		int direction = -1; //FOR LEFT
+		if (input == InputCommands.RIGHT) {
+			direction = Math.abs(direction);
 		}
 		this.yaw = (yaw + rotationSpeed * direction) % 360;
 		float newX = (float) (Math.cos(Math.toRadians(yaw)));
 		float newY = (float) (Math.sin(Math.toRadians(yaw)));
-		this.direction.set(this.position.x + newX * 1.01f, this.position.y + newY * 1.01f);
+		this.direction.set(this.position.x + newX * directionMul, this.position.y + newY * directionMul);
 	}
 
 	/**
@@ -150,7 +149,7 @@ public class PlayerShip implements Ship {
 
 	/**
 	 * not useful for Player ship, potentially reworkable for new weapon type
-	 * @param target
+	 * @param target enemy ship to target
 	 */
 	public void setTarget(Ship target) {
 		//NOT USED
@@ -206,10 +205,10 @@ public class PlayerShip implements Ship {
 
 	/**
 	 * setter
-	 * @param newPosition set new position of player
+	 * @param newPos set new position of player
 	 */
-	public void setPosition(Vec2 newPosition) {
-		this.position.set(newPosition);
+	public void setPosition(Vec2 newPos) {
+		this.position.set(newPos);
 	}
 
 	/**
@@ -221,7 +220,7 @@ public class PlayerShip implements Ship {
 
 	/**
 	 * check if the ship still has health left
-	 * @return
+	 * @return if player has been destroyed
 	 */
 	@Override
 	public Boolean isAlive() {

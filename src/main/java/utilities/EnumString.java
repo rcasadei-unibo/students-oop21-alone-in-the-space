@@ -42,14 +42,14 @@ public enum EnumString {
      */
     ENEMY_PATH(IMAGE_FOLDER.getValue() + "enemy.png");
 
-    private String value;
+    private final String value;
 
     /**
      * Constructor.
      *
-     * @param value
+     * @param value string form of the path to file
      */
-    private EnumString(final String value) {
+    EnumString(final String value) {
         this.value = value;
     }
 

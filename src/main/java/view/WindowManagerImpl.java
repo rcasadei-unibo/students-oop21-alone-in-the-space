@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 
 public class WindowManagerImpl implements WindowManager {
 
-    private Stage mainStage;
+    private final Stage mainStage;
 
     public WindowManagerImpl(final SceneController sceneController) {
         this.mainStage = sceneController.getStage();

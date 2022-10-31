@@ -7,8 +7,8 @@ import model.bullet.BulletFactory;
 import model.ship.Ship;
 
 abstract class AbstractGun implements Gun {
-	private int degRange;
-	protected Ship actualShip;
+	private final int degRange;
+	protected final Ship actualShip;
 
 	public AbstractGun(int degRange, Ship ship) {
 		this.degRange = degRange;
@@ -23,7 +23,7 @@ abstract class AbstractGun implements Gun {
 
 	public boolean isInRange(Vec2 shipPos, Vec2 direction,Ship enemy) {
 		// TODO Auto-generated method stub
-	    return Math.abs(enemy.getPosition().sub(shipPos).angle()-direction.angle())<this.degRange/2;		
+	    return Math.abs(enemy.getPosition().sub(shipPos).angle()-direction.angle())<this.degRange/2f;
 
 	}
 

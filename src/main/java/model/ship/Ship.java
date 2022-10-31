@@ -8,7 +8,7 @@ public interface Ship extends Entity {
 	
 	/**
 	 * Generate a bullet with the current direction and position of the ship.
-	 * @return
+	 * @return new bullet
 	 */
 	Bullet shot();
 	
@@ -19,19 +19,19 @@ public interface Ship extends Entity {
 	
 	/**
 	 * Set the gun for this ship.
-	 * @param gun
+	 * @param gun new Gun
 	 */
 	void setGun(Gun gun);
 	
 	/**
 	 * decrease the ship current health for the damage specified.
-	 * @param damage
+	 * @param damage damage inflicted
 	 */
 	void strike(int damage);
 	
 	/**
 	 * set the current target of this ship.
-	 * @param target
+	 * @param target new target
 	 */
 	void setTarget(Ship target);
 
@@ -46,14 +46,14 @@ public interface Ship extends Entity {
 	
 	/**
 	 * Drop of this ship when destroyed.
-	 * @return
+	 * @return item dropped
 	 */
 	String drop();
 	
 	/**
 	 * check if at least an enemy is in range of this ship and attack cooldown is off.
-	 * @param deltaTime
-	 * @return
+	 * @param deltaTime tic update
+	 * @return true or false
 	 */
 	Boolean isInRangeOfAttack( long deltaTime);
 

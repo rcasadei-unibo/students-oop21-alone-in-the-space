@@ -57,7 +57,7 @@ public interface GameMap {
     /**
      * Add player bullet.
      *
-     * @param bullet
+     * @param bullet bullet entity from player
      */
     void addPlayerBullet(Bullet bullet);
 
@@ -69,7 +69,7 @@ public interface GameMap {
     /**
      * Adds enemy bullets.
      *
-     * @param bullet
+     * @param bullet bullet entity from enemy
      */
     void addEnemyBullet(Bullet bullet);
 
@@ -95,7 +95,7 @@ public interface GameMap {
     /**
      * This method help for end game: set a stage reference.
      *
-     * @param stage
+     * @param stage current stage
      */
     void setStageReference(Stage stage);
 

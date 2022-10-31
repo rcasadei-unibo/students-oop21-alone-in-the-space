@@ -27,7 +27,7 @@ public class RecordsFolder {
 		 */
 		USER_RANKING_FILE_PATH(USER_RANKING_DIR_PATH.getPath() + SEPARATOR + RANKING_FILE_NAME);
 		
-		private String path;
+		private final String path;
 		
 		RankingsPath(final String path) {
 			this.path = path;
