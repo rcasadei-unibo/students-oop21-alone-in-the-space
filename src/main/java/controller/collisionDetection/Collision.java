@@ -19,7 +19,7 @@ public interface Collision {
      * @param enemy the enemy ship
      * @return True if a collision occurred
      */
-    boolean checkEnemyCollision(Ship ship, Ship enemy);
+    boolean checkEnemyCollision(Ship playerShip, Ship enemy);
 
     /**
      * Check if there is a collision with bullets.
@@ -27,7 +27,7 @@ public interface Collision {
      * @param bullet the active bullet
      * @return True if a collision occurred
      */
-    boolean checkBulletCollision(Ship ship, Bullet bullet);
+    boolean checkBulletCollision(Ship playerShip, Bullet bullet);
 
     /**
      * Check collision with enemies and bullets.
@@ -36,14 +36,18 @@ public interface Collision {
      * @param playerBullets
      * @param enemiesBullets
      */
-    void checkAllCollision(Ship ship, Collection<Ship> enemies, Collection<Bullet> playerBullets, Collection<Bullet> enemiesBullets);
+    void checkAllCollision(Ship playerShip, Collection<Ship> enemies, Collection<Bullet> playerBullets, Collection<Bullet> enemiesBullets);
 
     /**
      * Check if there is a collision with borders.
      * @param ship the player ship
      */
-    void checkBorderCollision(Entity ship);
-    
+    void checkBorderCollision(Ship playerShip);
+    /**
+     * Check if bullet collide with borders.
+     * @param playerBullets
+     * @param enemiesBullets
+     */
     void checkBulletsBorderCollision(Collection<Bullet> playerBullets, Collection<Bullet> enemiesBullets);
 
 }
