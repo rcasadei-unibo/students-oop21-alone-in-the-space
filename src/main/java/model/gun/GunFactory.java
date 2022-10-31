@@ -34,7 +34,7 @@ public class GunFactory {
 			}
 			
 			 public Bullet shot(Vec2 direction) {
-				return BulletFactory.missile(super.actualShip.getPosition(), super.actualShip.getDirection(),super.actualShip);
+				return BulletFactory.missile(super.actualShip.getPosition(), super.actualShip.getDirection(), super.actualShip.getTarget());
 
 			}
 			 

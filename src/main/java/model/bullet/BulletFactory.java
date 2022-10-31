@@ -73,7 +73,7 @@ public class BulletFactory {
 				}
 			}
 		}
-		Bullet var = new Missile(150, 20, 30, 10, 90, position, direction, enemy);
+		Bullet var = new Missile(150, 20, 600, 10, 90, position, direction, enemy);
 		var.setSprite(new Image("images/missile_01.png"));
 		return var;
 	}
