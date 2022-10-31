@@ -1,4 +1,4 @@
-package application;
+package model.enemy;
 
 import static org.junit.jupiter.api.Assertions.*;
 
