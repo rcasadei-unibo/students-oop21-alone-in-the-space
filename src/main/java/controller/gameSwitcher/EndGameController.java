@@ -1,11 +1,15 @@
 package controller.gameSwitcher;
 
+import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 
-import java.io.IOException;
-
+/**
+ * 
+ *
+ */
 public class EndGameController extends BasicFXMLController {
 
     @FXML
@@ -30,7 +34,7 @@ public class EndGameController extends BasicFXMLController {
      */
     @FXML
     private void initialize() {
-        //this.score.setText(Integer.valueOf(this.scores).toString());
+        // this.score.setText(Integer.valueOf(this.scores).toString());
         this.score.setText(Integer.toString(this.scores));
         this.score.setVisible(true);
     }
@@ -42,7 +46,7 @@ public class EndGameController extends BasicFXMLController {
      */
     @FXML
     void quit(final ActionEvent event) {
-        //super.buttonPressedSound();
+        // super.buttonPressedSound();
         super.getSceneController().quit();
     }
 
@@ -54,7 +58,7 @@ public class EndGameController extends BasicFXMLController {
      */
     @FXML
     void showMainMenu(final ActionEvent event) throws IOException {
-        //super.buttonPressedSound();
+        // super.buttonPressedSound();
         super.getSceneController().switchToMainMenu();
     }
 }

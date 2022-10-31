@@ -7,6 +7,9 @@ import utilities.EnumInt;
 import utilities.EnumString;
 import utilities.PlayerValues;
 
+/**
+ * Class for HUD lifePoints components.
+ */
 public class HUDLifeImpl extends Label implements HUDLife {
 
     /*

@@ -1,13 +1,16 @@
 package controller.eventController;
 
+import java.io.IOException;
+
 import controller.collisionDetection.Collision;
 import controller.gameSwitcher.SceneController;
 import model.hud.HUDPowerUp;
 import view.GameMap;
 import view.hud.HUDImpl;
 
-import java.io.IOException;
-
+/**
+ * Implements event logic for the game.
+ */
 public class EventControllerImpl implements EventController {
 
     private HUDImpl hudBuilder;

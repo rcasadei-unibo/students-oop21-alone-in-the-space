@@ -6,7 +6,9 @@ import utilities.EnumInt;
 import utilities.PowerUpEnum;
 import view.GameMap;
 
-
+/**
+*
+*/
 public class HUDPowerUpImpl implements HUDPowerUp {
 
     private static final int X_LAYOUT = 70;
@@ -16,6 +18,11 @@ public class HUDPowerUpImpl implements HUDPowerUp {
     private boolean statusMonitor;
     private final GameMap gameMap;
 
+    /**
+     * Constructor.
+     *
+     * @param gameMap
+     */
     public HUDPowerUpImpl(final GameMap gameMap) {
         this.gameMap = gameMap;
         this.addPowerUp();
@@ -54,7 +61,8 @@ public class HUDPowerUpImpl implements HUDPowerUp {
         }
     }
 
-    public final boolean getStatus(int index) {
+    @Override
+    public final boolean getStatus(final int index) {
         return this.statusMonitor;
     }
 }

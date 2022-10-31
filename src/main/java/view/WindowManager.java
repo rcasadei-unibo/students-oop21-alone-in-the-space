@@ -2,6 +2,9 @@ package view;
 
 import javafx.stage.Stage;
 
+/**
+*
+*/
 public interface WindowManager {
 
     /**
@@ -11,6 +14,7 @@ public interface WindowManager {
      */
 
     void addGameMap(GameMap gameMap);
+
     /**
      * @return actual Stage.
      */

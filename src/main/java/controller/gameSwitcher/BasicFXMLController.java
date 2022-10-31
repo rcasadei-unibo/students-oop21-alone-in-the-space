@@ -1,25 +1,29 @@
 package controller.gameSwitcher;
 
-import javafx.stage.Stage;
-
 import java.io.IOException;
 
+import javafx.stage.Stage;
+
+/**
+ * 
+ */
 public abstract class BasicFXMLController {
     private Stage windowManager;
     private SceneController sceneController;
 
     /**
      * Constructor.
+     * 
      * @param sceneController
      * @throws IOException
      */
     public BasicFXMLController(final SceneController sceneController) throws IOException {
         this.windowManager = sceneController.getStage();
         this.sceneController = sceneController;
-        //soundManager
+        // soundManager
     }
 
-    //public void buttonPressedSound(){}
+    // public void buttonPressedSound(){}
 
     /**
      * @return windowManager reference.
@@ -28,7 +32,7 @@ public abstract class BasicFXMLController {
         return this.windowManager;
     }
 
-    //public SoundManager getSoundManager() {}
+    // public SoundManager getSoundManager() {}
 
     /**
      *

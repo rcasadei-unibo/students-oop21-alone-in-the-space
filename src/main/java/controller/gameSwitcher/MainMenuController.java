@@ -1,12 +1,14 @@
 package controller.gameSwitcher;
 
+import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
-import java.io.IOException;
-
+/**
+ * 
+ */
 public class MainMenuController extends BasicFXMLController {
-
 
     /**
      * Constructor.
@@ -20,6 +22,7 @@ public class MainMenuController extends BasicFXMLController {
 
     /**
      * Show nickname GUI.
+     * 
      * @param event
      * @throws IOException
      */
@@ -30,6 +33,7 @@ public class MainMenuController extends BasicFXMLController {
 
     /**
      * Show scores GUI.
+     * 
      * @param event
      * @throws IOException
      */
@@ -40,6 +44,7 @@ public class MainMenuController extends BasicFXMLController {
 
     /**
      * Show controls GUI.
+     * 
      * @param event
      * @throws IOException
      */
@@ -50,12 +55,12 @@ public class MainMenuController extends BasicFXMLController {
 
     /**
      * Ends the game.
+     * 
      * @param event
      */
     @FXML
     void quit(final ActionEvent event) {
         super.getSceneController().quit();
     }
-
 
 }

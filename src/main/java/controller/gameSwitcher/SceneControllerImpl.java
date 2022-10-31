@@ -1,5 +1,7 @@
 package controller.gameSwitcher;
 
+import java.io.IOException;
+
 import controller.gameEngine.GameAnimation;
 import controller.inputController.InputController;
 import controller.inputController.InputControllerImpl;
@@ -11,8 +13,9 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
+/**
+ * 
+ */
 public class SceneControllerImpl implements SceneController {
 
     private Stage windowManager;
@@ -25,7 +28,7 @@ public class SceneControllerImpl implements SceneController {
         this.ranking = new RankingImpl();
         this.inputController = new InputControllerImpl(new Scene(new Group()));
         this.windowManager.show();
-        //soundManager
+        // soundManager
     }
 
     @Override
@@ -37,7 +40,7 @@ public class SceneControllerImpl implements SceneController {
 
     @Override
     public void switchToGame(String name) throws IOException {
-        this.gameEngine  = new GameAnimation(this);
+        this.gameEngine = new GameAnimation(this);
         this.gameEngine.setPlayerName(name);
         final Scene scene = this.gameEngine.getGameMap().getGameContainer().getScene();
         this.windowManager.setScene(scene);
@@ -63,7 +66,7 @@ public class SceneControllerImpl implements SceneController {
     @Override
     public void switchToEndMenu(int scores) throws IOException {
 //        this.gameEngine.stop();
-        final Scene scene = this.getSceneFromFxml("fxml/EndMenu.fxml",  new EndGameController(this, scores));
+        final Scene scene = this.getSceneFromFxml("fxml/EndMenu.fxml", new EndGameController(this, scores));
         this.inputController.changeScene(scene);
         this.windowManager.setScene(scene);
     }
@@ -82,7 +85,8 @@ public class SceneControllerImpl implements SceneController {
     }
 
     private Scene getSceneFromFxml(final String path, final BasicFXMLController controller) throws IOException {
-        //final FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource(path));
+        // final FXMLLoader loader = new
+        // FXMLLoader(getClass().getClassLoader().getResource(path));
         final FXMLLoader loader = new FXMLLoader(Thread.currentThread().getContextClassLoader().getResource(path));
         loader.setController(controller);
         return new Scene(loader.load());

@@ -1,11 +1,14 @@
 package controller.gameSwitcher;
 
+import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
-import java.io.IOException;
-
+/**
+ * 
+ */
 public class NicknameController extends BasicFXMLController {
 
     private static final int MAX_SIZE = 15;
@@ -27,6 +30,7 @@ public class NicknameController extends BasicFXMLController {
 
     /**
      * Checks the nickname entry and save it.
+     * 
      * @param event
      * @throws IOException
      */
@@ -34,19 +38,20 @@ public class NicknameController extends BasicFXMLController {
     void nameEvent(final ActionEvent event) throws IOException {
         final String name = this.nickname.getText();
         if (!name.isBlank() && name.length() <= this.maxNameLength) {
-            //super.buttonPressedSound();
+            // super.buttonPressedSound();
             super.getSceneController().switchToGame(name);
         }
     }
 
     /**
      * Returns to the main menu.
+     * 
      * @param event
      * @throws IOException
      */
     @FXML
     void showMainMenu(final ActionEvent event) throws IOException {
-        //super.buttonPressedSound();
+        // super.buttonPressedSound();
         super.getSceneController().switchToMainMenu();
     }
 

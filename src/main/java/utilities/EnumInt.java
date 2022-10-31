@@ -1,5 +1,8 @@
 package utilities;
 
+/**
+ * 
+ */
 public enum EnumInt {
     /**
      *
@@ -100,7 +103,6 @@ public enum EnumInt {
      *
      */
     VIEW_ORDER(-51),
-
 
     /**
      *

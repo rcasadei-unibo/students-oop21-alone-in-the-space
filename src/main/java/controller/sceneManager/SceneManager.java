@@ -1,13 +1,16 @@
 package controller.sceneManager;
 
+import java.util.Set;
+
 import com.almasb.fxgl.core.math.Vec2;
 
 import javafx.scene.image.ImageView;
 import model.Entity;
 import view.GameMap;
 
-import java.util.Set;
-
+/**
+*
+*/
 public class SceneManager {
 
     private final GameMap gameMap;
@@ -43,6 +46,7 @@ public class SceneManager {
             entity.move(deltaTime);
             final Vec2 position = entity.getPosition();
             ImageView image = (ImageView) entity.getNode();
+            image.getImage().getHeight();
             entity.getNode().relocate(position.x - image.getImage().getWidth() / 2,
                     position.y - image.getImage().getHeight() / 2);
             entity.getNode().setRotate(entity.getAngle());
@@ -57,14 +61,16 @@ public class SceneManager {
 
     }
 
-    /*private void updateBackground() {
-        for (final Node image : this.gameMap.getBackground()) {
-            image.setLayoutY(image.getLayoutY() + EnumInt.FOUR.getValue());
-            if (image.getLayoutY() >= this.gameMap.getHeight().intValue()) {
-                image.setLayoutY(-this.gameMap.getHeight().intValue());
-            }
-        }
-    }*/
-
+    // TODO DA CANCELLARE
+    /**
+     * Background update.
+     */
+    /*
+     * private void updateBackground() { for (final Node image :
+     * this.gameMap.getBackground()) { image.setLayoutY(image.getLayoutY() +
+     * EnumInt.FOUR.getValue()); if (image.getLayoutY() >=
+     * this.gameMap.getHeight().intValue()) {
+     * image.setLayoutY(-this.gameMap.getHeight().intValue()); } } }
+     */
 
 }
