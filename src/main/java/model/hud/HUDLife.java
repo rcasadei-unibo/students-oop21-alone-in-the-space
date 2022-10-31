@@ -8,13 +8,12 @@ public interface HUDLife {
     int getLifePoints();
 
     /**
-     * It decreases life points.
-     */
-    void lifeDown(final int damage);
-
-
-    /**
      * @return game status.
      */
-    boolean getStatus();
+    boolean getGameStatus();
+
+    /**
+     * update the HUD with the new stats
+     */
+    void update(int lifePoints);
 }

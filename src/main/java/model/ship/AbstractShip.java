@@ -148,11 +148,12 @@ public abstract class AbstractShip implements Ship {
 	/**
 	 * calculate the angle from the actual direction, and ideal direction
 	 * 
-	 * @return
+	 * @return new direction
 	 */
 	private float calculateDir() {
 		return this.target.getPosition().sub(this.position).angle();
 	}
+
 
 	public int getHealth() {
 		return this.health;

@@ -46,8 +46,8 @@ public class GameControllerImpl implements GameController {
 
 	@Override
 	public void update(final long deltaTime) {
-	        this.inputController.updatePlayerTasks();
-		// TODO player movements.
+		this.inputController.updatePlayerTasks();
+		//Various player movement checks
 		if (this.inputController.isTaskActive(InputCommands.UP)) {
 			this.playerShipController.thrust(InputCommands.UP);
 		}
@@ -60,27 +60,30 @@ public class GameControllerImpl implements GameController {
 		if (this.inputController.isTaskActive(InputCommands.RIGHT)) {
 			this.playerShipController.rotate(InputCommands.RIGHT);
 		}
-
+		//Fire Rate check in player controller
 		if (this.inputController.isTaskActive(InputCommands.ATTACK)) {
 			final Optional<Bullet> playerBulletShot = Optional.ofNullable(this.playerShipController.shot());
 			playerBulletShot.ifPresent(bullet -> this.gameMap.addPlayerBullet(bullet));
 
 		}
-
+		//PowerUp check in playercontroller
 		if (this.inputController.isTaskActive(InputCommands.POWER_UP)) {
 			this.playerShipController.activatePowerUp();
 		}
-
+		//For decaying speed
 		if (!this.inputController.isTaskActive(InputCommands.UP) && !this.inputController.isTaskActive(InputCommands.DOWN)) {
 			this.playerShipController.thrustReleased();
 		}
 
-
+		//Collision check
 		this.eventController.getCollision().checkAllCollision(this.playerShipController.getPlayerShip(),
 				this.enemies, this.gameMap.getBulletsShotByPlayer(),
 				this.gameMap.getBulletsShotByEnemies());
+		//Updates the player
 		this.playerShipController.update(deltaTime);
+
 		this.gameMap.removeDeadEntity();
+
 		this.enemies.forEach((Ship enemy) -> {
 			if (enemy.isInRangeOfAttack( deltaTime)) {
 				this.gameMap.addEnemyBullet(enemy.shot());
@@ -88,9 +91,9 @@ public class GameControllerImpl implements GameController {
 		});
 
 		this.sceneManager.update(deltaTime);
+		//Update status stats (life points, player score)
 		this.gameMap.getStatus().update();
 		this.eventController.getHudBuilder().update();
-		//this.playerShipController.update(deltaTime);should be included in the scene manager
 
 		if (!this.eventController.checkGameStatus()) {
 			this.gameMap.getGameEngine().stop();

@@ -35,7 +35,7 @@ public interface GameMap {
     Number getHeight();
 
     /**
-     * @param add the player Entity to the game.
+     * @param player add the player Entity to the game.
      */
     void setPlayer(Ship player);
 
@@ -102,7 +102,7 @@ public interface GameMap {
     /**
      * Set the background image.
      *
-     * @param the path of the file.
+     * @param path the path of the file.
      */
     void setBackgroundImage(String path);
 
@@ -140,9 +140,7 @@ public interface GameMap {
 
     /**
      * Set a Status reference.
-     * @param points
-     * @param lifePoints
-     * @param lives
+     * @param status the status to reference to
      */
     void setStatus(StatusImpl status);
 
@@ -150,6 +148,9 @@ public interface GameMap {
      * @return Status reference.
      */
     StatusImpl getStatus();
-    
+
+    /**
+     * checks all the dead entities and remove them and the nodes
+     */
     void removeDeadEntity();
 }

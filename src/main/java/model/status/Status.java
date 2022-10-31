@@ -14,7 +14,9 @@ public interface Status {
 
     void addPoints(int value);
 
-    boolean switchPowerUp();
+    void switchPowerUp();
 
     void setPlayerController(PlayerShipController playerShipController);
+
+    boolean hasPowerUp();
 }

@@ -7,14 +7,10 @@ public interface HUDPoints {
      */
     int getPoints();
 
-    /**
-     * Increase the points.
-     */
-    void pointsUp();
 
     /**
      * Set the points to the chosen value.
-     * @param value
+     * @param value amount of points
      */
     void setPoints(int value);
 

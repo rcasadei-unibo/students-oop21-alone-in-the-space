@@ -51,7 +51,6 @@ public class ControlsController extends BasicFXMLController {
      */
     @FXML
     private void initialize() {
-        System.out.println("init");
         this.inputController = super.getSceneController().getInputController();
         this.keyToSetText.setText(KeyCode.A.toString());
         this.refreshControls();

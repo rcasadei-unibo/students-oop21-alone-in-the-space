@@ -14,7 +14,7 @@ public interface Collision {
 
     /**
      * Check if there is a collision with enemies.
-     * @param ship the player ship
+     * @param playerShip the player ship
      * @param enemy the enemy ship
      * @return True if a collision occurred
      */
@@ -22,7 +22,7 @@ public interface Collision {
 
     /**
      * Check if there is a collision with bullets.
-     * @param ship the player ship
+     * @param playerShip the player ship
      * @param bullet the active bullet
      * @return True if a collision occurred
      */
@@ -30,22 +30,22 @@ public interface Collision {
 
     /**
      * Check collision with enemies and bullets.
-     * @param ship
-     * @param enemies
-     * @param playerBullets
-     * @param enemiesBullets
+     * @param playerShip the player
+     * @param enemies list of enemies to check
+     * @param playerBullets all the bullets shot by the player
+     * @param enemiesBullets all the bullets shot by each enemy
      */
     void checkAllCollision(Ship playerShip, Collection<Ship> enemies, Collection<Bullet> playerBullets, Collection<Bullet> enemiesBullets);
 
     /**
-     * Check if there is a collision with borders.
-     * @param ship the player ship
+     * Check if there is a collision with borders then send the player on the other side
+     * @param playerShip the player ship
      */
     void checkBorderCollision(Ship playerShip);
     /**
-     * Check if bullet collide with borders.
-     * @param playerBullets
-     * @param enemiesBullets
+     * Check if any bullet collides with borders.
+     * @param playerBullets collection of bullets shot by the player
+     * @param enemiesBullets collection of all bullets shot by the enemies
      */
     void checkBulletsBorderCollision(Collection<Bullet> playerBullets, Collection<Bullet> enemiesBullets);
 

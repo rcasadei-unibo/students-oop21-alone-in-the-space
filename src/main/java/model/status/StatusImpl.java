@@ -53,8 +53,7 @@ public class StatusImpl implements Status{
     }
 
     @Override
-    public boolean switchPowerUp() {
-        return !this.powerUp;
+    public void switchPowerUp() {
     }
 
 
@@ -62,5 +61,10 @@ public class StatusImpl implements Status{
     @Override
     public void setPlayerController(PlayerShipController playerShipController) {
         this.playerController = playerShipController;
+    }
+
+    @Override
+    public boolean hasPowerUp() {
+        return this.powerUp;
     }
 }

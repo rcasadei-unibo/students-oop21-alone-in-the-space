@@ -17,9 +17,9 @@ public interface Gun {
 	
 	/**
 	 * check if there is at least an enemy in that direction, based on the range of the setted gun.
-	 * @param shipPos
-	 * @param direction
-	 * @param enemyPos
+	 * @param shipPos starting position
+	 * @param direction in which direction to check
+	 * @param enemy ship to check
 	 * @return
 	 */
 	boolean isInRange(Vec2 shipPos, Vec2 direction, Ship enemy);

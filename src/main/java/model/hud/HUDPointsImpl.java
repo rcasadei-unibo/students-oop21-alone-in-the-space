@@ -13,7 +13,6 @@ public class HUDPointsImpl extends Label implements HUDPoints {
      */
     private static final int X_LAYOUT = 130;
     private static final int Y_LAYOUT = 20;
-    private static final int POINTS_UP = 1;
     private static final String YELLOW = "yellow";
     private static final String MATTER = "Points: ";
 
@@ -33,16 +32,14 @@ public class HUDPointsImpl extends Label implements HUDPoints {
         return this.points;
     }
 
-    @Override
-    public void pointsUp() {
-        if (this.getPoints() < EnumInt.MAX_POINTS.getValue()) {
-            this.setPoints(POINTS_UP);
-        }
-    }
 
     @Override
     public void setPoints(int value) {
-        this.points += value;
+        if (this.getPoints() + value < EnumInt.MAX_POINTS.getValue()) {
+            this.points += value;
+        } else {
+            this.points = EnumInt.MAX_POINTS.getValue();
+        }
         this.setText(MATTER + this.getPoints());
     }
 
