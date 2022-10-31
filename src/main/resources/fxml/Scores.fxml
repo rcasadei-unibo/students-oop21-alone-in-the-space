@@ -16,8 +16,8 @@
             <Image url="@../images/skybox13.jpg" />
          </image>
       </ImageView>
-      <TextFlow fx:id="scoreText" layoutX="278.0" layoutY="139.0" prefHeight="460.0" prefWidth="726.0" textAlignment="JUSTIFY" />
-      <Button layoutX="506.0" layoutY="589.0" mnemonicParsing="false" onAction="#showMainMenu" prefHeight="106.0" prefWidth="242.0" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: yellow;" text="BACK">
+      <TextFlow fx:id="scoreText" layoutX="278.0" layoutY="125.0" prefHeight="460.0" prefWidth="726.0" textAlignment="JUSTIFY" />
+      <Button layoutX="445.0" layoutY="574.0" mnemonicParsing="false" onAction="#showMainMenu" prefHeight="82.0" prefWidth="391.0" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: yellow;" text="BACK">
          <font>
             <Font name="System Bold" size="60.0" />
          </font>
@@ -25,7 +25,7 @@
             <DropShadow />
          </effect>
       </Button>
-      <Text fill="WHITE" layoutX="482.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SCORES:">
+      <Text fill="WHITE" layoutX="482.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SCORES:">
          <font>
             <Font name="System Bold" size="80.0" />
          </font>
