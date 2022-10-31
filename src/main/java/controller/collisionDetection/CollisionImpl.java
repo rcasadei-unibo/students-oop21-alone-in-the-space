@@ -37,7 +37,7 @@ public class CollisionImpl implements Collision {
     }
 
     @Override
-    public void checkBorderCollision(final Entity ship) {
+    public void checkBorderCollision(final Ship ship) {
         if (ship.getPosition().y >= EnumInt.HEIGHT.getValue() + EnumInt.SLACK.getValue()) {
             ship.setPosition(new Vec2(ship.getPosition().x , 0));
         } else if (ship.getPosition().y <= -EnumInt.SLACK.getValue()) {
