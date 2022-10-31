@@ -10,7 +10,7 @@ public enum PlayerGunValues {
 
     MAIN_GUN(5, 5, 2, 2, 3f);
 
-    private Map<String, Float> gunValues = new HashMap<>();
+    private final Map<String, Float> gunValues = new HashMap<>();
 
     PlayerGunValues(final float damage, final float maxSpeed, final float acceleration, final float rotationSpeed, final float fireRate) {
         gunValues.put("DAMAGE", damage);

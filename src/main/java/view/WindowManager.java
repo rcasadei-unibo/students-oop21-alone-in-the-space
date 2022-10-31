@@ -8,9 +8,9 @@ import javafx.stage.Stage;
 public interface WindowManager {
 
     /**
-     * Add the gamemap to the stage and set its scene.
+     * Add the game map to the stage and set its scene.
      *
-     * @param gameMap
+     * @param gameMap current game map
      */
 
     void addGameMap(GameMap gameMap);

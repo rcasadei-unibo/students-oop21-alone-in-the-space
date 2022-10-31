@@ -12,26 +12,21 @@ import model.ship.Ship;
 public class GunFactory {
 
 	public static Gun rifle(Ship spaceship) {
-		// TODO Auto-generated method stub
 		class Rifle extends AbstractGun {
 
 			public Rifle(int degRange, Ship ship) {
 				super(degRange, ship);
-				// TODO Auto-generated constructor stub
 			}
 			public Bullet shot(Vec2 direction) {
-				// TODO Auto-generated method stub
 				return BulletFactory.bolt(super.actualShip.getPosition(), super.actualShip.getDirection());
 
 			}
 
-		};
-		var gun =new Rifle(10, spaceship);
-		return gun;
+		}
+		return new Rifle(10, spaceship);
 	}
 
 	public static Gun missile(Ship spaceship) {
-		// TODO Auto-generated method stub
 		class Missile extends AbstractGun {
 
 			public Missile(int degRange, Ship ship) {
@@ -39,7 +34,6 @@ public class GunFactory {
 			}
 			
 			 public Bullet shot(Vec2 direction) {
-				// TODO Auto-generated method stub
 				return BulletFactory.missile(super.actualShip.getPosition(), super.actualShip.getDirection(),super.actualShip);
 
 			}
@@ -51,12 +45,10 @@ public class GunFactory {
 	}
 
 	public static Gun boltGun(Ship spaceship) {
-		// TODO Auto-generated method stub
 		class BoltGun extends AbstractGun {
 
 			public BoltGun(int degRange, Ship ship) {
 				super(degRange, ship);
-				// TODO Auto-generated constructor stub
 			}
 			
 
@@ -74,9 +66,6 @@ public class GunFactory {
 	 * @return gun set with the default values
 	 */
 	public static Gun playerGun(PlayerShip ship, int damage, float maxSpeed, float acceleration, float rotationSpeed) {
-		/**
-		 * PlayerGun implementation
-		 */
 		class PlayerGun extends AbstractGun {
 			/**
 			 * constructor
@@ -96,10 +85,10 @@ public class GunFactory {
 			}
 
 			//Use predefined values from PlayerShipValues
-			private int bulletDamage;
-			private float bulletMaxSpeed;
-			private float bulletAcceleration;
-			private float bulletRotationSpeed;
+			private final int bulletDamage;
+			private final float bulletMaxSpeed;
+			private final float bulletAcceleration;
+			private final float bulletRotationSpeed;
 
 			public Bullet shot(Vec2 direction) {
 				return BulletFactory.playerBullet(bulletMaxSpeed, bulletAcceleration, bulletRotationSpeed, bulletDamage,

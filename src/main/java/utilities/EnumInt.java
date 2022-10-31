@@ -97,7 +97,7 @@ public enum EnumInt {
     /**
      *
      */
-    POWER_UP_SCORE(1),
+    POWER_UP_SCORE(15),
 
     /**
      *

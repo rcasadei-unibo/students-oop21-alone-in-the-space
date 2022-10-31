@@ -80,16 +80,17 @@ public class PlayerShipControllerImpl implements PlayerShipController {
     }
 
     public ImageView update(long deltaTime) {
+        long delta = 1_000_000_000L;
         if (this.hasFired) {
             this.gunRechargeTime += deltaTime;
-            if (this.gunRechargeTime >= 1_000_000_000 / fireRate) {
+            if (this.gunRechargeTime >= delta / fireRate) {
                 this.hasFired = false;
                 this.gunRechargeTime = 0;
             }
         }
         if (this.activePowerUp) {
             this.powerTime += deltaTime;
-            if (this.powerTime >= EnumInt.POWER_UP_DURATION.getValue() * 1_000_000_000L) {
+            if (this.powerTime >= EnumInt.POWER_UP_DURATION.getValue() * delta) {
                 this.activePowerUp = false;
                 this.powerTime = 0;
                 this.endPowerUp();
@@ -137,8 +138,7 @@ public class PlayerShipControllerImpl implements PlayerShipController {
 
     @Override
     public ImageView display() {
-        final ImageView sprite = playerShip.getSprite();
-        return sprite;
+        return playerShip.getSprite();
     }
 
     @Override
@@ -174,16 +174,17 @@ public class PlayerShipControllerImpl implements PlayerShipController {
         return this.activePowerUp;
     }
 
+    /**
+     * every level the player gains 5% MaxHP of the original MaxHP value and gets healed
+     * every 3 levels, fire rate increases by 5% of the original value
+     * every 5 levels, gun damage is increased by 5% of the original value
+     */
     private void levelUp() {
-        /* every level the player gains 5% MaxHP of the original MaxHP value and gets healed
-         * every 3 levels, fire rate increases by 5% of the original value
-         * every 5 levels, gun damage is increased by 5% of the original value
-         */
         this.playerShip.setMaxHealth(this.playerShip.getMaxHealth() + 5 * (PlayerValues.MAIN_SHIP.getValueFromKey("MAXHEALTH")) / 100);
         this.playerShip.heal(50);
 
         if (this.currentLevel % 3 == 0) {
-            this.fireRate += 5f * (float) (PlayerGunValues.MAIN_GUN.getValueFromKey("FIRERATE")) / 100f;
+            this.fireRate += 5f * (PlayerGunValues.MAIN_GUN.getValueFromKey("FIRERATE")) / 100f;
         }
 
         if (this.currentLevel % 5 == 0) {
@@ -194,8 +195,11 @@ public class PlayerShipControllerImpl implements PlayerShipController {
         this.currentLevel++;
     }
 
+    /**
+     * modify the playergun in player controller to keep the original intact while the ship is in powerup mode
+     * @param newDamage the new damage amount of the bullets
+     */
     private void gunLevelUp(int newDamage) {
-        //modify the playergun in here to keep it updated for whenever the player activated Power Up mode
         this.normalPlayerGun = GunFactory.playerGun(this.playerShip,
                 (int)        PlayerGunValues.MAIN_GUN.getValueFromKey("DAMAGE") + newDamage,
                 PlayerGunValues.MAIN_GUN.getValueFromKey("MAXSPEED"),
@@ -204,10 +208,18 @@ public class PlayerShipControllerImpl implements PlayerShipController {
         this.playerShip.setGun(normalPlayerGun);
     }
 
+    /**
+     * can the player level up
+     * @return boolean
+     */
     private boolean checkLevelUp() {
-        //level requirement increases exponentially
         return this.exp >= nextLevelUp();
     }
+
+    /**
+     * next level exp requirements that increase exponentially
+     * @return exp required to level up
+     */
     private int nextLevelUp() {
         return EnumInt.EXP_REQUIRED.getValue() * (int) ((Math.pow(2, this.currentLevel - 1)));
     }

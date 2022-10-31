@@ -16,7 +16,7 @@ public class StatusImpl implements Status {
 
     /**
      * Constructor.
-     * 
+     *
      * @param points
      * @param lifePoints
      */
@@ -68,6 +68,7 @@ public class StatusImpl implements Status {
 
     @Override
     public void switchPowerUp() {
+        this.powerUp = !this.powerUp;
     }
 
     @Override

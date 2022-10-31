@@ -10,7 +10,7 @@ public enum PlayerValues {
 
     MAIN_SHIP(100, 3, 2);
 
-    private Map<String, Integer> shipValues = new HashMap<>();
+    private final Map<String, Integer> shipValues = new HashMap<>();
 
     PlayerValues(final int maxHealth, final int maxSpeed, final int rotationSpeed) {
         shipValues.put("MAXHEALTH", maxHealth);

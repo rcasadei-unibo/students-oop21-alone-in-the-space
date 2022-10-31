@@ -48,5 +48,5 @@ public enum InputCommands {
     /**
      * NONE.
      */
-    NONE;
+    NONE
 }

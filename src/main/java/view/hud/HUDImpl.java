@@ -14,7 +14,7 @@ import utilities.PowerUpEnum;
 import view.GameMap;
 
 /**
- * 
+ *
  */
 public class HUDImpl implements HUDInterface {
 
@@ -24,10 +24,11 @@ public class HUDImpl implements HUDInterface {
     private Collision collision;
     private GameMap gameMap;
     private Status status;
+    private boolean powerUp = false;
 
     /**
      * Game Container reference and HUD elements.
-     * 
+     *
      * @param gameMap
      */
     public HUDImpl(final GameMap gameMap) {
@@ -37,7 +38,7 @@ public class HUDImpl implements HUDInterface {
 
     /**
      * Set status reference.
-     * 
+     *
      * @param status
      */
     public void setStatus(final Status status) {
@@ -53,7 +54,6 @@ public class HUDImpl implements HUDInterface {
         this.livesHUD = new HUDLifeImpl();
         livesHUD.setId("HealthPoints");
         this.gameMap.getGameContainer().getChildren().add(this.livesHUD);
-
         this.powerUpHUD = new HUDPowerUpImpl(this.gameMap);
         this.collision = new CollisionImpl(this.gameMap, this);
     }
@@ -64,10 +64,12 @@ public class HUDImpl implements HUDInterface {
     public void update() {
         this.livesHUD.update(status.getLifePoints());
         this.pointsHUD.update(status.getPoints());
-        if (this.status.hasPowerUp()) {
+        if(this.status.hasPowerUp() && !this.powerUp) {
             this.powerUpHUD.showPowerUp(PowerUpEnum.WeaponDamage);
-        } else {
+            this.powerUp = !this.powerUp;
+        } else if (!this.status.hasPowerUp() && this.powerUp){
             this.powerUpHUD.hidePowerUp(PowerUpEnum.WeaponDamage);
+            this.powerUp = !this.powerUp;
         }
     }
 
@@ -105,5 +107,6 @@ public class HUDImpl implements HUDInterface {
     public HUDPoints getPointsImpl() {
         return this.pointsHUD;
     }
+
 
 }

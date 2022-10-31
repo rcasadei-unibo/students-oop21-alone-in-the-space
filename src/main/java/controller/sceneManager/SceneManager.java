@@ -13,13 +13,13 @@ import view.GameMap;
 */
 public class SceneManager {
 
-    private GameMap gameMap;
-    private Set<Entity> entities;
+    private final GameMap gameMap;
+    private final Set<Entity> entities;
 
     /**
      * Constructor.
      *
-     * @param gameMap
+     * @param gameMap the game map
      */
     public SceneManager(final GameMap gameMap) {
         this.gameMap = gameMap;
@@ -28,20 +28,18 @@ public class SceneManager {
 
     /**
      * Game update.
-     * 
-     * @param deltaTime
+     *
+     * @param deltaTime tic update
      */
-    public void update(final long deltaTime) {
-        // this.updateBackground();
-        // TODO soundmanager
+    public void update(long deltaTime) {
+        //this.updateBackground();
         this.entities.forEach(entity -> updateEntityPosition(entity, deltaTime));
     }
 
     /**
      * Entity position update.
-     * 
-     * @param entity
-     * @param deltaTime
+     * @param entity entity to update
+     * @param deltaTime tic update
      */
     private void updateEntityPosition(final Entity entity, final long deltaTime) {
         if (entity.isAlive()) {

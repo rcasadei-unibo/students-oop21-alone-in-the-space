@@ -1,7 +1,5 @@
 package controller.eventController;
 
-import java.io.IOException;
-
 import controller.collisionDetection.Collision;
 import controller.gameSwitcher.SceneController;
 import model.hud.HUDPowerUp;
@@ -31,8 +29,7 @@ public interface EventController {
     HUDImpl getHudBuilder();
 
     /**
-     * //todo.
-     * 
+     *
      * @param sceneController
      * @throws IOException
      */

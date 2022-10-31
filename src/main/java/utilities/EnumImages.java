@@ -3,8 +3,10 @@ package utilities;
 import javafx.scene.image.Image;
 
 /**
- * 
+ *
  */
+import java.util.Objects;
+
 public enum EnumImages {
 
     /**
@@ -27,15 +29,15 @@ public enum EnumImages {
      */
     ENEMY("images/enemy.png");
 
-    private Image value;
+    private final Image value;
 
     /**
      * Constructor.
      *
-     * @param path
+     * @param path url to file
      */
-    private EnumImages(final String path) {
-        this.value = new Image(getClass().getResourceAsStream(path));
+    EnumImages(final String path) {
+        this.value = new Image(Objects.requireNonNull(getClass().getResourceAsStream(path)));
     }
 
     /**

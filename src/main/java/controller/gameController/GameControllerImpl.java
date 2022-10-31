@@ -14,6 +14,7 @@ import model.status.StatusImpl;
 import utilities.EnumString;
 import utilities.InputCommands;
 import utilities.PlayerValues;
+import utilities.PowerUpEnum;
 import view.GameMap;
 
 import java.io.IOException;
