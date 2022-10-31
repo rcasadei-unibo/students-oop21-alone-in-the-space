@@ -1,5 +1,7 @@
 package controller.eventController;
 
+import java.io.IOException;
+
 import controller.collisionDetection.Collision;
 import controller.gameSwitcher.SceneController;
 import model.hud.HUDPowerUp;
