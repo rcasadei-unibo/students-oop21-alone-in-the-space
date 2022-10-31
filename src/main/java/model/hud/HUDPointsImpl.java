@@ -48,11 +48,7 @@ public class HUDPointsImpl extends Label implements HUDPoints {
         this.setText(MATTER + this.getPoints());
     }
 
-    /**
-     * Update points.
-     * 
-     * @param points
-     */
+    @Override
     public void update(final int points) {
         this.points = points;
         this.setText(MATTER + this.getPoints());
