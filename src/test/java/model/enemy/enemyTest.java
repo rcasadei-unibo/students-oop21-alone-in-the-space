@@ -57,7 +57,8 @@ class enemyTest {
 	Ship enemy = EnemyFactory.basicEnemy(new Vec2(0,0));
 	Ship enemy2 = EnemyFactory.basicEnemy(enemy.getDirection());
 	enemy.setTarget(enemy2);
-	assertTrue(enemy.isInRangeOfAttack(1000000000000L));
+	assertFalse(enemy.isInRangeOfAttack(1000000000000L));
+	assertTrue(enemy.isInRangeOfAttack(0));
     }
     
     @Test
@@ -65,7 +66,8 @@ class enemyTest {
 	Ship enemy = EnemyFactory.basicEnemy(new Vec2(0,0));
 	Ship enemy2 = EnemyFactory.basicEnemy(enemy.getDirection());
 	enemy.setTarget(enemy2);
-	assertTrue(enemy.isInRangeOfAttack(1000000000000L));
+	assertFalse(enemy.isInRangeOfAttack(1000000000000L));
+	assertTrue(enemy.isInRangeOfAttack(0));
 	enemy.shot();
 	assertFalse(enemy.isInRangeOfAttack(0));
     }
