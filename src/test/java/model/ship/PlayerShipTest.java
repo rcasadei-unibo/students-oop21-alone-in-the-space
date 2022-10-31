@@ -25,7 +25,7 @@ public final class PlayerShipTest {
     @BeforeEach
     void setUp() {
         new JFXPanel();
-        Vec2 initialPos = new Vec2(EnumInt.WIDTH.getValue()/2, EnumInt.HEIGHT.getValue()/2);
+        Vec2 initialPos = new Vec2(EnumInt.WIDTH.getValue()/2f, EnumInt.HEIGHT.getValue()/2f);
         playerShip = new PlayerShip(initialPos,
                 PlayerValues.MAIN_SHIP.getValueFromKey("MAXHEALTH"),
                 PlayerValues.MAIN_SHIP.getValueFromKey("MAXSPEED"),
