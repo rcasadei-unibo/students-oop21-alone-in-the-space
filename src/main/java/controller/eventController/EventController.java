@@ -7,6 +7,8 @@ import controller.gameSwitcher.SceneController;
 import model.hud.HUDPowerUp;
 import view.hud.HUDImpl;
 
+import java.io.IOException;
+
 /**
  * This interface contains the methods that are used to handle the HUD and to
  * coordinate the events with the game status.

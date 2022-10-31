@@ -17,4 +17,11 @@ public interface HUDPoints {
      */
     void setPoints(int value);
 
+    /**
+     * Update points.
+     *
+     * @param points
+     */
+    void update(int points);
+
 }
