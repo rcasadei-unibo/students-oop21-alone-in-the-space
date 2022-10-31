@@ -20,6 +20,9 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.Optional;
 
+/**
+ * 
+ */
 public class GameControllerImpl implements GameController {
 
     private GameMap gameMap;
@@ -29,7 +32,11 @@ public class GameControllerImpl implements GameController {
     private InputController inputController;
     private Collection<Ship> enemies;
 
-
+    /**
+     * Constructor.
+     * 
+     * @param gameMap
+     */
     public GameControllerImpl(final GameMap gameMap) {
         this.gameMap = gameMap;
         this.gameMap.setBackgroundImage(EnumString.IMAGE_FOLDER.getValue() + "skybox13.jpg");
@@ -46,56 +53,56 @@ public class GameControllerImpl implements GameController {
         this.enemies = this.gameMap.getActiveEnemyShips();
     }
 
-	@Override
-	public void update(final long deltaTime) {
-		this.inputController.updatePlayerTasks();
-		//Various player movement checks
-		if (this.inputController.isTaskActive(InputCommands.UP)) {
-			this.playerShipController.thrust(InputCommands.UP);
-		}
-		if (this.inputController.isTaskActive(InputCommands.DOWN)) {
-			this.playerShipController.thrust(InputCommands.DOWN);
-		}
-		if (this.inputController.isTaskActive(InputCommands.LEFT)) {
-			this.playerShipController.rotate(InputCommands.LEFT);
-		}
-		if (this.inputController.isTaskActive(InputCommands.RIGHT)) {
-			this.playerShipController.rotate(InputCommands.RIGHT);
-		}
-		//Fire Rate check in player controller
-		if (this.inputController.isTaskActive(InputCommands.ATTACK)) {
-			final Optional<Bullet> playerBulletShot = Optional.ofNullable(this.playerShipController.shot());
-			playerBulletShot.ifPresent(bullet -> this.gameMap.addPlayerBullet(bullet));
+    @Override
+    public void update(final long deltaTime) {
+        this.inputController.updatePlayerTasks();
+        // Various player movement checks
+        if (this.inputController.isTaskActive(InputCommands.UP)) {
+            this.playerShipController.thrust(InputCommands.UP);
+        }
+        if (this.inputController.isTaskActive(InputCommands.DOWN)) {
+            this.playerShipController.thrust(InputCommands.DOWN);
+        }
+        if (this.inputController.isTaskActive(InputCommands.LEFT)) {
+            this.playerShipController.rotate(InputCommands.LEFT);
+        }
+        if (this.inputController.isTaskActive(InputCommands.RIGHT)) {
+            this.playerShipController.rotate(InputCommands.RIGHT);
+        }
+        // Fire Rate check in player controller
+        if (this.inputController.isTaskActive(InputCommands.ATTACK)) {
+            final Optional<Bullet> playerBulletShot = Optional.ofNullable(this.playerShipController.shot());
+            playerBulletShot.ifPresent(bullet -> this.gameMap.addPlayerBullet(bullet));
 
-		}
-		//PowerUp check in playercontroller
-		if (this.inputController.isTaskActive(InputCommands.POWER_UP)) {
-			this.playerShipController.activatePowerUp();
-		}
-		//For decaying speed
-		if (!this.inputController.isTaskActive(InputCommands.UP) && !this.inputController.isTaskActive(InputCommands.DOWN)) {
-			this.playerShipController.thrustReleased();
-		}
+        }
+        // PowerUp check in playercontroller
+        if (this.inputController.isTaskActive(InputCommands.POWER_UP)) {
+            this.playerShipController.activatePowerUp();
+        }
+        // For decaying speed
+        if (!this.inputController.isTaskActive(InputCommands.UP)
+                && !this.inputController.isTaskActive(InputCommands.DOWN)) {
+            this.playerShipController.thrustReleased();
+        }
 
-		//Collision check
-		this.eventController.getCollision().checkAllCollision(this.playerShipController.getPlayerShip(),
-				this.enemies, this.gameMap.getBulletsShotByPlayer(),
-				this.gameMap.getBulletsShotByEnemies());
-		//Updates the player
-		this.playerShipController.update(deltaTime);
+        // Collision check
+        this.eventController.getCollision().checkAllCollision(this.playerShipController.getPlayerShip(), this.enemies,
+                this.gameMap.getBulletsShotByPlayer(), this.gameMap.getBulletsShotByEnemies());
+        // Updates the player
+        this.playerShipController.update(deltaTime);
 
-		this.gameMap.removeDeadEntity();
+        this.gameMap.removeDeadEntity();
 
-		this.enemies.forEach((Ship enemy) -> {
-			if (enemy.isInRangeOfAttack( deltaTime)) {
-				this.gameMap.addEnemyBullet(enemy.shot());
-			}
-		});
+        this.enemies.forEach((Ship enemy) -> {
+            if (enemy.isInRangeOfAttack(deltaTime)) {
+                this.gameMap.addEnemyBullet(enemy.shot());
+            }
+        });
 
-		this.sceneManager.update(deltaTime);
-		//Update status stats (life points, player score)
-		this.gameMap.getStatus().update();
-		this.eventController.getHudBuilder().update();
+        this.sceneManager.update(deltaTime);
+        // Update status stats (life points, player score)
+        this.gameMap.getStatus().update();
+        this.eventController.getHudBuilder().update();
 
         if (!this.eventController.checkGameStatus()) {
             this.gameMap.getGameEngine().stop();
@@ -109,14 +116,21 @@ public class GameControllerImpl implements GameController {
         }
     }
 
+    /**
+     * @return GameMap reference.
+     */
     public GameMap getGameMap() {
         return this.gameMap;
     }
 
+    /**
+     * Sets the InputController.
+     * 
+     * @param inputController
+     */
     public final void setInputController(final InputController inputController) {
         this.inputController = inputController;
         this.inputController.changeScene(this.playerShipController.display().getScene());
     }
-
 
 }

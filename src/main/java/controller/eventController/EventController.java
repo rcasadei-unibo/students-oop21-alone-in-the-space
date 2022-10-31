@@ -1,12 +1,16 @@
 package controller.eventController;
 
+import java.io.IOException;
+
 import controller.collisionDetection.Collision;
 import controller.gameSwitcher.SceneController;
 import model.hud.HUDPowerUp;
 import view.hud.HUDImpl;
 
-import java.io.IOException;
-
+/**
+ * This interface contains the methods that are used to handle the HUD and to
+ * coordinate the events with the game status.
+ */
 public interface EventController {
 
     /**
@@ -28,6 +32,7 @@ public interface EventController {
 
     /**
      * //todo.
+     * 
      * @param sceneController
      * @throws IOException
      */

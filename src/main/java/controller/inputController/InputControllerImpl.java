@@ -149,6 +149,10 @@ public class InputControllerImpl implements InputController {
             this.task.put(InputCommands.LEFT, false);
             this.task.put(InputCommands.RIGHT, false);
         }
+        if (this.task.get(InputCommands.UP) && this.task.get(InputCommands.DOWN)) {
+            this.task.put(InputCommands.UP, false);
+            this.task.put(InputCommands.DOWN, false);
+        }
     }
 
 }

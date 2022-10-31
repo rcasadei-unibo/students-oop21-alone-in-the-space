@@ -1,5 +1,8 @@
 package utilities;
 
+/**
+ * 
+ */
 public enum EnumString {
 
     /**

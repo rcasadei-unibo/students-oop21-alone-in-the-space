@@ -1,10 +1,17 @@
 package application;
 
+/**
+*
+*/
 public final class Launcher {
-	/** */
-	private Launcher() { }
+    /** */
+    private Launcher() {
+    }
 
-	public static void main(final String[] arg) {
-		Main.main(arg);
-	}
+    /**
+     * @param args
+     */
+    public static void main(final String[] args) {
+        Main.main(args);
+    }
 }

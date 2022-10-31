@@ -1,5 +1,7 @@
 package view;
 
+import java.util.Set;
+
 import controller.gameEngine.GameAnimation;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -10,8 +12,9 @@ import model.bullet.Bullet;
 import model.ship.Ship;
 import model.status.StatusImpl;
 
-import java.util.Set;
-
+/**
+ * 
+ */
 public interface GameMap {
 
     /**
@@ -117,7 +120,7 @@ public interface GameMap {
      */
     Stage getStage();
 
-    //background image
+    // background image
 
     /**
      * Add an enemy ship to the game.
@@ -140,6 +143,7 @@ public interface GameMap {
 
     /**
      * Set a Status reference.
+     * 
      * @param status the status to reference to
      */
     void setStatus(StatusImpl status);

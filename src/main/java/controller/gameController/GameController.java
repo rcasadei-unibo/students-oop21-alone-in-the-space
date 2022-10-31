@@ -1,5 +1,8 @@
 package controller.gameController;
 
+/**
+ * 
+ */
 public interface GameController {
 
     /**

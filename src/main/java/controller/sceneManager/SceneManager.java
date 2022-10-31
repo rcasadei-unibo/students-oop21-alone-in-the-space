@@ -1,13 +1,16 @@
 package controller.sceneManager;
 
+import java.util.Set;
+
 import com.almasb.fxgl.core.math.Vec2;
 
 import javafx.scene.image.ImageView;
 import model.Entity;
 import view.GameMap;
 
-import java.util.Set;
-
+/**
+*
+*/
 public class SceneManager {
 
     private GameMap gameMap;
@@ -60,6 +63,7 @@ public class SceneManager {
 
     }
 
+    // TODO DA CANCELLARE
     /**
      * Background update.
      */

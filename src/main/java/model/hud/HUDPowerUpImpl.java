@@ -5,7 +5,9 @@ import javafx.scene.image.ImageView;
 import utilities.PowerUpEnum;
 import view.GameMap;
 
-
+/**
+*
+*/
 public class HUDPowerUpImpl implements HUDPowerUp {
 
     private static final int X_LAYOUT = 430;
@@ -15,6 +17,11 @@ public class HUDPowerUpImpl implements HUDPowerUp {
     private boolean statusMonitor;
     private final GameMap gameMap;
 
+    /**
+     * Constructor.
+     * 
+     * @param gameMap
+     */
     public HUDPowerUpImpl(final GameMap gameMap) {
         this.gameMap = gameMap;
         this.addPowerUp();
@@ -26,9 +33,9 @@ public class HUDPowerUpImpl implements HUDPowerUp {
     }
 
     private void addPowerUp() {
-            this.powerUp = new ImageView(new Image("/images/" + "powerUp" + ".png"));
-            this.powerUp.setLayoutX(X_LAYOUT);
-            this.powerUp.setLayoutY(Y_LAYOUT);
+        this.powerUp = new ImageView(new Image("/images/" + "powerUp" + ".png"));
+        this.powerUp.setLayoutX(X_LAYOUT);
+        this.powerUp.setLayoutY(Y_LAYOUT);
     }
 
     @Override
@@ -53,7 +60,8 @@ public class HUDPowerUpImpl implements HUDPowerUp {
         }
     }
 
-    public final boolean getStatus(int index) {
+    @Override
+    public final boolean getStatus(final int index) {
         return this.statusMonitor;
     }
 }

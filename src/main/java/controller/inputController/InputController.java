@@ -4,10 +4,14 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import utilities.InputCommands;
 
+/**
+ * Interface for the InputController.
+ */
 public interface InputController {
 
     /**
      * Change Scene of this InputController.
+     * 
      * @param scene where this InputController can detect keys.
      */
     void changeScene(Scene scene);
@@ -19,6 +23,7 @@ public interface InputController {
 
     /**
      * Get the key mapped to the command.
+     * 
      * @param command
      * @return the mapped key.
      */
@@ -34,6 +39,7 @@ public interface InputController {
 
     /**
      * Check if key is pressed.
+     * 
      * @param key
      * @return status of the key.
      */
@@ -41,6 +47,7 @@ public interface InputController {
 
     /**
      * Check if player's task is active.
+     * 
      * @param task
      * @return the player's task state.
      */

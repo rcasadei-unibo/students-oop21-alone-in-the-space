@@ -1,5 +1,8 @@
 package model.hud;
 
+/**
+ * This interface show the methods to handle HUD life points system.
+ */
 public interface HUDLife {
 
     /**
@@ -13,7 +16,9 @@ public interface HUDLife {
     boolean getGameStatus();
 
     /**
-     * update the HUD with the new stats
+     * update the HUD with the new stats.
+     * 
+     * @param lifePoints
      */
     void update(int lifePoints);
 }

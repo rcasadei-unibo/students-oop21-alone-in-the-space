@@ -3,6 +3,9 @@ package model.status;
 import controller.playerController.PlayerShipController;
 import utilities.EnumInt;
 
+/**
+*
+*/
 public class StatusImpl implements Status {
 
     private int points;

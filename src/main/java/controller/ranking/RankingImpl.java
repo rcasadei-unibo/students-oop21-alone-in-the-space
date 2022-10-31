@@ -1,10 +1,22 @@
 package controller.ranking;
 
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URLDecoder;
-import java.util.*;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
+/**
+ * Ranking Manager.
+ */
 public class RankingImpl implements Ranking {
 
     private Map<String, Integer> map;
@@ -65,7 +77,7 @@ public class RankingImpl implements Ranking {
     }
 
     @Override
-    public void addPlayer(String playerNickname, Integer playerScore) throws IOException {
+    public void addPlayer(final String playerNickname, final Integer playerScore) throws IOException {
         if (this.map.containsKey(playerNickname) && (playerScore <= this.map.get(playerNickname))) {
             return;
         }
@@ -86,7 +98,7 @@ public class RankingImpl implements Ranking {
     }
 
     @Override
-    public String getFormattedRanking(int limit) {
+    public String getFormattedRanking(final int limit) {
         final StringJoiner joiner = new StringJoiner("");
         List<Map.Entry<String, Integer>> sortedEntry;
         sortedEntry = this.getSortedList(this.map).stream().limit(limit).collect(Collectors.toList());

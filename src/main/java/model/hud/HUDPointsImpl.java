@@ -6,6 +6,9 @@ import javafx.scene.text.Font;
 import utilities.EnumInt;
 import utilities.EnumString;
 
+/**
+ * This class shows how the HUD for points must look.
+ */
 public class HUDPointsImpl extends Label implements HUDPoints {
 
     /*
@@ -18,6 +21,9 @@ public class HUDPointsImpl extends Label implements HUDPoints {
 
     private int points;
 
+    /**
+     * Constructor.
+     */
     public HUDPointsImpl() {
         this.points = EnumInt.ZERO.getValue();
         this.setLayoutX(EnumInt.WIDTH.getValue() - X_LAYOUT);
@@ -32,9 +38,8 @@ public class HUDPointsImpl extends Label implements HUDPoints {
         return this.points;
     }
 
-
     @Override
-    public void setPoints(int value) {
+    public void setPoints(final int value) {
         if (this.getPoints() + value < EnumInt.MAX_POINTS.getValue()) {
             this.points += value;
         } else {
@@ -43,7 +48,12 @@ public class HUDPointsImpl extends Label implements HUDPoints {
         this.setText(MATTER + this.getPoints());
     }
 
-    public void update(int points) {
+    /**
+     * Update points.
+     * 
+     * @param points
+     */
+    public void update(final int points) {
         this.points = points;
         this.setText(MATTER + this.getPoints());
     }

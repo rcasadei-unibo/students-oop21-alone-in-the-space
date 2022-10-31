@@ -2,6 +2,9 @@ package controller.ranking;
 
 import java.io.IOException;
 
+/**
+ * Ranking interface.
+ */
 public interface Ranking {
 
     /**
@@ -14,7 +17,8 @@ public interface Ranking {
     void addPlayer(String playerNickname, Integer playerScore) throws IOException;
 
     /**
-     * Return a formatted String containing a limited version of the information of the ranking map.
+     * Return a formatted String containing a limited version of the information of
+     * the ranking map.
      *
      * @param limit
      * @return a formatted String

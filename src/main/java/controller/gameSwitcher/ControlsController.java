@@ -1,5 +1,7 @@
 package controller.gameSwitcher;
 
+import java.io.IOException;
+
 import controller.inputController.InputController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,8 +10,9 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import utilities.InputCommands;
 
-import java.io.IOException;
-
+/**
+ * 
+ */
 public class ControlsController extends BasicFXMLController {
 
     @FXML
@@ -70,6 +73,7 @@ public class ControlsController extends BasicFXMLController {
 
     /**
      * Changes the up movement key.
+     * 
      * @param event
      */
     @FXML
@@ -80,6 +84,7 @@ public class ControlsController extends BasicFXMLController {
 
     /**
      * Changes the down movement key.
+     * 
      * @param event
      */
     @FXML
@@ -90,6 +95,7 @@ public class ControlsController extends BasicFXMLController {
 
     /**
      * Changes the left movement key.
+     * 
      * @param event
      */
     @FXML
@@ -100,6 +106,7 @@ public class ControlsController extends BasicFXMLController {
 
     /**
      * Changes the up movement key.
+     * 
      * @param event
      */
     @FXML
@@ -110,6 +117,7 @@ public class ControlsController extends BasicFXMLController {
 
     /**
      * Changes the attack key.
+     * 
      * @param event
      */
     @FXML
@@ -120,6 +128,7 @@ public class ControlsController extends BasicFXMLController {
 
     /**
      * Changes the power up key.
+     * 
      * @param event
      */
     @FXML
@@ -130,6 +139,7 @@ public class ControlsController extends BasicFXMLController {
 
     /**
      * Detects the key pressed to be set as new.
+     * 
      * @param event
      */
     @FXML
@@ -140,16 +150,14 @@ public class ControlsController extends BasicFXMLController {
 
     /**
      * Returns to main menu GUI.
+     * 
      * @param event
      * @throws IOException
      */
     @FXML
     void returnToMenu(final ActionEvent event) throws IOException {
-        //super.buttonPressedSound();
+        // super.buttonPressedSound();
         super.getSceneController().switchToMainMenu();
     }
-
-
-
 
 }
