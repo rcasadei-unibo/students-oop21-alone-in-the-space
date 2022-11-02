@@ -28,8 +28,8 @@ public interface HUDPowerUp {
     void hidePowerUp(PowerUpEnum powerUp);
 
     /**
-     * @param index.
-     * @return which status is activated.
+     * @param index which status to activate
+     * @return if its activated.
      */
     boolean getStatus(int index);
 }

@@ -77,11 +77,11 @@ class enemyTest {
 	enemy.setTarget(enemy2);
 	assertFalse(enemy.isInRangeOfAttack(100000000000L));
 	assertTrue(enemy.isInRangeOfAttack(0));
-	enemy.shot()
+	enemy.shot();
 	assertTrue(enemy.isInRangeOfAttack(0));
-	enemy.shot()
+	enemy.shot();
 	assertTrue(enemy.isInRangeOfAttack(0));
-	enemy.shot()
+	enemy.shot();
     }
     
     @Test
